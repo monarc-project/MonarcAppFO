@@ -14,14 +14,14 @@ The recommended way to get a working copy of this project is to clone the reposi
 and use `composer` to install dependencies using the `create-project` command:
 
     curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://rhea.netlor.fr:3000/CASES/skeleton.git" monarc/skeleton-application path/to/install
+    php composer.phar create-project -sdev --repository="https://rhea.netlor.fr/CASES/skeleton/raw/master/packages.json" monarc/skeleton ./monarc
 
 Alternately, clone the repository and manually invoke `composer` using the shipped
 `composer.phar`:
 
     cd my/project/dir
-    git clone ssh://gogs@rhea.netlor.fr:2222/CASES/skeleton.git
-    cd ZendSkeletonApplication
+    git clone ssh://gogs@rhea.netlor.fr:2222/CASES/skeleton.git ./monarc
+    cd monarc
     php composer.phar self-update
     php composer.phar install -o
 
@@ -58,3 +58,24 @@ project and you should be ready to go! It should look something like below:
             Allow from all
         </Directory>
     </VirtualHost>
+
+
+Database connection
+-------------------
+
+Create file `config/autoload.local.php`:
+
+    return array(
+        'doctrine' => array(
+            'connection' => array(
+                'orm_default' => array(
+                    'params' => array(
+                        'host' => 'host',
+                        'user' => 'user',
+                        'password' => 'password',
+                        'dbname' => 'monarc',
+                    ),
+                ),
+            ),
+        ),
+    );
