@@ -1,0 +1,28 @@
+{
+    "name": "monarc/skeleton",
+    "description": "Skeleton for Monarc project",
+    
+    "homepage": "http://framework.zend.com/",
+    "require": {
+        "php": ">=5.5",
+        "monarc/core": "dev-master"
+    },
+    "repositories":[
+        {
+            "type": "package",
+            "package": {
+                "name": "monarc/core",
+                "version": "dev-master",
+                "dist": {
+                    "url": "https://rhea.netlor.fr/CASES/zm_common/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://rhea.netlor.fr:3000/CASES/zm_common.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                }
+            }
+        }
+    ]
+}
