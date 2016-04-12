@@ -23,7 +23,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
     git clone ssh://gogs@rhea.netlor.fr:2222/CASES/skeleton.git
     cd ZendSkeletonApplication
     php composer.phar self-update
-    php composer.phar install
+    php composer.phar install -o
 
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
