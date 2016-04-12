@@ -27,6 +27,10 @@
             "repositories":[
                 {
                     "type": "composer",
+                    "url": "https://rhea.netlor.fr/CASES/skeleton/raw/master/packages.json"
+                },
+                {
+                    "type": "composer",
                     "url": "https://rhea.netlor.fr/CASES/zm_common/raw/master/packages.json"
                 }
             ]
