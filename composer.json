@@ -1,28 +1,19 @@
 {
     "name": "monarc/skeleton",
     "description": "Skeleton for Monarc project",
-    
-    "homepage": "http://framework.zend.com/",
+    "authors": [
+        {"name": "Cyril Rouyer", "email": "cyril@netlor.fr"},
+        {"name": "Guillaume Lesniak", "email": "guillaume@netlor.fr"},
+        {"name": "Jerôme De Almeida", "email": "jerome.dealmeida@vesperiagroup.com"},
+    ],
     "require": {
         "php": ">=5.5",
         "monarc/core": "dev-master"
     },
     "repositories":[
         {
-            "type": "package",
-            "package": {
-                "name": "monarc/core",
-                "version": "dev-master",
-                "dist": {
-                    "url": "https://rhea.netlor.fr/CASES/zm_common/archive/master.zip",
-                    "type": "zip"
-                },
-                "source": {
-                    "url": "https://rhea.netlor.fr:3000/CASES/zm_common.git",
-                    "type": "git",
-                    "reference": "dev-master"
-                }
-            }
+            "type": "composer",
+            "url": "https://rhea.netlor.fr/CASES/zm_common/raw/master/packages.json"
         }
     ]
 }
