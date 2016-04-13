@@ -14,13 +14,13 @@ The recommended way to get a working copy of this project is to clone the reposi
 and use `composer` to install dependencies using the `create-project` command:
 
     curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository="https://rhea.netlor.fr/CASES/skeleton/raw/master/packages.json" monarc/skeleton ./monarc
+    php composer.phar create-project -sdev --repository="https://rhea.netlor.fr/monarc/skeleton/raw/master/packages.json" monarc/skeleton ./monarc
 
 Alternately, clone the repository and manually invoke `composer` using the shipped
 `composer.phar`:
 
     cd my/project/dir
-    git clone ssh://gogs@rhea.netlor.fr:2222/CASES/skeleton.git ./monarc
+    git clone ssh://gogs@rhea.netlor.fr:2222/monarc/skeleton.git ./monarc
     cd monarc
     php composer.phar self-update
     php composer.phar install -o

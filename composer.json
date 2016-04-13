@@ -14,7 +14,7 @@
     "repositories":[
         {
             "type": "composer",
-            "url": "https://rhea.netlor.fr/CASES/zm_common/raw/master/packages.json"
+            "url": "https://rhea.netlor.fr/monarc/zm_core/raw/master/packages.json"
         }
     ]
 }

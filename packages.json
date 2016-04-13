@@ -16,22 +16,22 @@
                 "monarc/core": "dev-master"
             },
             "dist": {
-                "url": "https://rhea.netlor.fr/CASES/skeleton/archive/master.zip",
+                "url": "https://rhea.netlor.fr/monarc/skeleton/archive/master.zip",
                 "type": "zip"
             },
             "source": {
-                "url": "https://rhea.netlor.fr:3000/CASES/skeleton.git",
+                "url": "https://rhea.netlor.fr:3000/monarc/skeleton.git",
                 "type": "git",
                 "reference": "master"
             },
             "repositories":[
                 {
                     "type": "composer",
-                    "url": "https://rhea.netlor.fr/CASES/skeleton/raw/master/packages.json"
+                    "url": "https://rhea.netlor.fr/monarc/skeleton/raw/master/packages.json"
                 },
                 {
                     "type": "composer",
-                    "url": "https://rhea.netlor.fr/CASES/zm_common/raw/master/packages.json"
+                    "url": "https://rhea.netlor.fr/monarc/zm_core/raw/master/packages.json"
                 }
             ]
         }
