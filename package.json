@@ -9,5 +9,8 @@
     "url": "ssh://gogs@rhea.netlor.fr:2222/monarc/skeleton.git"
   },
   "author": "Netlor",
-  "license": "Copyright"
+  "license": "Copyright",
+  "scripts": {
+    "postinstall": "./scripts/link_modules_resources.sh"
+  }
 }
