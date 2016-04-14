@@ -5,7 +5,7 @@ if [ ! -d public/js ]; then
 fi
 
 if [ ! -d public/views ]; then
-	mkdir public/views
+	mkdir -p public/views/dialogs
 fi
 
 if [ ! -d public/img ]; then
@@ -13,7 +13,8 @@ if [ ! -d public/img ]; then
 fi
 
 if [ -d node_modules/ng_backoffice ]; then
-	find node_modules/ng_backoffice/views -name "*.html" -exec ln -s $(realpath {}) public/views/ \; 2>/dev/null
+	find node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/ \; 2>/dev/null
+	find node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/dialogs/ \; 2>/dev/null
 	find node_modules/ng_backoffice/src -name "*.js" -exec ln -s $(realpath {}) public/js/ \; 2>/dev/null
 	find node_modules/ng_backoffice/css -name "*.css" -exec ln -s $(realpath {}) public/css/ \; 2>/dev/null
 	find node_modules/ng_backoffice/img -name "*" -exec ln -s $(realpath {}) public/img/ \; 2>/dev/null
