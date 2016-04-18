@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	# Mac OS X doesn't have realpath
+	realpath() {
+		[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+	}
+fi
+
+
 if [ ! -d public/js ]; then
 	mkdir public/js
 fi
