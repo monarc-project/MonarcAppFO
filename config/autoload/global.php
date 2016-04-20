@@ -39,17 +39,21 @@ return array(
     ),
     'roles' => array(
         'superadmin'=> array(
+            'auth',
             'monarc_api_admin_users',
             'monarc_api_admin_servers',
         ),
         'dbadmin'=> array(
+            'auth',
             'monarc_api_admin_users',
             'monarc_api_admin_servers',
         ),
         'sysadmin'=> array(
+            'auth',
             'monarc_api_admin_servers',
         ),
         'accadmin'=> array(
+            'auth',
             'monarc_api_admin_users',
         ),
     )
