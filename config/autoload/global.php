@@ -37,4 +37,20 @@ return array(
             ),
         ),
     ),
+    'roles' => array(
+        'superadmin'=> array(
+            'monarc_api_admin_users',
+            'monarc_api_admin_servers',
+        ),
+        'dbadmin'=> array(
+            'monarc_api_admin_users',
+            'monarc_api_admin_servers',
+        ),
+        'sysadmin'=> array(
+            'monarc_api_admin_servers',
+        ),
+        'accadmin'=> array(
+            'monarc_api_admin_users',
+        ),
+    )
 );

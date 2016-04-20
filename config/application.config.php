@@ -10,6 +10,7 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'MonarcCore',
+        'MonarcBO',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
