@@ -12,6 +12,9 @@ if [ ! -d public/js ]; then
 	mkdir public/js
 fi
 
+if [ ! -d public/css ]; then
+	mkdir public/css
+fi
 if [ ! -d public/views ]; then
 	mkdir -p public/views/dialogs
 fi
