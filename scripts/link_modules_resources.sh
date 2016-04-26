@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Check if we have realpath
-which realpath >/dev/null 2>/dev/null
-if [ $? == "1" ]; then
-	# Mac OS X doesn't have realpath
-	realpath() {
-		[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-	}
-fi
-
 # Ensure folders are existing
 if [ ! -d public/js ]; then
 	mkdir public/js
@@ -27,11 +18,12 @@ fi
 
 # Link modules resources
 if [ -d node_modules/ng_backoffice ]; then
-	find node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/ \; 2>/dev/null
-	find node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/dialogs/ \; 2>/dev/null
-	find node_modules/ng_backoffice/src -name "*.js" -exec ln -s $(realpath {}) public/js/ \; 2>/dev/null
-	find node_modules/ng_backoffice/css -name "*.css" -exec ln -s $(realpath {}) public/css/ \; 2>/dev/null
-	find node_modules/ng_backoffice/img -name "*" -exec ln -s $(realpath {}) public/img/ \; 2>/dev/null
+	cd public/views/ && find ../../node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
+	cd dialogs/ && find ../../../node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
+	cd ../../js/ && find ../../node_modules/ng_backoffice/src -name "*.js" -exec ln -s {} \; 2>/dev/null
+	cd ../css/ && find ../../node_modules/ng_backoffice/css -name "*.css" -exec ln -s {} \; 2>/dev/null
+	cd ../img/ && find ../../node_modules/ng_backoffice/img -name "*" -exec ln -s {} \; 2>/dev/null
+	cd ../..
 
 	pushd node_modules/ng_backoffice
 	grunt concat
@@ -39,10 +31,11 @@ if [ -d node_modules/ng_backoffice ]; then
 fi
 
 if [ -d node_modules/ng_client ]; then
-	find node_modules/ng_client/views -name "*.html" -exec ln -s $(realpath {}) public/views/ \; 2>/dev/null
-	find node_modules/ng_client/src -name "*.js" -exec ln -s $(realpath {}) public/js/ \; 2>/dev/null
-	find node_modules/ng_client/css -name "*.css" -exec ln -s $(realpath {}) public/css/ \; 2>/dev/null
-	find node_modules/ng_client/img -name "*" -exec ln -s $(realpath {}) public/img/ \; 2>/dev/null
+	cd public/views/ && find ../../node_modules/ng_client/views -name "*.html" -exec ln -s {} \; 2>/dev/null
+	cd ../js/ && find node_modules/ng_client/src -name "*.js" -exec ln -s {} \; 2>/dev/null
+	cd ../css/ && find node_modules/ng_client/css -name "*.css" -exec ln -s {} \; 2>/dev/null
+	cd ../img/ && find node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
+	cd ../..
 
 	pushd node_modules/ng_backoffice
 	grunt concat
