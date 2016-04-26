@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+# Check if we have realpath
+which realpath >/dev/null 2>/dev/null
+if [ $? == "1" ]; then
 	# Mac OS X doesn't have realpath
 	realpath() {
 		[[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 	}
 fi
 
-
+# Ensure folders are existing
 if [ ! -d public/js ]; then
 	mkdir public/js
 fi
@@ -23,6 +25,7 @@ if [ ! -d public/img ]; then
 	mkdir public/img
 fi
 
+# Link modules resources
 if [ -d node_modules/ng_backoffice ]; then
 	find node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/ \; 2>/dev/null
 	find node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s $(realpath {}) public/views/dialogs/ \; 2>/dev/null
