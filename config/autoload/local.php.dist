@@ -12,4 +12,24 @@
  */
 
 return array(
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'params' => array(
+                    'host' => 'localhost',
+                    'user' => 'root',
+                    'password' => 'password',
+                    'dbname' => 'monarc_common',
+                ),
+            ),
+            'orm_cli' => array(
+                'params' => array(
+                    'host' => 'localhost',
+                    'user' => 'root',
+                    'password' => 'password',
+                    'dbname' => 'monarc_cli',
+                ),
+            ),
+        ),
+    ),
 );
