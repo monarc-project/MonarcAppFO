@@ -12,7 +12,14 @@
         "zendframework/zendframework": "2.5.3",
         "doctrine/doctrine-orm-module": "^0.10",
         "doctrine/migrations": "^1.4",
+        "behat/behat": "~3.0",
+        "behat/mink": "^1.6",
+        "behat/mink-extension": "^2.0",
+        "behat/mink-goutte-driver": "^1.1",
         "robmorgan/phinx": "0.5.*"
+    },
+    "config": {
+        "bin-dir": "bin/"
     },
     "repositories":[
         {

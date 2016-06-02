@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'languages' => [
+        1 => 'Français',
+        2 => 'English',
+        3 => 'Deutsch'
+    ],
+    'defaultLanguageIndex' => 2
+];
