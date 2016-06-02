@@ -13,7 +13,9 @@ if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['RE
 /**
  * Default Timezone
  */
-date_default_timezone_set('Europe/Luxembourg');
+if(date_default_timezone_get() != ini_get('date.timezone')){
+    date_default_timezone_set('Europe/Luxembourg');
+}
 
 // Setup autoloading
 require 'init_autoloader.php';
