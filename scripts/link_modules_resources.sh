@@ -20,7 +20,7 @@ fi
 if [ -d node_modules/ng_backoffice ]; then
 	cd public/views/ && find ../../node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
 	cd dialogs/ && find ../../../node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd ../../js/ && find ../../node_modules/ng_backoffice/src -name "*.js" -exec ln -s {} \; 2>/dev/null
+	cd ../../js/ && find ../../node_modules/ng_backoffice/src -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../css/ && find ../../node_modules/ng_backoffice/css -name "*.css" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_backoffice/img -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../..
