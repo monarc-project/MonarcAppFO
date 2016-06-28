@@ -13,7 +13,6 @@ git pull
 
 php composer.phar update -o
 
-
 pull_if_exists module/MonarcCore
 pull_if_exists module/MonarcBO
 pull_if_exists node_modules/ng_backoffice
@@ -28,3 +27,4 @@ if [ -d node_modules/ng_backoffice ]; then
 fi
 
 ./scripts/link_modules_resources.sh
+./scripts/compile_translations.sh
