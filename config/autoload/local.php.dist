@@ -40,5 +40,28 @@ return array(
         3 => 'Deutsch'
     ],
 
-    'defaultLanguageIndex' => 1
+    'defaultLanguageIndex' => 1,
+
+    /* Link with (ModuleCore)
+    config['languages'] = [
+        'fr' => array(
+            'index' => 1,
+            'label' => 'Français'
+        ),
+        'en' => array(
+            'index' => 2,
+            'label' => 'English'
+        ),
+        'de' => array(
+            'index' => 3,
+            'label' => 'Deutsch'
+        ),
+    ]
+    */
+    'activeLanguages' => array('fr','en','de',),
+
+    'monarc' => array(
+        'ttl' => 20, // timeout
+        'salt' => '', // salt privé pour chiffrement pwd
+    ),
 );
