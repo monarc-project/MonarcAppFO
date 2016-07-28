@@ -3,17 +3,25 @@
 # Ensure folders are existing
 if [ ! -d public/js ]; then
 	mkdir public/js
+else
+	find -L public/js -type l -exec rm {} \;
 fi
 
 if [ ! -d public/css ]; then
 	mkdir public/css
+else
+	find -L public/css -type l -exec rm {} \;
 fi
 if [ ! -d public/views ]; then
 	mkdir -p public/views/dialogs
+else
+	find -L public/views/dialogs -type l -exec rm {} \;
 fi
 
 if [ ! -d public/img ]; then
 	mkdir public/img
+else
+	find -L public/img -type l -exec rm {} \;
 fi
 
 # Link modules resources
