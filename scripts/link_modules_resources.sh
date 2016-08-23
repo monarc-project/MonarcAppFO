@@ -12,10 +12,16 @@ if [ ! -d public/css ]; then
 else
 	find -L public/css -type l -exec rm {} \;
 fi
-if [ ! -d public/views ]; then
+if [ ! -d public/views/dialogs ]; then
 	mkdir -p public/views/dialogs
 else
-	find -L public/views/dialogs -type l -exec rm {} \;
+	find -L public/views -type l -exec rm {} \;
+fi
+
+if [ ! -d public/views/partials ]; then
+	mkdir -p public/views/partials
+else
+	find -L public/views -type l -exec rm {} \;
 fi
 
 if [ ! -d public/img ]; then
@@ -28,6 +34,7 @@ fi
 if [ -d node_modules/ng_backoffice ]; then
 	cd public/views/ && find ../../node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
 	cd dialogs/ && find ../../../node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
+	cd ../partials/ && find ../../../node_modules/ng_backoffice/views/partials -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
 	cd ../../js/ && find ../../node_modules/ng_backoffice/src -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../css/ && find ../../node_modules/ng_backoffice/css -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_backoffice/img -name "*" -exec ln -s {} \; 2>/dev/null
