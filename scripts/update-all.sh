@@ -15,13 +15,28 @@ php composer.phar update -o
 
 pull_if_exists module/MonarcCore
 pull_if_exists module/MonarcBO
+pull_if_exists module/MonarcFO
 pull_if_exists node_modules/ng_backoffice
+pull_if_exists node_modules/ng_client
 
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcCore/migrations/phinx.php
-php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcBO/migrations/phinx.php
+
+if [ -d module/MonarcBO ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcBO/migrations/phinx.php
+fi
+
+if [ -d module/MonarcFO ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcFO/migrations/phinx.php
+fi
 
 if [ -d node_modules/ng_backoffice ]; then
 	cd node_modules/ng_backoffice
+	npm install
+	cd ../..
+fi
+
+if [ -d node_modules/ng_client ]; then
+	cd node_modules/ng_client
 	npm install
 	cd ../..
 fi
