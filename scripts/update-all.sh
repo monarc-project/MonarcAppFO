@@ -18,6 +18,7 @@ pull_if_exists module/MonarcBO
 pull_if_exists module/MonarcFO
 pull_if_exists node_modules/ng_backoffice
 pull_if_exists node_modules/ng_client
+pull_if_exists node_modules/ng_anr
 
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcCore/migrations/phinx.php
 
