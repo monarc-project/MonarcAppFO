@@ -60,7 +60,8 @@ fi
 
 if [ -d node_modules/ng_client ]; then
 	cd public/views/ && find ../../node_modules/ng_client/views -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd ../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
+	cd dialogs/ && find ../../../node_modules/ng_client/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
+	cd ../../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
 
