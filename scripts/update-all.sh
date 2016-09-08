@@ -20,14 +20,36 @@ pull_if_exists node_modules/ng_backoffice
 pull_if_exists node_modules/ng_client
 pull_if_exists node_modules/ng_anr
 
+if [ -d module/MonarcCore/hooks ]; then
+	cd module/MonarcCore/.git/hooks
+	ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
+	chmod u+x pre-commit
+	cd ../../../../
+fi
+
+
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcCore/migrations/phinx.php
 
 if [ -d module/MonarcBO ]; then
 	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcBO/migrations/phinx.php
+
+	if [ -d module/MonarcBO/hooks ]; then
+		cd module/MonarcBO/.git/hooks
+		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
+		chmod u+x pre-commit
+		cd ../../../../
+	fi
 fi
 
 if [ -d module/MonarcFO ]; then
 	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcFO/migrations/phinx.php
+
+	if [ -d module/MonarcFO/hooks ]; then
+		cd module/MonarcFO/.git/hooks
+		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
+		chmod u+x pre-commit
+		cd ../../../../
+	fi
 fi
 
 if [ -d node_modules/ng_backoffice ]; then
