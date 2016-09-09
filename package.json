@@ -2,15 +2,11 @@
   "name": "MONARC",
   "version": "1.0.0",
   "description": "MONARC Skeleton App",
-  "main": "index.js",
   "private": true,
   "repository": {
     "type": "git",
     "url": "ssh://gogs@rhea.netlor.fr:2222/monarc/skeleton.git"
   },
   "author": "Netlor",
-  "license": "Copyright",
-  "scripts": {
-    "postinstall": "./scripts/link_modules_resources.sh"
-  }
+  "license": "Copyright"
 }

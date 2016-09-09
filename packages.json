@@ -1,6 +1,7 @@
 {
     "packages": {
         "monarc/skeleton": {
+            "dev-master": {
             "name": "monarc/skeleton",
             "type": "library",
             "version": "dev-master",
@@ -35,6 +36,7 @@
                     "url": "https://rhea.netlor.fr/monarc/zm_core/raw/master/packages.json"
                 }
             ]
+        }
         }
     }
 }
