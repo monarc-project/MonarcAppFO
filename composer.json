@@ -16,11 +16,5 @@
     },
     "config": {
         "bin-dir": "bin/"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://rhea.netlor.fr/monarc/zm_core/raw/master/packages.json"
-        }
-    ]
+    }
 }
