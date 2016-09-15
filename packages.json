@@ -14,28 +14,13 @@
                 {"name": "Thomas Metois", "email": "thomas@netlor.fr"}
             ],
             "require": {
-                "php": ">=5.5",
-                "monarc/core": "dev-master"
-            },
-            "dist": {
-                "url": "https://rhea.netlor.fr/monarc/skeleton/archive/master.zip",
-                "type": "zip"
+                "php": ">=5.5"
             },
             "source": {
-                "url": "https://rhea.netlor.fr:3000/monarc/skeleton.git",
+                "url": "https://github.com/CASES-LU/skeleton",
                 "type": "git",
                 "reference": "master"
-            },
-            "repositories":[
-                {
-                    "type": "composer",
-                    "url": "https://rhea.netlor.fr/monarc/skeleton/raw/master/packages.json"
-                },
-                {
-                    "type": "composer",
-                    "url": "https://rhea.netlor.fr/monarc/zm_core/raw/master/packages.json"
-                }
-            ]
+            }
         }
         }
     }
