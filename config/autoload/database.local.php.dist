@@ -1,0 +1,24 @@
+<?php
+
+return array(
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'params' => array(
+                    'host' => '@db.host@',
+                    'user' => '@db.username@',
+                    'password' => '@db.password@',
+                    'dbname' => '@db.name@',
+                )
+            ),
+            'orm_cli' => array(
+                'params' => array(
+                    'host' => '@db.host@',
+                    'user' => '@db.username@',
+                    'password' => '@db.password@',
+                    'dbname' => '@db.name@',
+                )
+            )
+        )
+    )
+);
