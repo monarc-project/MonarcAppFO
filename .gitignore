@@ -18,3 +18,8 @@ public/views/
 module/
 node_modules/
 config/application.config.php
+bin/
+data/DoctrineORMModule/
+data/json/
+go-pear.phar
+scripts/public/
