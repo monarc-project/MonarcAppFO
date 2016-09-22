@@ -1,0 +1,7 @@
+default:
+  autoload:
+    '': %paths.base%/module/MonarcCore/features/bootstrap
+  suites:
+    features:
+      paths:    [ %paths.base%/module/MonarcCore/features ]
+      contexts: [ AmvContext ]
