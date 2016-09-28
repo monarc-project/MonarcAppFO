@@ -49,6 +49,11 @@ if [ -d node_modules/ng_backoffice ]; then
 		mkdir -p anr
 		cd anr && find ../../../node_modules/ng_anr/views -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
 		cd ..
+
+		cd ../css/
+		mkdir -p anr
+		cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
+		cd ..
 	fi
 
 	cd ../..
@@ -74,6 +79,11 @@ if [ -d node_modules/ng_client ]; then
 		cd ../views/
 		mkdir -p anr
 		cd anr && find ../../../node_modules/ng_anr/views -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
+		cd ..
+
+		cd ../css/
+		mkdir -p anr
+		cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
 		cd ..
 	fi
 
