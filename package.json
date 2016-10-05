@@ -5,8 +5,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "ssh://gogs@rhea.netlor.fr:2222/monarc/skeleton.git"
+    "url": "https://github.com/CASES-LU/skeleton.git"
   },
   "author": "Netlor",
-  "license": "Copyright"
+  "license": "Copyright",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.13"
+  }
 }
