@@ -97,10 +97,14 @@
     </target>
 
     <target name="db-migration" description="Update the database version">
-        <exec command="${phinx.bin} migrate -c ./app/module/MonarcBO/migrations/phinx.php" passthru="true"/>
+        <exec command="${project.basedir}/scripts/client-upgrade-db.sh MonarcBO localhost preproddev preproddev master" passthru="true"/>
     </target>
 
     <target name="reset-db"
             description="Drop database and reset data"
             depends="drop-db, init-db, db-migration"/>
+
+    <target name="init"
+            description="Setup external dependencies and migrate data"
+            depends="setup-db, db-migration"/>
 </project>
