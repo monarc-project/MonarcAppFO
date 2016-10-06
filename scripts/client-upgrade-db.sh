@@ -13,8 +13,8 @@ cat <<EOF >/tmp/conf.tmp.php
 <?php
 return array(
     'paths' => array(
-        'migrations' => 'module/$MODULE/migrations/db',
-        'seeds' => 'module/$MODULE/migrations/seeds',
+        'migrations' => 'vendor/monarc/backoffice/migrations/db',
+        'seeds' => 'vendor/monarc/backoffice/migrations/seeds',
     ),
     'environments' => array(
         'default_migration_table' => 'phinxlog',
