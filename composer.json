@@ -13,8 +13,8 @@
         "zendframework/zendframework": "2.5.3",
         "doctrine/doctrine-orm-module": "^0.10",
         "robmorgan/phinx": "0.5.*",
-        "monarc/core": "dev-beta",
-        "monarc/backoffice": "dev-beta",
+        "monarc/core": "dev-deployment-test",
+        "monarc/backoffice": "dev-deployment-test",
         "phing/phing": "~2.0"
     },
     "config": {
