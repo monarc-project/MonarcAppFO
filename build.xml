@@ -53,14 +53,14 @@
     </target>
 
     <target name="setup-application" description="Setup Application config">
-        <loadfile property="app.config" file="${project.basedir}/app/config/application.config.php-dist-BO">
+        <loadfile property="app.config" file="${project.basedir}/config/application.config.php-dist-BO">
             <!-- PLACE YOUR FILE MODIFICATIONS HERE -->
         </loadfile>
-        <echo message="${app.config}" file="${project.basedir}/app/config/application.config.php"/>
+        <echo message="${app.config}" file="${project.basedir}/config/application.config.php"/>
     </target>
 
     <target name="setup-sec-auth" description="Setup Security and Authentication">
-        <loadfile property="sec.config" file="${project.basedir}/app/config/autoload/security-authentication.local.php.dist">
+        <loadfile property="sec.config" file="${project.basedir}/config/autoload/security-authentication.local.php.dist">
             <filterchain>
                 <replacetokens>
                     <token key="monarc.ttl" value="${monarc.ttl}"/>
@@ -68,7 +68,7 @@
                 </replacetokens>
             </filterchain>
         </loadfile>
-        <echo message="${sec.config}" file="${project.basedir}/app/config/autoload/security-authentication.local.php"/>
+        <echo message="${sec.config}" file="${project.basedir}/config/autoload/security-authentication.local.php"/>
     </target>
 
     <target name="drop-db">
