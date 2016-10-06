@@ -97,7 +97,8 @@
     </target>
 
     <target name="db-migration" description="Update the database version">
-        <exec command="${project.basedir}/scripts/client-upgrade-db.sh MonarcBO localhost preproddev preproddev master" passthru="true"/>
+        <exec command="${project.basedir}/scripts/client-upgrade-db.sh backoffice ${db.host} ${db.username} ${db.password} ${db.name}" passthru="true"/>
+        <exec command="${project.basedir}/scripts/client-upgrade-db.sh core ${db.host} ${db.username} ${db.password} ${db.name}" passthru="true"/>
     </target>
 
     <target name="reset-db"
