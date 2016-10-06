@@ -2,4 +2,4 @@
 deployment:
   hooks:
     AfterInstall:
-      - command: scripts/migrate.sh
+      - command: ./scripts/migrate.sh
