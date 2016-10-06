@@ -59,7 +59,7 @@ if [ -d node_modules/ng_backoffice ]; then
 	cd ../..
 
 	pushd node_modules/ng_backoffice
-	node_modules/.bin/grunt concat
+	../.bin/grunt concat
 	popd
 fi
 
@@ -90,7 +90,7 @@ if [ -d node_modules/ng_client ]; then
 	cd ../..
 
 	pushd node_modules/ng_client
-	node_modules/.bin/grunt concat
+	../.bin/grunt concat
 	popd
 fi
 

@@ -1,0 +1,106 @@
+<project name="MonarcAppBO" default="help" basedir=".">
+    <property file="./build.properties" />
+
+    <target name="help" description="List available targets">
+        <exec executable="vendor/bin/phing"
+              passthru="true">
+            <arg value="-l"/>
+        </exec>
+    </target>
+
+    <target name="setup-npm" description="Setup NPM config">
+        <move file="${project.basedir}/package.json" tofile="${project.basedir}/package.json.bak" overwrite="true"/>
+        <loadfile property="npm.config" file="${project.basedir}/package.json.continuousphp">
+            <filterchain>
+                <replacetokens>
+                    <token key="github.token" value="${env.GITHUB_TOKEN}"/>
+                </replacetokens>
+            </filterchain>
+        </loadfile>
+        <echo message="${npm.config}" file="${project.basedir}/package.json"/>
+    </target>
+
+    <target name="post-install" description="Post install">
+        <exec command="scripts/post-install.sh"
+              passthru="true"
+              checkreturn="true"/>
+    </target>
+
+    <target name="remove-npm-config" description="Remove NPM config">
+        <delete file="${project.basedir}/package.json" quiet="true"/>
+        <move file="${project.basedir}/package.json.bak" tofile="${project.basedir}/package.json" overwrite="true"/>
+    </target>
+
+    <target name="setup-db" description="Setup Database Credentials">
+        <loadfile property="db.config" file="${project.basedir}/app/config/autoload/database.local.php.dist">
+            <filterchain>
+                <replacetokens>
+                    <token key="db.host" value="${db.host}"/>
+                    <token key="db.username" value="${db.username}"/>
+                    <token key="db.password" value="${db.password}"/>
+                    <token key="db.name" value="${db.name}"/>
+                </replacetokens>
+            </filterchain>
+        </loadfile>
+        <echo message="${db.config}" file="${project.basedir}/app/config/autoload/database.local.php"/>
+    </target>
+
+    <target name="setup-languages" description="Setup Languages">
+        <loadfile property="languages.config" file="${project.basedir}/app/config/autoload/languages.local.php.dist">
+            <!-- PLACE YOUR FILE MODIFICATIONS HERE -->
+        </loadfile>
+        <echo message="${languages.config}" file="${project.basedir}/app/config/autoload/languages.local.php"/>
+    </target>
+
+    <target name="setup-application" description="Setup Application config">
+        <loadfile property="app.config" file="${project.basedir}/app/config/application.config.php-dist-BO">
+            <!-- PLACE YOUR FILE MODIFICATIONS HERE -->
+        </loadfile>
+        <echo message="${app.config}" file="${project.basedir}/app/config/application.config.php"/>
+    </target>
+
+    <target name="setup-sec-auth" description="Setup Security and Authentication">
+        <loadfile property="sec.config" file="${project.basedir}/app/config/autoload/security-authentication.local.php.dist">
+            <filterchain>
+                <replacetokens>
+                    <token key="monarc.ttl" value="${monarc.ttl}"/>
+                    <token key="monarc.salt" value="${monarc.salt}"/>
+                </replacetokens>
+            </filterchain>
+        </loadfile>
+        <echo message="${sec.config}" file="${project.basedir}/app/config/autoload/security-authentication.local.php"/>
+    </target>
+
+    <target name="drop-db">
+        <echo file="${project.basedir}/drop.sql">DROP DATABASE IF EXISTS `${db.name}`;</echo>
+        <pdosqlexec url="mysql:host=${db.host}" userid="${db.username}" password="${db.password}">
+            <transaction src="${project.basedir}/drop.sql"/>
+        </pdosqlexec>
+
+        <delete file="${project.basedir}/drop.sql" quiet="true"/>
+    </target>
+
+    <target name="init-db" description="Create Database and Grants">
+        <echo file="${project.basedir}/create.sql">
+            CREATE DATABASE IF NOT EXISTS ${db.name};
+            GRANT USAGE ON *.* TO '${db.username}'@'%' IDENTIFIED BY '${db.password}';
+            GRANT UPDATE,CREATE,REFERENCES,ALTER,LOCK TABLES,CREATE VIEW,CREATE
+            ROUTINE,TRIGGER,INSERT,DELETE,DROP,INDEX,CREATE TEMPORARY TABLES,EXECUTE,SHOW VIEW,ALTER ROUTINE,SELECT ON
+            `${db.name}`.* TO '${db.username}'@'%';
+        </echo>
+
+        <pdosqlexec url="mysql:host=${db.host}" userid="${db.username}" password="${db.password}">
+            <transaction src="${project.basedir}/create.sql"/>
+        </pdosqlexec>
+
+        <delete file="${project.basedir}/create.sql" quiet="true"/>
+    </target>
+
+    <target name="db-migration" description="Update the database version">
+        <exec command="${phinx.bin} migrate -c ./app/module/MonarcBO/migrations/phinx.php" passthru="true"/>
+    </target>
+
+    <target name="reset-db"
+            description="Drop database and reset data"
+            depends="drop-db, init-db, db-migration"/>
+</project>

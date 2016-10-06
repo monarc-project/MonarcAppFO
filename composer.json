@@ -12,9 +12,22 @@
         "php": ">=5.5",
         "zendframework/zendframework": "2.5.3",
         "doctrine/doctrine-orm-module": "^0.10",
-        "robmorgan/phinx": "0.5.*"
+        "robmorgan/phinx": "0.5.*",
+        "monarc/core": "dev-beta",
+        "monarc/backoffice": "dev-beta",
+        "phing/phing": "~2.0"
     },
     "config": {
         "bin-dir": "bin/"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/CASES-LU/zm-core"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CASES-LU/zm-backoffice"
+        }
+    ]
 }
