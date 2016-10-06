@@ -32,7 +32,7 @@
     </target>
 
     <target name="setup-db" description="Setup Database Credentials">
-        <loadfile property="db.config" file="${project.basedir}/app/config/autoload/database.local.php.dist">
+        <loadfile property="db.config" file="${project.basedir}/config/autoload/database.local.php.dist">
             <filterchain>
                 <replacetokens>
                     <token key="db.host" value="${db.host}"/>
@@ -42,14 +42,14 @@
                 </replacetokens>
             </filterchain>
         </loadfile>
-        <echo message="${db.config}" file="${project.basedir}/app/config/autoload/database.local.php"/>
+        <echo message="${db.config}" file="${project.basedir}/config/autoload/database.local.php"/>
     </target>
 
     <target name="setup-languages" description="Setup Languages">
-        <loadfile property="languages.config" file="${project.basedir}/app/config/autoload/languages.local.php.dist">
+        <loadfile property="languages.config" file="${project.basedir}/config/autoload/languages.local.php.dist">
             <!-- PLACE YOUR FILE MODIFICATIONS HERE -->
         </loadfile>
-        <echo message="${languages.config}" file="${project.basedir}/app/config/autoload/languages.local.php"/>
+        <echo message="${languages.config}" file="${project.basedir}/config/autoload/languages.local.php"/>
     </target>
 
     <target name="setup-application" description="Setup Application config">
