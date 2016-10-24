@@ -13,8 +13,8 @@
         "zendframework/zendframework": "2.5.3",
         "doctrine/doctrine-orm-module": "^0.10",
         "robmorgan/phinx": "0.5.*",
-        "monarc/core": "dev-beta",
-        "monarc/backoffice": "dev-beta",
+        "monarc/core": "dev-master",
+        "monarc/backoffice": "dev-master",
         "phing/phing": "~2.0"
     },
     "config": {
@@ -23,11 +23,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU/zm-core"
+            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_core"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU/zm-backoffice"
+            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_backoffice"
         }
     ]
 }
