@@ -1,0 +1,8 @@
+<?php
+
+return array(
+    'monarc' => array(
+        'ttl' => @monarc.ttl@,     // timeout
+        'salt' => '@monarc.salt@', // salt privé pour chiffrement pwd
+    ),
+);
