@@ -12,6 +12,11 @@
  */
 return array(
     // DOCTRINE CONF
+    'service_manager' => array(
+        'factories' => array(
+            'doctrine.cache.mycache' => 'MonarcCore\Service\DoctrineCacheServiceFactory',
+        ),
+    ),
     'doctrine' => array(
         'connection' => array(
             'orm_default' => array(
@@ -71,9 +76,9 @@ return array(
         ),
         'configuration' => array(
             'orm_default' => array(
-                'metadata_cache'        => 'array',
-                'query_cache'           => 'array',
-                'result_cache'          => 'array',
+                'metadata_cache'        => 'mycache',
+                'query_cache'           => 'mycache',
+                'result_cache'          => 'mycache',
                 'driver'                => 'orm_default', // This driver will be defined later
                 'generate_proxies'      => true,
                 'proxy_dir'             => 'data/DoctrineORMModule/Proxy',
@@ -85,9 +90,9 @@ return array(
                 'second_level_cache'    => array(),
             ),
             'orm_cli' => array(
-                'metadata_cache'        => 'array',
-                'query_cache'           => 'array',
-                'result_cache'          => 'array',
+                'metadata_cache'        => 'mycache',
+                'query_cache'           => 'mycache',
+                'result_cache'          => 'mycache',
                 'driver'                => 'orm_cli', // This driver will be defined later
                 'generate_proxies'      => true,
                 'proxy_dir'             => 'data/DoctrineORMModule/Proxy',

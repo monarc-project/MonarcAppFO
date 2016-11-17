@@ -5,6 +5,7 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
+$env = getenv('APP_ENV') ?: 'production';
 return array(
     'modules' => array(
         'DoctrineModule',
@@ -19,6 +20,12 @@ return array(
         ),
         'config_glob_paths' => array(
             'config/autoload/{,*.}{global,local}.php'
-        )
+        ),
+        'config_cache_enabled' => ($env == 'production'),
+        'config_cache_key' => 'c8aaaaa11586f8b1bf5565cc6064e70a', // md5('config_cache_key_monarc')
+        'module_map_cache_enabled' => ($env == 'production'),
+        'module_map_cache_key' => '664579376c4dcdcaa0bcdd0f7e7bf25b', // md5('module_map_cache_key_monarc'),
+        'cache_dir' => 'data/cache/',
+        'check_dependencies' => ($env != 'production'),
     ),
 );
