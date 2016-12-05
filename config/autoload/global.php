@@ -74,6 +74,7 @@ return array(
                 'configuration' => 'orm_cli',
             ),
         ),
+        // https://github.com/beberlei/DoctrineExtensions/blob/master/config/mysql.yml
         'configuration' => array(
             'orm_default' => array(
                 'metadata_cache'        => 'mycache',
@@ -85,7 +86,9 @@ return array(
                 'proxy_namespace'       => 'DoctrineORMModule\Proxy',
                 'filters'               => array(),
                 'datetime_functions'    => array(),
-                'string_functions'      => array(),
+                'string_functions'      => array(
+                    'greatest' => 'DoctrineExtensions\Query\Mysql\Greatest',
+                ),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
             ),
@@ -99,7 +102,9 @@ return array(
                 'proxy_namespace'       => 'DoctrineORMModule\Proxy',
                 'filters'               => array(),
                 'datetime_functions'    => array(),
-                'string_functions'      => array(),
+                'string_functions'      => array(
+                    'greatest' => 'DoctrineExtensions\Query\Mysql\Greatest',
+                ),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
             ),

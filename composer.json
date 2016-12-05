@@ -15,7 +15,8 @@
         "robmorgan/phinx": "0.5.*",
         "monarc/core": "dev-master",
         "monarc/frontoffice": "dev-master",
-        "phing/phing": "~2.0"
+        "phing/phing": "~2.0",
+        "beberlei/DoctrineExtensions": "^1.0"
     },
     "config": {
         "bin-dir": "bin/"
