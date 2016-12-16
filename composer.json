@@ -16,7 +16,8 @@
         "monarc/core": "dev-master",
         "monarc/frontoffice": "dev-master",
         "phing/phing": "~2.0",
-        "beberlei/DoctrineExtensions": "^1.0"
+        "beberlei/DoctrineExtensions": "^1.0",
+        "phpoffice/phpword": "dev-master"
     },
     "config": {
         "bin-dir": "bin/"
@@ -29,6 +30,10 @@
         {
             "type": "vcs",
             "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_client"
+        },
+        {
+            "type": "vcs",
+            "url": "git+ssh://gogs@rhea.netlor.fr:2222/libs/PHPWord"
         }
     ]
 }
