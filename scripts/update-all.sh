@@ -71,3 +71,6 @@ fi
 php ./public/index.php orm:clear-cache:metadata
 php ./public/index.php orm:clear-cache:query
 php ./public/index.php orm:clear-cache:result
+
+# Clear ZF2 cache
+touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade

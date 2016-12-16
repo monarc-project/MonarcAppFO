@@ -6,6 +6,13 @@
  * @see https://github.com/zendframework/ZFTool
  */
 $env = getenv('APP_ENV') ?: 'production';
+
+if(file_exists('data/cache/upgrade')){
+    $env = 'upgrade';
+    putenv('APP_ENV',$env);
+    unlink('data/cache/upgrade');
+}
+
 return array(
     'modules' => array(
         'DoctrineModule',
