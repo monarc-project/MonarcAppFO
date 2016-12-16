@@ -66,3 +66,8 @@ fi
 
 ./scripts/link_modules_resources.sh
 ./scripts/compile_translations.sh
+
+# Clear doctrine cache
+php ./public/index.php orm:clear-cache:metadata
+php ./public/index.php orm:clear-cache:query
+php ./public/index.php orm:clear-cache:result
