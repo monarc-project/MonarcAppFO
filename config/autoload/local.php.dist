@@ -35,9 +35,18 @@ return array(
 
 
     'languages' => [
-        1 => 'Français',
-        2 => 'English',
-        3 => 'Deutsch'
+        'fr' => [
+            'index' => 1,
+            'label' => 'Français',
+        ],
+        'en' => [
+            'index' => 2,
+            'label' => 'English',
+        ],
+        'de' => [
+            'index' => 3,
+            'label' => 'Deutsch',
+        ],
     ],
 
     'defaultLanguageIndex' => 1,
@@ -63,5 +72,6 @@ return array(
     'monarc' => array(
         'ttl' => 20, // timeout
         'salt' => '', // salt privé pour chiffrement pwd
+        'cliModel' => 'generic', // modèle à afficher pour le client, soit un ID de modèle spéc, soit 'generic' (vide pour tout)
     ),
 );
