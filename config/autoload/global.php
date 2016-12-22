@@ -86,9 +86,7 @@ return array(
                 'proxy_namespace'       => 'DoctrineORMModule\Proxy',
                 'filters'               => array(),
                 'datetime_functions'    => array(),
-                'string_functions'      => array(
-                    'greatest' => 'DoctrineExtensions\Query\Mysql\Greatest',
-                ),
+                'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
             ),
@@ -102,9 +100,7 @@ return array(
                 'proxy_namespace'       => 'DoctrineORMModule\Proxy',
                 'filters'               => array(),
                 'datetime_functions'    => array(),
-                'string_functions'      => array(
-                    'greatest' => 'DoctrineExtensions\Query\Mysql\Greatest',
-                ),
+                'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
             ),
