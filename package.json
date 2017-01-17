@@ -11,7 +11,7 @@
   "license": "Copyright",
   "dependencies": {
     "ng_anr": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/ng_anr#master",
-    "ng_backoffice": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/ng_backoffice#master"
+    "ng_client": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/ng_client#master"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

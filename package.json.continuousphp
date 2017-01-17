@@ -11,7 +11,7 @@
   "license": "Copyright",
   "dependencies": {
     "ng_anr": "git+https://@github.token@:x-oauth-basic@github.com/CASES-LU/ng-anr#beta",
-    "ng_backoffice": "git+https://@github.token@:x-oauth-basic@github.com/CASES-LU/ng-backoffice#beta"
+    "ng_client": "git+https://@github.token@:x-oauth-basic@github.com/CASES-LU/ng-client#beta"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
