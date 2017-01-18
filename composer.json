@@ -14,9 +14,9 @@
         "doctrine/doctrine-orm-module": "^0.10",
         "robmorgan/phinx": "0.5.*",
         "monarc/core": "dev-master",
-        "monarc/frontoffice": "dev-master",
+        "monarc/frontoffice": "dev-beta",
         "phing/phing": "~2.0",
-        "phpoffice/phpword": "dev-master"
+        "phpoffice/phpword": "dev-beta"
     },
     "config": {
         "bin-dir": "bin/"
@@ -24,15 +24,15 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_core"
+            "url": "https://github.com/CASES-LU//zm-core"
         },
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_client"
+            "url": "https://github.com/CASES-LU/zm-client"
         },
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/libs/PHPWord"
+            "url": "https://github.com/CASES-LU/monarc_phpword"
         }
     ]
 }
