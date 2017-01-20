@@ -10,8 +10,8 @@
   "author": "Netlor",
   "license": "Copyright",
   "dependencies": {
-    "ng_anr": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/ng_anr#master",
-    "ng_client": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/ng_client#master"
+    "ng_anr": "https://github.com/CASES-LU/ng-anr#beta",
+    "ng_client": "https://github.com/CASES-LU/ng-client#beta"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
