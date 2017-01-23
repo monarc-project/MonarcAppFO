@@ -29,6 +29,8 @@ return array(
                     'dbname' => 'monarc_common',
                     'charset' => 'utf8',
                     'driverOptions' => array(
+                        PDO::ATTR_STRINGIFY_FETCHES => false,
+                        PDO::ATTR_EMULATE_PREPARES => false,
                         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                     ),
                 ),
@@ -43,6 +45,8 @@ return array(
                     'dbname' => 'monarc_cli',
                     'charset' => 'utf8',
                     'driverOptions' => array(
+                        PDO::ATTR_STRINGIFY_FETCHES => false,
+                        PDO::ATTR_EMULATE_PREPARES => false,
                         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                     ),
                 ),
