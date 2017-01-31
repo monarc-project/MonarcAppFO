@@ -17,7 +17,6 @@ public/img/
 public/views/
 module/
 node_modules/
-config/application.config.php
 bin/
 data/DoctrineORMModule/
 data/json/
