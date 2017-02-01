@@ -10,28 +10,23 @@ Installation
 
 PHP & MySQL
 -----------
-Install PHP (version 7.0 recommended) with Apache (or Nginx) with extensions : xml, mbstring, mysql, zip, unzip
-For Apache add mods : rewrite, ssl
+Install PHP (version 7.0 recommended) with Apache (or Nginx) with extensions : xml, mbstring, mysql, zip, unzip, mcrypt, intl, imagick (extension php)
+For Apache add mods : rewrite, ssl (a2enmod)
   
 Install MySQL (version 5.7 recommended) or MariaDb equivalent
        
        
 Using Composer (recommended)
 ----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
-    
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository="https://github.com/CASES-LU/skeleton/raw/master/packages.json" monarc/skeleton ./monarc
 
 Alternately, clone the repository and manually invoke `composer` using the shipped
 `composer.phar`:
 
     cd my/project/dir
-    git clone ssh://github.com/CASES-LU/MonarcAppFO.git ./monarc
+    git clone ssh://github.com/CASES-LU/MonarcAppFO.git ./monarc 
     cd monarc
     php composer.phar self-update
-    php composer.phar install -o
+    php composer.phar install -o (modifier le package.json deux errreurs passer en dev-beta le core et il y a un / en trop pour zm-core)
 
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
@@ -45,9 +40,9 @@ Create 2 databases:
     CREATE DATABASE monarc_common;
     
 Change Sql Mode for each database:
-    
+
     SET SESSION sql_mode = 'MYSQL40';
-    SET GLOBAL sql_mode = 'MYSQL40';
+	SET GLOBAL sql_mode = 'MYSQL40';
  
  
 Symbolics links
@@ -155,16 +150,18 @@ Only for linux system:
 
 Update project
 --------------
-Play script (pull and migrations): 
+Play script (mandatory from the root of the project)(pull and migrations): 
 
-    sudo sh ./scripts/update-all.sh
+    sudo /bin/bash ./scripts/update-all.sh
     
 This shell script use others shell script. May be you node to change rights of these others files
 
 Create Initial User
 -------------------
 
-Modify email and password of first user in /module/MonarcFO/migrations/seeds/adminUserInit.php
+Modify email and password (firstname or lastname) of first user in /module/MonarcFO/migrations/seeds/adminUserInit.php 
+
+If you have a mail server, you can keep default password and click on "Password forgotten ?" after user creation.
 
 Create first user:
 
