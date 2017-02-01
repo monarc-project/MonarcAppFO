@@ -27,7 +27,7 @@ return array(
                     'host' => 'localhost',
                     'user' => 'root',
                     'password' => 'password',
-                    'dbname' => 'monarc_master',
+                    'dbname' => 'monarc_cli',
                 ),
             ),
         ),
