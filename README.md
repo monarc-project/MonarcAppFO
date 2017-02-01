@@ -45,9 +45,9 @@ Create 2 databases:
     CREATE DATABASE monarc_common;
     
 Change Sql Mode for each database:
-
-    SET GLOBAL sql_mode = 'MYSQL40';
+    
     SET SESSION sql_mode = 'MYSQL40';
+    SET GLOBAL sql_mode = 'MYSQL40';
  
  
 Symbolics links
