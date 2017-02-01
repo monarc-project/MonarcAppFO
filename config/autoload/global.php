@@ -15,6 +15,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'doctrine.cache.mycache' => 'MonarcCore\Service\DoctrineCacheServiceFactory',
+            'doctrine.monarc_logger' => 'MonarcCore\Service\DoctrineLoggerFactory',
         ),
     ),
     'doctrine' => array(
@@ -93,6 +94,7 @@ return array(
                 'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
+                'sql_logger'            => 'doctrine.monarc_logger',
             ),
             'orm_cli' => array(
                 'metadata_cache'        => 'mycache',
@@ -107,6 +109,7 @@ return array(
                 'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
+                'sql_logger'            => 'doctrine.monarc_logger',
             ),
         ),
     ),
