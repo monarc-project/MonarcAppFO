@@ -31,7 +31,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
 
-![Arbo]("public/img/arbo1.png" "Arbo")
+![Arbo](public/img/arbo1.png "Arbo")
 
 Databases
 ---------
@@ -53,7 +53,7 @@ Create 2 symbolics links at project root:
     ln -s ./../vendor/monarc/core MonarcCore;
     ln -s ./../vendor/monarc/frontoffice MonarcFO;
     
-![Arbo]("public/img/arbo2.png" "Arbo")
+![Arbo](public/img/arbo2.png "Arbo")
     
 Interfaces
 ----------
@@ -173,4 +173,4 @@ Create first user:
 Data Model
 ----------
 
-![Model FO]("public/img/model-fo.png" "modelFO")
+![Model FO](public/img/model-fo.png "modelFO")
