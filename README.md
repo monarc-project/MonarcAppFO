@@ -138,7 +138,7 @@ Update connexion information to local.php and global.php
 Configuration files are stored in cache. 
 If yours changes have not been considered, empty cache by deleting file in /data/cache
 
-![Arbo]("public/img/arbo3.png" "Arbo")
+![Arbo](public/img/arbo3.png "Arbo")
 
 Install Grunt
 -------------
