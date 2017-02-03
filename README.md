@@ -15,17 +15,6 @@ For Apache add mods : rewrite, ssl (a2enmod)
   
 Install MySQL (version 5.7 recommended) or MariaDb equivalent
        
-   
-Interfaces
-----------
-Repository for angular  at project root:
-
-    mkdir node_modules
-    cd node_modules
-    git clone https://github.com/CASES-LU/ng-client.git ng_client
-    git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
-   
-![Arbo](public/img/arbo1.png "Arbo")
        
 Using Composer (recommended)
 ----------------------------
@@ -34,7 +23,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 `composer.phar`:
 
     cd my/project/dir
-    git clone ssh://github.com/CASES-LU/MonarcAppFO.git ./monarc 
+    git clone ssh://github.com/CASES-LU/MonarcAppFO.git ./monarc   
     cd monarc
     php composer.phar self-update
     php composer.phar install -o (modifier le package.json deux errreurs passer en dev-beta le core et il y a un / en trop pour zm-core)
@@ -42,7 +31,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
 
-![Arbo](public/img/arbo2.png "Arbo")
+![Arbo](public/img/arbo1.png "Arbo")
 
 Databases
 ---------
@@ -54,8 +43,7 @@ Create 2 databases:
 Change Sql Mode in my.cnf:
 
     sql-mode = MYSQL40
-
- 
+    
 Symbolics links
 ---------------
 Create 2 symbolics links at project root: 
@@ -65,8 +53,18 @@ Create 2 symbolics links at project root:
     ln -s ./../vendor/monarc/core MonarcCore;
     ln -s ./../vendor/monarc/frontoffice MonarcFO;
     
-![Arbo](public/img/arbo3.png "Arbo")
+![Arbo](public/img/arbo2.png "Arbo")
     
+Interfaces
+----------
+Repository for angular  at project root:
+
+    mkdir node_modules
+    cd node_modules
+    git clone https://github.com/CASES-LU/ng-client.git ng_client
+    git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
+   
+![Arbo](public/img/arbo3.png "Arbo") 
        
 Web Server Setup
 ----------------
