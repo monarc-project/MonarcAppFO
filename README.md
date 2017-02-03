@@ -31,6 +31,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
 
+![Arbo]("public/img/arbo1.png" "Arbo")
 
 Databases
 ---------
@@ -51,6 +52,8 @@ Create 2 symbolics links at project root:
     cd module
     ln -s ./../vendor/monarc/core MonarcCore;
     ln -s ./../vendor/monarc/frontoffice MonarcFO;
+    
+![Arbo]("public/img/arbo2.png" "Arbo")
     
 Interfaces
 ----------
@@ -135,6 +138,8 @@ Update connexion information to local.php and global.php
 Configuration files are stored in cache. 
 If yours changes have not been considered, empty cache by deleting file in /data/cache
 
+![Arbo]("public/img/arbo3.png" "Arbo")
+
 Install Grunt
 -------------
 
@@ -164,3 +169,8 @@ If you have a mail server, you can keep default password and click on "Password 
 Create first user:
 
     php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    
+Data Model
+----------
+
+![Model FO]("public/img/model-fo.png" "modelFO")
