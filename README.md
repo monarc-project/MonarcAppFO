@@ -44,14 +44,32 @@ Change Sql Mode in my.cnf:
 
     sql-mode = MYSQL40
     
+There is 2 databases: 
+* monarc_common contain models and data create by smile.
+* monarc_cli contain all client risks analyses. Each analysis is based on Smile model of monarc_common
+
 Symbolics links
 ---------------
+
+The project is splited on 2 parts :
+* an Api in charge of retrieve data
+* an interface to display data
+
+The Api is not direct modules of the project but libraries.
+You must create modules with symbolics link to libraries
+
 Create 2 symbolics links at project root: 
 
     mkdir module
     cd module
     ln -s ./../vendor/monarc/core MonarcCore;
     ln -s ./../vendor/monarc/frontoffice MonarcFO;
+    
+There is 2 parts:
+* one only for front office
+* one common for front office and back office (private project)
+
+It is develop with zend framework 2
     
 ![Arbo](public/img/arbo2.png "Arbo")
     
@@ -63,7 +81,13 @@ Repository for angular  at project root:
     cd node_modules
     git clone https://github.com/CASES-LU/ng-client.git ng_client
     git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
-   
+ 
+There is 2 parts:
+* one only for front office (ng_client)
+* one common for front office and back office (private project) (ng_anr)
+
+It is develop with angular framework version 1
+  
 ![Arbo](public/img/arbo3.png "Arbo") 
        
 Web Server Setup
@@ -158,8 +182,8 @@ Play script (mandatory from the root of the project)(pull and migrations):
     
 This shell script use others shell script. May be you node to change rights of these others files
 
-Create Initial User
--------------------
+Create Initial User and Client
+------------------------------
 
 Modify email and password (firstname or lastname) of first user in /module/MonarcFO/migrations/seeds/adminUserInit.php 
 
