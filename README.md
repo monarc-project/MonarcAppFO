@@ -197,3 +197,10 @@ Data Model
 ----------
 
 ![Model FO](public/img/model-fo.png "modelFO")
+
+License
+-------
+
+This software is licensed under GNU Affero General Public License version 3
+
+Copyright (C) 2016-2017 SMILE gie securitymadein.lu
