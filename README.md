@@ -15,6 +15,8 @@ To remedy this situation and allow all organisations, both large and small, to b
 The advantage of MONARC lies in the capitalisation of risk analyses already performed in similar business contexts: the same vulnerabilities
 regularly appear in many businesses, as they face the same threats and generate similar risks. Most companies have servers, printers, a fleet of smartphones, wi-fi antennas, etc. therefore the vulnerabilities and threats are the same. It is therefore sufficient to generalise risk scenarios for these assets (also called objects) by context and/or business.
 
+More information: [Optimised risk analysis Method] (https://www.cases.lu/index-quick.php?dims_op=doc_file_download&docfile_md5id=56ee6ff569a40a5b52bed0e526a6a77f) (pdf)
+
 Installation
 ------------
 
