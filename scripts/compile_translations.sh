@@ -5,10 +5,10 @@ if [ -d node_modules/ng_backoffice ]; then
 	grunt compile_translations
 	grunt concat
 
-	if [ -d node_modules/ng_backoffice/po ]; then
-		for i in $(ls node_modules/ng_backoffice/po/*\.po); do
+	if [ -d po ]; then
+		for i in $(ls po/*\.po); do
 			l=$(basename $i .po)
-			msgfmt -o ./node_modules/ng_backoffice/po/$l.mo -v ./node_modules/ng_backoffice/po/$l.po
+			msgfmt -o ./po/$l.mo -v ./po/$l.po
 		done;
 	fi
 fi
@@ -17,11 +17,11 @@ if [ -d node_modules/ng_client ]; then
 	pushd node_modules/ng_client
 	grunt compile_translations
 	grunt concat
-	
-	if [ -d node_modules/ng_client/po ]; then
-		for i in $(ls node_modules/ng_client/po/*\.po); do
+
+	if [ -d po ]; then
+		for i in $(ls po/*\.po); do
 			l=$(basename $i .po)
-			msgfmt -o ./node_modules/ng_client/po/$l.mo -v ./node_modules/ng_client/po/$l.po
+			msgfmt -o ./po/$l.mo -v ./po/$l.po
 		done;
 	fi
 fi
