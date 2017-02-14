@@ -24,7 +24,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_core"
+            "url": "https://github.com/CASES-LU/zm-core"
         },
         {
             "type": "vcs",
