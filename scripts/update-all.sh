@@ -33,9 +33,18 @@ else
 	pathFO="vendor/monarc/frontoffice"
 fi
 
-pull_if_exists node_modules/ng_backoffice
-pull_if_exists node_modules/ng_client
-pull_if_exists node_modules/ng_anr
+if [[ -d node_modules && -d node_modules/ng_anr ]]; then
+	if [[ -d node_modules/ng_anr/.git ]]; then
+		pull_if_exists node_modules/ng_backoffice
+		pull_if_exists node_modules/ng_client
+		pull_if_exists node_modules/ng_anr
+	else
+		npm update
+	fi
+else
+	npm install
+fi
+
 
 if [ -d $pathCore ]; then
 	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
