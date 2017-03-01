@@ -49,8 +49,8 @@ Databases
 ---------
 Create 2 databases: 
 
-    CREATE DATABASE monarc_cli;
-    CREATE DATABASE monarc_common;
+    CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
     
 Change Sql Mode in my.cnf:
 
