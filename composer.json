@@ -14,9 +14,9 @@
         "doctrine/doctrine-orm-module": "^0.10",
         "robmorgan/phinx": "0.5.*",
         "monarc/core": "dev-master",
-        "monarc/frontoffice": "dev-beta",
+        "monarc/frontoffice": "dev-master",
         "phing/phing": "~2.0",
-        "phpoffice/phpword": "dev-beta"
+        "phpoffice/phpword": "dev-stable"
     },
     "config": {
         "bin-dir": "bin/"
@@ -24,7 +24,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU//zm-core"
+            "url": "https://github.com/CASES-LU/zm-core"
         },
         {
             "type": "vcs",
