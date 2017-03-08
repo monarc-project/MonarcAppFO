@@ -15,6 +15,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'doctrine.cache.mycache' => 'MonarcCore\Service\DoctrineCacheServiceFactory',
+            'doctrine.monarc_logger' => 'MonarcCore\Service\DoctrineLoggerFactory',
         ),
     ),
     'doctrine' => array(
@@ -24,11 +25,13 @@ return array(
                 'params' => array(
                     'host' => 'localhost',
                     'port' => 3306,
-                    'user' => 'user',
-                    'password' => 'password',
+                    'user' => 'root',
+                    'password' => '',
                     'dbname' => 'monarc_common',
                     'charset' => 'utf8',
                     'driverOptions' => array(
+                        PDO::ATTR_STRINGIFY_FETCHES => false,
+                        PDO::ATTR_EMULATE_PREPARES => false,
                         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                     ),
                 ),
@@ -39,10 +42,12 @@ return array(
                     'host' => 'localhost',
                     'port' => 3306,
                     'user' => 'root',
-                    'password' => 'password',
+                    'password' => '',
                     'dbname' => 'monarc_cli',
                     'charset' => 'utf8',
                     'driverOptions' => array(
+                        PDO::ATTR_STRINGIFY_FETCHES => false,
+                        PDO::ATTR_EMULATE_PREPARES => false,
                         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                     ),
                 ),
@@ -89,6 +94,7 @@ return array(
                 'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
+                'sql_logger'            => 'doctrine.monarc_logger',
             ),
             'orm_cli' => array(
                 'metadata_cache'        => 'mycache',
@@ -103,6 +109,7 @@ return array(
                 'string_functions'      => array(),
                 'numeric_functions'     => array(),
                 'second_level_cache'    => array(),
+                'sql_logger'            => 'doctrine.monarc_logger',
             ),
         ),
     ),

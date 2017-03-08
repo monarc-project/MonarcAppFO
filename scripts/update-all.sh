@@ -13,42 +13,68 @@ git pull
 
 php composer.phar update -o
 
-pull_if_exists module/MonarcCore
-pull_if_exists module/MonarcBO
-pull_if_exists module/MonarcFO
-pull_if_exists node_modules/ng_backoffice
-pull_if_exists node_modules/ng_client
-pull_if_exists node_modules/ng_anr
+currentPath=`pwd`
+pathCore="module/MonarcCore"
+if [ -d $pathCore ]; then
+	pull_if_exists $pathCore
+else
+	pathCore="vendor/monarc/core"
+fi
+pathBO="module/MonarcBO"
+if [ -d $pathBO ]; then
+	pull_if_exists $pathBO
+else
+	pathBO="vendor/monarc/backoffice"
+fi
+pathFO="module/MonarcFO"
+if [ -d $pathFO ]; then
+	pull_if_exists $pathFO
+else
+	pathFO="vendor/monarc/frontoffice"
+fi
 
-if [ -d module/MonarcCore/hooks ]; then
-	cd module/MonarcCore/.git/hooks
-	ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
-	chmod u+x pre-commit
-	cd ../../../../
+if [[ -d node_modules && -d node_modules/ng_anr ]]; then
+	if [[ -d node_modules/ng_anr/.git ]]; then
+		pull_if_exists node_modules/ng_backoffice
+		pull_if_exists node_modules/ng_client
+		pull_if_exists node_modules/ng_anr
+	else
+		npm update
+	fi
+else
+	npm install
 fi
 
 
-php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcCore/migrations/phinx.php
-
-if [ -d module/MonarcBO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcBO/migrations/phinx.php
-
-	if [ -d module/MonarcBO/hooks ]; then
-		cd module/MonarcBO/.git/hooks
+if [ -d $pathCore ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
+	if [ -d "${pathCore}/hooks" ]; then
+		cd $pathCore/.git/hooks
 		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
 		chmod u+x pre-commit
-		cd ../../../../
+		cd $currentPath
 	fi
 fi
 
-if [ -d module/MonarcFO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/MonarcFO/migrations/phinx.php
+if [ -d $pathBO ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathBO/migrations/phinx.php
 
-	if [ -d module/MonarcFO/hooks ]; then
-		cd module/MonarcFO/.git/hooks
+	if [ -d "${pathBO}/hooks" ]; then
+		cd $pathBO/.git/hooks
 		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
 		chmod u+x pre-commit
-		cd ../../../../
+		cd $currentPath
+	fi
+fi
+
+if [ -d $pathFO ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathFO/migrations/phinx.php
+
+	if [ -d "$pathFO/hooks" ]; then
+		cd $pathFO/.git/hooks
+		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
+		chmod u+x pre-commit
+		cd $currentPath
 	fi
 fi
 
