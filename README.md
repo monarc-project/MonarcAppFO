@@ -22,8 +22,8 @@ Installation
 
 PHP & MySQL
 -----------
-Install PHP (version 7.0 recommended) with Apache (or Nginx) with extensions : xml, mbstring, mysql, zip, unzip, mcrypt, intl, imagick (extension php)
-For Apache add mods : rewrite, ssl (a2enmod)
+Install PHP (version 7.0 recommended) with extensions : xml, mbstring, mysql, zip, unzip, mcrypt, intl, imagick (extension php)
+Install Apache (or Nginx) and enable mods : rewrite, ssl (a2enmod)
   
 Install MySQL (version 5.7 recommended) or MariaDb equivalent
        
@@ -35,7 +35,7 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 `composer.phar`:
 
     cd my/project/dir
-    git clone ssh://github.com/CASES-LU/MonarcAppFO.git ./monarc   
+    git clone https://github.com/CASES-LU/MonarcAppFO.git ./monarc   
     cd monarc
     php composer.phar self-update
     php composer.phar install -o (modifier le package.json deux errreurs passer en dev-beta le core et il y a un / en trop pour zm-core)
@@ -54,11 +54,12 @@ Create 2 databases:
     
 Change Sql Mode in my.cnf:
 
+    [mysqld]
     sql-mode = MYSQL40
     
 There is 2 databases: 
-* monarc_common contain models and data create by smile.
-* monarc_cli contain all client risks analyses. Each analysis is based on Smile model of monarc_common
+* monarc_common contain models and data create by CASES.
+* monarc_cli contain all client risks analyses. Each analysis is based on CASES model of monarc_common
 
 Symbolics links
 ---------------
@@ -168,7 +169,7 @@ Configuration
 
 Create file configuration
 
-    sudo cp /config/autoload/local.php.dist /config/autoload/local.php
+    sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
     
 Update connexion information to local.php and global.php 
    
@@ -197,7 +198,7 @@ This shell script use others shell script. May be you node to change rights of t
 Create Initial User and Client
 ------------------------------
 
-Modify email and password (firstname or lastname) of first user in /module/MonarcFO/migrations/seeds/adminUserInit.php 
+Modify email and password (firstname or lastname) of first user in ./module/MonarcFO/migrations/seeds/adminUserInit.php 
 
 If you have a mail server, you can keep default password and click on "Password forgotten ?" after user creation.
 
