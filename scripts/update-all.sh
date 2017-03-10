@@ -8,6 +8,11 @@ pull_if_exists() {
 	fi
 }
 
+if [[ ! -f "config/autoload/local.php" ]]; then
+	echo "Configure Monarc (config/autoload/local.php)"
+	exit 1
+fi
+
 phpcommand=`command -v php`
 if [[ -z "$phpcommand" ]]; then
 	echo "PHP must be installed"
