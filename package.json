@@ -1,17 +1,17 @@
 {
   "name": "MONARC",
   "version": "1.0.0",
-  "description": "MONARC Skeleton App",
+  "description": "MONARC Frontoffice App",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/CASES-LU/skeleton.git"
+    "url": "https://github.com/CASES-LU/MonarcAppFO"
   },
   "author": "Netlor",
   "license": "Copyright",
   "dependencies": {
-    "ng_anr": "https://github.com/CASES-LU/ng-anr#beta",
-    "ng_client": "https://github.com/CASES-LU/ng-client#beta"
+    "ng_anr": "https://github.com/CASES-LU/ng-anr#master",
+    "ng_client": "https://github.com/CASES-LU/ng-client#master"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
