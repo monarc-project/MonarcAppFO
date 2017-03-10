@@ -31,12 +31,12 @@ if [[ -z "$composercommand" ]]; then
 		$phpcommand -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 		ACTUAL_SIGNATURE=$($phpcommand -r "echo hash_file('SHA384', 'composer-setup.php');")
 		if [[ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]]; then
-			echo "Error download composer (different hash"
+			echo "Error download composer (different hash)"
 			rm composer-setup.php
 			exit 1
 		fi
-		$phpcommand composer-setup.php --quiet
 		rm composer-setup.php
+		$phpcommand composer-setup.php --quiet
 	fi
 	$phpcommand composer.phar update -o
 else
