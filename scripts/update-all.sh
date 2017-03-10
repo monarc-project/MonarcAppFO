@@ -8,10 +8,16 @@ pull_if_exists() {
 	fi
 }
 
+phpcommand=`command -v php`
+if [[ -z "$phpcommand" ]]; then
+	echo "PHP must be installed"
+	exit 1
+fi
+
 gitcommand=`command -v git`
 if [[ -z "$gitcommand" ]]; then
 	echo "Git must be installed"
-	exit
+	exit 1
 fi
 
 $gitcommand pull
@@ -20,12 +26,19 @@ composercommand=`command -v composer`
 if [[ -z "$composercommand" ]]; then
 	if [[ ! -f "composer.phar" ]]; then
 		# https://getcomposer.org/download/
-		php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-		php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-		php composer-setup.php
-		php -r "unlink('composer-setup.php');"
+		# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
+		EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
+		$phpcommand -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+		ACTUAL_SIGNATURE=$($phpcommand -r "echo hash_file('SHA384', 'composer-setup.php');")
+		if [[ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]]; then
+			echo "Error download composer (different hash)"
+			rm composer-setup.php
+			exit 1
+		fi
+		rm composer-setup.php
+		$phpcommand composer-setup.php --quiet
 	fi
-	php composer.phar update -o
+	$phpcommand composer.phar update -o
 else
 	$composercommand update -o
 fi
@@ -65,7 +78,7 @@ fi
 
 
 if [ -d $pathCore ]; then
-	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
+	$phpcommand ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
 	if [ -d "${pathCore}/hooks" ]; then
 		cd $pathCore/.git/hooks
 		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
@@ -75,7 +88,7 @@ if [ -d $pathCore ]; then
 fi
 
 if [ -d $pathBO ]; then
-	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathBO/migrations/phinx.php
+	$phpcommand ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathBO/migrations/phinx.php
 
 	if [ -d "${pathBO}/hooks" ]; then
 		cd $pathBO/.git/hooks
@@ -86,7 +99,7 @@ if [ -d $pathBO ]; then
 fi
 
 if [ -d $pathFO ]; then
-	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathFO/migrations/phinx.php
+	$phpcommand ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathFO/migrations/phinx.php
 
 	if [ -d "$pathFO/hooks" ]; then
 		cd $pathFO/.git/hooks
@@ -112,9 +125,9 @@ fi
 ./scripts/compile_translations.sh
 
 # Clear doctrine cache
-/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:metadata
-/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:query
-/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:result
+$phpcommand ./public/index.php orm:clear-cache:metadata
+$phpcommand ./public/index.php orm:clear-cache:query
+$phpcommand ./public/index.php orm:clear-cache:result
 
 # Clear ZF2 cache
 touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
