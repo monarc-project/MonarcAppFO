@@ -6,6 +6,12 @@
  * @see https://github.com/zendframework/ZFTool
  */
 $env = getenv('APP_ENV') ?: 'production';
+$appconfdir = getenv('APP_CONF_DIR') ? getenv('APP_CONF_DIR') : '';
+
+$confpaths = [ 'config/autoload/{,*.}{global,local}.php' ];
+if( ! empty($appconfdir) ){
+    $confpaths[] = $appconfdir.'/local.php';
+}
 
 return array(
     'modules' => array(
@@ -19,9 +25,7 @@ return array(
             './module',
             './vendor'
         ),
-        'config_glob_paths' => array(
-            'config/autoload/{,*.}{global,local}.php'
-        ),
+        'config_glob_paths' => $confpaths,
         'config_cache_enabled' => ($env == 'production'),
         'config_cache_key' => 'c8aaaaa11586f8b1bf5565cc6064e70a', // md5('config_cache_key_monarc')
         'module_map_cache_enabled' => ($env == 'production'),
