@@ -28,11 +28,13 @@
         },
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/monarc/zm_client"
+            "url": "https://github.com/CASES-LU/zm-client"
         },
         {
             "type": "vcs",
-            "url": "git+ssh://gogs@rhea.netlor.fr:2222/libs/PHPWord"
+            "url": "https://github.com/CASES-LU/monarc_phpword"
         }
     ]
 }
+
+
