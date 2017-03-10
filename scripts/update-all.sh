@@ -8,10 +8,28 @@ pull_if_exists() {
 	fi
 }
 
+gitcommand=`command -v git`
+if [[ -z "$gitcommand" ]]; then
+	echo "Git must be installed"
+	exit
+fi
 
-git pull
+$gitcommand pull
 
-php composer.phar update -o
+composercommand=`command -v composer`
+if [[ -z "$composercommand" ]]; then
+	if [[ ! -f "composer.phar" ]]; then
+		# https://getcomposer.org/download/
+		php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+		php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+		php composer-setup.php
+		php -r "unlink('composer-setup.php');"
+	fi
+	php composer.phar update -o
+else
+	$composercommand update -o
+fi
+
 
 currentPath=`pwd`
 pathCore="module/MonarcCore"
@@ -47,7 +65,7 @@ fi
 
 
 if [ -d $pathCore ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
+	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathCore/migrations/phinx.php
 	if [ -d "${pathCore}/hooks" ]; then
 		cd $pathCore/.git/hooks
 		ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
@@ -57,7 +75,7 @@ if [ -d $pathCore ]; then
 fi
 
 if [ -d $pathBO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathBO/migrations/phinx.php
+	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathBO/migrations/phinx.php
 
 	if [ -d "${pathBO}/hooks" ]; then
 		cd $pathBO/.git/hooks
@@ -68,7 +86,7 @@ if [ -d $pathBO ]; then
 fi
 
 if [ -d $pathFO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathFO/migrations/phinx.php
+	/opt/php-7.0.5/bin/php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$pathFO/migrations/phinx.php
 
 	if [ -d "$pathFO/hooks" ]; then
 		cd $pathFO/.git/hooks
@@ -94,9 +112,9 @@ fi
 ./scripts/compile_translations.sh
 
 # Clear doctrine cache
-php ./public/index.php orm:clear-cache:metadata
-php ./public/index.php orm:clear-cache:query
-php ./public/index.php orm:clear-cache:result
+/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:metadata
+/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:query
+/opt/php-7.0.5/bin/php ./public/index.php orm:clear-cache:result
 
 # Clear ZF2 cache
 touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
