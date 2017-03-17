@@ -9,12 +9,38 @@ SQLUSER=$3
 SQLPASS=$4
 SQLBASE=$5
 
+path=""
+case $MODULE in
+    "MonarcCore"|"core")
+        path="module/MonarcCore"
+        if [ ! -d $pathCore ]; then
+            path="vendor/monarc/core"
+        fi
+        ;;
+    "MonarcFO"|"frontoffice")
+        path="module/MonarcFO"
+        if [ ! -d $pathCore ]; then
+            path="vendor/monarc/frontoffice"
+        fi
+        ;;
+    "MonarcBO"|"backoffice")
+        path="module/MonarcBO"
+        if [ ! -d $pathCore ]; then
+            path="vendor/monarc/backoffice"
+        fi
+        ;;
+    *)
+        echo "Unknow module"
+        exit 1
+        ;;
+esac
+
 cat <<EOF >/tmp/conf.tmp.php
 <?php
 return array(
     'paths' => array(
-        'migrations' => 'module/$MODULE/migrations/db',
-        'seeds' => 'module/$MODULE/migrations/seeds',
+        'migrations' => '$path/migrations/db',
+        'seeds' => '$path/migrations/seeds',
     ),
     'environments' => array(
         'default_migration_table' => 'phinxlog',
