@@ -42,7 +42,7 @@ migrate_module() {
 	fi
 }
 
-if [[ ! -f "config/autoload/local.php" ]]; then
+if [[ ! -f "config/autoload/local.php" && $bypass -eq 0 ]]; then
 	echo "Configure Monarc (config/autoload/local.php)"
 	exit 1
 fi
