@@ -13,19 +13,19 @@ path=""
 case $MODULE in
     "MonarcCore"|"core")
         path="module/MonarcCore"
-        if [ ! -d $pathCore ]; then
+        if [ ! -d $path ]; then
             path="vendor/monarc/core"
         fi
         ;;
     "MonarcFO"|"frontoffice")
         path="module/MonarcFO"
-        if [ ! -d $pathCore ]; then
+        if [ ! -d $path ]; then
             path="vendor/monarc/frontoffice"
         fi
         ;;
     "MonarcBO"|"backoffice")
         path="module/MonarcBO"
-        if [ ! -d $pathCore ]; then
+        if [ ! -d $path ]; then
             path="vendor/monarc/backoffice"
         fi
         ;;
