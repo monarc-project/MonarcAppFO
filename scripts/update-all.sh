@@ -30,6 +30,18 @@ pull_if_exists() {
 	fi
 }
 
+migrate_module() {
+	if [[ -d $2 ]]; then
+		$1 ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$2/migrations/phinx.php
+		if [[ -d "${2}/hooks" && -f "${2}/.git/hooks/pre-commit.sh" ]]; then
+			cd $2/.git/hooks
+			ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
+			chmod u+x pre-commit
+			cd $2
+		fi
+	fi
+}
+
 if [[ ! -f "config/autoload/local.php" ]]; then
 	echo "Configure Monarc (config/autoload/local.php)"
 	exit 1
