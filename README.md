@@ -22,7 +22,8 @@ Installation
 
 PHP & MySQL
 -----------
-Install PHP (version 7.0 recommended) with extensions : xml, mbstring, mysql, zip, unzip, mcrypt, intl, imagick (extension php)
+Install PHP (version 7.0 recommended) with extensions : xml, mbstring, mysql, zip, unzip, mcrypt, intl, gettext, imagick (extension php)
+In php.ini, set upload_max_filesize to 200Mo
 Install Apache (or Nginx) and enable mods : rewrite, ssl (a2enmod)
   
 Install MySQL (version 5.7 recommended) or MariaDb equivalent
