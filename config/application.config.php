@@ -13,6 +13,9 @@ $datapath = "data";
 if( ! empty($appconfdir) ){
     $confpaths[] = $appconfdir.'/local.php';
     $datapath = $appconfdir.'/data';
+    if(!is_dir($datapath.'/cache')){
+        mkdir($datapath.'/cache');
+    }
 }
 
 return array(
