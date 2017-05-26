@@ -58,7 +58,7 @@ Change Sql Mode in my.cnf:
     [mysqld]
     sql-mode = MYSQL40
 
-There is 2 databases:
+There are 2 databases:
 * monarc_common contains models and data created by CASES.
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES model of monarc_common
 
@@ -89,14 +89,14 @@ It is developed with zend framework 2
 
 Interfaces
 ----------
-Repository for angular  at project root:
+Repository for angular at project root:
 
     mkdir node_modules
     cd node_modules
     git clone https://github.com/CASES-LU/ng-client.git ng_client
     git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
 
-There is 2 parts:
+There are 2 parts:
 * one only for front office (ng_client)
 * one common for front office and back office (private project) (ng_anr)
 
@@ -167,14 +167,14 @@ Create file `config/autoload/local.php`:
 Configuration
 -------------
 
-Create file configuration
+Create configuration file
 
     sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
 Update connection information to local.php and global.php
 
 Configuration files are stored in cache.
-If yours changes have not been considered, empty cache by deleting file in /data/cache
+If your changes have not been considered, empty cache by deleting file in /data/cache
 
 Install Grunt
 -------------
