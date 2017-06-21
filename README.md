@@ -35,7 +35,7 @@ More information: [Optimised risk analysis Method] (https://www.cases.lu/index-q
 Documentation
 -------------
 
-For installation guide see [INSTALL](https://github.com/CASES-LU/MonarcAppFO/INSTALL).
+For installation guide see [INSTALL](https://github.com/CASES-LU/MonarcAppFO/tree/master/INSTALL).
 
 
 Data Model
