@@ -12,8 +12,8 @@ Although the profitability of the risk analysis approach is guaranteed, the inve
 
 To remedy this situation and allow all organizations, both large and small, to benefit from the advantages that a risk analysis offers, CASES has developed an optimised risk analysis method: MONARC (Method for an Optimised aNAlysis of Risks by CASES), allowing precise and repeatable risk management.
 
-The advantage of MONARC lies in the capitalisation of risk analyses already performed in similar business contexts: the same vulnerabilities
-regularly appear in many businesses, as they face the same threats and generate similar risks. Most companies have servers, printers, a fleet of smartphones, Wi-Fi antennas, etc. therefore the vulnerabilities and threats are the same. It is therefore sufficient to generalise risk scenarios for these assets (also called objects) by context and/or business.
+The advantage of MONARC lies in the capitalization of risk analyses already performed in similar business contexts: the same vulnerabilities
+regularly appear in many businesses, as they face the same threats and generate similar risks. Most companies have servers, printers, a fleet of smartphones, Wi-Fi antennas, etc. therefore the vulnerabilities and threats are the same. It is therefore sufficient to generalize risk scenarios for these assets (also called objects) by context and/or business.
 
 More information: [Optimised risk analysis Method] (https://www.cases.lu/index-quick.php?dims_op=doc_file_download&docfile_md5id=56ee6ff569a40a5b52bed0e526a6a77f) (pdf)
 
@@ -37,7 +37,9 @@ Alternately, clone the repository and manually invoke `composer` using the shipp
 
     cd my/project/dir
     git clone https://github.com/CASES-LU/MonarcAppFO.git ./monarc   
-    cd monarc
+    cd monarc/
+    chown -R www-data data
+    chmod -R g+w data
     php composer.phar self-update
     php composer.phar install -o
 
@@ -78,18 +80,18 @@ Create 2 symbolic links in root project directory:
     cd module
     ln -s ./../vendor/monarc/core MonarcCore;
     ln -s ./../vendor/monarc/frontoffice MonarcFO;
-    
-There are 2 parts:
-* one only for front office
-* one common for front office and back office (private project)
 
-It is developed with zend framework 2
+There are 2 parts:
+* one only for front office;
+* one common for front office and back office (private project).
+
+It is developed with Zend framework 2
 
 ![Arbo](public/img/arbo2.png "Arbo")
 
 Interfaces
 ----------
-Repository for angular at project root:
+Repository for Angular at project root:
 
     mkdir node_modules
     cd node_modules
@@ -97,10 +99,10 @@ Repository for angular at project root:
     git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
 
 There are 2 parts:
-* one only for front office (ng_client)
-* one common for front office and back office (private project) (ng_anr)
+* one only for front office: ng_client
+* one common for front office and back office: ng_anr
 
-It is developed with angular framework version 1
+It is developed with Angular framework version 1
 
 ![Arbo](public/img/arbo3.png "Arbo")
 
@@ -116,11 +118,11 @@ The simplest way to get started if you are using PHP 5.4 or above is to start th
 This will start the cli-server on port 8080, and bind it to all network
 interfaces.
 
-**Note: ** The built-in CLI server is *for development only*.
+Note: The built-in CLI server is **for development only**.
 
 ### Apache Setup
 
-To setup apache, setup a virtual host to point to the public/ directory of the
+To setup Apache, setup a virtual host to point to the public/ directory of the
 project and you should be ready to go! It should look something like below:
 
     <VirtualHost *:80>
@@ -191,14 +193,14 @@ Update project
 --------------
 Play script (mandatory from the root of the project)(pull and migrations):
 
-    sudo /bin/bash ./scripts/update-all.sh
+    /bin/bash ./scripts/update-all.sh
 
 This shell script uses others shell scripts. You may need to change the access rights of those scripts.
 
 Create Initial User and Client
 ------------------------------
 
-Modify email and password (firstname or lastname) of first user in ./module/MonarcFO/migrations/seeds/adminUserInit.php
+Modify email and password (firstname or lastname) of first user in ./module/MonarcFO/migrations/seeds/AdminUserInit.php
 
 If you have a mail server, you can keep default password and click on "Password forgotten ?" after user creation.
 
