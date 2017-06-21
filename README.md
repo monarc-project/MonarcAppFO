@@ -40,16 +40,6 @@ For a general documentation see [here](https://github.com/CASES-LU/MonarcAppFO/t
 For installation instructions see [INSTALL](https://github.com/CASES-LU/MonarcAppFO/tree/master/INSTALL).
 
 
-Data Model
-----------
-
-monarc_cli
-![monarc_cli](public/img/model-cli.png "monarc_cli")
-
-
-monarc_common
-![monarc_common](public/img/model-common.png "monarc_common")
-
 License
 -------
 
