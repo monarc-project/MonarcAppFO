@@ -20,7 +20,7 @@ Alternately, clone the repository and invoke `composer` using the
 shipped `composer.phar`:
 
     cd my/project/dir
-    git clone https://github.com/CASES-LU/MonarcAppFO.git ./monarc   
+    git clone https://github.com/monarc-project/MonarcAppFO.git ./monarc   
     cd monarc/
     chown -R www-data data
     chmod -R g+w data
@@ -80,8 +80,8 @@ Repository for Angular at the root of the project:
 
     mkdir node_modules
     cd node_modules
-    git clone https://github.com/CASES-LU/ng-client.git ng_client
-    git clone https://github.com/CASES-LU/ng-anr.git ng_anr    
+    git clone https://github.com/monarc-project/ng-client.git ng_client
+    git clone https://github.com/monarc-project/ng-anr.git ng_anr    
 
 There are 2 parts:
 * one only for front office: ng_client;

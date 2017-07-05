@@ -5,13 +5,13 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/CASES-LU/skeleton.git"
+    "url": "https://github.com/monarc-project/skeleton.git"
   },
   "author": "Netlor",
   "license": "Copyright",
   "dependencies": {
-    "ng_anr": "git+https://@github.token@:x-oauth-basic@github.com/CASES-LU/ng-anr#beta",
-    "ng_client": "git+https://@github.token@:x-oauth-basic@github.com/CASES-LU/ng-client#beta"
+    "ng_anr": "git+https://@github.token@:x-oauth-basic@github.com/monarc-project/ng-anr#beta",
+    "ng_client": "git+https://@github.token@:x-oauth-basic@github.com/monarc-project/ng-client#beta"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

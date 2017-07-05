@@ -35,9 +35,9 @@ More information: [Optimised risk analysis Method] (https://www.cases.lu/index-q
 Documentation
 -------------
 
-For a general documentation see [here](https://github.com/CASES-LU/MonarcAppFO/tree/master/docs).
+For a general documentation see [here](https://github.com/monarc-project/MonarcAppFO/tree/master/docs).
 
-For installation instructions see [INSTALL](https://github.com/CASES-LU/MonarcAppFO/tree/master/INSTALL).
+For installation instructions see [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
 
 License

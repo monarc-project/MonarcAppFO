@@ -19,22 +19,23 @@
         "phpoffice/phpword": "dev-stable"
     },
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin/",
+        "preferred-install": {
+            "monarc-project/*": "source"
+        }
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU/zm-core"
+            "url": "https://github.com/monarc-project/zm-core"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU/zm-client"
+            "url": "https://github.com/monarc-project/zm-client"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/CASES-LU/monarc_phpword"
+            "url": "https://github.com/monarc-project/monarc_phpword"
         }
     ]
 }
-
-
