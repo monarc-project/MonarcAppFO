@@ -19,10 +19,7 @@
         "phpoffice/phpword": "dev-stable"
     },
     "config": {
-        "bin-dir": "bin/",
-        "preferred-install": {
-            "monarc-project/*": "source"
-        }
+        "bin-dir": "bin/"
     },
     "repositories": [
         {
