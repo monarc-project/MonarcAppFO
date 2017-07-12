@@ -16,7 +16,7 @@
         "monarc/core": "dev-master",
         "monarc/frontoffice": "dev-master",
         "phing/phing": "~2.0",
-        "phpoffice/phpword": "dev-master"
+        "phpoffice/phpword": "dev-stable"
     },
     "config": {
         "bin-dir": "bin/"
