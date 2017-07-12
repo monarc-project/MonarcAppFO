@@ -19,7 +19,7 @@ expertise is a barrier for many companies, especially SMEs.
 To remedy this situation and allow all organizations, both large and small, to
 benefit from the advantages that a risk analysis offers, CASES has developed an
 optimised risk analysis method: MONARC (Method for an Optimised aNAlysis of
-  Risks by CASES), allowing precise and repeatable risk management.
+Risks by CASES), allowing precise and repeatable risk management.
 
 The advantage of MONARC lies in the capitalization of risk analyses already
 performed in similar business contexts: the same vulnerabilities
@@ -29,20 +29,24 @@ Wi-Fi antennas, etc. therefore the vulnerabilities and threats are the same.
 It is therefore sufficient to generalize risk scenarios for these assets (also
 called objects) by context and/or business.
 
-More information: [Optimised risk analysis Method] (https://www.cases.lu/index-quick.php?dims_op=doc_file_download&docfile_md5id=56ee6ff569a40a5b52bed0e526a6a77f) (pdf)
+More information:
+[Optimised risk analysis Method](https://www.cases.lu/index-quick.php?dims_op=doc_file_download&docfile_md5id=56ee6ff569a40a5b52bed0e526a6a77f) (pdf)
 
 
 Documentation
 -------------
 
-For a general documentation see [here](https://github.com/monarc-project/MonarcAppFO/tree/master/docs).
+For a general documentation see
+[here](https://github.com/monarc-project/MonarcAppFO/tree/master/docs).
 
-For installation instructions see [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
+For installation instructions see
+[INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
 
 License
 -------
 
-This software is licensed under [GNU Affero General Public License version 3](http://www.gnu.org/licenses/agpl-3.0.html)
+This software is licensed under
+[GNU Affero General Public License version 3](http://www.gnu.org/licenses/agpl-3.0.html)
 
 Copyright (C) 2016-2017 SMILE gie securitymadein.lu
