@@ -3,23 +3,25 @@ Installation on Ubuntu 17.04
 
 PHP & MySQL
 -----------
-Install PHP (version 7.0 recommended) with extensions : xml, mbstring, mysql,
-zip, unzip, mcrypt, intl, gettext, imagick (extension php)
 
-In php.ini, set *upload_max_filesize* to 200Mo
+Install PHP (version 7.0 recommended) with extensions : *xml*, *mbstring*,
+*mysql*, *zip*, *unzip*, *mcrypt*, *intl*, *gettext* and *imagick*.
 
-Install Apache (or Nginx) and enable mods : rewrite, ssl (a2enmod)
+In __php.ini__, set:
 
-Install MySQL (version 5.7 recommended) or MariaDb.
+* *upload_max_filesize* to 200M;
+* *post_max_size* to 50M.
+
+Install Apache and enable mods: *rewrite*, *ssl* (with a2enmod)
+
+Install MariaDB.
 
 
-Using Composer (recommended)
-----------------------------
+Installation of MONARC
+----------------------
 
-Alternately, clone the repository and invoke `composer` using the
-shipped `composer.phar`:
+Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
-    cd my/project/dir
     git clone https://github.com/monarc-project/MonarcAppFO.git ./monarc   
     cd monarc/
     chown -R www-data data
@@ -50,10 +52,12 @@ There are 2 databases:
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES
   model of monarc_common.
 
+
 API
 ---
 
 The project is composed of 2 parts:
+
 * an API in charge of retrieving data;
 * an interface which displays data.
 
@@ -74,8 +78,10 @@ It is developed with Zend framework 2.
 
 ![Arbo](pictures/arbo2.png "Arbo")
 
+
 Interfaces
 ----------
+
 Repository for Angular at the root of the project:
 
     mkdir node_modules
@@ -173,9 +179,10 @@ Install Grunt
     sudo apt-get install npm
     sudo npm install -g grunt-cli
 
-Only for linux systems:
+Only for Linux systems:
 
-    sudo ln -s /usr/bin/nodejs /usr/bin/node (only linux)
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+
 
 Update project
 --------------
@@ -183,14 +190,18 @@ Play script (mandatory from the root of the project)(pull and migrations):
 
     /bin/bash ./scripts/update-all.sh
 
-This shell script uses others shell scripts. You may need to change the access rights of those scripts.
+This shell script uses others shell scripts. You may need to change the access
+rights of those scripts.
+
 
 Create Initial User and Client
 ------------------------------
 
-Modify email and password (firstname or lastname) of first user in ./module/MonarcFO/migrations/seeds/AdminUserInit.php
+Modify email and password (firstname or lastname) of first user in
+./module/MonarcFO/migrations/seeds/AdminUserInit.php
 
-If you have a mail server, you can keep default password and click on "Password forgotten ?" after user creation.
+If you have a mail server, you can keep default password and click on
+"Password forgotten ?" after user creation.
 
 Create first user:
 
