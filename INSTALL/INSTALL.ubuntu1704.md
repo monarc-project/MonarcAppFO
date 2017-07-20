@@ -10,7 +10,9 @@ Install PHP (version 7.0 recommended) with extensions : *xml*, *mbstring*,
 In __php.ini__, set:
 
 * *upload_max_filesize* to 200M;
-* *post_max_size* to 50M.
+* *post_max_size* to 50M;
+* *memory_limit* to 512M (snapshots of important risk analysis requires more
+  memory).
 
 Install Apache and enable mods: *rewrite*, *ssl* (with a2enmod)
 
