@@ -1,8 +1,6 @@
 Skeleton MONARC Project
 =======================
 
-*Disclaimer: This is a work in progress and software is still in alpha stage.*
-
 Introduction
 ------------
 CASES promotes information security through the use of behavioral,
