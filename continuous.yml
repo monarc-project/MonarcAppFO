@@ -1,5 +1,0 @@
-# continuous.yml
-deployment:
-  hooks:
-    AfterInstall:
-      - command: scripts/migrate.sh

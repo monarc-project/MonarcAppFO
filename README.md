@@ -1,4 +1,4 @@
-Skeleton Monarc Project
+Skeleton MONARC Project
 =======================
 
 *Disclaimer: This is a work in progress and software is still in alpha stage.*
