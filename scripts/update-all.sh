@@ -116,15 +116,14 @@ else
 fi
 
 if [[ $bypass -eq 0 ]]; then
-	if [ -e data/dbcredentials/credentialsmysql.cnf ]; then
-		echo "Dumping database to data/backup"
-		mkdir data/backup/
+	if [ -e data/backup/credentialsmysql.cnf ]; then
 		backupdir=data/backup/$(date +"%Y%m%d_%H%M%S")
 		mkdir $backupdir
+		echo -e "\e[32mDumping database to $backupdir...\e[0m"
 		mysqldump --defaults-file=data/dbcredentials/credentialsmysql.cnf --databases monarc_common > $backupdir/dump-common.sql
 		mysqldump --defaults-file=data/dbcredentials/credentialsmysql.cnf --databases monarc_cli > $backupdir/dump-cli.sql
 	else
-		echo "Database backup not configured. Skipping."
+		echo -e "\e[93mDatabase backup not configured. Skipping.\e[0m"
 	fi
 
 	migrate_module $phpcommand $pathCore

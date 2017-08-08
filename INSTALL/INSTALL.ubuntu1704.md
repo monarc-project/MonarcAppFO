@@ -205,6 +205,24 @@ This script will retrieve the updates from the last stable release of MONARC.
 It uses others shell scripts. You may need to change the access rights of those
 scripts.
 
+Before updating MONARC it is advised to configure database backup. For that you
+just need to create a file __data/backup/credentialsmysql.cnf__:
+
+    [client]
+    host     = localhost
+    user     = sql-monarc-user
+    password = your-password
+    socket   = /var/run/mysqld/mysqld.sock
+    [mysql_upgrade]
+    host     = localhost
+    user     = sql-monarc-user
+    password = your-password
+    socket   = /var/run/mysqld/mysqld.sock
+    basedir  = /usr
+
+If this file is not present, a warning message will be displayed during the
+backup.
+
 
 Create Initial User and Client
 ------------------------------
