@@ -194,8 +194,9 @@ Install Grunt
     sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 
-Update project
---------------
+Update MONARC
+-------------
+
 Play script (mandatory from the root of the project):
 
     /bin/bash ./scripts/update-all.sh
@@ -221,7 +222,7 @@ just need to create a file _data/backup/credentialsmysql.cnf_:
     basedir  = /usr
 
 If this file is not present, a warning message will be displayed during the
-backup.
+upgrade.
 
 
 Create Initial User and Client
