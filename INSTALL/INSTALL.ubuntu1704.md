@@ -206,7 +206,7 @@ It uses others shell scripts. You may need to change the access rights of those
 scripts.
 
 Before updating MONARC it is advised to configure database backup. For that you
-just need to create a file __data/backup/credentialsmysql.cnf__:
+just need to create a file _data/backup/credentialsmysql.cnf_:
 
     [client]
     host     = localhost
