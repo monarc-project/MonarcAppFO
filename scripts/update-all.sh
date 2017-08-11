@@ -120,8 +120,8 @@ if [[ $bypass -eq 0 ]]; then
 		backupdir=data/backup/$(date +"%Y%m%d_%H%M%S")
 		mkdir $backupdir
 		echo -e "\e[32mDumping database to $backupdir...\e[0m"
-		mysqldump --defaults-file=data/dbcredentials/credentialsmysql.cnf --databases monarc_common > $backupdir/dump-common.sql
-		mysqldump --defaults-file=data/dbcredentials/credentialsmysql.cnf --databases monarc_cli > $backupdir/dump-cli.sql
+		mysqldump --defaults-file=data/backup/credentialsmysql.cnf --databases monarc_common > $backupdir/dump-common.sql
+		mysqldump --defaults-file=data/backup/credentialsmysql.cnf --databases monarc_cli > $backupdir/dump-cli.sql
 	else
 		echo -e "\e[93mDatabase backup not configured. Skipping.\e[0m"
 	fi
