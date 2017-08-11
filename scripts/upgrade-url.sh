@@ -4,6 +4,7 @@ oldurl_if_exists() {
 	if [ -d $1 ]; then
 		pushd $1 >/dev/null
 		sed -i -e 's/CASES-LU/monarc-project/g' ./.git/config $2
+		git config core.fileMode false
 		popd >/dev/nul
 	fi
 }
