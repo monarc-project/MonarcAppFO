@@ -1,11 +1,17 @@
-Skeleton MONARC Project
-=======================
+MONARC - Method for an Optimised aNAlysis of Risks by CASES
+===========================================================
+
+![Latest Release](https://img.shields.io/github/release/monarc-project/MonarcAppFO.svg?style=flat-square)
+![License](https://img.shields.io/github/license/monarc-project/MonarcAppFO.svg?style=flat-square)
+![Contributors](https://img.shields.io/github/contributors/monarc-project/MonarcAppFO.svg?style=flat-square)
+![Stars](https://img.shields.io/github/stars/monarc-project/MonarcAppFO.svg?style=flat-square)
 
 Introduction
 ------------
-CASES promotes information security through the use of behavioral,
-organizational and technical measures. Depending on its size and its security
-needs, organizations must react in the most appropriate manner.
+
+[CASES](https://www.cases.lu) promotes information security through the use of
+behavioral, organizational and technical measures. Depending on its size and its
+security needs, organizations must react in the most appropriate manner.
 Adopting good practices, taking the necessary measures and adjusting them
 proportionally: all this is part of the process to ensure information security.
 Most of all, it depends on performing a risk analysis on a regular basis.
@@ -16,8 +22,10 @@ expertise is a barrier for many companies, especially SMEs.
 
 To remedy this situation and allow all organizations, both large and small, to
 benefit from the advantages that a risk analysis offers, CASES has developed an
-optimised risk analysis method: MONARC (Method for an Optimised aNAlysis of
-Risks by CASES), allowing precise and repeatable risk management.
+optimised risk analysis method:
+[MONARC](https://github.com/monarc-project/MonarcAppFO)
+(Method for an Optimised aNAlysis of Risks by CASES), allowing precise and
+repeatable risk management.
 
 The advantage of MONARC lies in the capitalization of risk analyses already
 performed in similar business contexts: the same vulnerabilities
@@ -34,11 +42,28 @@ More information:
 Documentation
 -------------
 
-For a general documentation see
+For a general user documentation see
 [here](https://github.com/monarc-project/MonarcAppFO/tree/master/docs).
 
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
+
+
+Contributing
+------------
+
+If you are interested to contribute to the MONARC project, review our
+[community page](https://monarc-project.github.io/pages/community/).
+There are many ways to contribute and participate to the project.
+
+Feel free to fork the code, play with it, make some patches and send us the pull
+requests via the [issues](https://github.com/monarc-project/MonarcAppFO/issues).
+
+There is one main branch: what we consider as stable with frequent updates as
+hot-fixes.
+
+Features are developed in separated branches and then regularly merged into the
+master stable branch.
 
 
 License

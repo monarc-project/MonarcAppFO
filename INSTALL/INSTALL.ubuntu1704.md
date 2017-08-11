@@ -1,6 +1,17 @@
 Installation on Ubuntu 17.04
 ============================
 
+The master branch should always be working and it is recommended to install the
+project using this one.
+
+If you have already installed MONARC and want to upgrade to a later version, you
+can use the provided script:
+
+    $ scripts/update-all.sh
+    $ sudo systemctl restart apache2
+
+
+
 PHP & MySQL
 -----------
 
@@ -95,7 +106,7 @@ There are 2 parts:
 * one only for front office: ng_client;
 * one common for front office and back office: ng_anr.
 
-It is developed with Angular framework version 1
+It is developed with Angular framework version 1.
 
 ![Arbo](pictures/arbo3.png "Arbo")
 
@@ -120,7 +131,7 @@ Note: The built-in CLI server is **for development only**.
 To setup Apache, setup a virtual host to point to the public/ directory of the
 project and you should be ready to go! It should look something like below:
 
-    <VirtualHost *:80>
+    <VirtualHost 127.0.0.1:80>
         ServerName monarc.localhost
         DocumentRoot /path/to/monarc/public
         SetEnv APPLICATION_ENV "development"
@@ -168,7 +179,7 @@ Create configuration file
 
     sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
-Update connection information to local.php and global.php
+Update connection information to *local.php* and *global.php*.
 
 Configuration files are stored in cache.
 If your changes have not been considered, empty cache by deleting file in
@@ -180,20 +191,38 @@ Install Grunt
     sudo apt-get install nodejs
     sudo apt-get install npm
     sudo npm install -g grunt-cli
-
-Only for Linux systems:
-
     sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 
-Update project
---------------
-Play script (mandatory from the root of the project)(pull and migrations):
+Update MONARC
+-------------
+
+Play script (mandatory from the root of the project):
 
     /bin/bash ./scripts/update-all.sh
 
-This shell script uses others shell scripts. You may need to change the access
-rights of those scripts.
+This script will retrieve the updates from the last stable release of MONARC.
+
+It uses others shell scripts. You may need to change the access rights of those
+scripts.
+
+Before updating MONARC it is advised to configure database backup. For that you
+just need to create a file _data/backup/credentialsmysql.cnf_:
+
+    [client]
+    host     = localhost
+    user     = sql-monarc-user
+    password = your-password
+    socket   = /var/run/mysqld/mysqld.sock
+    [mysql_upgrade]
+    host     = localhost
+    user     = sql-monarc-user
+    password = your-password
+    socket   = /var/run/mysqld/mysqld.sock
+    basedir  = /usr
+
+If this file is not present, a warning message will be displayed during the
+upgrade.
 
 
 Create Initial User and Client
