@@ -228,12 +228,6 @@ upgrade.
 Create Initial User and Client
 ------------------------------
 
-Modify email and password (firstname or lastname) of first user in
-./module/MonarcFO/migrations/seeds/AdminUserInit.php
-
-If you have a mail server, you can keep default password and click on
-"Password forgotten ?" after user creation.
-
 Create first user:
 
     php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
