@@ -237,3 +237,6 @@ If you have a mail server, you can keep default password and click on
 Create first user:
 
     php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+
+
+The username is *admin@admin.test* and the password is *admin*.
