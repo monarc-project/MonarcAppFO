@@ -10,6 +10,8 @@ composer.lock
 vendor/bin
 migrations
 *.sublime-*
+vagrant/.vagrant/
+vagrant/*.log
 db-bootstrap/monarc-common.sql
 vendor/
 public/css/
