@@ -33,3 +33,7 @@ Once the VM will be configured by Vagrant, go to the address
 http://127.0.0.1:5001.
 
 The username is *admin@admin.test* and the password is *admin*.
+
+You can now edit the source code with your favorite editor and test it in your
+browser. The only thing is to not forget to restart Apache in the VM after a
+modification.
