@@ -10,6 +10,7 @@ composer.lock
 vendor/bin
 migrations
 *.sublime-*
+db-bootstrap/monarc-common.sql
 vendor/
 public/css/
 public/js/
