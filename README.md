@@ -65,6 +65,11 @@ hot-fixes.
 Features are developed in separated branches and then regularly merged into the
 master stable branch.
 
+Please, do not open directly a GitHub issue if you think you have found a
+security vulnerability. See our
+[vulnerability disclosure](https://monarc-project.github.io/pages/community/vulnerability-disclosure)
+page.
+
 
 License
 -------
