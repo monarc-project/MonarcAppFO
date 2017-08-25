@@ -200,9 +200,8 @@ echo -e "\n--- Creation of the data bases---\n"
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null 2>&1
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null 2>&1
 echo -e "\n--- Populating MONARC DB ---\n"
-#gunzip -k db-bootstrap/monarc-common.sql.gz
 tar -xzvf db-bootstrap/monarc-common.tar.gz -C db-bootstrap/ > /dev/null
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc-common.sql > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc-common.sql > /dev/null 2>&1
 
 
 echo -e "\n--- Installation of Grunt ---\n"
@@ -213,7 +212,7 @@ ln -s /usr/bin/nodejs /usr/bin/node
 
 
 echo -e "\n--- Update the project ---\n"
-/bin/bash ./scripts/update-all.sh
+/bin/bash ./scripts/update-all.sh > /dev/null
 
 
 echo -e "\n--- Create initial user and client ---\n"
