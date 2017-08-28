@@ -48,6 +48,9 @@ For a general user documentation see
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
+If you want to test MONARC you can use the
+[latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest)
+available as a VurtualBox machine.
 
 Contributing
 ------------
