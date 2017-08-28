@@ -50,7 +50,7 @@ For installation instructions see
 
 If you want to test MONARC you can use the
 [latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest)
-available as a VurtualBox machine.
+available as a VirtualBox machine.
 
 Contributing
 ------------
