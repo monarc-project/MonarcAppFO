@@ -1,0 +1,29 @@
+MONARC Changelog
+================
+
+
+## 2.0.1 (2017-08-28)
+
+### Enhancement
+
+- Auto-complete function in the creation of a specific risk (#29)
+- Remove the category for operational risk (#26)
+- update of the database
+- the database of MONARC is now backed up before an upgrade
+
+### Fix
+
+- Import bug : Format of duedate in recomandation (#30)
+- Problem when a label of an impact contains a character such as '&' or '%' (#24)
+- Lost operational risks of assets in library after a snapshot (#25)
+- Problem setting a comment in new scale row (#24)
+- hash of users' passwords were exposed through the API as reported by
+  Thomas LARCHER, Cyber Security Team of PwC Luxembourg.
+
+
+## 2.0.0 (2017-08-07)
+
+### Other
+
+- initial release of the version 2.0.0 of MONARC;
+- project source code is now hosted at https://github.com/monarc-project
