@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# Create a key pay on the backup system or on your computer:
+# Create a key pair on the backup system or on your computer:
 # $ openssl req -x509 -sha256 -nodes -newkey rsa:4096 -keyout mysqldump.priv.pem -out mysqldump.pub.pem
 # Do not transport your private key to any other systems.
 #
 # And copy the public key to your server:
 # $ scp mysqldump.pub.pem mysqldump@your.server.tld:/home/mysqldump/key/
 #
-# If needed, decryption:
+# If needed, decryption is done like this:
 # $ openssl smime -decrypt -in dump-cli.sql.enc -binary -inform DEM -inkey mysqldump.priv.pem -out dump-cli.sql
 #
 #
