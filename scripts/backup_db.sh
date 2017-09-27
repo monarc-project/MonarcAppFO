@@ -21,12 +21,12 @@ PUCLIC_KEY=$2
 if [ -e $MYSQL_CREDENTIALS ]; then
     mkdir $BACKUP_DIR
     echo -e "\e[32mDumping database to $BACKUP_DIR...\e[0m"
-    mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases $CLIENT > $BACKUP_DIR/dump-cli.sql
+    mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases $CLIENT > $BACKUP_DIR/$CLIENT.sql
 
     echo -e "\e[32mEncrypting database...\e[0m"
-    openssl smime -encrypt -binary -text -aes256 -in plain.txt -out $BACKUP_DIR/dump-cli.sql.enc -outform DER $1
+    openssl smime -encrypt -binary -text -aes256 -in $BACKUP_DIR/$CLIENT.sql -out $BACKUP_DIR/$CLIENT.sql.enc -outform DER $2
 
-    rm $BACKUP_DIR/dump-cli.sql
+    rm $BACKUP_DIR/$CLIENT.sql
 else
     echo -e "\e[93mDatabase backup not configured. Skipping.\e[0m"
 fi
