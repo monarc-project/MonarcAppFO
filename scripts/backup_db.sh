@@ -16,6 +16,7 @@ CLIENT=$0
 MYSQL_CREDENTIALS='/var/www/'$CLIENT'/credentialsmysql.cnf'
 BACKUP_DIR='/var/www/'$CLIENT'/backup/'
 BACKUP_DIR=$BACKUP_DIR$(date +"%Y%m%d_%H%M%S")
+PUCLIC_KEY=$1
 
 if [ -e $MYSQL_CREDENTIALS ]; then
     mkdir $BACKUP_DIR
@@ -23,7 +24,7 @@ if [ -e $MYSQL_CREDENTIALS ]; then
     mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases monarc_cli > $BACKUP_DIR/dump-cli.sql
 
     echo -e "\e[32mEncrypting database...\e[0m"
-    openssl smime -encrypt -binary -text -aes256 -in plain.txt -out $BACKUP_DIR/dump-cli.sql.enc -outform DER /home/mysqldump/key/mysqldump.pub.pem
+    openssl smime -encrypt -binary -text -aes256 -in plain.txt -out $BACKUP_DIR/dump-cli.sql.enc -outform DER $1
 
     rm $BACKUP_DIR/dump-cli.sql
 else
