@@ -24,7 +24,7 @@ if [ -e $MYSQL_CREDENTIALS ]; then
     mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases $CLIENT > $BACKUP_DIR/$CLIENT.sql
 
     echo -e "\e[32mEncrypting database...\e[0m"
-    openssl smime -encrypt -binary -text -aes256 -in $BACKUP_DIR/$CLIENT.sql -out $BACKUP_DIR/$CLIENT.sql.enc -outform DER $2
+    openssl smime -encrypt -binary -text -aes256 -in $BACKUP_DIR/$CLIENT.sql -out $BACKUP_DIR/$CLIENT.sql.enc -outform DER $PUCLIC_KEY
 
     rm $BACKUP_DIR/$CLIENT.sql
 else
