@@ -12,11 +12,11 @@
 #
 #
 
-CLIENT=$0
+CLIENT=$1
 MYSQL_CREDENTIALS='/var/www/'$CLIENT'/credentialsmysql.cnf'
 BACKUP_DIR='/var/www/'$CLIENT'/backup/'
 BACKUP_DIR=$BACKUP_DIR$(date +"%Y%m%d_%H%M%S")
-PUCLIC_KEY=$1
+PUCLIC_KEY=$2
 
 if [ -e $MYSQL_CREDENTIALS ]; then
     mkdir $BACKUP_DIR
