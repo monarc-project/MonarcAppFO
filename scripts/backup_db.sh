@@ -21,7 +21,7 @@ PUCLIC_KEY=$1
 if [ -e $MYSQL_CREDENTIALS ]; then
     mkdir $BACKUP_DIR
     echo -e "\e[32mDumping database to $BACKUP_DIR...\e[0m"
-    mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases monarc_cli > $BACKUP_DIR/dump-cli.sql
+    mysqldump --defaults-file=$MYSQL_CREDENTIALS --databases $CLIENT > $BACKUP_DIR/dump-cli.sql
 
     echo -e "\e[32mEncrypting database...\e[0m"
     openssl smime -encrypt -binary -text -aes256 -in plain.txt -out $BACKUP_DIR/dump-cli.sql.enc -outform DER $1
