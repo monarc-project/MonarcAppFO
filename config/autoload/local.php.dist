@@ -47,6 +47,10 @@ return array(
             'index' => 3,
             'label' => 'Deutsch',
         ],
+        'ne' => [
+            'index' => 4,
+            'label' => 'Nederlands',
+        ],
     ],
 
     'defaultLanguageIndex' => 1,
@@ -65,9 +69,13 @@ return array(
             'index' => 3,
             'label' => 'Deutsch'
         ),
+        'ne' => array(
+            'index' => 4,
+            'label' => 'Nederlands',
+        ),
     ]
     */
-    'activeLanguages' => array('fr','en','de',),
+    'activeLanguages' => array('fr','en','de','ne',),
 
     'monarc' => array(
         'ttl' => 20, // timeout
