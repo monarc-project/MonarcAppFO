@@ -1,6 +1,23 @@
 MONARC Changelog
 ================
 
+## 2.0.2 (2017-10-10)
+
+### New
+
+- MONARC is now available in Dutch.
+
+### Enhancement
+
+- updated German translations.
+- updated the font used for the images in the generated reports.
+- minor improvements in the configuration.
+
+### Fix
+
+- Lost operational risk when importing from MONARC Common DB (#32)
+- PHP Notice: Use of undefined constant i (#33)
+
 
 ## 2.0.1 (2017-08-28)
 
