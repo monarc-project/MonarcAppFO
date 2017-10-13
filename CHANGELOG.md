@@ -1,6 +1,14 @@
 MONARC Changelog
 ================
 
+## 2.0.3 (2017-10-13)
+
+### Fix
+
+- set default deliveries in english.
+- Set NewCenturySchlbk-Roman Imagick font.
+
+
 ## 2.0.2 (2017-10-10)
 
 ### New
