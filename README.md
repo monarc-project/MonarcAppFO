@@ -33,7 +33,7 @@ antennas, etc. therefore the vulnerabilities and threats
 are the same. It is therefore sufficient to generalise risk scenarios for these
 assets (also called objects) by context and/or business.
 
-<img src="http://monarc.lu/assets/images/ScreenCast.gif" width="30%">
+<img src="/docs/ScreenCast.gif" width="50%">
 
 Documentation
 -------------
