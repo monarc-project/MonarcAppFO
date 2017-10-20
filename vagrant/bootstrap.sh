@@ -170,7 +170,7 @@ return array(
             ),
         ),
 
-        /* Link with (ModuleCore)
+    /* Link with (ModuleCore)
     config['languages'] = [
         'fr' => array(
             'index' => 1,
@@ -186,7 +186,12 @@ return array(
         ),
     ]
     */
-    'activeLanguages' => array('fr','en','de',),
+    'activeLanguages' => array('fr','en','de','ne',),
+
+    'email' => [
+            'name' => 'MONARC',
+            'from' => 'info@monarc.lu',
+    ],
 
     'monarc' => array(
         'ttl' => 20, // timeout
