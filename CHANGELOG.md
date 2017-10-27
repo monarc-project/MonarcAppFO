@@ -7,7 +7,8 @@ MONARC Changelog
 ### Fix
 
 - fix a bug with salted passwords that prevented users to update their
-  password. Users may have to use the password recovery functionality (zm-core).
+  password. Users may have to use the password recovery functionality (zm-core)
+  Reported by Nicolas SCHWARTZ, Cyber Security Team of PwC Luxembourg.
 - set default deliveries in english (zm-client);
 - block the probability in the threat assessment in 1.2 of the method (ng-anr);
 
