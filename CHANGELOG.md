@@ -1,6 +1,17 @@
 MONARC Changelog
 ================
 
+
+## 2.0.4 (2017-10-27)
+
+### Fix
+
+- fix a bug with salted passwords that prevented users to update their
+  password. Users may have to use the password recovery functionality (zm-core).
+- set default deliveries in english (zm-client);
+- block the probability in the threat assessment in 1.2 of the method (ng-anr);
+
+
 ## 2.0.3 (2017-10-13)
 
 ### Fix
