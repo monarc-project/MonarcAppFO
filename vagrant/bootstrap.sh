@@ -205,8 +205,8 @@ echo -e "\n--- Creation of the data bases---\n"
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null 2>&1
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null 2>&1
 echo -e "\n--- Populating MONARC DB ---\n"
-tar -xzvf db-bootstrap/monarc-common.tar.gz -C db-bootstrap/ > /dev/null
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc-common.sql > /dev/null 2>&1
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_common.sql > /dev/null 2>&1
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null 2>&1
 
 
 echo -e "\n--- Installation of Grunt ---\n"
