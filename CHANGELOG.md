@@ -1,6 +1,23 @@
 MONARC Changelog
 ================
 
+## 2.1.0 (not yet released)
+
+### Enhancement
+
+- cleaning of the initial database structure.
+- split database model and data.
+- simplify the panel to create new MONARC clients.
+- improved the table of MONARC clients of the administration panel.
+- removed all useless column of the 'clients' table.
+- removed cities and countries tables in the database.
+- added a condition to hide/show probability field on Threats assessment.
+
+### Fix
+
+- minor fixes in the forms of the user profile page.
+- minor translations fixes.
+
 
 ## 2.0.4 (2017-10-27)
 
