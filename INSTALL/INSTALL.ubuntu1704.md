@@ -68,8 +68,8 @@ There are 2 databases:
 
 Populate the monarc_common database:
 
-    mysql -u user -p monarc_common < db-bootstrap/monarc_structure.sql
-    mysql -u user -p monarc_common < db-bootstrap/monarc_data.sql
+    mysql -u user monarc_common < db-bootstrap/monarc_structure.sql
+    mysql -u user monarc_common < db-bootstrap/monarc_data.sql
 
 
 API
