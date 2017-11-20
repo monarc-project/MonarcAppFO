@@ -21,7 +21,7 @@ expertise is a barrier for many companies, especially SMEs.
 
 To remedy this situation and allow all organisations, both large and small, to
 benefit from the advantages that a risk analysis offers, CASES has developed an
-optimised risk analysis method: [MONARC](https://github.com/monarc-project)
+optimised risk analysis method: [MONARC](http://www.monarc.lu)
 (**Optimised Risk Analysis Method**), allowing precise and repeatable risk
 management.
 
