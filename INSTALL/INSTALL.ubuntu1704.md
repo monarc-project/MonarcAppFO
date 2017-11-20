@@ -7,7 +7,7 @@ project using this one.
 If you have already installed MONARC and want to upgrade to a later version, you
 can use the provided script:
 
-    $ scripts/update-all.sh
+    $ ./scripts/update-all.sh
     $ sudo systemctl restart apache2
 
 
@@ -61,9 +61,15 @@ Change SQL Mode in my.cnf:
     sql-mode = MYSQL40
 
 There are 2 databases:
+
 * monarc_common contains models and data created by CASES;
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES
   model of monarc_common.
+
+Populate the monarc_common database:
+
+    mysql -u user -p monarc_common < db-bootstrap/monarc_structure.sql
+    mysql -u user -p monarc_common < db-bootstrap/monarc_data.sql
 
 
 API
@@ -84,6 +90,7 @@ Create 2 symbolic links in the root of project directory:
     ln -s ./../vendor/monarc/frontoffice MonarcFO
 
 There are 2 parts:
+
 * one only for front office;
 * one common for front office and back office (private project).
 
