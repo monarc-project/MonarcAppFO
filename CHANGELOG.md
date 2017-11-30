@@ -12,6 +12,9 @@ MONARC Changelog
 - removed all useless column of the 'clients' table.
 - removed cities and countries tables in the database.
 - added a condition to hide/show probability field on Threats assessment.
+- it is now possible to export a whole analysis (or an asset) in JSON or as an
+  encrypted JSON file. Analysis exported with the legacy system can still be
+  imported in MONARC.
 
 ### Fix
 
