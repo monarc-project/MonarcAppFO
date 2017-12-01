@@ -15,6 +15,8 @@ MONARC Changelog
 - it is now possible to export a whole analysis (or an asset) in JSON or as an
   encrypted JSON file. Analysis exported with the legacy system can still be
   imported in MONARC.
+- it is now mandatory to specify a level of permissions when creating a new
+  user.
 
 ### Fix
 
