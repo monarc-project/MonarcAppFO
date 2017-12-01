@@ -22,7 +22,7 @@ MONARC Changelog
 
 - minor fixes in the forms of the user profile page.
 - minor translations fixes.
-- fixed a bug that prevended users to update password without the
+- fixed a bug that prevented users to update password without the
   password recovery feature.
 
 
