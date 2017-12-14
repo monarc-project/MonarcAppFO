@@ -63,3 +63,5 @@ BEGIN
 	ALTER TABLE `vulnerabilities` ADD description_translation_id INT(11), ADD label_translation_id INT(11);
 END;;
 DELIMITER ;
+
+CALL add_new_translation_id_columns;

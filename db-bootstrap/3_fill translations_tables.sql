@@ -2418,14 +2418,16 @@ CALL `duplicate_data_vulnerabilities`;
 
 
 -- Procedure to delete old hard-codded translations columns in tables
+DROP PROCEDURE IF EXISTS delete_old_translation_columns;
 DELIMITER ;;
 CREATE PROCEDURE delete_old_translation_columns ()
 BEGIN
+	ALTER TABLE anrs DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE assets DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE guides DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE guides_items DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE historicals DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4;
-	ALTER TABLE assets DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN name1, DROP COLUMN name2, DROP COLUMN name3, DROP COLUMN name4;
+	ALTER TABLE instances DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN name1, DROP COLUMN name2, DROP COLUMN name3, DROP COLUMN name4;
 	ALTER TABLE measures DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE models DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE objects DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN name1, DROP COLUMN name2, DROP COLUMN name3, DROP COLUMN name4;
@@ -2442,3 +2444,4 @@ BEGIN
 END;;
 DELIMITER ;
 
+CALL delete_old_translation_columns;
