@@ -149,12 +149,12 @@ service apache2 restart > /dev/null 2>&1
 echo -e "\n--- Configuration of MONARC data base connection ---\n"
 cat > config/autoload/local.php <<EOF
 <?php
-$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
-$string = file_get_contents($appdir.'/package.json');
-if($string === FALSE) {
-    $string = file_get_contents('./package.json');
+\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
+\$string = file_get_contents(\$appdir.'/package.json');
+if(\$string === FALSE) {
+    \$string = file_get_contents('./package.json');
 }
-$package_json = json_decode($string, true);
+\$package_json = json_decode(\$string, true);
 
 return array(
     'doctrine' => array(
@@ -195,6 +195,8 @@ return array(
     ]
     */
     'activeLanguages' => array('fr','en','de','ne',),
+
+    'appVersion' => \$package_json['version'],
 
     'email' => [
             'name' => 'MONARC',
