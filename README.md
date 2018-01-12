@@ -53,7 +53,7 @@ Contributing
 ------------
 
 If you are interested to contribute to the MONARC project, review our
-[community page](http://monarc.lu/pages/community).
+[community page](http://monarc.lu/community).
 There are many ways to contribute and participate to the project.
 
 Feel free to fork the code, play with it, make some patches and send us the pull
@@ -67,7 +67,7 @@ master stable branch.
 
 Please, do not open directly a GitHub issue if you think you have found a
 security vulnerability. See our
-[vulnerability disclosure](http://monarc.lu/pages/community/vulnerability-disclosure)
+[vulnerability disclosure](http://monarc.lu/vulnerability-disclosure)
 page.
 
 
