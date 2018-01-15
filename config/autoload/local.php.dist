@@ -89,7 +89,7 @@ return array(
     ],
 
     'monarc' => array(
-        'ttl' => 20, // timeout
+        'ttl' => 60, // timeout
         'cliModel' => 'generic', // model to display for the client, an ID of a specific model or 'generic' (empty for all)
     ),
 );

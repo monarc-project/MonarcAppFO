@@ -204,7 +204,7 @@ return array(
     ],
 
     'monarc' => array(
-        'ttl' => 20, // timeout
+        'ttl' => 60, // timeout
         'salt' => '', // salt privé pour chiffrement pwd
     ),
 );
