@@ -16,8 +16,8 @@ ENVIRONMENT='PRODUCTION'
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
 DBNAME_CLI='monarc_cli'
-DBUSER_AMIN='root'
-DBPASSWORD_AMIN="$(openssl rand -hex 32)"
+DBUSER_ADMIN='root'
+DBPASSWORD_ADMIN="$(openssl rand -hex 32)"
 DBUSER_MONARC='sqlmonarcuser'
 DBPASSWORD_MONARC="$(openssl rand -hex 32)"
 
@@ -38,8 +38,8 @@ echo -e "\n--- Install base packages ---\n"
 apt-get -y install vim zip unzip git gettext > /dev/null 2>&1
 
 echo -e "\n--- Install MariaDB (a MySQL fork/alternative) specific packages and settings ---\n"
-echo "mysql-server mysql-server/root_password password $DBPASSWORD_AMIN" | debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_AMIN" | debconf-set-selections
+echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_ADMIN" | debconf-set-selections
 apt-get -y install mariadb-server mariadb-client > /dev/null 2>&1
 
 echo -e "\n--- Installing PHP-specific packages ---\n"
@@ -63,9 +63,9 @@ sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 #sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
 
 echo -e "\n--- Setting up our MySQL user for MONARC ---\n"
-mysql -u root -p$DBPASSWORD_AMIN -e "CREATE USER '$DBUSER_MONARC'@'localhost' IDENTIFIED BY '$DBPASSWORD_MONARC';"
-mysql -u root -p$DBPASSWORD_AMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'localhost';"
-mysql -u root -p$DBPASSWORD_AMIN -e "FLUSH PRIVILEGES;"
+mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'localhost' IDENTIFIED BY '$DBPASSWORD_MONARC';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'localhost';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 
 echo -e "\n--- Installing composer... ---\n"
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer > /dev/null 2>&1
