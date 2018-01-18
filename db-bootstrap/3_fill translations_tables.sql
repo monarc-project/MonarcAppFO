@@ -55,7 +55,7 @@ BEGIN
             DEALLOCATE PREPARE statement;
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `anrs_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `anrs_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             PREPARE statement FROM @query; 
             EXECUTE statement; 
             DEALLOCATE PREPARE statement;
@@ -65,7 +65,7 @@ BEGIN
             DEALLOCATE PREPARE statement;
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `anrs_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `anrs_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
             PREPARE statement FROM @query; 
             EXECUTE statement; 
             DEALLOCATE PREPARE statement;
@@ -111,7 +111,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -140,7 +140,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -169,7 +169,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -196,7 +196,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -224,7 +224,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -253,7 +253,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -282,7 +282,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -309,7 +309,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `assets_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -353,7 +353,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -382,7 +382,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -411,7 +411,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -438,7 +438,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `guides_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -497,7 +497,7 @@ BEGIN
             
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `guides_items_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `guides_items_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
             
             PREPARE statement FROM @query; 
             EXECUTE statement; 
@@ -543,7 +543,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -572,7 +572,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -601,7 +601,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -628,7 +628,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `measures_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -696,7 +696,7 @@ BEGIN
             DEALLOCATE PREPARE statement;
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `models_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `models_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             PREPARE statement FROM @query; 
             EXECUTE statement; 
             DEALLOCATE PREPARE statement;
@@ -706,7 +706,7 @@ BEGIN
             DEALLOCATE PREPARE statement;
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `models_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `models_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
             PREPARE statement FROM @query; 
             EXECUTE statement; 
             DEALLOCATE PREPARE statement;
@@ -751,7 +751,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -780,7 +780,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -809,7 +809,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -836,7 +836,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_name_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -864,7 +864,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -893,7 +893,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -922,7 +922,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -949,7 +949,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1010,7 +1010,7 @@ BEGIN
             
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `objects_categories_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `objects_categories_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             
             PREPARE statement FROM @query; 
             EXECUTE statement; 
@@ -1056,7 +1056,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1085,7 +1085,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1114,7 +1114,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1141,7 +1141,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `questions_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1152,6 +1152,135 @@ BEGIN
  	
  	END WHILE;
 END;;
+DELIMITER ;
+
+
+-- HISTORICALS
+DROP PROCEDURE IF EXISTS duplicate_data_historicals;
+DELIMITER ;;
+CREATE PROCEDURE `duplicate_data_historicals`()
+	BEGIN
+		DECLARE i INT DEFAULT 1;
+		DECLARE j INT DEFAULT 0;
+		DECLARE iso_from_entity TEXT DEFAULT NULL;
+		DECLARE entity_table_length INT DEFAULT 0;
+
+		SET entity_table_length = (SELECT COUNT(*) FROM `historicals`);
+
+		SET j = 0;
+		SET iso_from_entity = 'FR';
+
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM historicals LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM historicals WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `label1` FROM `historicals` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `historicals_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+
+		SET j = 0;
+		SET iso_from_entity = 'EN';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM historicals LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM historicals WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `label2` FROM `historicals` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `historicals_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+
+		SET j = 0;
+		SET iso_from_entity = 'DE';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM historicals LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM historicals WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `label3` FROM `historicals` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `historicals_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+		END WHILE;
+
+		SET j = 0;
+		SET iso_from_entity = 'NL';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM historicals LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM historicals WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `label4` FROM `historicals` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `historicals_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+	END;;
 DELIMITER ;
 
 
@@ -1201,7 +1330,7 @@ BEGIN
             
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `questions_choices_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `questions_choices_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             
             PREPARE statement FROM @query; 
             EXECUTE statement; 
@@ -1251,7 +1380,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1285,7 +1414,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1319,7 +1448,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1351,7 +1480,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1383,7 +1512,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1416,7 +1545,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1449,7 +1578,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1480,7 +1609,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_risks_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1524,7 +1653,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1553,7 +1682,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1582,7 +1711,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1609,7 +1738,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `rolf_tags_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1652,7 +1781,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1681,7 +1810,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1710,7 +1839,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1737,7 +1866,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `scales_comments_string_id`) VALUES (', @new_translation_id ,',', @current_entity_comment_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1797,7 +1926,7 @@ BEGIN
             
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `scales_impact_types_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `scales_impact_types_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             
             PREPARE statement FROM @query; 
             EXECUTE statement; 
@@ -1860,7 +1989,7 @@ BEGIN
             
             SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
             
-            SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `themes_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+            SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `themes_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
             
             PREPARE statement FROM @query; 
             EXECUTE statement; 
@@ -1906,7 +2035,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1935,7 +2064,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1964,7 +2093,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -1991,7 +2120,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2019,7 +2148,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2048,7 +2177,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2077,7 +2206,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2104,7 +2233,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `threats_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2153,7 +2282,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2187,7 +2316,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2221,7 +2350,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2253,7 +2382,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2285,7 +2414,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2318,7 +2447,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2350,7 +2479,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2381,7 +2510,7 @@ BEGIN
     
    		SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
    	
-   		SET @query = CONCAT('INSERT INTO `translation_language` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+   		SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `vulnerabilities_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
 		
 
 	   	PREPARE statement FROM @query; 
@@ -2393,6 +2522,286 @@ BEGIN
  	END WHILE;
 
 END;;
+DELIMITER ;
+
+
+-- INSTANCES_RISKS_OP
+DROP PROCEDURE IF EXISTS duplicate_data_instances_risks_op;
+DELIMITER ;;
+CREATE PROCEDURE `duplicate_data_instances_risks_op`()
+	BEGIN
+		DECLARE i INT DEFAULT 1;
+		DECLARE j INT DEFAULT 0;
+		DECLARE iso_from_entity TEXT DEFAULT NULL;
+		DECLARE entity_table_length INT DEFAULT 0;
+
+		SET entity_table_length = (SELECT COUNT(*) FROM `instances_risks_op`);
+
+		SET j = 0;
+		SET iso_from_entity = 'FR';
+
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM instances_risks_op LIMIT 1 OFFSET j);
+			SET @current_entity_description_id = (SELECT `risk_cache_description_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @description_content = (SELECT `risk_cache_description1` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @description_content_replaced = REPLACE(@description_content, "'","''");
+
+			IF @description_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @description_content_replaced, '\')') ;
+			END IF;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+
+		SET j = 0;
+		SET iso_from_entity = 'EN';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM instances_risks_op LIMIT 1 OFFSET j);
+			SET @current_entity_description_id = (SELECT `risk_cache_description_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @description_content = (SELECT `risk_cache_description2` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @description_content_replaced = REPLACE(@description_content, "'","''");
+
+			IF @description_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @description_content_replaced, '\')') ;
+			END IF;
+			
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+
+		END WHILE;
+
+
+		SET j = 0;
+		SET iso_from_entity = 'DE';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM instances_risks_op LIMIT 1 OFFSET j);
+			SET @current_entity_description_id = (SELECT `risk_cache_description_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @description_content = (SELECT `risk_cache_description3` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @description_content_replaced = REPLACE(@description_content, "'","''");
+
+			IF @description_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @description_content_replaced, '\')') ;
+			END IF;
+			
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+		SET j = 0;
+		SET iso_from_entity = 'NL';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM instances_risks_op LIMIT 1 OFFSET j);
+			SET @current_entity_description_id = (SELECT `risk_cache_description_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @description_content = (SELECT `risk_cache_description4` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @description_content_replaced = REPLACE(@description_content, "'","''");
+
+			IF @description_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @description_content_replaced, '\')') ;
+			END IF;
+			
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_description_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+
+		END WHILE;
+
+		SET j = 0;
+		SET iso_from_entity = 'FR';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM vulnerabilities LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `risk_cache_label1` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			IF @label_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			END IF;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+
+		SET j = 0;
+		SET iso_from_entity = 'EN';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM vulnerabilities LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `risk_cache_label2` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			IF @label_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			END IF;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+		SET j = 0;
+		SET iso_from_entity = 'DE';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM vulnerabilities LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `risk_cache_label3` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			IF @label_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			END IF;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+		END WHILE;
+
+		SET j = 0;
+		SET iso_from_entity = 'NL';
+		WHILE j < entity_table_length DO
+
+			SET @current_entity_id = (SELECT `id` FROM vulnerabilities LIMIT 1 OFFSET j);
+			SET @current_entity_label_id = (SELECT `label_translation_id` FROM instances_risks_op WHERE `id` = @current_entity_id);
+
+			SET @label_content = (SELECT `risk_cache_label4` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+			SET @label_content_replaced = REPLACE(@label_content, "'","''");
+
+			IF @label_content_replaced IS NULL THEN
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`) VALUES (\'', iso_from_entity ,'\')') ;
+			ELSE
+				SET @query = CONCAT('INSERT INTO `translations`(`ISO`, `content`) VALUES (\'', iso_from_entity ,'\',\'', @label_content_replaced, '\')') ;
+			END IF;
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET @new_translation_id = (SELECT `id` FROM `translations` ORDER BY `id` DESC LIMIT 1);
+
+			SET @query = CONCAT('INSERT INTO `translation_languages` (`translation_id`, `instances_risks_ops_string_id`) VALUES (', @new_translation_id ,',', @current_entity_label_id ,')');
+
+
+			PREPARE statement FROM @query;
+			EXECUTE statement;
+			DEALLOCATE PREPARE statement;
+
+			SET j = j + 1;
+
+		END WHILE;
+
+	END;;
 DELIMITER ;
 
 
@@ -2414,6 +2823,8 @@ CALL `duplicate_data_scales_impact_types`;
 CALL `duplicate_data_themes`;
 CALL `duplicate_data_threats`;
 CALL `duplicate_data_vulnerabilities`;
+CALL `duplicate_data_instances_risks_op`;
+CALL `duplicate_data_historicals`;
 
 
 
@@ -2438,7 +2849,7 @@ BEGIN
 	ALTER TABLE scales_comments DROP COLUMN comment1, DROP COLUMN comment2, DROP COLUMN comment3, DROP COLUMN comment4;
 	ALTER TABLE scales_impact_types DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4;
 	ALTER TABLE themes DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4;
-	ALTER TABLE threats DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4;
+	ALTER TABLE threats DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE rolf_risks DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 	ALTER TABLE vulnerabilities DROP COLUMN label1, DROP COLUMN label2, DROP COLUMN label3, DROP COLUMN label4, DROP COLUMN description1, DROP COLUMN description2, DROP COLUMN description3, DROP COLUMN description4;
 END;;

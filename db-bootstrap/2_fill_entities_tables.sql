@@ -658,6 +658,52 @@ END;;
 DELIMITER ;
 
 
+-- INSTANCES_RISKS_OP
+DROP PROCEDURE IF EXISTS fill_instances_risks_op_data;
+DELIMITER ;;
+CREATE PROCEDURE fill_instances_risks_op_data ()
+    BEGIN
+        DECLARE i INT DEFAULT 0;
+        DECLARE j INT DEFAULT 0;
+        DECLARE entity_table_length INT DEFAULT 0;
+        DECLARE entity_description_translation_id INT DEFAULT 0;
+        DECLARE entity_label_translation_id INT DEFAULT 0;
+
+        SET entity_table_length = (SELECT COUNT(*) FROM `instances_risks_op`);
+
+        WHILE i < entity_table_length DO
+            SET entity_description_translation_id = i + 1;
+
+            SET @entity_id = (SELECT `id` FROM `instances_risks_op` LIMIT 1 OFFSET i);
+
+            SET @query = CONCAT('UPDATE `vulnerabilities` SET `risk_cache_description_translation_id` = ', entity_description_translation_id, ' WHERE `id` = ', @entity_id);
+            PREPARE statement FROM @query;
+            EXECUTE statement;
+            DEALLOCATE PREPARE statement;
+
+            SET i = i + 1;
+
+            IF i = entity_table_length THEN SET @entity_id_for_following_translation = i + 1;
+            END IF;
+        END WHILE;
+
+        WHILE j < entity_table_length DO
+            SET entity_label_translation_id = @entity_id_for_following_translation;
+
+            SET @entity_id = (SELECT `id` FROM `instances_risks_op` LIMIT 1 OFFSET j);
+
+            SET @query = CONCAT('UPDATE `vulnerabilities` SET `risk_cache_label_translation_id` = ', entity_label_translation_id, ' WHERE `id` = ', @entity_id);
+            PREPARE statement FROM @query;
+            EXECUTE statement;
+            DEALLOCATE PREPARE statement;
+
+            SET j = j + 1;
+            SET @entity_id_for_following_translation = @entity_id_for_following_translation + 1;
+        END WHILE;
+
+    END;;
+DELIMITER ;
+
 -- Call procedures
 CALL `fill_anrs_data`;
 CALL `fill_assets_data`;
@@ -678,3 +724,4 @@ CALL `fill_scales_impact_types_data`;
 CALL `fill_themes_data`;
 CALL `fill_threats_data`;
 CALL `fill_vulnerabilities_data`;
+CALL `fill_instances_risks_op_data`;
