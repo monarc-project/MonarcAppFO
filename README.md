@@ -81,7 +81,13 @@ This software is licensed under
 - Copyright (C) 2016-2018 Juan Rocha - https://github.com/jfrocha
 - Copyright (C) 2016-2018 SMILE gie securitymadein.lu
 - Copyright (C) 2017-2018 Cédric Bonhomme - https://github.com/cedricbonhomme
+- Copyright (C) 2016-2017 Guillaume Lesniak
+- Copyright (C) 2016-2017 Thomas Metois
+- Copyright (C) 2016-2017 Jérôme De Almeida
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
-Disclaimer: This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+Disclaimer: This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Affero General Public License for more details.
