@@ -83,3 +83,5 @@ This software is licensed under
 - Copyright (C) 2017-2018 Cédric Bonhomme - https://github.com/cedricbonhomme
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
+
+Disclaimer: This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
