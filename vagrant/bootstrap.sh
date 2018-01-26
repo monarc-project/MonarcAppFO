@@ -29,6 +29,13 @@ memory_limit=512M
 PHP_INI=/etc/php/7.1/apache2/php.ini
 
 
+export DEBIAN_FRONTEND=noninteractive
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure locales
+
 echo -e "\n--- Installing MONARC FO… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
