@@ -28,7 +28,6 @@ max_input_time=223
 memory_limit=512M
 PHP_INI=/etc/php/7.1/apache2/php.ini
 
-
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -36,7 +35,7 @@ export LC_ALL=en_US.UTF-8
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
-echo -e "\n--- Installing MONARC FO… ---\n"
+echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
 apt-get update
@@ -232,7 +231,6 @@ echo -e "\n--- Installation of Grunt… ---\n"
 apt-get -y install nodejs > /dev/null
 apt-get -y install npm > /dev/null
 npm install -g grunt-cli > /dev/null
-# ln -s /usr/bin/nodejs /usr/bin/node
 
 
 echo -e "\n--- Update the project… ---\n"
