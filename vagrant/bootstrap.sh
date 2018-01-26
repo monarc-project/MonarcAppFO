@@ -48,7 +48,7 @@ echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_ADMIN" | debconf-set-selections
 apt-get -y install mariadb-server mariadb-client > /dev/null
-systemctl restart mariadb.service
+systemctl restart mariadb.service > /dev/null
 sleep 5
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
@@ -152,7 +152,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 </VirtualHost>
 EOF
 echo -e "\n--- Restarting Apache… ---\n"
-service apache2 restart > /dev/null 2>&1
+systemctl restart apache2.service > /dev/null
 
 
 echo -e "\n--- Configuration of MONARC data base connection ---\n"
