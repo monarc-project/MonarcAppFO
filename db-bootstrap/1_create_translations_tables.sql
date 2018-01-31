@@ -8,7 +8,8 @@ CREATE TABLE `translations` (
 
 -- TRANSLATIONS_LANGUAGES
 DROP TABLE IF EXISTS `translations_languages`;
-CREATE TABLE `translation_languages` (
+DROP TABLE IF EXISTS `translations_language`;
+CREATE TABLE `translation_language` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `translation_id` int(11) unsigned DEFAULT NULL,
   `anrs_string_id` int(11) DEFAULT NULL,

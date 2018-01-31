@@ -10,7 +10,8 @@ CREATE TABLE `translations` (
 
 -- TRANSLATIONS_LANGUAGES
 DROP TABLE IF EXISTS `translations_languages`;
-CREATE TABLE `translation_languages` (
+DROP TABLE IF EXISTS `translations_language`;
+CREATE TABLE `translation_language` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `translation_id` int(11) unsigned DEFAULT NULL,
   `anrs_string_id` int(11) DEFAULT NULL,
@@ -56,7 +57,7 @@ BEGIN
 	ALTER TABLE `themes` ADD label_translation_id INT(11);
 	ALTER TABLE `threats` ADD description_translation_id INT(11), ADD label_translation_id INT(11);
 	ALTER TABLE `vulnerabilities` ADD description_translation_id INT(11), ADD label_translation_id INT(11);
-  ALTER TABLE `instances_risks_op` ADD risk_cache_label_id INT(11), ADD risk_cache_description_id INT(11);
+  ALTER TABLE `instances_risks_op` ADD risk_cache_label_translation_id INT(11), ADD risk_cache_description_translation_id INT(11);
 END;;
 DELIMITER ;
 

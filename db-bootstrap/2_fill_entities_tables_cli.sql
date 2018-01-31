@@ -560,7 +560,7 @@ CREATE PROCEDURE fill_instances_risks_op_data ()
 
             SET @entity_id = (SELECT `id` FROM `instances_risks_op` LIMIT 1 OFFSET i);
 
-            SET @query = CONCAT('UPDATE `vulnerabilities` SET `risk_cache_description_translation_id` = ', entity_description_translation_id, ' WHERE `id` = ', @entity_id);
+            SET @query = CONCAT('UPDATE `instances_risks_op` SET `risk_cache_description_translation_id` = ', entity_description_translation_id, ' WHERE `id` = ', @entity_id);
             PREPARE statement FROM @query;
             EXECUTE statement;
             DEALLOCATE PREPARE statement;
@@ -576,7 +576,7 @@ CREATE PROCEDURE fill_instances_risks_op_data ()
 
             SET @entity_id = (SELECT `id` FROM `instances_risks_op` LIMIT 1 OFFSET j);
 
-            SET @query = CONCAT('UPDATE `vulnerabilities` SET `risk_cache_label_translation_id` = ', entity_label_translation_id, ' WHERE `id` = ', @entity_id);
+            SET @query = CONCAT('UPDATE `instances_risks_op` SET `risk_cache_label_translation_id` = ', entity_label_translation_id, ' WHERE `id` = ', @entity_id);
             PREPARE statement FROM @query;
             EXECUTE statement;
             DEALLOCATE PREPARE statement;
