@@ -1,6 +1,20 @@
 MONARC Changelog
 ================
 
+## 2.2.1 (2018-02-14)
+
+### Enhancement
+
+- Lack of information in the final deliverable (#65)
+- Update template of third deliveries
+
+### Fix
+
+- CID/CIA translation in generateImpactsAppreciation for the deliveries
+  (zm-client/#3)
+- Removed useless dependencies to City entity.
+
+
 ## 2.2.0 (2018-02-01)
 
 ### New
