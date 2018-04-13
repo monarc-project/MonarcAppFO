@@ -12,6 +12,13 @@ if [ ! -d public/css ]; then
 else
 	find -L public/css -type l -exec rm {} \;
 fi
+
+if [ ! -d public/flags ]; then
+	mkdir public/flags
+else
+	find -L public/flags -type l -exec rm {} \;
+fi
+
 if [ ! -d public/views/dialogs ]; then
 	mkdir -p public/views/dialogs
 else
@@ -69,6 +76,11 @@ if [ -d node_modules/ng_client ]; then
 	cd ../../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
+	cd ../flags/ && find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
+	find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags/4x3 -name "nl.svg" -exec mv -f {} ./4x3/ne.svg \; 2>/dev/null
+	find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/css -name "flag-icon.css" -exec sed -i 's/flag-icon-gb/flag-icon-en/1' {} \; 2>/dev/null
+
+
 
 	if [ -d ../../node_modules/ng_anr ]; then
 		cd ../js/
@@ -93,4 +105,3 @@ if [ -d node_modules/ng_client ]; then
 	grunt concat
 	popd
 fi
-
