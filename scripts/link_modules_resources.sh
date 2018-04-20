@@ -46,8 +46,6 @@ if [ -d node_modules/ng_backoffice ]; then
 	cd ../css/ && find ../../node_modules/ng_backoffice/css -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_backoffice/img -name "*" -exec ln -s {} \; 2>/dev/null
     cd ../flags/ && find ../../node_modules/ng_backoffice/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
-	find ../../node_modules/ng_backoffice/node_modules/ng-country-flags/dist/flags/4x3 -name "nl.svg" -exec mv -f {} ./4x3/ne.svg \; 2>/dev/null
-	find ../../node_modules/ng_backoffice/node_modules/ng-country-flags/dist/css -name "flag-icon.css" -exec sed -i 's/flag-icon-gb/flag-icon-en/1' {} \; 2>/dev/null
 
 	if [ -d ../../node_modules/ng_anr ]; then
 		cd ../js/
@@ -80,8 +78,6 @@ if [ -d node_modules/ng_client ]; then
 	cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
 	cd ../flags/ && find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
-	# find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags/4x3 -name "nl.svg" -exec mv -f {} ./4x3/ne.svg \; 2>/dev/null
-	# find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/css -name "flag-icon.css" -exec sed -i 's/flag-icon-gb/flag-icon-en/1' {} \; 2>/dev/null
 
 	if [ -d ../../node_modules/ng_anr ]; then
 		cd ../js/
