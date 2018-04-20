@@ -1,6 +1,27 @@
 MONARC Changelog
 ================
 
+## 2.2.0 (not yet released)
+
+### New
+
+- an administrator of a MONARC front office instance is now able to set custom
+  templates for deliveries per step.
+
+### Enhancement
+
+- default deliveries templates were improved;
+- the section dedicated to the management of the organization has been moved in
+  a dedicated view;
+- improved the switching between the different available languages;
+- improved the generation of the deliveries.
+
+### Fix
+
+- fixed a bug in the generation of the deliveries (#84);
+- Inconsistency of Threat and Vulnerability Tables (#82).
+
+
 ## 2.2.1 (2018-02-14)
 
 ### Enhancement
