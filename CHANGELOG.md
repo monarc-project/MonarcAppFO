@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.2.0 (not yet released)
+## 2.3.0 (not yet released)
 
 ### New
 
