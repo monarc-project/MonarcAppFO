@@ -17,11 +17,14 @@ vendor/
 public/css/
 public/js/
 public/img/
+public/flags/
 public/views/
 module/
+npm-debug.log
 node_modules/
 bin/
 data/DoctrineORMModule/
+data/monarc/
 data/json/
 go-pear.phar
 scripts/public/
