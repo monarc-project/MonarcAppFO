@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.3.0 (not yet released)
+## 2.3.0 (2018-04-27)
 
 ### New
 
@@ -19,7 +19,8 @@ MONARC Changelog
 ### Fix
 
 - fixed a bug in the generation of the deliveries (#84);
-- Inconsistency of Threat and Vulnerability Tables (#82).
+- Inconsistency of Threat and Vulnerability Tables (#82);
+- various minor fixes.
 
 
 ## 2.2.1 (2018-02-14)
