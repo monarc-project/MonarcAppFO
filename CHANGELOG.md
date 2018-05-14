@@ -1,6 +1,17 @@
 MONARC Changelog
 ================
 
+## 2.4.0 (2018-05-14)
+
+### New
+
+- the dashboard of MONARC has been entirely revamped and is now using D3.js.
+
+### Fix
+
+- restart from an existing analysis (#87).
+
+
 ## 2.3.0 (2018-04-27)
 
 ### New
