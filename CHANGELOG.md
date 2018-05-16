@@ -9,7 +9,8 @@ MONARC Changelog
 
 ### Fix
 
-- restart from an existing analysis (#87).
+- restart from an existing analysis (#87);
+- order of operational risks (#88).
 
 
 ## 2.3.0 (2018-04-27)
