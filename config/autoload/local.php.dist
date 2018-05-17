@@ -83,6 +83,8 @@ return array(
     */
     'activeLanguages' => array('fr','en','de','ne',),
 
+    'appVersion' => $package_json['version'],
+
     'email' => [
         'name' => 'MONARC',
         'from' => 'info@monarc.lu',
