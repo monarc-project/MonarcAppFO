@@ -1,7 +1,22 @@
 MONARC Changelog
 ================
 
-## 2.4.0 ()
+## 2.4.1 (2018-05-30)
+
+### Enhancement
+
+- the dashboard has been improved with more interactive graphs;
+- the dashboard view is now part of the analysis. The home page of MONARC
+  simply lists the projects.
+
+### Fix
+
+- Removal of a recommendation on same risk of different asset of the same type
+  (#92);
+- Order of operational risks (#88).
+
+
+## 2.4.0 (2018-05-14)
 
 ### New
 
