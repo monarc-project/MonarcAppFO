@@ -1,6 +1,33 @@
 MONARC Changelog
 ================
 
+## 2.4.2 (2018-06-08)
+
+### Enhancement
+
+- improvements for the breadcrumb used in the graphs of the dashboard. Moreover
+  it is now possible to click in the items of the breadcrumb in order to
+  navigate between the different graph's levels;
+- the deadlines of recommendations are now set with a date picker in the fourth
+  step (#98);
+- Removed the filter on the checkbox of the step 3 to display the dashboard of
+  residual risk (#99);
+- the column 'phone' has been removed from the 'users' table and in the models.
+  The application must store the minimum amount of information required on
+  users;
+- Validate recommendations for operational risks (#102);
+- the translations have been improved.
+
+### Fix
+
+- Operational risks are not updated (#93);
+- In the 4th deliverable, an inherited risk is displayed at -1 and in red
+  color (#100);
+- Fixed a problem with some translations in the legends of the report's graphs;
+- Removal of a recommendation on same risk of different assets of the same type
+  (#92).
+
+
 ## 2.4.1 (2018-05-30)
 
 ### Enhancement
