@@ -21,7 +21,7 @@ expertise is a barrier for many companies, especially SMEs.
 
 To remedy this situation and allow all organisations, both large and small, to
 benefit from the advantages that a risk analysis offers, CASES has developed an
-optimised risk analysis method: [MONARC](http://www.monarc.lu)
+optimised risk analysis method: [MONARC](https://www.monarc.lu)
 (**Optimised Risk Analysis Method**), allowing precise and repeatable risk
 management.
 
@@ -37,7 +37,7 @@ Documentation
 -------------
 
 You will find a user guide and a technical guide on the
-[MONARC website](http://monarc.lu/).
+[MONARC website](https://www.monarc.lu).
 
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
@@ -51,7 +51,7 @@ Contributing
 ------------
 
 If you are interested to contribute to the MONARC project, review our
-[community page](http://monarc.lu/community).
+[community page](https://www.monarc.lu/community).
 There are many ways to contribute and participate to the project.
 
 Feel free to fork the code, play with it, make some patches and send us the pull
@@ -65,7 +65,7 @@ master stable branch.
 
 Please, do not open directly a GitHub issue if you think you have found a
 security vulnerability. See our
-[vulnerability disclosure](http://monarc.lu/vulnerability-disclosure)
+[vulnerability disclosure](https://www.monarc.lu/vulnerability-disclosure)
 page.
 
 
