@@ -206,6 +206,8 @@ return array(
 
     'appVersion' => \$package_json['version'],
 
+    'checkVersion' => false,
+
     'email' => [
             'name' => 'MONARC',
             'from' => 'info@monarc.lu',
