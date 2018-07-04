@@ -1,6 +1,32 @@
 MONARC Changelog
 ================
 
+## 2.5.0 (2018-07-04)
+
+### New
+
+- all dashboard data can now be exported to a CSV file with tabs;
+- fine grained export of risk analysis (choice between method steps,
+  interviews, existing controls and recommendations);
+- it is now possible to create a new recommendation from an existing one;
+- account deletion / right to erasure (#109).
+
+### Enhancement
+
+- how to erase the evaluation of all threats of a risk analysis (#97);
+- the risk treatment view has been improved (#96);
+- MONARC and the back office are now using AngularJS 1.7.0.
+
+### Fix
+
+- impossible to edit some fields in BO. Only is possible in the default
+  language of instance (#108);
+- md-datepicker sends the day before the one that was selected (#105);
+- the filter by tag is not working on Knowledge base > Operational Risk (#103);
+- the generation of deliverables has been improved (bullet point lists) (#101);
+- various minor improvements and fixes in the back office of MONARC.
+
+
 ## 2.4.2 (2018-06-08)
 
 ### Enhancement
