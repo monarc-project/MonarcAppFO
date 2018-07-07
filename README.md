@@ -37,7 +37,7 @@ Documentation
 -------------
 
 You will find a user guide and a technical guide on the
-[MONARC website](https://www.monarc.lu).
+[MONARC website](https://www.monarc.lu/documentation).
 
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
@@ -55,7 +55,7 @@ If you are interested to contribute to the MONARC project, review our
 There are many ways to contribute and participate to the project.
 
 Feel free to fork the code, play with it, make some patches and send us the pull
-requests via the [issues](https://github.com/monarc-project/MonarcAppFO/issues).
+requests.
 
 There is one main branch: what we consider as stable with frequent updates as
 hot-fixes.
@@ -65,7 +65,7 @@ master stable branch.
 
 Please, do not open directly a GitHub issue if you think you have found a
 security vulnerability. See our
-[vulnerability disclosure](https://www.monarc.lu/vulnerability-disclosure)
+[vulnerability disclosure](https://www.monarc.lu/community/vulnerability-disclosure/)
 page.
 
 
@@ -85,7 +85,3 @@ This software is licensed under
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
-Disclaimer: This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Affero General Public License for more details.
