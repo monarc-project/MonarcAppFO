@@ -207,6 +207,7 @@ return array(
     'appVersion' => \$package_json['version'],
 
     'checkVersion' => false,
+    'appCheckingURL' => 'https://monarc-version-checker.herokuapp.com/check/MONARC',
 
     'email' => [
             'name' => 'MONARC',
