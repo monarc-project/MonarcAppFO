@@ -1,6 +1,35 @@
 MONARC Changelog
 ================
 
+## 2.6.0 (2018-07-20)
+
+### New
+
+- MONARC users who open the home page in the web interface will see an image
+  in the bottom left corner with the text "up-to-date" in green, "update
+  available" in orange or "security update available" in red.
+  This will make outdated version more visible for users of MONARC. This
+  version checking is performed thanks to a
+  [dedicated service](https://version.monarc.lu/version/MONARC).
+
+### Enhancement
+
+- the import and export functions have been improved;
+- creation of recommendation and missing field (#115);
+- make an easy link to implement the recommendation directly from the risk view
+  (#112).
+
+### Fix
+
+- fixed a bug in the table Risk treatment plan management.
+- problem on date parsing with the date-picker with non-US browsers (when using
+  date.toLocaleString) (#117)
+- it is not possible to reset the ``duedate`` attribute of a recommendation
+  since the introduction of the date-picker (#116)
+- review and correct the functionality of import by fusion or merge (#62)
+- minor translations fixes.
+
+
 ## 2.5.0 (2018-07-04)
 
 ### New
