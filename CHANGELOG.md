@@ -1,6 +1,24 @@
 MONARC Changelog
 ================
 
+## 2.7.0 (2018-08-22)
+
+### New
+
+- this release introduces the statement of applicability (SOA) module for your
+  risk analysis. This is a first step towards the awaited [Statement of Applicability
+  & Gap Analysis module](https://github.com/monarc-project/MonarcAppFO/wiki/feature-SOA&GAP)
+
+### Fix
+
+- Error in translation in sector 3 of Final report (#124);
+- The management of the position in the library is not working (#123);
+- Empty categories in the library (#122);
+- Impossible to order the questions in the back oficce (#121);
+- Hidden impacts function doesn't works (#119);
+- Search and sort filter for import (#38).
+
+
 ## 2.6.0 (2018-07-20)
 
 ### New
