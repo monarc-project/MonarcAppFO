@@ -26,7 +26,7 @@ post_max_size=50M
 max_execution_time=100
 max_input_time=223
 memory_limit=512M
-PHP_INI=/etc/php/7.1/apache2/php.ini
+PHP_INI=/etc/php/7.2/apache2/php.ini
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -41,7 +41,7 @@ echo -e "\n--- Updating packages list… ---\n"
 apt-get update
 
 echo -e "\n--- Install base packages… ---\n"
-apt-get -y install vim zip unzip git gettext > /dev/null
+apt-get -y install vim zip unzip git gettext curl > /dev/null
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
@@ -51,7 +51,7 @@ systemctl restart mariadb.service > /dev/null
 sleep 5
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mcrypt php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip > /dev/null
+apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
