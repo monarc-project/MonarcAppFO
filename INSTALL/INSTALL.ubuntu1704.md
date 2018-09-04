@@ -10,13 +10,17 @@ can use the provided script:
     $ ./scripts/update-all.sh
     $ sudo systemctl restart apache2
 
-
+# Install the dependencies: (some might already be installed)
+sudo apt-get install curl git openssl sudo zip
 
 PHP & MySQL
 -----------
 
 Install PHP (version 7.0 recommended) with extensions : *xml*, *mbstring*,
 *mysql*, *zip*, *unzip*, *mcrypt*, *intl*, *gettext* and *imagick*.
+
+# Install PHP and dependencies
+sudo apt-get install libapache2-mod-php php php-cli php-zip php-json php-mysql php-mbstring php-imagick php-xml php-mcrypt php-intl
 
 In __php.ini__, set:
 
@@ -29,9 +33,15 @@ Install Apache and enable mods: *rewrite*, *ssl* (with a2enmod)
 
 Install MariaDB.
 
+sudo service mysql stop && sudo apt-get install mariadb-client mariadb-server
+# Secure the MariaDB installation (especially by setting a strong root password) if it hasn't been asked during the setup process.
+sudo mysql_secure_installation
 
 Installation of MONARC
 ----------------------
+
+# Go to your www directory eg: /var/www/html
+
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
