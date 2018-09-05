@@ -1,4 +1,4 @@
-Installation on Ubuntu 17.04
+Installation on Ubuntu 16.04
 ============================
 
 The master branch should always be working and it is recommended to install the
@@ -188,7 +188,7 @@ And configure the database connection:
     sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 
-Update MONARC
+Update MONARC:
 
     ./scripts/update-all.sh
 
@@ -197,9 +197,6 @@ execute the database migration scripts and compile the translations.
 
 
 # Create initial user
-
-
-Create first user:
 
     php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
 
