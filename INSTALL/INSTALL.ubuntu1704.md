@@ -1,74 +1,137 @@
+============================
 Installation on Ubuntu 17.04
 ============================
 
 The master branch should always be working and it is recommended to install the
 project using this one.
 
-If you have already installed MONARC and want to upgrade to a later version, you
-can use the provided script:
 
-    $ ./scripts/update-all.sh
-    $ sudo systemctl restart apache2
 
-# Install the dependencies: (some might already be installed)
-sudo apt-get install curl git openssl sudo zip
+# 1. Install LAMP & dependencies
 
-PHP & MySQL
------------
+## Install the dependencies
 
-Install PHP (version 7.0 recommended) with extensions : *xml*, *mbstring*,
-*mysql*, *zip*, *unzip*, *mcrypt*, *intl*, *gettext* and *imagick*.
+    sudo apt-get install vim zip unzip git gettext curl net-tools gsfonts curl
 
-# Install PHP and dependencies
-sudo apt-get install libapache2-mod-php php php-cli php-zip php-json php-mysql php-mbstring php-imagick php-xml php-mcrypt php-intl
+Some might already be installed.
 
-In __php.ini__, set:
+## Install MariaDB (a MySQL fork/alternative)
 
-* *upload_max_filesize* to 200M;
-* *post_max_size* to 50M;
-* *memory_limit* to 512M (snapshots of important risk analysis requires more
-  memory).
+    sudo apt-get install mariadb-client mariadb-server
 
-Install Apache and enable mods: *rewrite*, *ssl* (with a2enmod)
+# Secure the MariaDB installation
 
-Install MariaDB.
+    sudo mysql_secure_installation
 
-sudo service mysql stop && sudo apt-get install mariadb-client mariadb-server
-# Secure the MariaDB installation (especially by setting a strong root password) if it hasn't been asked during the setup process.
-sudo mysql_secure_installation
+Especially by setting a strong root password.
 
-Installation of MONARC
-----------------------
+## Install Apache2
 
-# Go to your www directory eg: /var/www/html
+    sudo apt-get install apache2 apache2-doc apache2-utils
 
+## Enable modules, settings, and default of SSL in Apache
+
+    sudo a2dismod status
+    sudo a2enmod ssl
+    sudo a2enmod rewrite
+    sudo a2enmod headers
+
+## Apache Virtual Host
+
+    <VirtualHost 127.0.0.1:80>
+        ServerName monarc.localhost
+        DocumentRoot /var/lib/monarc/fo/public
+        SetEnv APPLICATION_ENV "development"
+        <Directory /path/to/monarc/public>
+            DirectoryIndex index.php
+            AllowOverride All
+            Require all granted
+        </Directory>
+    </VirtualHost>
+
+
+## Install PHP and dependencies
+
+    sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mcrypt php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
+
+## Apply all changes
+
+    sudo systemctl restart apache2
+
+
+
+# 2. Installation of MONARC
+
+## MONARC code
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
-    git clone https://github.com/monarc-project/MonarcAppFO.git ./monarc   
+    cd /var/lib/monarc/fo
+    git clone https://github.com/monarc-project/MonarcAppFO.git
     cd monarc/
     chown -R www-data data
     chmod -R g+w data
     php composer.phar self-update
     php composer.phar install -o
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
+The `self-update` directive is to ensure you have an up-to-date `composer.phar`
+available.
 
 ![Arbo](pictures/arbo1.png "Arbo")
 
 
-Databases
----------
-Create 2 databases:
+### Backend
+
+The backend is not directly modules of the project but libraries.
+You must create modules with symbolic links to libraries.
+
+Create two symbolic links:
+
+    mkdir module
+    cd module/
+    ln -s ./../vendor/monarc/core MonarcCore
+    ln -s ./../vendor/monarc/frontoffice MonarcFO
+
+There are 2 parts:
+
+* MonarcFO is only for front office;
+* MonarcCore is common to the front office and to the back office.
+
+
+![Arbo](pictures/arbo2.png "Arbo")
+
+
+### Frontend
+
+The frontend is an AngularJS application.
+
+    mkdir node_modules
+    cd node_modules
+    git clone https://github.com/monarc-project/ng-client.git ng_client
+    git clone https://github.com/monarc-project/ng-anr.git ng_anr
+
+There are 2 parts:
+
+* one only for front office: ng_client;
+* one common for front office and back office: ng_anr.
+
+
+![Arbo](pictures/arbo3.png "Arbo")
+
+
+## Databases
+
+### Create 2 databases
 
     CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
     CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
-Change SQL Mode in my.cnf:
+### Change SQL Mode in my.cnf
 
     [mysqld]
     sql-mode = MYSQL40
+
+### Initializes the databases
 
 There are 2 databases:
 
@@ -82,88 +145,14 @@ Populate the monarc_common database:
     mysql -u user monarc_common < db-bootstrap/monarc_data.sql
 
 
-API
----
-
-The project is composed of 2 parts:
-
-* an API in charge of retrieving data;
-* an interface which displays data.
-
-The API is not directly modules of the project but libraries.
-You must create modules with symbolic links to libraries.
-Create 2 symbolic links in the root of project directory:
-
-    mkdir module
-    cd module/
-    ln -s ./../vendor/monarc/core MonarcCore
-    ln -s ./../vendor/monarc/frontoffice MonarcFO
-
-There are 2 parts:
-
-* one only for front office;
-* one common for front office and back office (private project).
-
-It is developed with Zend framework 2.
-
-![Arbo](pictures/arbo2.png "Arbo")
+### Database connection
 
 
-Interfaces
-----------
+Create configuration file:
 
-Repository for Angular at the root of the project:
+    sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
-    mkdir node_modules
-    cd node_modules
-    git clone https://github.com/monarc-project/ng-client.git ng_client
-    git clone https://github.com/monarc-project/ng-anr.git ng_anr    
-
-There are 2 parts:
-* one only for front office: ng_client;
-* one common for front office and back office: ng_anr.
-
-It is developed with Angular framework version 1.
-
-![Arbo](pictures/arbo3.png "Arbo")
-
-
-Web Server Setup
-----------------
-
-### PHP CLI Server
-
-The simplest way to get started if you are using PHP 5.4 or above is to start
-the internal PHP cli-server in the root directory:
-
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-Note: The built-in CLI server is **for development only**.
-
-### Apache Setup
-
-To setup Apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost 127.0.0.1:80>
-        ServerName monarc.localhost
-        DocumentRoot /path/to/monarc/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/monarc/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Require all granted
-        </Directory>
-    </VirtualHost>
-
-
-Database connection
--------------------
-
-Create file `config/autoload/local.php`:
+And configure the database connection:
 
     return array(
         'doctrine' => array(
@@ -189,21 +178,10 @@ Create file `config/autoload/local.php`:
     );
 
 
-Configuration
--------------
 
-Create configuration file
+# Update MONARC
 
-    sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
-
-Update connection information to *local.php* and *global.php*.
-
-Configuration files are stored in cache.
-If your changes have not been considered, empty cache by deleting file in
-/data/cache
-
-Install Grunt
--------------
+## Install Grunt
 
     sudo apt-get install nodejs
     sudo apt-get install npm
@@ -212,38 +190,15 @@ Install Grunt
 
 
 Update MONARC
--------------
 
-Play script (mandatory from the root of the project):
+    ./scripts/update-all.sh
 
-    /bin/bash ./scripts/update-all.sh
-
-This script will retrieve the updates from the last stable release of MONARC.
-
-It uses others shell scripts. You may need to change the access rights of those
-scripts.
-
-Before updating MONARC it is advised to configure database backup. For that you
-just need to create a file _data/backup/credentialsmysql.cnf_:
-
-    [client]
-    host     = localhost
-    user     = sql-monarc-user
-    password = your-password
-    socket   = /var/run/mysqld/mysqld.sock
-    [mysql_upgrade]
-    host     = localhost
-    user     = sql-monarc-user
-    password = your-password
-    socket   = /var/run/mysqld/mysqld.sock
-    basedir  = /usr
-
-If this file is not present, a warning message will be displayed during the
-upgrade.
+This script will retrieve the updates from the last stable release of MONARC,
+execute the database migration scripts and compile the translations.
 
 
-Create Initial User and Client
-------------------------------
+# Create initial user
+
 
 Create first user:
 
