@@ -73,8 +73,6 @@ Clone the repository and invoke `composer` using the shipped `composer.phar`:
 The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.
 
-![Arbo](pictures/arbo1.png "Arbo")
-
 
 ### Backend
 
@@ -94,9 +92,6 @@ There are 2 parts:
 * MonarcCore is common to the front office and to the back office.
 
 
-![Arbo](pictures/arbo2.png "Arbo")
-
-
 ### Frontend
 
 The frontend is an AngularJS application.
@@ -110,9 +105,6 @@ There are 2 parts:
 
 * one only for front office: ng_client;
 * one common for front office and back office: ng_anr.
-
-
-![Arbo](pictures/arbo3.png "Arbo")
 
 
 ## Databases
