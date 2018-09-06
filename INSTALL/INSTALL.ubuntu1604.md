@@ -62,9 +62,9 @@ Especially by setting a strong root password.
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
-    cd /var/lib/monarc/fo
-    git clone https://github.com/monarc-project/MonarcAppFO.git
-    cd monarc/
+    cd /var/lib/monarc/
+    git clone https://github.com/monarc-project/MonarcAppFO.git fo
+    cd fo/
     chown -R www-data data
     chmod -R g+w data
     php composer.phar self-update
