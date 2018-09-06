@@ -14,7 +14,7 @@ project using this one.
 
 Some might already be installed.
 
-## Install MariaDB (a MySQL fork/alternative)
+## Install MariaDB
 
     sudo apt-get install mariadb-client mariadb-server
 
@@ -120,34 +120,28 @@ There are 2 parts:
 
 ## Databases
 
-### Create 2 databases
-
-    CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-    CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
 ### Change SQL Mode in my.cnf
 
     [mysqld]
     sql-mode = MYSQL40
 
-### Initializes the databases
+### Create 2 databases
 
-There are 2 databases:
+    CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
 * monarc_common contains models and data created by CASES;
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES
   model of monarc_common.
 
-Populate the monarc_common database:
+### Initializes the database
 
     mysql -u user monarc_common < db-bootstrap/monarc_structure.sql
     mysql -u user monarc_common < db-bootstrap/monarc_data.sql
 
-
 ### Database connection
 
-
-Create configuration file:
+Create the configuration file:
 
     sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
