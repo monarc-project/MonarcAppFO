@@ -1,11 +1,6 @@
 Installation on Ubuntu 16.04
 ============================
 
-The master branch should always be working and it is recommended to install the
-project using this one.
-
-
-
 # 1. Install LAMP & dependencies
 
 ## Install the dependencies
@@ -37,15 +32,17 @@ Especially by setting a strong root password.
 
 ## Apache Virtual Host
 
-    <VirtualHost 127.0.0.1:80>
+    <VirtualHost *:80>
         ServerName monarc.localhost
         DocumentRoot /var/lib/monarc/fo/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/monarc/public>
+
+        <Directory /var/lib/monarc/fo/public>
             DirectoryIndex index.php
             AllowOverride All
             Require all granted
         </Directory>
+
+        SetEnv APPLICATION_ENV "development"
     </VirtualHost>
 
 
@@ -55,7 +52,7 @@ Especially by setting a strong root password.
 
 ## Apply all changes
 
-    sudo systemctl restart apache2
+    sudo systemctl restart apache2.service
 
 
 
