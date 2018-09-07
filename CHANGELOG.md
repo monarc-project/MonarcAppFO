@@ -1,6 +1,21 @@
 MONARC Changelog
 ================
 
+## 2.7.1 (2018-09-07)
+
+### Enhancement
+
+- inform user which rights he has on each risk analysis (#131);
+- display read/write access of the currently connected user on the home page (list of analysis) (#130);
+- improvements to the statement of applicability (SOA) module (speed improvements);
+- minor improvements to the home page.
+
+### Fix
+
+- impossible to download a report when user has no wright access (#133);
+- name of columns of the evaluation scales are not displayed when a user has not write access (#132).
+
+
 ## 2.7.0 (2018-08-22)
 
 ### New
