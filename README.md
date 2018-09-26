@@ -86,8 +86,7 @@ This software is licensed under
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
 The data provided with MONARC (threats, assets, vulnerabilities) are licensed under 
-[CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/)
-- Public Domain Dedication.
+[CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/) - Public Domain Dedication.
 If a specific author wants to license an object under a different license,
 a pull request can be requested.
 
