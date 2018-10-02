@@ -5,7 +5,7 @@ Installation on Ubuntu 16.04
 
 ## Install the dependencies
 
-    $ sudo apt-get install vim zip unzip git gettext curl net-tools gsfonts curl
+    $ sudo apt-get install vim zip unzip git gettext curl
 
 Some might already be installed.
 
@@ -21,7 +21,7 @@ Especially by setting a strong root password.
 
 ## Install Apache2
 
-    $ sudo apt-get install apache2 apache2-doc apache2-utils
+    $ sudo apt-get install apache2
 
 ## Enable modules, settings, and default of SSL in Apache
 
@@ -48,7 +48,7 @@ Especially by setting a strong root password.
 
 ## Install PHP and dependencies
 
-    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mcrypt php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
+    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
 
 ## Apply all changes
 
@@ -67,8 +67,8 @@ Clone the repository and invoke `composer` using the shipped `composer.phar`:
     $ cd fo/
     $ chown -R www-data data
     $ chmod -R g+w data
-    $ php composer.phar self-update
-    $ php composer.phar install -o
+    $ sudo composer self-update
+    $ composer install -o
 
 The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.
@@ -109,12 +109,9 @@ There are 2 parts:
 
 ## Databases
 
-### Change SQL Mode in my.cnf
-
-    [mysqld]
-    sql-mode = MYSQL40
-
 ### Create 2 databases
+
+In your MariaDB interpreter:
 
     CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
     CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
@@ -165,10 +162,8 @@ And configure the database connection:
 
 ## Install Grunt
 
-    $ sudo apt-get install nodejs
-    $ sudo apt-get install npm
-    $ sudo npm install -g grunt-cli
-    $ sudo ln -s /usr/bin/nodejs /usr/bin/node
+    $ sudo apt-get -y install npm
+    $ npm install -g grunt-cli
 
 
 Update MONARC:
