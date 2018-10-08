@@ -1,4 +1,4 @@
-Installation on Ubuntu 16.04
+Installation on Ubuntu 18.04
 ============================
 
 # 1. Install LAMP & dependencies
@@ -169,9 +169,6 @@ And configure the database connection:
 Update MONARC:
 
     $ ./scripts/update-all.sh
-
-This script will retrieve the updates from the last stable release of MONARC,
-execute the database migration scripts and compile the translations.
 
 
 # Create initial user
