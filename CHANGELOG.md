@@ -5,7 +5,7 @@ MONARC Changelog
 
 ### Fix
 
-- MONARC is now compatible with PHP 7.2 (#129). Future MONARC virtual machines
+- MONARC is now compatible with PHP 7.2 (#89). Future MONARC virtual machines
   will be based on Ubuntu Bionic LTS;
 - Reports not generated in user's language or selected templates (#129);
 - All your rights have been revoked. Please contact the manager for your organization (#110);
