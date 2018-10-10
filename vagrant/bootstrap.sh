@@ -170,9 +170,6 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
     SetEnv APPLICATION_ENV $ENVIRONMENT
     SetEnv APP_ENV $APPENV
     SetEnv APP_DIR $PATH_TO_MONARC
-    SetEnv DB_HOST $DBHOST
-    SetEnv DB_USER $DBUSER_MONARC
-    SetEnv DB_PASS $DBPASSWORD_MONARC
 </VirtualHost>
 EOF
 echo -e "\n--- Restarting Apache… ---\n"
