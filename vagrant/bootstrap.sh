@@ -3,14 +3,9 @@
 # Variables
 GITHUB_AUTH_TOKEN=$1
 
-BRANCH='master'
-#BRANCH='v0.1'
-#TAG='v0.1'
 TAG=''
 
 PATH_TO_MONARC='/home/ubuntu/monarc'
-
-APPENV='local'
 ENVIRONMENT='PRODUCTION'
 
 DBHOST='localhost'
@@ -168,7 +163,6 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
     </Directory>
 
     SetEnv APPLICATION_ENV $ENVIRONMENT
-    SetEnv APP_ENV $APPENV
     SetEnv APP_DIR $PATH_TO_MONARC
 </VirtualHost>
 EOF
