@@ -6,7 +6,7 @@ MONARC Changelog
 
 ### Enhancement
 
-- added bulk creation of objects for the knowledge base;
+- added backend capability for the bulk creation of objects;
 - various improvements and harmonization of the backend code;
 
 ### Fix
