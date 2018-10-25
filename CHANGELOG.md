@@ -1,6 +1,21 @@
 MONARC Changelog
 ================
 
+
+## 2.7.3 (2018-10-25)
+
+### Enhancement
+
+- added bulk creation of objects for the knowledge base;
+- various improvements and harmonization of the backend code;
+
+### Fix
+
+- Sort order for operational risks in final deliverable annex D (#111);
+- Upload of template deliverable fails in Dutch (#141);
+- SOA is now included in snapshots.
+
+
 ## 2.7.2 (2018-10-08)
 
 ### Fix
