@@ -42,9 +42,8 @@ You will find a user guide and a technical guide on the
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
-If you want to test MONARC you can use the
-[latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest)
-available as a VirtualBox machine.
+You can also use the provided Virtual Machine
+[latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest).
 
 
 Contributing
