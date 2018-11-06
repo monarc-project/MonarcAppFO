@@ -42,7 +42,7 @@ You will find a user guide and a technical guide on the
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
-You can also use the provided Virtual Machine
+You can also use the provided Virtual Machine for the
 [latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest).
 
 
