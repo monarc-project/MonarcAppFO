@@ -17,6 +17,7 @@ vendor/
 public/css/
 public/js/
 public/img/
+public/flags/
 public/views/
 module/
 node_modules/
