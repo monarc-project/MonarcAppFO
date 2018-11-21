@@ -10,8 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box = "bento/ubuntu-16.04"
-  config.vm.box = "fso/artful64"
+  config.vm.box = "ubuntu/bionic64"
   config.vm.provision :shell, path: "bootstrap.sh", args: "#{ENV['GITHUB_AUTH_TOKEN']}"
 
   # Disable automatic box update checking. If you disable this, then
@@ -54,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "1024"]
-    vb.customize ["modifyvm", :id, "--name", "MONARC FO - Ubuntu 17.10 - DEV"]
+    vb.customize ["modifyvm", :id, "--name", "MONARC FO - Ubuntu 18.04 - DEV"]
   end
   #
   # View the documentation for the provider you're using for more

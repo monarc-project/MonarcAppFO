@@ -21,7 +21,7 @@ expertise is a barrier for many companies, especially SMEs.
 
 To remedy this situation and allow all organisations, both large and small, to
 benefit from the advantages that a risk analysis offers, CASES has developed an
-optimised risk analysis method: [MONARC](http://www.monarc.lu)
+optimised risk analysis method: [MONARC](https://www.monarc.lu)
 (**Optimised Risk Analysis Method**), allowing precise and repeatable risk
 management.
 
@@ -37,25 +37,24 @@ Documentation
 -------------
 
 You will find a user guide and a technical guide on the
-[MONARC website](http://monarc.lu/).
+[MONARC website](https://www.monarc.lu/documentation).
 
 For installation instructions see
 [INSTALL](https://github.com/monarc-project/MonarcAppFO/tree/master/INSTALL).
 
-If you want to test MONARC you can use the
-[latest release](https://github.com/monarc-project/MonarcAppFO/releases/latest)
-available as a VirtualBox machine.
+You can also use the provided Virtual Machine
+[Virtual Machine](https://github.com/monarc-project/MonarcAppFO/releases/latest).
 
 
 Contributing
 ------------
 
 If you are interested to contribute to the MONARC project, review our
-[community page](http://monarc.lu/community).
+[community page](https://www.monarc.lu/community).
 There are many ways to contribute and participate to the project.
 
 Feel free to fork the code, play with it, make some patches and send us the pull
-requests via the [issues](https://github.com/monarc-project/MonarcAppFO/issues).
+requests.
 
 There is one main branch: what we consider as stable with frequent updates as
 hot-fixes.
@@ -65,7 +64,7 @@ master stable branch.
 
 Please, do not open directly a GitHub issue if you think you have found a
 security vulnerability. See our
-[vulnerability disclosure](http://monarc.lu/vulnerability-disclosure)
+[vulnerability disclosure](https://www.monarc.lu/community/vulnerability-disclosure/)
 page.
 
 
@@ -85,7 +84,8 @@ This software is licensed under
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
-Disclaimer: This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Affero General Public License for more details.
+Data provided with MONARC (threats, assets, vulnerabilities) are licensed under
+[CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/) - Public Domain Dedication.
+If a specific author wants to license an object under a different license,
+a pull request can be requested.
+

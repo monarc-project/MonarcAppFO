@@ -1,6 +1,197 @@
 MONARC Changelog
 ================
 
+
+## 2.7.3 (2018-10-25)
+
+### Enhancement
+
+- added backend capability for the bulk creation of objects;
+- various improvements and harmonization of the backend code;
+
+### Fix
+
+- Sort order for operational risks in final deliverable annex D (#111);
+- Upload of template deliverable fails in Dutch (#141);
+- SOA is now included in snapshots.
+
+
+## 2.7.2 (2018-10-08)
+
+### Fix
+
+- MONARC is now compatible with PHP 7.2 (#89). Future MONARC virtual machines
+  will be based on Ubuntu Bionic LTS;
+- Reports not generated in user's language or selected templates (#129);
+- All your rights have been revoked. Please contact the manager for your organization (#110);
+- various improvements and minor fixes in the back end.
+
+
+## 2.7.1 (2018-09-07)
+
+### Enhancement
+
+- inform user which rights he has on each risk analysis (#131);
+- display read/write access of the currently connected user on the home page (list of analysis) (#130);
+- improvements to the statement of applicability (SOA) module (speed improvements);
+- minor improvements to the home page.
+
+### Fix
+
+- impossible to download a report when user has no wright access (#133);
+- name of columns of the evaluation scales are not displayed when a user has not write access (#132).
+
+
+## 2.7.0 (2018-08-22)
+
+### New
+
+- this release introduces the statement of applicability (SOA) module for your
+  risk analysis. This is a first step towards the awaited [Statement of Applicability
+  & Gap Analysis module](https://github.com/monarc-project/MonarcAppFO/wiki/feature-SOA&GAP)
+
+### Fix
+
+- Error in translation in sector 3 of Final report (#124);
+- The management of the position in the library is not working (#123);
+- Empty categories in the library (#122);
+- Impossible to order the questions in the back oficce (#121);
+- Hidden impacts function doesn't works (#119);
+- Search and sort filter for import (#38).
+
+
+## 2.6.0 (2018-07-20)
+
+### New
+
+- MONARC users who open the home page in the web interface will see an image
+  in the bottom left corner with the text "up-to-date" in green, "update
+  available" in orange or "security update available" in red.
+  This will make outdated version more visible for users of MONARC. This
+  version checking is performed thanks to a
+  [dedicated service](https://version.monarc.lu/version/MONARC).
+
+### Enhancement
+
+- the import and export functions have been improved;
+- creation of recommendation and missing field (#115);
+- make an easy link to implement the recommendation directly from the risk view
+  (#112).
+
+### Fix
+
+- fixed a bug in the table Risk treatment plan management.
+- problem on date parsing with the date-picker with non-US browsers (when using
+  date.toLocaleString) (#117)
+- it is not possible to reset the ``duedate`` attribute of a recommendation
+  since the introduction of the date-picker (#116)
+- review and correct the functionality of import by fusion or merge (#62)
+- minor translations fixes.
+
+
+## 2.5.0 (2018-07-04)
+
+### New
+
+- all dashboard data can now be exported to a CSV file with tabs;
+- fine grained export of risk analysis (choice between method steps,
+  interviews, existing controls and recommendations);
+- it is now possible to create a new recommendation from an existing one;
+- account deletion / right to erasure (#109).
+
+### Enhancement
+
+- how to erase the evaluation of all threats of a risk analysis (#97);
+- the risk treatment view has been improved (#96);
+- MONARC and the back office are now using AngularJS 1.7.0.
+
+### Fix
+
+- impossible to edit some fields in BO. Only is possible in the default
+  language of instance (#108);
+- md-datepicker sends the day before the one that was selected (#105);
+- the filter by tag is not working on Knowledge base > Operational Risk (#103);
+- the generation of deliverables has been improved (bullet point lists) (#101);
+- various minor improvements and fixes in the back office of MONARC.
+
+
+## 2.4.2 (2018-06-08)
+
+### Enhancement
+
+- improvements for the breadcrumb used in the graphs of the dashboard. Moreover
+  it is now possible to click in the items of the breadcrumb in order to
+  navigate between the different graph's levels;
+- the deadlines of recommendations are now set with a date picker in the fourth
+  step (#98);
+- Removed the filter on the checkbox of the step 3 to display the dashboard of
+  residual risk (#99);
+- the column 'phone' has been removed from the 'users' table and in the models.
+  The application must store the minimum amount of information required on
+  users;
+- Validate recommendations for operational risks (#102);
+- the translations have been improved.
+
+### Fix
+
+- Operational risks are not updated (#93);
+- In the 4th deliverable, an inherited risk is displayed at -1 and in red
+  color (#100);
+- Fixed a problem with some translations in the legends of the report's graphs;
+- Removal of a recommendation on same risk of different assets of the same type
+  (#92).
+
+
+## 2.4.1 (2018-05-30)
+
+### Enhancement
+
+- the dashboard has been improved with more interactive graphs;
+- the dashboard view is now part of the analysis. The home page of MONARC
+  simply lists the projects.
+
+### Fix
+
+- Removal of a recommendation on same risk of different asset of the same type
+  (#92);
+- Order of operational risks (#88).
+
+
+## 2.4.0 (2018-05-14)
+
+### New
+
+- the dashboard of MONARC has been entirely revamped and is now using D3.js;
+- the version of MONARC is specified in all exported objects.
+
+### Fix
+
+- restart from an existing analysis (#87);
+- order of operational risks (#88).
+
+
+## 2.3.0 (2018-04-27)
+
+### New
+
+- an administrator of a MONARC front office instance is now able to set custom
+  templates for deliveries per step.
+
+### Enhancement
+
+- default deliveries templates were improved;
+- the section dedicated to the management of the organization has been moved in
+  a dedicated view;
+- improved the switching between the different available languages;
+- improved the generation of the deliveries.
+
+### Fix
+
+- fixed a bug in the generation of the deliveries (#84);
+- Inconsistency of Threat and Vulnerability Tables (#82);
+- various minor fixes.
+
+
 ## 2.2.1 (2018-02-14)
 
 ### Enhancement

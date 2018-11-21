@@ -3,14 +3,9 @@
 # Variables
 GITHUB_AUTH_TOKEN=$1
 
-BRANCH='master'
-#BRANCH='v0.1'
-#TAG='v0.1'
 TAG=''
 
 PATH_TO_MONARC='/home/ubuntu/monarc'
-
-APPENV='local'
 ENVIRONMENT='PRODUCTION'
 
 DBHOST='localhost'
@@ -26,7 +21,7 @@ post_max_size=50M
 max_execution_time=100
 max_input_time=223
 memory_limit=512M
-PHP_INI=/etc/php/7.1/apache2/php.ini
+PHP_INI=/etc/php/7.2/apache2/php.ini
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -41,17 +36,42 @@ echo -e "\n--- Updating packages list… ---\n"
 apt-get update
 
 echo -e "\n--- Install base packages… ---\n"
-apt-get -y install vim zip unzip git gettext > /dev/null
+apt-get -y install vim zip unzip git gettext curl > /dev/null
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
-echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_ADMIN" | debconf-set-selections
+# echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
+# echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_ADMIN" | debconf-set-selections
 apt-get -y install mariadb-server mariadb-client > /dev/null
+# Secure the MariaDB installation (especially by setting a strong root password)
 systemctl restart mariadb.service > /dev/null
 sleep 5
+apt-get -y install expect > /dev/null
+## do we need to spawn mysql_secure_install with sudo in future?
+expect -f - <<-EOF
+  set timeout 10
+  spawn mysql_secure_installation
+  expect "Enter current password for root (enter for none):"
+  send -- "\r"
+  expect "Set root password?"
+  send -- "y\r"
+  expect "New password:"
+  send -- "${DBPASSWORD_ADMIN}\r"
+  expect "Re-enter new password:"
+  send -- "${DBPASSWORD_ADMIN}\r"
+  expect "Remove anonymous users?"
+  send -- "y\r"
+  expect "Disallow root login remotely?"
+  send -- "y\r"
+  expect "Remove test database and access to it?"
+  send -- "y\r"
+  expect "Reload privilege tables now?"
+  send -- "y\r"
+  expect eof
+EOF
+sudo apt-get purge -y expect > /dev/null 2>&1
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mcrypt php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip > /dev/null
+apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
@@ -143,11 +163,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
     </Directory>
 
     SetEnv APPLICATION_ENV $ENVIRONMENT
-    SetEnv APP_ENV $APPENV
     SetEnv APP_DIR $PATH_TO_MONARC
-    SetEnv DB_HOST $DBHOST
-    SetEnv DB_USER $DBUSER_MONARC
-    SetEnv DB_PASS $DBPASSWORD_MONARC
 </VirtualHost>
 EOF
 echo -e "\n--- Restarting Apache… ---\n"
@@ -206,6 +222,9 @@ return array(
 
     'appVersion' => \$package_json['version'],
 
+    'checkVersion' => false,
+    'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
+
     'email' => [
             'name' => 'MONARC',
             'from' => 'info@monarc.lu',
@@ -228,8 +247,7 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 
 
 echo -e "\n--- Installation of Grunt… ---\n"
-apt-get -y install nodejs > /dev/null
-apt-get -y install npm > /dev/null
+sudo apt-get -y install npm > /dev/null
 npm install -g grunt-cli > /dev/null
 
 
