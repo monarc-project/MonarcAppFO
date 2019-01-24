@@ -1,5 +1,6 @@
-!!! warning
-    The core MONARC team cannot certify if this guide is working or not. Please help us in keeping it up to date and accurate.
+<aside class="warning">
+The core MONARC team cannot certify if this guide is working or not. Please help us in keeping it up to date and accurate.
+</aside>
 
 # Software repositories & packages
 
