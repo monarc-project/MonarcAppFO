@@ -2,6 +2,23 @@ MONARC Changelog
 ================
 
 
+## 2.8.0 (2019-03-01)
+
+### New
+
+- [management of multiple referentials](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#management-of-multiple-referentials)
+- [mapping between security referentials](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#mapping-between-security-referentials)
+- [improvements to the statement of applicability](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-statement-of-applicability)
+- [batch import of objects](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#batch-import-of-objects)
+- [improvements to the dashboard](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-dashboard)
+- [MONARC Objects Sharing Platform](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#monarc-objects-sharing-platform)
+
+### Fix
+
+- Fixed an issue when deleting threat theme [#143](https://github.com/monarc-project/MonarcAppFO/issues/143)
+- Improved the go back on risk sheet [#95](https://github.com/monarc-project/MonarcAppFO/issues/95)
+
+
 ## 2.7.3 (2018-10-25)
 
 ### Enhancement
