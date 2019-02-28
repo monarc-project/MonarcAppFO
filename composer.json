@@ -19,7 +19,9 @@
         "monarc/core": "dev-master",
         "monarc/frontoffice": "dev-master",
         "phing/phing": "~2.0",
-        "phpoffice/phpword": "dev-stable"
+        "phpoffice/phpword": "dev-stable",
+        "ramsey/uuid": "^3.8",
+        "ramsey/uuid-doctrine": "^1.5"
     },
     "config": {
         "bin-dir": "bin/"
