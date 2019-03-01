@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zendframework": "2.5.3",
-        "doctrine/doctrine-orm-module": "^0.10",
+        "doctrine/doctrine-orm-module": "1.1.8",
         "robmorgan/phinx": "0.5.*",
         "monarc/core": "dev-master",
         "monarc/frontoffice": "dev-master",
