@@ -86,8 +86,8 @@ For more information, [the list of authors and contributors](AUTHORS) is availab
 
 Data provided with MONARC (threats, assets, vulnerabilities, referentials,
 etc.) are licensed under
-[CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/)
-- Public Domain Dedication.
+[CC0 1.0 Universal (CC0 1.0)](https://creativecommons.org/publicdomain/zero/1.0/) -
+Public Domain Dedication.
 These objects are available through the
 [MONARC Objects Sharing Plarform](https://objects.monarc.lu).
 If a specific author wants to license an object under a different license,
