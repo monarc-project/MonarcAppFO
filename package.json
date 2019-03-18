@@ -14,7 +14,7 @@
     "ng_client": "https://github.com/monarc-project/ng-client#master"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.13"
+    "grunt": "~1.0.3",
+    "grunt-cli": "~1.3.2"
   }
 }
