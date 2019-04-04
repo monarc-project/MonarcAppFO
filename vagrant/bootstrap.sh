@@ -218,7 +218,7 @@ return array(
         ),
     ]
     */
-    'activeLanguages' => array('fr','en','de','ne',),
+    'activeLanguages' => array('fr','en','de','nl',),
 
     'appVersion' => \$package_json['version'],
 
@@ -230,9 +230,11 @@ return array(
             'from' => 'info@monarc.lu',
     ],
 
+    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+
     'monarc' => array(
         'ttl' => 60, // timeout
-        'salt' => '', // salt privé pour chiffrement pwd
+        'salt' => '', // private salt for password encryption
     ),
 );
 EOF
