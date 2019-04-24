@@ -2,16 +2,33 @@ MONARC Changelog
 ================
 
 
+## 2.8.1 (2019-04-24)
+
+### New
+
+- the dashboard can now be exported to a CSV file or to a presentation file (.pptx).
+
+### Enhancement
+
+- Improve the treatment of a risk [#114](https://github.com/monarc-project/MonarcAppFO/issues/114);
+- Improve risk sheet screen [#139](https://github.com/monarc-project/MonarcAppFO/issues/139);
+- the cartography in the dashboard has been improved.
+
+### Fix
+
+- Loss of recommendation link [#150](https://github.com/monarc-project/MonarcAppFO/issues/150).
+
+
 ## 2.8.0 (2019-03-01)
 
 ### New
 
-- [management of multiple referentials](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#management-of-multiple-security-referentials);
-- [mapping between security referentials](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#mapping-between-security-referentials);
-- [improvements to the statement of applicability](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-statement-of-applicability);
-- [batch import of objects](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#batch-import-of-objects);
-- [improvements to the dashboard](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-dashboard);
-- [MONARC Objects Sharing Platform](https://objects.monarc.lu/news/2019/03/01/monarc-280-released#monarc-objects-sharing-platform);
+- [management of multiple referentials](https://www.monarc.lu/news/2019/03/01/monarc-280-released#management-of-multiple-security-referentials);
+- [mapping between security referentials](https://www.monarc.lu/news/2019/03/01/monarc-280-released#mapping-between-security-referentials);
+- [improvements to the statement of applicability](https://www.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-statement-of-applicability);
+- [batch import of objects](https://www.monarc.lu/news/2019/03/01/monarc-280-released#batch-import-of-objects);
+- [improvements to the dashboard](https://www.monarc.lu/news/2019/03/01/monarc-280-released#improvements-to-the-dashboard);
+- [MONARC Objects Sharing Platform](https://www.monarc.lu/news/2019/03/01/monarc-280-released#monarc-objects-sharing-platform);
 - it is now possible to set a page for your terms of service when MONARC is used to provide a service.
 
 ### Fix
