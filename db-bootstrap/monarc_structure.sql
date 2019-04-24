@@ -1,7 +1,13 @@
+-- MySQL dump 10.15  Distrib 10.0.38-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: monarc_common
+-- ------------------------------------------------------
+-- Server version	10.0.38-MariaDB-0ubuntu0.16.04.1
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -22,9 +28,6 @@ CREATE TABLE `amvs` (
   `asset_id` int(11) unsigned DEFAULT NULL,
   `threat_id` int(11) unsigned DEFAULT NULL,
   `vulnerability_id` int(11) unsigned DEFAULT NULL,
-  `measure1_id` int(11) unsigned DEFAULT NULL,
-  `measure2_id` int(11) unsigned DEFAULT NULL,
-  `measure3_id` int(11) unsigned DEFAULT NULL,
   `position` int(11) DEFAULT '1',
   `status` int(11) DEFAULT '1',
   `creator` varchar(255) DEFAULT NULL,
@@ -36,24 +39,17 @@ CREATE TABLE `amvs` (
   KEY `asset_id` (`asset_id`),
   KEY `threat_id` (`threat_id`),
   KEY `vulnerability_id` (`vulnerability_id`),
-  KEY `measure1_id` (`measure1_id`),
-  KEY `measure2_id` (`measure2_id`),
-  KEY `measure3_id` (`measure3_id`),
   CONSTRAINT `amvs_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `amvs_ibfk_2` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE,
   CONSTRAINT `amvs_ibfk_3` FOREIGN KEY (`threat_id`) REFERENCES `threats` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `amvs_ibfk_4` FOREIGN KEY (`vulnerability_id`) REFERENCES `vulnerabilities` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `amvs_ibfk_5` FOREIGN KEY (`measure1_id`) REFERENCES `measures` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `amvs_ibfk_6` FOREIGN KEY (`measure2_id`) REFERENCES `measures` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `amvs_ibfk_7` FOREIGN KEY (`measure3_id`) REFERENCES `measures` (`id`) ON DELETE SET NULL
+  CONSTRAINT `amvs_ibfk_4` FOREIGN KEY (`vulnerability_id`) REFERENCES `vulnerabilities` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11985 DEFAULT CHARSET=utf8;
-
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `anrs`
 --
+
 DROP TABLE IF EXISTS `anrs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -95,13 +91,13 @@ CREATE TABLE `anrs` (
   `updater` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `anrs_objects`
 --
--- TODO : Créer cette table une fois que objects est faite
+
 DROP TABLE IF EXISTS `anrs_objects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -114,15 +110,13 @@ CREATE TABLE `anrs_objects` (
   KEY `object_id` (`object_id`),
   CONSTRAINT `anrs_objects_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `anrs_objects_ibfk_2` FOREIGN KEY (`object_id`) REFERENCES `objects` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1535 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `anrs_objects_categories`
 --
 
--- TODO :  Problème de cohérence des données
 DROP TABLE IF EXISTS `anrs_objects_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -140,13 +134,13 @@ CREATE TABLE `anrs_objects_categories` (
   KEY `object_category_id` (`object_category_id`),
   CONSTRAINT `anrs_objects_categories_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `anrs_objects_categories_ibfk_2` FOREIGN KEY (`object_category_id`) REFERENCES `objects_categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `assets`
 --
+
 DROP TABLE IF EXISTS `assets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -173,13 +167,13 @@ CREATE TABLE `assets` (
   KEY `anr_id` (`anr_id`,`code`),
   KEY `anr_id_2` (`anr_id`),
   CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `assets_models`
 --
+
 DROP TABLE IF EXISTS `assets_models`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -193,77 +187,6 @@ CREATE TABLE `assets_models` (
   CONSTRAINT `assets_models_ibfk_2` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`),
   CONSTRAINT `assets_models_ibfk_3` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE,
   CONSTRAINT `assets_models_ibfk_4` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `cities`
---
-
-DROP TABLE IF EXISTS `cities`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cities` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` int(11) unsigned DEFAULT NULL,
-  `label` varchar(255) NOT NULL,
-  `creator` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updater` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `country_id` (`country_id`),
-  CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=110970 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `countries`
---
-
-DROP TABLE IF EXISTS `countries`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `countries` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `iso` varchar(2) NOT NULL DEFAULT '',
-  `iso3` varchar(3) DEFAULT NULL,
-  `name` varchar(80) DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
---
--- Table structure for table `deliveries_models`
---
-
-DROP TABLE IF EXISTS `deliveries_models`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `deliveries_models` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `category` tinyint(4) NOT NULL DEFAULT '0',
-  `description1` text,
-  `path1` varchar(255) DEFAULT NULL,
-  `content1` longblob,
-  `creator` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updater` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `description2` text,
-  `description3` text,
-  `description4` text,
-  `anr_id` int(11) unsigned DEFAULT NULL,
-  `path2` varchar(255) DEFAULT NULL,
-  `content2` longblob,
-  `path3` varchar(255) DEFAULT NULL,
-  `content3` longblob,
-  `path4` varchar(255) DEFAULT NULL,
-  `content4` longblob,
-  PRIMARY KEY (`id`),
-  KEY `anr_id` (`anr_id`),
-  CONSTRAINT `deliveries_models_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -290,7 +213,7 @@ CREATE TABLE `guides` (
   PRIMARY KEY (`id`),
   KEY `anr_id` (`anr_id`),
   CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +242,7 @@ CREATE TABLE `guides_items` (
   KEY `position` (`position`),
   CONSTRAINT `guides_items_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `guides_items_ibfk_2` FOREIGN KEY (`guide_id`) REFERENCES `guides` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +269,6 @@ CREATE TABLE `historicals` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `instances`
@@ -552,21 +474,95 @@ DROP TABLE IF EXISTS `measures`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `measures` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `anr_id` int(11) unsigned DEFAULT NULL,
+  `uuid` char(36) NOT NULL,
+  `soacategory_id` int(11) unsigned DEFAULT NULL,
+  `referential_uuid` char(36) NOT NULL,
   `code` varchar(255) DEFAULT NULL,
-  `description1` text,
-  `description2` text,
-  `description3` text,
-  `description4` text,
+  `label1` text,
+  `label2` text,
+  `label3` text,
+  `label4` text,
   `status` tinyint(4) DEFAULT '1',
+  `creator` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updater` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`uuid`),
+  UNIQUE KEY `referential_uuid` (`referential_uuid`,`code`),
+  KEY `soacategory_id` (`soacategory_id`),
+  KEY `uuid` (`uuid`),
+  CONSTRAINT `measures_ibfk_2` FOREIGN KEY (`referential_uuid`) REFERENCES `referentials` (`uuid`) ON DELETE CASCADE,
+  CONSTRAINT `measures_ibfk_3` FOREIGN KEY (`soacategory_id`) REFERENCES `soacategory` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `measures_amvs`
+--
+
+DROP TABLE IF EXISTS `measures_amvs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `measures_amvs` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `measure_id` char(36) NOT NULL,
+  `amv_id` int(11) unsigned DEFAULT NULL,
+  `creator` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updater` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `amv_id` (`amv_id`),
+  KEY `measure_id` (`measure_id`),
+  CONSTRAINT `measures_amvs_ibfk_1` FOREIGN KEY (`amv_id`) REFERENCES `amvs` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `measures_amvs_ibfk_2` FOREIGN KEY (`measure_id`) REFERENCES `measures` (`uuid`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=37164 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `measures_measures`
+--
+
+DROP TABLE IF EXISTS `measures_measures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `measures_measures` (
+  `child_id` char(36) NOT NULL,
+  `father_id` char(36) NOT NULL,
+  `creator` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updater` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`child_id`,`father_id`),
+  KEY `father_id` (`father_id`),
+  CONSTRAINT `measures_measures_ibfk_1` FOREIGN KEY (`father_id`) REFERENCES `measures` (`uuid`) ON DELETE CASCADE,
+  CONSTRAINT `measures_measures_ibfk_2` FOREIGN KEY (`child_id`) REFERENCES `measures` (`uuid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `measures_rolf_risks`
+--
+
+DROP TABLE IF EXISTS `measures_rolf_risks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `measures_rolf_risks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `anr_id` int(11) unsigned DEFAULT NULL,
+  `rolf_risk_id` int(11) unsigned DEFAULT NULL,
+  `measure_id` char(36) NOT NULL,
   `creator` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updater` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `anr_id` (`anr_id`),
-  CONSTRAINT `measures_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
+  KEY `rolf_risk_id` (`rolf_risk_id`),
+  KEY `measure_id` (`measure_id`),
+  CONSTRAINT `measures_rolf_risks_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `measures_rolf_risks_ibfk_2` FOREIGN KEY (`rolf_risk_id`) REFERENCES `rolf_risks` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `measures_rolf_risks_ibfk_3` FOREIGN KEY (`measure_id`) REFERENCES `measures` (`uuid`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -602,7 +598,7 @@ CREATE TABLE `models` (
   PRIMARY KEY (`id`),
   KEY `anr_id` (`anr_id`),
   CONSTRAINT `models_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -645,7 +641,7 @@ CREATE TABLE `objects` (
   CONSTRAINT `objects_ibfk_3` FOREIGN KEY (`asset_id`) REFERENCES `assets` (`id`) ON DELETE CASCADE,
   CONSTRAINT `objects_ibfk_5` FOREIGN KEY (`rolf_tag_id`) REFERENCES `rolf_tags` (`id`) ON DELETE SET NULL,
   CONSTRAINT `objects_ibfk_7` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -677,7 +673,7 @@ CREATE TABLE `objects_categories` (
   CONSTRAINT `objects_categories_ibfk_2` FOREIGN KEY (`root_id`) REFERENCES `objects_categories` (`id`) ON DELETE SET NULL,
   CONSTRAINT `objects_categories_ibfk_3` FOREIGN KEY (`parent_id`) REFERENCES `objects_categories` (`id`) ON DELETE SET NULL,
   CONSTRAINT `objects_categories_ibfk_4` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -704,7 +700,7 @@ CREATE TABLE `objects_objects` (
   CONSTRAINT `objects_objects_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `objects_objects_ibfk_2` FOREIGN KEY (`father_id`) REFERENCES `objects` (`id`) ON DELETE CASCADE,
   CONSTRAINT `objects_objects_ibfk_3` FOREIGN KEY (`child_id`) REFERENCES `objects` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=665 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -745,7 +741,7 @@ CREATE TABLE `questions` (
   `updater` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -772,6 +768,28 @@ CREATE TABLE `questions_choices` (
   PRIMARY KEY (`id`),
   KEY `question_id` (`question_id`),
   CONSTRAINT `questions_choices_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `referentials`
+--
+
+DROP TABLE IF EXISTS `referentials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `referentials` (
+  `uuid` char(36) NOT NULL,
+  `label1` varchar(255) DEFAULT NULL,
+  `label2` varchar(255) DEFAULT NULL,
+  `label3` varchar(255) DEFAULT NULL,
+  `label4` varchar(255) DEFAULT NULL,
+  `creator` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updater` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`uuid`),
+  KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -803,7 +821,7 @@ CREATE TABLE `rolf_risks` (
   KEY `anr_id_2` (`anr_id`),
   CONSTRAINT `rolf_risks_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `rolf_risks_ibfk_2` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -824,12 +842,14 @@ CREATE TABLE `rolf_risks_tags` (
   PRIMARY KEY (`id`),
   KEY `rolf_risk_id` (`rolf_risk_id`),
   KEY `rolf_tag_id` (`rolf_tag_id`),
-  CONSTRAINT `rolf_risks_tags_ibfk_2` FOREIGN KEY (`rolf_risk_id`) REFERENCES `rolf_risks` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `rolf_risks_tags_ibfk_3` FOREIGN KEY (`rolf_tag_id`) REFERENCES `rolf_tags` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `rolf_risks_tags_ibfk_4` FOREIGN KEY (`rolf_risk_id`) REFERENCES `rolf_risks` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `rolf_risks_tags_ibfk_5` FOREIGN KEY (`rolf_tag_id`) REFERENCES `rolf_tags` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `rolf_risks_tags_ibfk_1` FOREIGN KEY (`rolf_risk_id`) REFERENCES `rolf_risks` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `rolf_risks_tags_ibfk_2` FOREIGN KEY (`rolf_tag_id`) REFERENCES `rolf_tags` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rolf_tags`
+--
 
 DROP TABLE IF EXISTS `rolf_tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -851,7 +871,7 @@ CREATE TABLE `rolf_tags` (
   KEY `anr_id_2` (`anr_id`),
   CONSTRAINT `rolf_tags_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `rolf_tags_ibfk_2` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -874,7 +894,7 @@ CREATE TABLE `scales` (
   PRIMARY KEY (`id`),
   KEY `anr_id` (`anr_id`),
   CONSTRAINT `scales_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -905,7 +925,7 @@ CREATE TABLE `scales_comments` (
   CONSTRAINT `scales_comments_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `scales_comments_ibfk_2` FOREIGN KEY (`scale_id`) REFERENCES `scales` (`id`) ON DELETE CASCADE,
   CONSTRAINT `scales_comments_ibfk_3` FOREIGN KEY (`scale_type_impact_id`) REFERENCES `scales_impact_types` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1171 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -937,7 +957,28 @@ CREATE TABLE `scales_impact_types` (
   KEY `type` (`type`),
   CONSTRAINT `scales_impact_types_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
   CONSTRAINT `scales_impact_types_ibfk_2` FOREIGN KEY (`scale_id`) REFERENCES `scales` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `soacategory`
+--
+
+DROP TABLE IF EXISTS `soacategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `soacategory` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `label1` longtext,
+  `label2` longtext,
+  `label3` longtext,
+  `label4` longtext,
+  `status` int(11) DEFAULT '1',
+  `referential_uuid` char(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `referential_uuid` (`referential_uuid`),
+  CONSTRAINT `soacategory_ibfk_1` FOREIGN KEY (`referential_uuid`) REFERENCES `referentials` (`uuid`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -961,7 +1002,7 @@ CREATE TABLE `themes` (
   PRIMARY KEY (`id`),
   KEY `anr_id` (`anr_id`),
   CONSTRAINT `themes_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -987,7 +1028,7 @@ CREATE TABLE `threats` (
   `description4` varchar(1024) DEFAULT NULL,
   `c` tinyint(4) DEFAULT '0',
   `i` tinyint(4) DEFAULT '0',
-  `d` tinyint(4) DEFAULT '0',
+  `a` tinyint(4) DEFAULT '0',
   `status` tinyint(4) DEFAULT '1',
   `trend` int(11) NOT NULL DEFAULT '1',
   `comment` text,
@@ -1001,8 +1042,8 @@ CREATE TABLE `threats` (
   KEY `anr_id_2` (`anr_id`),
   KEY `threat_theme_id` (`theme_id`),
   CONSTRAINT `threats_ibfk_1` FOREIGN KEY (`anr_id`) REFERENCES `anrs` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `threats_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `threats_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1076,3 +1117,14 @@ CREATE TABLE `vulnerabilities_models` (
   CONSTRAINT `vulnerabilities_models_ibfk_4` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-04-24 10:31:41
