@@ -5,7 +5,7 @@ Installation on Ubuntu 18.04
 
 ## Install the dependencies
 
-    $ sudo apt-get install vim zip unzip git gettext curl
+    $ sudo apt-get install vim zip unzip git gettext curl gsfonts
 
 Some might already be installed.
 
