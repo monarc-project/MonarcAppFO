@@ -82,6 +82,7 @@ done
 echo -e "\n--- Enabling mod-rewrite and ssl… ---\n"
 a2enmod rewrite > /dev/null 2>&1
 a2enmod ssl > /dev/null 2>&1
+a2enmod headers > /dev/null 2>&1
 
 echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
@@ -162,6 +163,13 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
         Require all granted
     </Directory>
 
+    <IfModule mod_headers.c>
+       Header always set X-Content-Type-Options nosniff
+       Header always set X-XSS-Protection "1; mode=block"
+       Header always set X-Robots-Tag none
+       Header always set X-Frame-Options SAMEORIGIN
+    </IfModule>
+
     SetEnv APPLICATION_ENV $ENVIRONMENT
     SetEnv APP_DIR $PATH_TO_MONARC
 </VirtualHost>
@@ -230,9 +238,11 @@ return array(
             'from' => 'info@monarc.lu',
     ],
 
+    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+
     'monarc' => array(
         'ttl' => 60, // timeout
-        'salt' => '', // salt privé pour chiffrement pwd
+        'salt' => '', // private salt for password encryption
     ),
 );
 EOF
