@@ -2,13 +2,30 @@ MONARC Changelog
 ================
 
 
-## 2.8.2 (2019-06-27)
+## 2.8.2 (2019-06-28)
 
 ## New
 
+- the MONARC core objects (assets, threats, vulnerabilities and risks) are now
+  identified with UUIDs. We published the objects on the
+  [MONARC objects sharing platform](https://objects.monarc.lu). Risks from
+  the CASES models are also [available](https://objects.monarc.lu/schema/16);
+- Assets, threats, vulnerabilities, risks and referentials can be imported
+  in the knowledge base of your analysis from MOSP without leaving the MONARC
+  user interface.
+
 ## Enhancement
 
+- Adding referential afterwards does not update the knowledge base
+  [#156](https://github.com/monarc-project/MonarcAppFO/issues/156).
+
 ## Fix
+
+- Import analysis in 2.81, exported from 2.72, gives errors [#152](https://github.com/monarc-project/MonarcAppFO/issues/152);
+- Edit label of added Referentials does not work [#153](https://github.com/monarc-project/MonarcAppFO/issues/153);
+- Problem generating deliverable [#157](https://github.com/monarc-project/MonarcAppFO/issues/157);
+- Categories are duplicated in import [#158](https://github.com/monarc-project/MonarcAppFO/issues/158);
+- Getting prob & impacts on operational risks [#161](https://github.com/monarc-project/MonarcAppFO/issues/161).
 
 
 ## 2.8.1 (2019-04-24)
