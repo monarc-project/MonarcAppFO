@@ -61,6 +61,11 @@ fi
 
 $gitcommand pull
 
+if [ $? != 0 ]; then
+       echo "A problem occurred while retrieving remote files from repository."
+       exit 1
+fi
+
 composercommand=`command -v composer`
 if [[ -z "$composercommand" ]]; then
 	if [[ ! -f "composer.phar" ]]; then
