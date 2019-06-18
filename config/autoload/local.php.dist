@@ -93,6 +93,8 @@ return array(
         'from' => 'info@monarc.lu',
     ],
 
+    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+
     'terms' => 'https://my.monarc.lu/terms.html',
 
     'monarc' => array(

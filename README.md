@@ -92,4 +92,3 @@ These objects are available through the
 [MONARC Objects Sharing Plarform](https://objects.monarc.lu).
 If a specific author wants to license an object under a different license,
 a pull request can be requested.
-

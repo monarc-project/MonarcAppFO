@@ -121,4 +121,11 @@ Set file ownership for monarc installation
         Require all granted
     </Directory>
 
+    <IfModule mod_headers.c>
+       Header always set X-Content-Type-Options nosniff
+       Header always set X-XSS-Protection "1; mode=block"
+       Header always set X-Robots-Tag none
+       Header always set X-Frame-Options SAMEORIGIN
+    </IfModule>
+
     SetEnv APPLICATION_ENV "development"

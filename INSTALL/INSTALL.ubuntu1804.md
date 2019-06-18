@@ -5,7 +5,7 @@ Installation on Ubuntu 18.04
 
 ## Install the dependencies
 
-    $ sudo apt-get install vim zip unzip git gettext curl
+    $ sudo apt-get install vim zip unzip git gettext curl gsfonts
 
 Some might already be installed.
 
@@ -41,6 +41,13 @@ Especially by setting a strong root password.
             AllowOverride All
             Require all granted
         </Directory>
+
+        <IfModule mod_headers.c>
+           Header always set X-Content-Type-Options nosniff
+           Header always set X-XSS-Protection "1; mode=block"
+           Header always set X-Robots-Tag none
+           Header always set X-Frame-Options SAMEORIGIN
+        </IfModule>
 
         SetEnv APPLICATION_ENV "development"
     </VirtualHost>
