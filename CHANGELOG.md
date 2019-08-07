@@ -1,6 +1,25 @@
 MONARC Changelog
 ================
 
+## 2.8.3 (2019-07-26)
+
+### Enhancement
+
+- Some improvements in MOSP import
+- Some improvements in 3rd deliverable
+
+
+### Fix
+
+- SOA is not imported [#166](https://github.com/monarc-project/MonarcAppFO/issues/166)
+- Drag & drop in risk treatment plan fails after 1 change [#167](https://github.com/monarc-project/MonarcAppFO/issues/166)
+- Underscore "_" is not considered as a special character in password reset [#169](https://github.com/monarc-project/MonarcAppFO/issues/169)
+- Error when duplicating object [#171](https://github.com/monarc-project/MonarcAppFO/issues/171)
+- Add objects in model/anr from common DB [#172](https://github.com/monarc-project/MonarcAppFO/issues/172)
+- Composed objects in the library->position [#174](https://github.com/monarc-project/MonarcAppFO/issues/174)
+- Import analysis -> conflict on uuid on objects [#175](https://github.com/monarc-project/MonarcAppFO/issues/175)
+- FO > Knowledge base > OP risks [#177](https://github.com/monarc-project/MonarcAppFO/issues/177)
+
 
 ## 2.8.2 (2019-05-28)
 
