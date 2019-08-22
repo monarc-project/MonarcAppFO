@@ -32,8 +32,9 @@ Especially by setting a strong root password.
 
 ### Apache Virtual Host
 
-    <VirtualHost \*:80>
-        ServerName monarc.localhost
+    <VirtualHost _default_:80>
+        ServerAdmin admin@localhost.lu
+        ServerName monarc.local
         DocumentRoot /var/lib/monarc/fo/public
 
         <Directory /var/lib/monarc/fo/public>
