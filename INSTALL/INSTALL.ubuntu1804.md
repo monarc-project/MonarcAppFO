@@ -141,17 +141,17 @@ And configure the database connection:
             'connection' => array(
                 'orm_default' => array(
                     'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
-                        'password' => 'password',
+                        'host' => 'localhost',
+                        'user' => 'sqlmonarcuser',
+                        'password' => '<password>',
                         'dbname' => 'monarc_common',
                     ),
                 ),
                 'orm_cli' => array(
                     'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
-                        'password' => 'password',
+                        'host' => 'localhost',
+                        'user' => 'sqlmonarcuser',
+                        'password' => '<password>',
                         'dbname' => 'monarc_cli',
                     ),
                 ),
