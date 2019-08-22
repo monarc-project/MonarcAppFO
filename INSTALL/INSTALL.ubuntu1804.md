@@ -3,7 +3,7 @@ Installation on Ubuntu 18.04
 
 # 1. Install LAMP & dependencies
 
-## Install the dependencies
+## Install system dependencies
 
     $ sudo apt-get install zip unzip git gettext curl gsfonts
 
@@ -13,7 +13,7 @@ Some might already be installed.
 
     $ sudo apt-get install mariadb-client mariadb-server
 
-# Secure the MariaDB installation
+### Secure the MariaDB installation
 
     $ sudo mysql_secure_installation
 
@@ -23,16 +23,16 @@ Especially by setting a strong root password.
 
     $ sudo apt-get install apache2
 
-## Enable modules, settings, and default of SSL in Apache
+### Enable modules, settings, and default of SSL in Apache
 
     $ sudo a2dismod status
     $ sudo a2enmod ssl
     $ sudo a2enmod rewrite
     $ sudo a2enmod headers
 
-## Apache Virtual Host
+### Apache Virtual Host
 
-    <VirtualHost *:80>
+    <VirtualHost \*:80>
         ServerName monarc.localhost
         DocumentRoot /var/lib/monarc/fo/public
 
@@ -65,7 +65,7 @@ Especially by setting a strong root password.
 
 # 2. Installation of MONARC
 
-## MONARC code
+## MONARC source code
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
@@ -77,9 +77,9 @@ Clone the repository and invoke `composer` using the shipped `composer.phar`:
     $ composer install -o
 
 
-### Backend
+### Back-end
 
-You must create modules with symbolic links to libraries.
+The back-end is using the Zend Framework.
 
 Create two symbolic links:
 
@@ -90,11 +90,11 @@ Create two symbolic links:
 
 There are 2 parts:
 
-* MonarcFO is only for front office;
-* MonarcCore is common to the front office and to the back office.
+* MonarcFO is only for MONARC;
+* MonarcCore is common to MONARC and to the back office of MONARC.
 
 
-### Frontend
+### Front-end
 
 The frontend is an AngularJS application.
 
@@ -105,8 +105,8 @@ The frontend is an AngularJS application.
 
 There are 2 parts:
 
-* one only for front office: ng_client;
-* one common for front office and back office: ng_anr.
+* one only for MONARC: ng_client;
+* one common for MONARC and the back office of MONARC: ng_anr.
 
 
 ## Databases
