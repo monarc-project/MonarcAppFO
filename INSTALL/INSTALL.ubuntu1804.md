@@ -5,7 +5,7 @@ Installation on Ubuntu 18.04
 
 ## Install the dependencies
 
-    $ sudo apt-get install vim zip unzip git gettext curl gsfonts
+    $ sudo apt-get install zip unzip git gettext curl gsfonts
 
 Some might already be installed.
 
@@ -55,7 +55,7 @@ Especially by setting a strong root password.
 
 ## Install PHP and dependencies
 
-    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
+    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip composer
 
 ## Apply all changes
 
@@ -69,21 +69,16 @@ Especially by setting a strong root password.
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
-    $ cd /var/lib/monarc/
-    $ git clone https://github.com/monarc-project/MonarcAppFO.git fo
-    $ cd fo/
-    $ chown -R www-data data
+    $ mkdir -p /var/lib/monarc/fo
+    $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
+    $ cd /var/lib/monarc/fo
+    $ mkdir data
     $ chmod -R g+w data
-    $ sudo composer self-update
     $ composer install -o
-
-The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.
 
 
 ### Backend
 
-The backend is not directly modules of the project but libraries.
 You must create modules with symbolic links to libraries.
 
 Create two symbolic links:
