@@ -115,8 +115,8 @@ There are 2 parts:
 
 In your MariaDB interpreter:
 
-    CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-    CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    MariaDB [(none)]> CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    MariaDB [(none)]> CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
 * monarc_common contains models and data created by CASES;
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES
@@ -162,13 +162,12 @@ And configure the database connection:
 
 # 3. Update MONARC
 
-## Install Grunt
+Install Grunt:
 
     $ sudo apt-get -y install npm
     $ npm install -g grunt-cli
 
-
-Update MONARC:
+then update MONARC:
 
     $ ./scripts/update-all.sh
 
