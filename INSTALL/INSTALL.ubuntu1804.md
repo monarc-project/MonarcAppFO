@@ -3,13 +3,13 @@ Installation on Ubuntu 18.04
 
 # 1. Install LAMP & dependencies
 
-## Install system dependencies
+## 1.1. Install system dependencies
 
     $ sudo apt-get install zip unzip git gettext curl gsfonts
 
 Some might already be installed.
 
-## Install MariaDB
+## 1.2. Install MariaDB
 
     $ sudo apt-get install mariadb-client mariadb-server
 
@@ -19,7 +19,7 @@ Some might already be installed.
 
 Especially by setting a strong root password.
 
-## Install Apache2
+## 1.3. Install Apache2
 
     $ sudo apt-get install apache2
 
@@ -53,11 +53,11 @@ Especially by setting a strong root password.
     </VirtualHost>
 
 
-## Install PHP and dependencies
+## 1.4. Install PHP and dependencies
 
     $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip composer
 
-## Apply all changes
+## 1.5 Apply all changes
 
     $ sudo systemctl restart apache2.service
 
@@ -65,7 +65,7 @@ Especially by setting a strong root password.
 
 # 2. Installation of MONARC
 
-## MONARC source code
+## 2.1. MONARC source code
 
 Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
@@ -109,7 +109,7 @@ There are 2 parts:
 * one common for MONARC and the back office of MONARC: ng_anr.
 
 
-## Databases
+## 2.2. Databases
 
 ### Create 2 databases
 
@@ -160,7 +160,7 @@ And configure the database connection:
 
 
 
-# Update MONARC
+# 3. Update MONARC
 
 ## Install Grunt
 
@@ -173,7 +173,7 @@ Update MONARC:
     $ ./scripts/update-all.sh
 
 
-# Create initial user
+# 4. Create initial user
 
     $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
 
