@@ -22,6 +22,8 @@ max_execution_time=100
 max_input_time=223
 memory_limit=512M
 PHP_INI=/etc/php/7.2/apache2/php.ini
+X_DEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
+MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -70,14 +72,26 @@ expect -f - <<-EOF
 EOF
 sudo apt-get purge -y expect > /dev/null 2>&1
 
+echo -e "\n--- Configuring … ---\n"
+sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
+sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" $MARIA_DB_CFG
+
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip > /dev/null
+apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
 do
  sed -i "s/^\($key\).*/\1 = $(eval echo \${$key})/" $PHP_INI
 done
+
+echo -e "\n--- Configuring Description Xdebug ---\n"
+cat > $X_DEBUG_CFG <<EOF
+xdebug.remote_enable=1
+xdebug.remote_connect_back=1
+xdebug.idekey=IDEKEY
+EOF
+
 
 echo -e "\n--- Enabling mod-rewrite and ssl… ---\n"
 a2enmod rewrite > /dev/null 2>&1
@@ -87,13 +101,13 @@ a2enmod headers > /dev/null 2>&1
 echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
-#echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
-#sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.0/apache2/php.ini
-#sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/apache2/php.ini
+echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" $PHP_INI
+sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
 
 echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
-mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'localhost' IDENTIFIED BY '$DBPASSWORD_MONARC';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'localhost';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
 mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 
 echo -e "\n--- Installing composer… ---\n"
