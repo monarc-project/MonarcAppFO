@@ -115,8 +115,8 @@ echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
 echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/g" $PHP_INI
-sed -i "s/display_errors = .*/display_errors = On/g" $PHP_INI
+sed -i "s/.*error_reporting.*/error_reporting = E_ALL/g" $PHP_INI
+sed -i "s/.*display_errors.*/display_errors = On/g" $PHP_INI
 
 
 
