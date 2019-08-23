@@ -101,13 +101,13 @@ a2enmod headers > /dev/null 2>&1
 echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
-echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" $PHP_INI
-sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
+#echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
+#sed -i "s/error_reporting = .*/error_reporting = E_ALL/" $PHP_INI
+#sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
 
 echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
-mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'localhost' IDENTIFIED BY '$DBPASSWORD_MONARC';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'localhost';"
 mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 
 echo -e "\n--- Installing composer… ---\n"
