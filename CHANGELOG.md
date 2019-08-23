@@ -8,14 +8,14 @@ MONARC Changelog
 - each analysis can now integrate a record of processing activities in order
   to help you in your GDPR compliance efforts;
 - it is now possible to create and manage set of recommendations via the
-  knowledge base of a risk analysis. Like for the security referentials MOSP can
-  now be used in order to
+  knowledge base of a risk analysis. Like for the security referentials
+  (introduced in version 2.8.0), MOSP can now be used in order to
   [share recommendations](https://objects.monarc.lu/schema/17).
 
 ### Fix
 
-- Monarc 2.8.3 - nvalid datetime format: 1292 [#179](https://github.com/monarc-project/MonarcAppFO/issues/179)
-- various minor fixes.
+- Monarc 2.8.3 - invalid datetime format: 1292 [#179](https://github.com/monarc-project/MonarcAppFO/issues/179)
+- various minor fixes and improvements.
 
 
 ## 2.8.3 (2019-07-26)
@@ -24,7 +24,6 @@ MONARC Changelog
 
 - Some improvements in MOSP import
 - Some improvements in 3rd deliverable
-
 
 ### Fix
 
