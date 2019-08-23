@@ -32,6 +32,9 @@ export LC_ALL=en_US.UTF-8
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
+
+
+
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
@@ -39,6 +42,9 @@ apt-get update
 
 echo -e "\n--- Install base packages… ---\n"
 apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
+
+
+
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 # echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
@@ -72,9 +78,17 @@ expect -f - <<-EOF
 EOF
 sudo apt-get purge -y expect > /dev/null 2>&1
 
-echo -e "\n--- Configuring … ---\n"
+echo -e "\n--- Configuring… ---\n"
 sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" $MARIA_DB_CFG
+
+echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
+mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
+mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
+
+
+
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
 apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
@@ -85,13 +99,12 @@ do
  sed -i "s/^\($key\).*/\1 = $(eval echo \${$key})/" $PHP_INI
 done
 
-echo -e "\n--- Configuring Description Xdebug ---\n"
+echo -e "\n--- Configuring Xdebug for development ---\n"
 cat > $X_DEBUG_CFG <<EOF
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
 xdebug.idekey=IDEKEY
 EOF
-
 
 echo -e "\n--- Enabling mod-rewrite and ssl… ---\n"
 a2enmod rewrite > /dev/null 2>&1
@@ -102,13 +115,11 @@ echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
 echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" $PHP_INI
-sed -i "s/display_errors = .*/display_errors = On/" $PHP_INI
+sed -i "s/.*error_reporting.*/error_reporting = E_ALL/g" $PHP_INI
+sed -i "s/.*display_errors.*/display_errors = On/g" $PHP_INI
 
-echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
-mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
+
+
 
 echo -e "\n--- Installing composer… ---\n"
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer > /dev/null 2>&1
@@ -117,6 +128,9 @@ if [ $? -ne 0 ]; then
     exit 1;
 fi
 composer self-update
+
+
+
 
 echo -e "\n--- Installing MONARC… ---\n"
 cd $PATH_TO_MONARC
@@ -131,7 +145,7 @@ echo -e "\n--- Retrieving MONARC libraries… ---\n"
 composer config -g github-oauth.github.com $GITHUB_AUTH_TOKEN
 composer install -o
 
-# Modules
+# Back-end
 mkdir module
 cd module
 ln -s ./../vendor/monarc/core MonarcCore
@@ -144,7 +158,7 @@ cd module/MonarcCore/
 git config core.fileMode false
 cd $PATH_TO_MONARC
 
-# Interfaces
+# Front-end
 mkdir node_modules
 cd node_modules
 git clone --config core.filemode=false https://github.com/monarc-project/ng-client.git ng_client > /dev/null 2>&1
@@ -159,10 +173,11 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 
-
 chown -R www-data $PATH_TO_MONARC
 chgrp -R www-data $PATH_TO_MONARC
 chmod -R 700 $PATH_TO_MONARC
+
+
 
 
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"
@@ -190,6 +205,8 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 EOF
 echo -e "\n--- Restarting Apache… ---\n"
 systemctl restart apache2.service > /dev/null
+
+
 
 
 echo -e "\n--- Configuration of MONARC data base connection ---\n"
@@ -270,21 +287,31 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
 
 
+
+
 echo -e "\n--- Installation of Grunt… ---\n"
 sudo apt-get -y install npm > /dev/null
 npm install -g grunt-cli > /dev/null
+
+
 
 
 echo -e "\n--- Update the project… ---\n"
 /bin/bash ./scripts/update-all.sh > /dev/null
 
 
+
+
 echo -e "\n--- Create initial user and client ---\n"
 php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
 
 
+
+
 echo -e "\n--- Restarting Apache… ---\n"
 systemctl restart apache2.service > /dev/null
+
+
 
 
 echo -e "\n--- MONARC is ready! Point your Web browser to http://127.0.0.1:5001 ---\n"
