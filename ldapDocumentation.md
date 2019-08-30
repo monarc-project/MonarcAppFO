@@ -30,9 +30,65 @@ The configuration of MONARC platform for LDAP authentification can be done in th
 | adminPassword | The password of the admin entry | An anonymous bind will be attempted if not found
 | loginAttribute | The key of the field in LDAP directory matched with the login e-mail | mail
 
+### Setting up an OpenLDAP server on Ubuntu for testing purpose
+To setup an OpenLDAP server on Ubuntu (we will use slapd package here)
+*    *sudo apt-get update*
+*    *sudo apt-get install slapd ldap-utils*
+
+You can then configure the LDAP server using the command below
+*    *sudo dpkg-reconfigure slapd*
+
+To check the base DIT used by the LDAP server (to be specified in baseDN in local.php)
+*    *ldapsearch -H ldap:// -x -s base -b "" -LLL "namingContexts"*
+The -H option is used to specify the address of LDAP server (ldap:// if the server is local) 
+The -x option to specify that an anonymous connection is used and -s to specify that we will search from the base
+The attribute "namingContexts" is the attribute for the base entry of the DIT 
+
+To add an entry in the LDAP Server, first copy this into a file with .ldif extension (test.ldif for example):
 
 
+```
+## FIRST Level hierarchy - people 
+## uses mixed upper and lower case for objectclass
+# this is an ENTRY sequence and is preceded by a BLANK line
 
+dn: ou=people, dc=example,dc=com
+ou: people
+description: All people in organisation
+objectclass: organizationalunit
+
+## SECOND Level hierarchy
+## ADD a single entry under FIRST (people) level
+# this is an ENTRY sequence and is preceded by a BLANK line
+# the ou: Human Resources is the department name
+
+dn: cn=Robert Smith,ou=people,dc=example,dc=com
+objectclass: inetOrgPerson
+cn: Robert Smith
+cn: Robert J Smith
+cn: bob  smith
+sn: smith
+uid: rjsmith
+userpassword: rJsmitH
+carlicense: HISCAR 123
+homephone: 555-111-2222
+mail: r.smith@example.com
+mail: rsmith@example.com
+mail: bob.smith@example.com
+description: swell guy
+ou: Human Resources
+```
+
+Then use the follow command to add the entry into the LDAP server :
+*ldapmodify -H ldap:// -x -D "cn=admin,dc=example,dc=com" -w password -a -f /path/to/test.ldif*
+
+The option -D is to specify the entry to authenticate with, optin -w let you specify the admin's password and -a is for specifying that the entry should be added instead of modified
+
+To add a password to the created entry:
+
+*ldappasswd -H ldap:// -x -D "cn=admin,dc=example,dc=com" -w password  -S "uid==Robert Smith,ou=people,dc=example,dc=com"*
+
+You can now create the user (without a password) on Monarc plateform with ldap connection enabled and the authentification should be successful.
 
 
 
