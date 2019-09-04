@@ -11,6 +11,9 @@
  * file.
  */
 
+use Monarc\Core\Service\DoctrineCacheServiceFactory;
+use Monarc\Core\Service\DoctrineLoggerFactory;
+
 $appconfdir = getenv('APP_CONF_DIR') ? getenv('APP_CONF_DIR') : '';
 
 $datapath = "data";
@@ -22,8 +25,8 @@ return array(
     // DOCTRINE CONF
     'service_manager' => array(
         'factories' => array(
-            'doctrine.cache.mycache' => 'MonarcCore\Service\DoctrineCacheServiceFactory',
-            'doctrine.monarc_logger' => 'MonarcCore\Service\DoctrineLoggerFactory',
+            'doctrine.cache.mycache' => DoctrineCacheServiceFactory::class,
+            'doctrine.monarc_logger' => DoctrineLoggerFactory::class,
         ),
     ),
     'doctrine' => array(

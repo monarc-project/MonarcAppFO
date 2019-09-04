@@ -23,8 +23,5 @@ module/
 npm-debug.log
 node_modules/
 bin/
-data/DoctrineORMModule/
-data/monarc/
-data/json/
-go-pear.phar
+data/*
 scripts/public/

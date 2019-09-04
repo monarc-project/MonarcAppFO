@@ -6,7 +6,7 @@ GITHUB_AUTH_TOKEN=$1
 TAG=''
 
 PATH_TO_MONARC='/home/ubuntu/monarc'
-ENVIRONMENT='PRODUCTION'
+ENVIRONMENT='DEVELOPMENT'
 
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
@@ -142,19 +142,22 @@ if [ "$TAG" != '' ]; then
 fi
 
 echo -e "\n--- Retrieving MONARC libraries… ---\n"
+# TODO: Can be removed when we move to packagis.
 composer config -g github-oauth.github.com $GITHUB_AUTH_TOKEN
 composer install -o
 
 # Back-end
 mkdir module
 cd module
-ln -s ./../vendor/monarc/core MonarcCore
-ln -s ./../vendor/monarc/frontoffice MonarcFO
+mkdir Monarc
+cd Monarc
+ln -s ./../../vendor/monarc/core Core
+ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
-cd module/MonarcFO/
+cd module/Monarc/FrontOffice
 git config core.fileMode false
 cd $PATH_TO_MONARC
-cd module/MonarcCore/
+cd module/Monarc/Core
 git config core.fileMode false
 cd $PATH_TO_MONARC
 
