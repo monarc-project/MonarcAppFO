@@ -14,7 +14,7 @@
 use Monarc\Core\Service\DoctrineCacheServiceFactory;
 use Monarc\Core\Service\DoctrineLoggerFactory;
 
-$appconfdir = getenv('APP_CONF_DIR') ? getenv('APP_CONF_DIR') : '';
+$appconfdir = getenv('APP_CONF_DIR') ?? '';
 
 $datapath = "data";
 if( ! empty($appconfdir) ){

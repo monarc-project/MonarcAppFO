@@ -22,6 +22,7 @@ if (!empty($appConfDir)) {
 
 return [
     'modules' => [
+        'Zend\Log',
         'Monarc\Core',
         'Monarc\FrontOffice',
         'Zend\Cache',
