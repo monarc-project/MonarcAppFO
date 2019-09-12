@@ -1,6 +1,5 @@
 <?php
 
-use Monarc\Core\Service\Initializer\ObjectManagerInitializer;
 use Zend\Mvc\Application;
 
 chdir(dirname(__DIR__));
@@ -18,7 +17,7 @@ if(date_default_timezone_get() != ini_get('date.timezone')){
     date_default_timezone_set('Europe/Luxembourg');
 }
 
-include 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 if (! class_exists(Application::class)) {
     throw new RuntimeException(

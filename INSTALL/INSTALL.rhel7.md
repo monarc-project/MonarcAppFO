@@ -71,8 +71,8 @@ Backend
 
     $ mkdir module
     $ cd module/
-    $ ln -s ./../vendor/monarc/core MonarcCore
-    $ ln -s ./../vendor/monarc/frontoffice MonarcFO
+    $ ln -s ./../vendor/monarc/core Monarc\Core
+    $ ln -s ./../vendor/monarc/frontoffice Monarc\FrontOffice
 
 Frontend
 
@@ -97,7 +97,7 @@ Update MONARC (including npm config for explicit proxy)
 
 Create initial user
 
-    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 # Configure apache (as root)
 

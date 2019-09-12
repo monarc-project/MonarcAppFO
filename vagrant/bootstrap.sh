@@ -1,8 +1,5 @@
 #! /usr/bin/env bash
 
-# Variables
-GITHUB_AUTH_TOKEN=$1
-
 TAG=''
 
 PATH_TO_MONARC='/home/ubuntu/monarc'
@@ -143,7 +140,6 @@ fi
 
 echo -e "\n--- Retrieving MONARC libraries… ---\n"
 # TODO: Can be removed when we move to packagis.
-composer config -g github-oauth.github.com $GITHUB_AUTH_TOKEN
 composer install -o
 
 # Back-end
@@ -306,7 +302,7 @@ echo -e "\n--- Update the project… ---\n"
 
 
 echo -e "\n--- Create initial user and client ---\n"
-php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
 

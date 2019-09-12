@@ -11,9 +11,9 @@ oldurl_if_exists() {
 
 
 oldurl_if_exists . $1
-oldurl_if_exists module/MonarcCore $1
-oldurl_if_exists module/MonarcBO $1
-oldurl_if_exists module/MonarcFO $1
+oldurl_if_exists module/Monarc/Core $1
+oldurl_if_exists module/Monarc/BackOffice $1
+oldurl_if_exists module/Monarc/FrontOffice $1
 oldurl_if_exists node_modules/ng_backoffice $1
 oldurl_if_exists node_modules/ng_client $1
 oldurl_if_exists node_modules/ng_anr $1

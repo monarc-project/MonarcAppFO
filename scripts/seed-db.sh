@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if [ -d module/MonarcCore ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcCore/migrations/phinx.php
+if [ -d module/Monarc/Core ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/Core/migrations/phinx.php
 fi
 
-if [ -d module/MonarcBO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcBO/migrations/phinx.php
+if [ -d module/Monarc/BackOffice ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/BackOffice/migrations/phinx.php
 fi
 
-if [ -d module/MonarcFO ]; then
-	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+if [ -d module/Monarc/FrontOffice ]; then
+	php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 fi
 

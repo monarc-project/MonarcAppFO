@@ -89,19 +89,19 @@ fi
 
 
 currentPath=`pwd`
-pathCore="module/MonarcCore"
+pathCore="module/Monarc/Core"
 if [ -d $pathCore ]; then
 	pull_if_exists $pathCore
 else
 	pathCore="vendor/monarc/core"
 fi
-pathBO="module/MonarcBO"
+pathBO="module/Monarc/BackOffice"
 if [ -d $pathBO ]; then
 	pull_if_exists $pathBO
 else
 	pathBO="vendor/monarc/backoffice"
 fi
-pathFO="module/MonarcFO"
+pathFO="module/Monarc/FrontOffice"
 if [ -d $pathFO ]; then
 	pull_if_exists $pathFO
 else
@@ -153,7 +153,7 @@ fi
 
 if [[ $forceClearCache -eq 1 ]]; then
 	# Clear doctrine cache
-	# Move to MonarcCore Module.php
+	# Move to Monarc/Core Module.php
 	$phpcommand ./public/index.php orm:clear-cache:metadata
 	$phpcommand ./public/index.php orm:clear-cache:query
 	$phpcommand ./public/index.php orm:clear-cache:result

@@ -80,19 +80,19 @@ Clone the repository and invoke `composer` using the shipped `composer.phar`:
 
 ### Back-end
 
-The back-end is using the Zend Framework.
+The back-end is using the Zend Framework 3.
 
 Create two symbolic links:
 
     $ mkdir module
     $ cd module/
-    $ ln -s ./../vendor/monarc/core MonarcCore
-    $ ln -s ./../vendor/monarc/frontoffice MonarcFO
+    $ ln -s ./../vendor/monarc/core Monarc/Core
+    $ ln -s ./../vendor/monarc/frontoffice Monarc/FrontOffice
 
 There are 2 parts:
 
-* MonarcFO is only for MONARC;
-* MonarcCore is common to MONARC and to the back office of MONARC.
+* Monarc\FrontOffice is only for MONARC;
+* Monarc\Core is common to MONARC and to the back office of MONARC.
 
 
 ### Front-end
@@ -175,7 +175,7 @@ then update MONARC:
 
 # 4. Create initial user
 
-    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
 The username is *admin@admin.test* and the password is *admin*.
