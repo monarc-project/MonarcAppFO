@@ -9,9 +9,9 @@ DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
 DBNAME_CLI='monarc_cli'
 DBUSER_ADMIN='root'
-DBPASSWORD_ADMIN="$(openssl rand -hex 32)"
+DBPASSWORD_ADMIN="root"
 DBUSER_MONARC='sqlmonarcuser'
-DBPASSWORD_MONARC="$(openssl rand -hex 32)"
+DBPASSWORD_MONARC="sqlmonarcuser"
 
 upload_max_filesize=200M
 post_max_size=50M
@@ -157,6 +157,12 @@ cd module/Monarc/Core
 git config core.fileMode false
 cd $PATH_TO_MONARC
 
+cd data
+mkdir LazyServices
+cd LazyServices
+mkdir Proxy
+cd $PATH_TO_MONARC
+
 # Front-end
 mkdir node_modules
 cd node_modules
@@ -175,8 +181,6 @@ cd ..
 chown -R www-data $PATH_TO_MONARC
 chgrp -R www-data $PATH_TO_MONARC
 chmod -R 700 $PATH_TO_MONARC
-
-
 
 
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"

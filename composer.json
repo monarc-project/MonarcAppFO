@@ -22,7 +22,8 @@
         "zendframework/zend-mvc": "^3.1",
         "zendframework/zend-di": "^3.1",
         "zendframework/zend-permissions-rbac": "^3.0",
-        "zendframework/zend-log": "^2.11"
+        "zendframework/zend-log": "^2.11",
+        "zendframework/zend-i18n": "^2.9"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86bf01f3305ad7e38e9a41d8002788df",
+    "content-hash": "067fa4026b84e73549b355eab7b79e8c",
     "packages": [
         {
             "name": "cakephp/cache",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cache.git",
-                "reference": "34f8a4c3585c0177438880728668d3a9c5a5c9f0"
+                "reference": "4866fa8afd31604f58336758ddcdf97bf54ebbeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cache/zipball/34f8a4c3585c0177438880728668d3a9c5a5c9f0",
-                "reference": "34f8a4c3585c0177438880728668d3a9c5a5c9f0",
+                "url": "https://api.github.com/repos/cakephp/cache/zipball/4866fa8afd31604f58336758ddcdf97bf54ebbeb",
+                "reference": "4866fa8afd31604f58336758ddcdf97bf54ebbeb",
                 "shasum": ""
             },
             "require": {
@@ -48,20 +48,20 @@
                 "caching",
                 "cakephp"
             ],
-            "time": "2019-08-29T13:28:40+00:00"
+            "time": "2019-09-09T19:30:50+00:00"
         },
         {
             "name": "cakephp/collection",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/collection.git",
-                "reference": "7491c4e1f04af5186a0e77f34406e2e40a8a857e"
+                "reference": "460f4e84de9e2761e8216359022581c7d43e80ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/collection/zipball/7491c4e1f04af5186a0e77f34406e2e40a8a857e",
-                "reference": "7491c4e1f04af5186a0e77f34406e2e40a8a857e",
+                "url": "https://api.github.com/repos/cakephp/collection/zipball/460f4e84de9e2761e8216359022581c7d43e80ae",
+                "reference": "460f4e84de9e2761e8216359022581c7d43e80ae",
                 "shasum": ""
             },
             "require": {
@@ -94,20 +94,20 @@
                 "collections",
                 "iterators"
             ],
-            "time": "2019-08-29T13:17:59+00:00"
+            "time": "2019-09-09T13:08:53+00:00"
         },
         {
             "name": "cakephp/core",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "4f7710dab6f9bf0483e42e189942b1941c070b72"
+                "reference": "47c3045326c92adbecd14cc92a2b7515dd9a30b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/4f7710dab6f9bf0483e42e189942b1941c070b72",
-                "reference": "4f7710dab6f9bf0483e42e189942b1941c070b72",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/47c3045326c92adbecd14cc92a2b7515dd9a30b9",
+                "reference": "47c3045326c92adbecd14cc92a2b7515dd9a30b9",
                 "shasum": ""
             },
             "require": {
@@ -144,20 +144,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-08-29T13:17:59+00:00"
+            "time": "2019-09-09T19:30:50+00:00"
         },
         {
             "name": "cakephp/database",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "1e249fa8b2b82313bb7db51a39fa6491fd638e53"
+                "reference": "f3f7f8c8da67064667a88681cbd856da4e96cade"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/1e249fa8b2b82313bb7db51a39fa6491fd638e53",
-                "reference": "1e249fa8b2b82313bb7db51a39fa6491fd638e53",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/f3f7f8c8da67064667a88681cbd856da4e96cade",
+                "reference": "f3f7f8c8da67064667a88681cbd856da4e96cade",
                 "shasum": ""
             },
             "require": {
@@ -192,20 +192,20 @@
                 "database abstraction",
                 "pdo"
             ],
-            "time": "2019-08-29T13:36:23+00:00"
+            "time": "2019-09-10T00:18:05+00:00"
         },
         {
             "name": "cakephp/datasource",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
-                "reference": "c8ff35ec1c49618d4ace994a90e968b51d6315d7"
+                "reference": "91411f37aac7bf29f7a1b73a1b99e1ecf490bda3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/datasource/zipball/c8ff35ec1c49618d4ace994a90e968b51d6315d7",
-                "reference": "c8ff35ec1c49618d4ace994a90e968b51d6315d7",
+                "url": "https://api.github.com/repos/cakephp/datasource/zipball/91411f37aac7bf29f7a1b73a1b99e1ecf490bda3",
+                "reference": "91411f37aac7bf29f7a1b73a1b99e1ecf490bda3",
                 "shasum": ""
             },
             "require": {
@@ -242,20 +242,20 @@
                 "entity",
                 "query"
             ],
-            "time": "2019-08-29T13:35:39+00:00"
+            "time": "2019-09-09T19:30:50+00:00"
         },
         {
             "name": "cakephp/log",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/log.git",
-                "reference": "ed6398ae8c2e8a5630e8dea24dda34b102ec65e2"
+                "reference": "3572db7b054819d918f1de1a743ae0c0786e238e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/log/zipball/ed6398ae8c2e8a5630e8dea24dda34b102ec65e2",
-                "reference": "ed6398ae8c2e8a5630e8dea24dda34b102ec65e2",
+                "url": "https://api.github.com/repos/cakephp/log/zipball/3572db7b054819d918f1de1a743ae0c0786e238e",
+                "reference": "3572db7b054819d918f1de1a743ae0c0786e238e",
                 "shasum": ""
             },
             "require": {
@@ -287,20 +287,20 @@
                 "log",
                 "logging"
             ],
-            "time": "2019-05-27T20:32:25+00:00"
+            "time": "2019-09-09T13:08:53+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "0dcddfbc2d63335c5bce7cca6790fa434e4a8790"
+                "reference": "a90e4da0bd61fe2febcd68e6246bc974dcc43773"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/0dcddfbc2d63335c5bce7cca6790fa434e4a8790",
-                "reference": "0dcddfbc2d63335c5bce7cca6790fa434e4a8790",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/a90e4da0bd61fe2febcd68e6246bc974dcc43773",
+                "reference": "a90e4da0bd61fe2febcd68e6246bc974dcc43773",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2019-08-29T13:43:27+00:00"
+            "time": "2019-09-09T13:08:53+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -1449,23 +1449,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "6a79f729981c7c3b74df42fc0e00b369d532d985"
+                "reference": "9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/6a79f729981c7c3b74df42fc0e00b369d532d985",
-                "reference": "6a79f729981c7c3b74df42fc0e00b369d532d985",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a",
+                "reference": "9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-openssl": "*",
+                "ocramius/package-versions": "<1.5",
                 "ocramius/proxy-manager": "<2.3",
                 "php": "^7.2",
                 "ramsey/uuid-doctrine": "^1.5",
                 "robmorgan/phinx": "^0.11.1",
                 "zendframework/zend-console": "^2.8",
                 "zendframework/zend-di": "^3.1",
+                "zendframework/zend-i18n": "^2.9",
                 "zendframework/zend-log": "^2.11",
                 "zendframework/zend-mail": "^2.10",
                 "zendframework/zend-mvc": "^3.1"
@@ -1518,7 +1520,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-09-12T06:31:16+00:00"
+            "time": "2019-09-20T12:57:05+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -1526,18 +1528,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "8da9b9dd71cc88edeca535918e30b49d06dac37c"
+                "reference": "5f8843495d79f45844abbd4066284268fcf40f34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/8da9b9dd71cc88edeca535918e30b49d06dac37c",
-                "reference": "8da9b9dd71cc88edeca535918e30b49d06dac37c",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5f8843495d79f45844abbd4066284268fcf40f34",
+                "reference": "5f8843495d79f45844abbd4066284268fcf40f34",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-imagick": "*",
                 "ext-intl": "*",
+                "monarc/core": "dev-feature/upgrade-to-zf3",
                 "php": "^7.2",
                 "robmorgan/phinx": "^0.11.1",
                 "zendframework/zend-di": "^3.1",
@@ -1574,39 +1577,141 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-09-11T11:11:33+00:00"
+            "time": "2019-09-20T12:55:21+00:00"
         },
         {
-            "name": "ocramius/package-versions",
-            "version": "1.5.1",
+            "name": "monarc/phpword",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Ocramius/PackageVersions.git",
-                "reference": "1d32342b8c1eb27353c8887c366147b4c2da673c"
+                "url": "https://github.com/monarc-project/monarc-phpword.git",
+                "reference": "c82c4d371abee1b459a01d77f5f3f6666d9af8fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/1d32342b8c1eb27353c8887c366147b4c2da673c",
-                "reference": "1d32342b8c1eb27353c8887c366147b4c2da673c",
+                "url": "https://api.github.com/repos/monarc-project/monarc-phpword/zipball/c82c4d371abee1b459a01d77f5f3f6666d9af8fc",
+                "reference": "c82c4d371abee1b459a01d77f5f3f6666d9af8fc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "php": "^5.3.3 || ^7.0",
+                "phpoffice/common": "^0.2",
+                "zendframework/zend-escaper": "^2.2",
+                "zendframework/zend-stdlib": "^2.2 || ^3.0"
+            },
+            "require-dev": {
+                "dompdf/dompdf": "0.8.*",
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "mpdf/mpdf": "5.* || 6.* || 7.*",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phploc/phploc": "2.* || 3.* || 4.*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "^4.8.36 || ^5.0",
+                "squizlabs/php_codesniffer": "^2.7",
+                "tecnickcom/tcpdf": "6.*"
+            },
+            "suggest": {
+                "dompdf/dompdf": "Allows writing PDF",
+                "ext-gd2": "Allows adding images",
+                "ext-xmlwriter": "Allows writing OOXML and ODF",
+                "ext-xsl": "Allows applying XSL style sheet to headers, to main document part, and to footers of an OOXML template",
+                "ext-zip": "Allows writing OOXML and ODF"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpOffice\\PhpWord\\": "src/PhpWord"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Gabriel Bull",
+                    "email": "me@gabrielbull.com",
+                    "homepage": "http://gabrielbull.com/"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "https://rootslabs.net/blog/"
+                },
+                {
+                    "name": "Ivan Lanin",
+                    "homepage": "http://ivan.lanin.org"
+                },
+                {
+                    "name": "Roman Syroeshko",
+                    "homepage": "http://ru.linkedin.com/pub/roman-syroeshko/34/a53/994/"
+                },
+                {
+                    "name": "Antoine de Troostembergh"
+                }
+            ],
+            "description": "PHPWord - A pure PHP library for reading and writing word processing documents (OOXML, ODF, RTF, HTML, PDF)",
+            "homepage": "http://phpoffice.github.io",
+            "keywords": [
+                "ISO IEC 29500",
+                "OOXML",
+                "Office Open XML",
+                "OpenDocument",
+                "OpenXML",
+                "PhpOffice",
+                "PhpWord",
+                "Rich Text Format",
+                "WordprocessingML",
+                "doc",
+                "docx",
+                "html",
+                "odf",
+                "odt",
+                "office",
+                "pdf",
+                "php",
+                "reader",
+                "rtf",
+                "template",
+                "template processor",
+                "word",
+                "writer"
+            ],
+            "time": "2019-09-12T12:23:28+00:00"
+        },
+        {
+            "name": "ocramius/package-versions",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ocramius/PackageVersions.git",
+                "reference": "a4d4b60d0e60da2487bd21a2c6ac089f85570dbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/a4d4b60d0e60da2487bd21a2c6ac089f85570dbb",
+                "reference": "a4d4b60d0e60da2487bd21a2c6ac089f85570dbb",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0.0",
-                "php": "^7.3.0"
+                "php": "^7.1.0"
             },
             "require-dev": {
-                "composer/composer": "^1.8.6",
-                "doctrine/coding-standard": "^6.0.0",
+                "composer/composer": "^1.6.3",
+                "doctrine/coding-standard": "^5.0.1",
                 "ext-zip": "*",
-                "infection/infection": "^0.13.4",
-                "phpunit/phpunit": "^8.2.5",
-                "vimeo/psalm": "^3.4.9"
+                "infection/infection": "^0.7.1",
+                "phpunit/phpunit": "^7.0.0"
             },
             "type": "composer-plugin",
             "extra": {
                 "class": "PackageVersions\\Installer",
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -1625,7 +1730,7 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "time": "2019-07-17T15:49:50+00:00"
+            "time": "2019-02-21T12:16:21+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -1833,123 +1938,6 @@
                 "php"
             ],
             "time": "2018-07-13T14:12:34+00:00"
-        },
-        {
-            "name": "phpoffice/phpword",
-            "version": "dev-stable",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/monarc-project/monarc_phpword.git",
-                "reference": "eeb4d4fbf0d43f050f398e5b4bcd03574b81382a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/monarc_phpword/zipball/eeb4d4fbf0d43f050f398e5b4bcd03574b81382a",
-                "reference": "eeb4d4fbf0d43f050f398e5b4bcd03574b81382a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-xml": "*",
-                "php": "^5.3.3 || ^7.0",
-                "phpoffice/common": "^0.2",
-                "zendframework/zend-escaper": "^2.2",
-                "zendframework/zend-stdlib": "^2.2 || ^3.0"
-            },
-            "require-dev": {
-                "dompdf/dompdf": "0.8.*",
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "mpdf/mpdf": "5.* || 6.* || 7.*",
-                "phpdocumentor/phpdocumentor": "2.*",
-                "phploc/phploc": "2.* || 3.* || 4.*",
-                "phpmd/phpmd": "2.*",
-                "phpunit/phpunit": "^4.8.36 || ^5.0",
-                "squizlabs/php_codesniffer": "^2.7",
-                "tecnickcom/tcpdf": "6.*"
-            },
-            "suggest": {
-                "dompdf/dompdf": "Allows writing PDF",
-                "ext-gd2": "Allows adding images",
-                "ext-xmlwriter": "Allows writing OOXML and ODF",
-                "ext-xsl": "Allows applying XSL style sheet to headers, to main document part, and to footers of an OOXML template",
-                "ext-zip": "Allows writing OOXML and ODF"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PhpOffice\\PhpWord\\": "src/PhpWord"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "./vendor/bin/php-cs-fixer fix --ansi --dry-run --diff",
-                    "./vendor/bin/phpcs --report-width=200 --report-summary  --report-full samples/ src/ tests/ --ignore=src/PhpWord/Shared/PCLZip --standard=PSR2 -n",
-                    "./vendor/bin/phpmd src/,tests/ text ./phpmd.xml.dist --exclude pclzip.lib.php",
-                    "./vendor/bin/phpunit --color=always"
-                ],
-                "fix": [
-                    "./vendor/bin/php-cs-fixer fix --ansi"
-                ]
-            },
-            "license": [
-                "LGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Baker"
-                },
-                {
-                    "name": "Gabriel Bull",
-                    "email": "me@gabrielbull.com",
-                    "homepage": "http://gabrielbull.com/"
-                },
-                {
-                    "name": "Franck Lefevre",
-                    "homepage": "https://rootslabs.net/blog/"
-                },
-                {
-                    "name": "Ivan Lanin",
-                    "homepage": "http://ivan.lanin.org"
-                },
-                {
-                    "name": "Roman Syroeshko",
-                    "homepage": "http://ru.linkedin.com/pub/roman-syroeshko/34/a53/994/"
-                },
-                {
-                    "name": "Antoine de Troostembergh"
-                }
-            ],
-            "description": "PHPWord - A pure PHP library for reading and writing word processing documents (OOXML, ODF, RTF, HTML, PDF)",
-            "homepage": "http://phpoffice.github.io",
-            "keywords": [
-                "HTML",
-                "ISO IEC 29500",
-                "ODF",
-                "OOXML",
-                "Office Open XML",
-                "OpenDocument",
-                "OpenXML",
-                "PDF",
-                "PHP",
-                "PHPOffice",
-                "PHPWord",
-                "RTF",
-                "Rich Text Format",
-                "WordprocessingML",
-                "doc",
-                "docx",
-                "odt",
-                "office",
-                "reader",
-                "template",
-                "template processor",
-                "word",
-                "writer"
-            ],
-            "support": {
-                "source": "https://github.com/monarc-project/monarc_phpword/tree/stable",
-                "issues": "https://github.com/monarc-project/monarc_phpword/issues"
-            },
-            "time": "2018-11-09T10:38:01+00:00"
         },
         {
             "name": "psr/cache",
@@ -3670,6 +3658,74 @@
             "time": "2018-11-19T19:16:10+00:00"
         },
         {
+            "name": "zendframework/zend-i18n",
+            "version": "2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-i18n.git",
+                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-i18n/zipball/6d69af5a04e1a4de7250043cb1322f077a0cdb7f",
+                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-cache": "^2.6.1",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-config": "^2.6",
+                "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
+                "zendframework/zend-filter": "^2.6.1",
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+                "zendframework/zend-validator": "^2.6",
+                "zendframework/zend-view": "^2.6.3"
+            },
+            "suggest": {
+                "ext-intl": "Required for most features of Zend\\I18n; included in default builds of PHP",
+                "zendframework/zend-cache": "Zend\\Cache component",
+                "zendframework/zend-config": "Zend\\Config component",
+                "zendframework/zend-eventmanager": "You should install this package to use the events in the translator",
+                "zendframework/zend-filter": "You should install this package to use the provided filters",
+                "zendframework/zend-i18n-resources": "Translation resources",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
+                "zendframework/zend-validator": "You should install this package to use the provided validators",
+                "zendframework/zend-view": "You should install this package to use the provided view helpers"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.9.x-dev",
+                    "dev-develop": "2.10.x-dev"
+                },
+                "zf": {
+                    "component": "Zend\\I18n",
+                    "config-provider": "Zend\\I18n\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\I18n\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Provide translations for your application, and filter and validate internationalized values",
+            "keywords": [
+                "ZendFramework",
+                "i18n",
+                "zf"
+            ],
+            "time": "2018-05-16T16:39:13+00:00"
+        },
+        {
             "name": "zendframework/zend-inputfilter",
             "version": "2.10.1",
             "source": {
@@ -4841,8 +4897,8 @@
             "authors": [
                 {
                     "name": "Marco Pivetta",
-                    "role": "maintainer",
-                    "email": "ocramius@gmail.com"
+                    "email": "ocramius@gmail.com",
+                    "role": "maintainer"
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
@@ -4854,7 +4910,7 @@
     "stability-flags": {
         "monarc/core": 20,
         "monarc/frontoffice": 20,
-        "phpoffice/phpword": 20,
+        "monarc/phpword": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
