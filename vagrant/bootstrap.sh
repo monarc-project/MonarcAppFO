@@ -138,35 +138,31 @@ if [ "$TAG" != '' ]; then
     git checkout $TAG
 fi
 
+
+
+
 echo -e "\n--- Retrieving MONARC libraries… ---\n"
-# TODO: Can be removed when we move to packagis.
+# Back-end
 composer install -o
 
-# Back-end
 mkdir -p module/Monarc/Proxy
+mkdir -p data/cache
+mkdir -p data/LazyServices/Proxy
 cd module/Monarc
 ln -s ./../../vendor/monarc/core Core
 ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
-# cd module/Monarc/FrontOffice
-# git config core.fileMode false
-# cd $PATH_TO_MONARC
-# cd module/Monarc/Core
-# git config core.fileMode false
-# cd $PATH_TO_MONARC
 
-mkdir -p data/cache
-mkdir -p data/LazyServices/Proxy
 
 # Front-end
 mkdir node_modules
 cd node_modules
-git clone --config core.fileMode=false https://github.com/monarc-project/ng-client.git ng_client > /dev/null 2>&1
+git clone https://github.com/monarc-project/ng-client.git ng_client > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "\nERROR: unable to clone the ng-client repository\n"
     exit 1;
 fi
-git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr > /dev/null 2>&1
+git clone https://github.com/monarc-project/ng-anr.git ng_anr > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "\nERROR: unable to clone the ng-anr repository\n"
     exit 1;
@@ -176,6 +172,8 @@ cd ..
 chown -R www-data $PATH_TO_MONARC
 chgrp -R www-data $PATH_TO_MONARC
 chmod -R 700 $PATH_TO_MONARC
+
+
 
 
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"
