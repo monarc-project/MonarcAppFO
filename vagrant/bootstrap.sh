@@ -143,25 +143,20 @@ echo -e "\n--- Retrieving MONARC libraries… ---\n"
 composer install -o
 
 # Back-end
-mkdir module
-cd module
-mkdir Monarc
-cd Monarc
+mkdir -p module/Monarc/Proxy
+cd module/Monarc
 ln -s ./../../vendor/monarc/core Core
 ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
-cd module/Monarc/FrontOffice
-git config core.fileMode false
-cd $PATH_TO_MONARC
-cd module/Monarc/Core
-git config core.fileMode false
-cd $PATH_TO_MONARC
+# cd module/Monarc/FrontOffice
+# git config core.fileMode false
+# cd $PATH_TO_MONARC
+# cd module/Monarc/Core
+# git config core.fileMode false
+# cd $PATH_TO_MONARC
 
-cd data
-mkdir LazyServices
-cd LazyServices
-mkdir Proxy
-cd $PATH_TO_MONARC
+mkdir -p data/cache
+mkdir -p data/LazyServices/Proxy
 
 # Front-end
 mkdir node_modules
