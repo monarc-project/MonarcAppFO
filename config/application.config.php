@@ -22,6 +22,7 @@ if (!empty($appConfDir)) {
 
 return [
     'modules' => [
+        'Zend\Mvc\Console',
         'Zend\I18n',
         'Zend\Mail',
         'Zend\Log',

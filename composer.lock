@@ -1206,16 +1206,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.3",
+            "version": "v2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "434820973cadf2da2d66e7184be370084cc32ca8"
+                "reference": "b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/434820973cadf2da2d66e7184be370084cc32ca8",
-                "reference": "434820973cadf2da2d66e7184be370084cc32ca8",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43",
+                "reference": "b52ef5a1002f99ab506a5a2d6dba5a2c236c5f43",
                 "shasum": ""
             },
             "require": {
@@ -1230,9 +1230,8 @@
                 "symfony/console": "~3.0|~4.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^1.0",
-                "phpunit/phpunit": "^6.5",
-                "squizlabs/php_codesniffer": "^3.2",
+                "doctrine/coding-standard": "^5.0",
+                "phpunit/phpunit": "^7.5",
                 "symfony/yaml": "~3.4|~4.0"
             },
             "suggest": {
@@ -1258,16 +1257,16 @@
             ],
             "authors": [
                 {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
                 },
                 {
                     "name": "Benjamin Eberlei",
                     "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Jonathan Wage",
@@ -1284,7 +1283,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2018-11-20T23:46:46+00:00"
+            "time": "2019-09-20T14:30:26+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1449,12 +1448,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a"
+                "reference": "c3af7fbf5ef03a6771ec36c725719044a9a9c987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a",
-                "reference": "9eafe01bf2bd6fbfc2e0b693dffeaefb70666e4a",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/c3af7fbf5ef03a6771ec36c725719044a9a9c987",
+                "reference": "c3af7fbf5ef03a6771ec36c725719044a9a9c987",
                 "shasum": ""
             },
             "require": {
@@ -1520,7 +1519,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-09-20T12:57:05+00:00"
+            "time": "2019-09-29T14:39:05+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -1528,12 +1527,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "5f8843495d79f45844abbd4066284268fcf40f34"
+                "reference": "4ce896b54ce9149429cc5e1dedc59e3f0cf071b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5f8843495d79f45844abbd4066284268fcf40f34",
-                "reference": "5f8843495d79f45844abbd4066284268fcf40f34",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/4ce896b54ce9149429cc5e1dedc59e3f0cf071b7",
+                "reference": "4ce896b54ce9149429cc5e1dedc59e3f0cf071b7",
                 "shasum": ""
             },
             "require": {
@@ -1545,6 +1544,7 @@
                 "robmorgan/phinx": "^0.11.1",
                 "zendframework/zend-di": "^3.1",
                 "zendframework/zend-mvc": "^3.1",
+                "zendframework/zend-mvc-console": "^1.2",
                 "zendframework/zend-permissions-rbac": "^3.0"
             },
             "type": "library",
@@ -1577,7 +1577,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-09-20T12:55:21+00:00"
+            "time": "2019-09-29T14:40:31+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -3659,16 +3659,16 @@
         },
         {
             "name": "zendframework/zend-i18n",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-i18n.git",
-                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f"
+                "reference": "9233ee8553564a6e45e8311a7173734ba4e5db9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-i18n/zipball/6d69af5a04e1a4de7250043cb1322f077a0cdb7f",
-                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f",
+                "url": "https://api.github.com/repos/zendframework/zend-i18n/zipball/9233ee8553564a6e45e8311a7173734ba4e5db9b",
+                "reference": "9233ee8553564a6e45e8311a7173734ba4e5db9b",
                 "shasum": ""
             },
             "require": {
@@ -3676,7 +3676,7 @@
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.16",
                 "zendframework/zend-cache": "^2.6.1",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
@@ -3723,7 +3723,7 @@
                 "i18n",
                 "zf"
             ],
-            "time": "2018-05-16T16:39:13+00:00"
+            "time": "2019-09-26T11:54:57+00:00"
         },
         {
             "name": "zendframework/zend-inputfilter",
@@ -4193,6 +4193,72 @@
             "time": "2017-11-24T06:32:07+00:00"
         },
         {
+            "name": "zendframework/zend-mvc-console",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-mvc-console.git",
+                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-mvc-console/zipball/821c18e0d57e71b370166bd2f35623befddaf2ee",
+                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee",
+                "shasum": ""
+            },
+            "require": {
+                "container-interop/container-interop": "^1.1",
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-console": "^2.6",
+                "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
+                "zendframework/zend-modulemanager": "^2.7.1",
+                "zendframework/zend-mvc": "^3.0.3",
+                "zendframework/zend-router": "^3.0",
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+                "zendframework/zend-stdlib": "^2.7.5 || ^3.0",
+                "zendframework/zend-text": "^2.6",
+                "zendframework/zend-view": "^2.6.3"
+            },
+            "conflict": {
+                "zendframework/zend-mvc": "<3.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-filter": "^2.6.1"
+            },
+            "suggest": {
+                "zendframework/zend-filter": "^2.6.1, to filter rendered results"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev",
+                    "dev-develop": "1.3.x-dev"
+                },
+                "zf": {
+                    "component": "Zend\\Mvc\\Console"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Mvc\\Console\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Integration between zend-mvc and zend-console",
+            "keywords": [
+                "ZendFramework",
+                "console",
+                "mvc",
+                "zf"
+            ],
+            "time": "2018-04-30T19:10:26+00:00"
+        },
+        {
             "name": "zendframework/zend-paginator",
             "version": "2.8.2",
             "source": {
@@ -4481,6 +4547,54 @@
             "time": "2018-08-28T21:34:05+00:00"
         },
         {
+            "name": "zendframework/zend-text",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-text.git",
+                "reference": "ca987dd4594f5f9508771fccd82c89bc7fbb39ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-text/zipball/ca987dd4594f5f9508771fccd82c89bc7fbb39ac",
+                "reference": "ca987dd4594f5f9508771fccd82c89bc7fbb39ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-config": "^2.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7.x-dev",
+                    "dev-develop": "2.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Text\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Create FIGlets and text-based tables",
+            "keywords": [
+                "ZendFramework",
+                "text",
+                "zf"
+            ],
+            "time": "2018-04-30T14:55:10+00:00"
+        },
+        {
             "name": "zendframework/zend-uri",
             "version": "2.7.0",
             "source": {
@@ -4695,12 +4809,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "ea693fa060702164985511acc3ceb5389c9ac761"
+                "reference": "3a9ab646603efdccb4f7c4acbb3b36974ef257d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ea693fa060702164985511acc3ceb5389c9ac761",
-                "reference": "ea693fa060702164985511acc3ceb5389c9ac761",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/3a9ab646603efdccb4f7c4acbb3b36974ef257d8",
+                "reference": "3a9ab646603efdccb4f7c4acbb3b36974ef257d8",
                 "shasum": ""
             },
             "conflict": {
@@ -4724,6 +4838,7 @@
                 "contao/core-bundle": ">=4,<4.4.39|>=4.5,<4.7.5",
                 "contao/listing-bundle": ">=4,<4.4.8",
                 "contao/newsletter-bundle": ">=4,<4.1",
+                "datadog/dd-trace": ">=0.30,<0.30.2",
                 "david-garcia/phpwhois": "<=4.3.1",
                 "doctrine/annotations": ">=1,<1.2.7",
                 "doctrine/cache": ">=1,<1.3.2|>=1.4,<1.4.2",
@@ -4811,6 +4926,7 @@
                 "spoonity/tcpdf": "<6.2.22",
                 "squizlabs/php_codesniffer": ">=1,<2.8.1|>=3,<3.0.1",
                 "stormpath/sdk": ">=0,<9.9.99",
+                "studio-42/elfinder": "<2.1.48",
                 "swiftmailer/swiftmailer": ">=4,<5.4.5",
                 "sylius/admin-bundle": ">=1,<1.0.17|>=1.1,<1.1.9|>=1.2,<1.2.2",
                 "sylius/grid": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
@@ -4902,7 +5018,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2019-07-18T15:17:58+00:00"
+            "time": "2019-09-26T17:56:56+00:00"
         }
     ],
     "aliases": [],
