@@ -21,6 +21,7 @@ module/
 npm-debug.log
 node_modules/
 bin/
+data/*
 !data/cache/.gitkeep
 !data/DoctrineORMModule/Proxy/.gitkeep
 !data/LazyServices/Proxy/.gitkeep
