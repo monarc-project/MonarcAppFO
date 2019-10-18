@@ -1,6 +1,15 @@
 MONARC Changelog
 ================
 
+## 2.9.1 (2019-10-29)
+
+### Upgrade
+
+- upgrade of the Backend Framework. Now we use ZendFramework 3;
+- restructured the Monarc code to comply with PSR-2 standard;
+- updated the usage of the dependencies (Core and FrontOffice) from packagist.org;  
+- some code improvements and bug-fixes.
+
 ## 2.9.0 (2019-08-23)
 
 ### New
