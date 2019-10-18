@@ -5,7 +5,6 @@ nbproject
 .idea
 .project
 .settings
-vendor/bin
 migrations
 *.sublime-*
 vagrant/.vagrant/
@@ -25,4 +24,5 @@ data/*
 !data/cache/.gitkeep
 !data/DoctrineORMModule/Proxy/.gitkeep
 !data/LazyServices/Proxy/.gitkeep
+!data/json/.gitkeep
 scripts/public/
