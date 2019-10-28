@@ -5,7 +5,7 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-$env = getenv('APP_ENV') ?: 'production';
+$env = getenv('APPLICATION_ENV') ?: 'production';
 $appConfDir = getenv('APP_CONF_DIR') ?? '';
 
 $confPaths = ['config/autoload/{,*.}{global,local}.php'];

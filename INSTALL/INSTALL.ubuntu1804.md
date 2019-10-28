@@ -50,7 +50,7 @@ Especially by setting a strong root password.
            Header always set X-Frame-Options SAMEORIGIN
         </IfModule>
 
-        SetEnv APPLICATION_ENV "development"
+        SetEnv APPLICATION_ENV production
     </VirtualHost>
 
 

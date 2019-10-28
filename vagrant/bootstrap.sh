@@ -3,7 +3,7 @@
 TAG=''
 
 PATH_TO_MONARC='/home/ubuntu/monarc'
-ENVIRONMENT='DEVELOPMENT'
+ENVIRONMENT='development'
 
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
