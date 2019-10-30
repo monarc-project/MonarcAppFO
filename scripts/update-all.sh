@@ -108,18 +108,6 @@ else
 	pathFO="vendor/monarc/frontoffice"
 fi
 
-if [[ -d node_modules && -d node_modules/ng_anr ]]; then
-	if [[ -d node_modules/ng_anr/.git ]]; then
-		pull_if_exists node_modules/ng_backoffice
-		pull_if_exists node_modules/ng_client
-		pull_if_exists node_modules/ng_anr
-	else
-		npm update
-	fi
-else
-	npm install
-fi
-
 if [[ $bypass -eq 0 ]]; then
 	if [ -e data/backup/credentialsmysql.cnf ]; then
 		backupdir=data/backup/$(date +"%Y%m%d_%H%M%S")
@@ -136,17 +124,9 @@ if [[ $bypass -eq 0 ]]; then
 	migrate_module $phpcommand $pathFO
 fi
 
-if [ -d node_modules/ng_backoffice ]; then
-	cd node_modules/ng_backoffice
-	npm install
-	cd ../..
-fi
-
-if [ -d node_modules/ng_client ]; then
-	cd node_modules/ng_client
-	npm install
-	cd ../..
-fi
+cd node_modules/ng_client
+npm install
+cd ../..
 
 ./scripts/link_modules_resources.sh
 ./scripts/compile_translations.sh

@@ -50,7 +50,7 @@ Especially by setting a strong root password.
            Header always set X-Frame-Options SAMEORIGIN
         </IfModule>
 
-        SetEnv APPLICATION_ENV "development"
+        SetEnv APP_ENV "development"
     </VirtualHost>
 
 
@@ -84,10 +84,10 @@ The back-end is using the Zend Framework 3.
 
 Create two symbolic links:
 
-    $ mkdir module
-    $ cd module/
-    $ ln -s ./../vendor/monarc/core Monarc/Core
-    $ ln -s ./../vendor/monarc/frontoffice Monarc/FrontOffice
+    $ cd module/Monarc
+    $ ln -s ./../../vendor/monarc/core Core
+    $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
+    $ cd ../..
 
 There are 2 parts:
 

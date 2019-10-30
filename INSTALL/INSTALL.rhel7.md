@@ -69,10 +69,10 @@ Clone the repository and invoke composer
 
 Backend
 
-    $ mkdir module
-    $ cd module/
-    $ ln -s ./../vendor/monarc/core Monarc\Core
-    $ ln -s ./../vendor/monarc/frontoffice Monarc\FrontOffice
+    $ cd module/Monarc
+    $ ln -s ./../../vendor/monarc/core Core
+    $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
+    $ cd ../..
 
 Frontend
 
@@ -128,4 +128,4 @@ Set file ownership for monarc installation
        Header always set X-Frame-Options SAMEORIGIN
     </IfModule>
 
-    SetEnv APPLICATION_ENV "development"
+    SetEnv APP_ENV "development"

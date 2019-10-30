@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
-TAG=''
-
 PATH_TO_MONARC='/home/ubuntu/monarc'
-ENVIRONMENT='DEVELOPMENT'
+
+APPENV='local'
+ENVIRONMENT='development'
 
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
@@ -30,8 +30,6 @@ locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
 
-
-
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
@@ -41,11 +39,7 @@ echo -e "\n--- Install base packages… ---\n"
 apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
 
 
-
-
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
-# echo "mysql-server mysql-server/root_password password $DBPASSWORD_ADMIN" | debconf-set-selections
-# echo "mysql-server mysql-server/root_password_again password $DBPASSWORD_ADMIN" | debconf-set-selections
 apt-get -y install mariadb-server mariadb-client > /dev/null
 # Secure the MariaDB installation (especially by setting a strong root password)
 systemctl restart mariadb.service > /dev/null
@@ -83,9 +77,7 @@ echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
 mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
 mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
 mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
-
-
-
+systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
 apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
@@ -111,12 +103,6 @@ a2enmod headers > /dev/null 2>&1
 echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
-#echo -e "\n--- We want to see the PHP errors, turning them on ---\n"
-#sed -i "s/.*error_reporting.*/error_reporting = E_ALL/g" $PHP_INI
-#sed -i "s/.*display_errors.*/display_errors = On/g" $PHP_INI
-
-
-
 
 echo -e "\n--- Installing composer… ---\n"
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer > /dev/null 2>&1
@@ -126,37 +112,20 @@ if [ $? -ne 0 ]; then
 fi
 composer self-update
 
-
-
-
 echo -e "\n--- Installing MONARC… ---\n"
 cd $PATH_TO_MONARC
 git config core.fileMode false
-if [ "$TAG" != '' ]; then
-    # Checkout the latest tag
-    #latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-    git checkout $TAG
-fi
 
-echo -e "\n--- Retrieving MONARC libraries… ---\n"
-# TODO: Can be removed when we move to packagis.
+echo -e "\n--- Installing the dependencies… ---\n"
 composer install -o
 
-# Back-end
-mkdir -p module/Monarc/Proxy
+
+# Make modules symlinks.
 cd module/Monarc
 ln -s ./../../vendor/monarc/core Core
 ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
-# cd module/Monarc/FrontOffice
-# git config core.fileMode false
-# cd $PATH_TO_MONARC
-# cd module/Monarc/Core
-# git config core.fileMode false
-# cd $PATH_TO_MONARC
 
-mkdir -p data/cache
-mkdir -p data/LazyServices/Proxy
 
 # Front-end
 mkdir node_modules
@@ -197,7 +166,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
        Header always set X-Frame-Options SAMEORIGIN
     </IfModule>
 
-    SetEnv APPLICATION_ENV $ENVIRONMENT
+    SetEnv APP_ENV $ENVIRONMENT
     SetEnv APP_DIR $PATH_TO_MONARC
 </VirtualHost>
 EOF
@@ -207,7 +176,7 @@ systemctl restart apache2.service > /dev/null
 
 
 
-echo -e "\n--- Configuration of MONARC data base connection ---\n"
+echo -e "\n--- Configuration of MONARC database connection ---\n"
 cat > config/autoload/local.php <<EOF
 <?php
 \$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';

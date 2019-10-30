@@ -11,6 +11,7 @@
  * file.
  */
 
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
 use Monarc\Core\Service\DoctrineCacheServiceFactory;
 use Monarc\Core\Service\DoctrineLoggerFactory;
 
@@ -32,7 +33,7 @@ return array(
     'doctrine' => array(
         'connection' => array(
             'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'driverClass' => Driver::class,
                 'params' => array(
                     'host' => 'localhost',
                     'port' => 3306,
@@ -48,7 +49,7 @@ return array(
                 ),
             ),
             'orm_cli' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'driverClass' => Driver::class,
                 'params' => array(
                     'host' => 'localhost',
                     'port' => 3306,
