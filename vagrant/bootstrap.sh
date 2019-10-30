@@ -33,7 +33,7 @@ dpkg-reconfigure locales
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
-apt-get update
+apt-get update upgrade
 
 echo -e "\n--- Install base packages… ---\n"
 apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
@@ -67,7 +67,7 @@ expect -f - <<-EOF
   send -- "y\r"
   expect eof
 EOF
-sudo apt-get purge -y expect > /dev/null 2>&1
+sudo apt-get purge -y expect php-xdebug > /dev/null 2>&1
 
 echo -e "\n--- Configuring… ---\n"
 sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
