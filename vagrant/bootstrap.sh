@@ -33,7 +33,7 @@ dpkg-reconfigure locales
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
-apt-get update upgrade
+apt-get update && apt-get upgrade
 
 echo -e "\n--- Install base packages… ---\n"
 apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
