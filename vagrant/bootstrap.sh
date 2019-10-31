@@ -90,6 +90,7 @@ done
 
 echo -e "\n--- Configuring Xdebug for development ---\n"
 cat > $X_DEBUG_CFG <<EOF
+zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
 xdebug.idekey=IDEKEY
