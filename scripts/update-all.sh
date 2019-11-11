@@ -33,12 +33,6 @@ pull_if_exists() {
 migrate_module() {
 	if [[ -d $2 ]]; then
 		$1 ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$2/migrations/phinx.php
-		if [[ -d "${2}/hooks" && -f "${2}/.git/hooks/pre-commit.sh" ]]; then
-			cd $2/.git/hooks
-			ln -s ../../hooks/pre-commit.sh pre-commit 2>/dev/null
-			chmod u+x pre-commit
-			cd $2
-		fi
 	fi
 }
 
@@ -90,23 +84,7 @@ fi
 
 currentPath=`pwd`
 pathCore="module/Monarc/Core"
-if [ -d $pathCore ]; then
-	pull_if_exists $pathCore
-else
-	pathCore="vendor/monarc/core"
-fi
-pathBO="module/Monarc/BackOffice"
-if [ -d $pathBO ]; then
-	pull_if_exists $pathBO
-else
-	pathBO="vendor/monarc/backoffice"
-fi
 pathFO="module/Monarc/FrontOffice"
-if [ -d $pathFO ]; then
-	pull_if_exists $pathFO
-else
-	pathFO="vendor/monarc/frontoffice"
-fi
 
 if [[ $bypass -eq 0 ]]; then
 	if [ -e data/backup/credentialsmysql.cnf ]; then
@@ -120,7 +98,6 @@ if [[ $bypass -eq 0 ]]; then
 	fi
 
 	migrate_module $phpcommand $pathCore
-	migrate_module $phpcommand $pathBO
 	migrate_module $phpcommand $pathFO
 fi
 
