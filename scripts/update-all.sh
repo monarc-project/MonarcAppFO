@@ -47,40 +47,14 @@ if [[ -z "$phpcommand" ]]; then
 	exit 1
 fi
 
-gitcommand=`command -v git`
-if [[ -z "$gitcommand" ]]; then
-	echo "Git must be installed"
-	exit 1
-fi
-
-$gitcommand pull
+git pull
 
 if [ $? != 0 ]; then
        echo "A problem occurred while retrieving remote files from repository."
        exit 1
 fi
 
-composercommand=`command -v composer`
-if [[ -z "$composercommand" ]]; then
-	if [[ ! -f "composer.phar" ]]; then
-		# https://getcomposer.org/download/
-		# https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
-		EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
-		$phpcommand -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-		ACTUAL_SIGNATURE=$($phpcommand -r "echo hash_file('SHA384', 'composer-setup.php');")
-		if [[ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]]; then
-			echo "Error download composer (different hash)"
-			rm composer-setup.php
-			exit 1
-		fi
-		rm composer-setup.php
-		$phpcommand composer-setup.php --quiet
-	fi
-	$phpcommand composer.phar update -o
-else
-	$composercommand update -o
-fi
-
+composer install -o
 
 currentPath=`pwd`
 pathCore="module/Monarc/Core"
