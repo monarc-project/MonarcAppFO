@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 bypass=0
 forceClearCache=0
 while getopts "hbc" option
@@ -31,19 +35,13 @@ pull_if_exists() {
 }
 
 migrate_module() {
-	if [[ -d $2 ]]; then
-		$1 ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$2/migrations/phinx.php
+	if [[ -d $1 ]]; then
+		php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./$1/migrations/phinx.php
 	fi
 }
 
 if [[ ! -f "config/autoload/local.php" && $bypass -eq 0 ]]; then
 	echo "Configure Monarc (config/autoload/local.php)"
-	exit 1
-fi
-
-phpcommand=`command -v php`
-if [[ -z "$phpcommand" ]]; then
-	echo "PHP must be installed"
 	exit 1
 fi
 
@@ -64,15 +62,15 @@ if [[ $bypass -eq 0 ]]; then
 	if [ -e data/backup/credentialsmysql.cnf ]; then
 		backupdir=data/backup/$(date +"%Y%m%d_%H%M%S")
 		mkdir $backupdir
-		echo -e "\e[32mDumping database to $backupdir...\e[0m"
+		echo -e "${GREEN}Dumping database to $backupdir...${NC}"
 		mysqldump --defaults-file=data/backup/credentialsmysql.cnf --databases monarc_common > $backupdir/dump-common.sql
 		mysqldump --defaults-file=data/backup/credentialsmysql.cnf --databases monarc_cli > $backupdir/dump-cli.sql
 	else
-		echo -e "\e[93mDatabase backup not configured. Skipping.\e[0m"
+		echo -e "${GREEN}Database backup not configured. Skipping.${NC}"
 	fi
 
-	migrate_module $phpcommand $pathCore
-	migrate_module $phpcommand $pathFO
+	migrate_module $pathCore
+	migrate_module $pathFO
 fi
 
 cd node_modules/ng_client
@@ -85,9 +83,9 @@ cd ../..
 if [[ $forceClearCache -eq 1 ]]; then
 	# Clear doctrine cache
 	# Move to Monarc/Core Module.php
-	$phpcommand ./public/index.php orm:clear-cache:metadata
-	$phpcommand ./public/index.php orm:clear-cache:query
-	$phpcommand ./public/index.php orm:clear-cache:result
+	php ./public/index.php orm:clear-cache:metadata
+	php ./public/index.php orm:clear-cache:query
+	php ./public/index.php orm:clear-cache:result
 
 	# Clear ZF2 cache
 	touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
@@ -97,3 +95,5 @@ if [[ $forceClearCache -eq 0 && $bypass -eq 0 ]]; then
 	# Clear ZF2 cache
 	touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
 fi
+
+exit 0
