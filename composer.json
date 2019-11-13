@@ -12,7 +12,7 @@
         {"name": "Cédric Bonhomme", "email": "cedric.bonhomme@cases.lu"}
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.1",
         "ext-json": "*",
         "ext-pdo": "*",
         "monarc/core": "dev-feature/upgrade-to-zf3",
