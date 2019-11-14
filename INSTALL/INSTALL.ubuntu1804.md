@@ -68,12 +68,11 @@ Especially by setting a strong root password.
 
 ## 2.1. MONARC source code
 
-Clone the repository and invoke `composer` using the shipped `composer.phar`:
-
     $ mkdir -p /var/lib/monarc/fo
     $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
     $ cd /var/lib/monarc/fo
-    $ mkdir data
+    $ mkdir -p data/cache
+    $ mkdir -p data/LazyServices/Proxy
     $ chmod -R g+w data
     $ composer install -o
 
@@ -170,7 +169,7 @@ Install Grunt:
 
 then update MONARC:
 
-    $ ./scripts/update-all.sh
+    $ ./scripts/update-all.sh -c
 
 
 # 4. Create initial user
