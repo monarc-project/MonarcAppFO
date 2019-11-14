@@ -54,7 +54,6 @@ fi
 
 composer install -o
 
-currentPath=`pwd`
 pathCore="module/Monarc/Core"
 pathFO="module/Monarc/FrontOffice"
 
@@ -71,6 +70,17 @@ if [[ $bypass -eq 0 ]]; then
 
 	migrate_module $pathCore
 	migrate_module $pathFO
+fi
+
+if [[ -d node_modules && -d node_modules/ng_anr ]]; then
+	if [[ -d node_modules/ng_anr/.git ]]; then
+		pull_if_exists node_modules/ng_client
+		pull_if_exists node_modules/ng_anr
+	else
+		npm update
+	fi
+else
+	npm install
 fi
 
 cd node_modules/ng_client
