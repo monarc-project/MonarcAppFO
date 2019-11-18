@@ -1,14 +1,26 @@
 MONARC Changelog
 ================
 
-## 2.9.1 (2019-10-29)
+## 2.9.1 (2019-11-18)
 
-### Upgrade
+### Enhancement
 
-- upgrade of the Backend Framework. Now we use ZendFramework 3;
-- restructured the Monarc code to comply with PSR-2 standard;
-- updated the usage of the dependencies (Core and FrontOffice) from packagist.org;  
-- some code improvements and bug-fixes.
+- the backend of MONARC is now using Zend Framework 3
+  ([#15](https://github.com/monarc-project/MonarcAppFO/issues/15));
+- MONARC code has been restructured to comply with PSR-2 standard;
+- updated the usage of the dependencies (Core and FrontOffice) from
+  packagist.org;  
+- default initialization of the set of recommendations
+  ([#183](https://github.com/monarc-project/MonarcAppFO/issues/183)).
+
+### Fix
+
+- Error when importing OP risks with recommendation
+  ([#191](https://github.com/monarc-project/MonarcAppFO/issues/191));
+- fix editing of recommendations via the risk sheet
+  ([#195](https://github.com/monarc-project/MonarcAppFO/issues/195));
+- various fixes related to the management of recommendations and impact edition.
+
 
 ## 2.9.0 (2019-08-23)
 
