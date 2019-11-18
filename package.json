@@ -1,7 +1,7 @@
 {
   "name": "MONARC",
-  "version": "2.8.2",
-  "description": "MONARC Frontoffice App",
+  "version": "2.9.1",
+  "description": "Monarc front office application",
   "private": true,
   "repository": {
     "type": "git",

@@ -1,6 +1,50 @@
 MONARC Changelog
 ================
 
+## 2.9.1 (2019-10-29)
+
+### Upgrade
+
+- upgrade of the Backend Framework. Now we use ZendFramework 3;
+- restructured the Monarc code to comply with PSR-2 standard;
+- updated the usage of the dependencies (Core and FrontOffice) from packagist.org;  
+- some code improvements and bug-fixes.
+
+## 2.9.0 (2019-08-23)
+
+### New
+
+- each analysis can now integrate a record of processing activities in order
+  to help you in your GDPR compliance efforts;
+- it is now possible to create and manage set of recommendations via the
+  knowledge base of a risk analysis. Like for the security referentials
+  (introduced in version 2.8.0), MOSP can now be used in order to
+  [share recommendations](https://objects.monarc.lu/schema/17).
+
+### Fix
+
+- Monarc 2.8.3 - invalid datetime format: 1292 [#179](https://github.com/monarc-project/MonarcAppFO/issues/179)
+- various minor fixes and improvements.
+
+
+## 2.8.3 (2019-07-26)
+
+### Enhancement
+
+- Some improvements in MOSP import
+- Some improvements in 3rd deliverable
+
+### Fix
+
+- SOA is not imported [#166](https://github.com/monarc-project/MonarcAppFO/issues/166)
+- Drag & drop in risk treatment plan fails after 1 change [#167](https://github.com/monarc-project/MonarcAppFO/issues/166)
+- Underscore "\_" is not considered as a special character in password reset [#169](https://github.com/monarc-project/MonarcAppFO/issues/169)
+- Error when duplicating object [#171](https://github.com/monarc-project/MonarcAppFO/issues/171)
+- Add objects in model/anr from common DB [#172](https://github.com/monarc-project/MonarcAppFO/issues/172)
+- Composed objects in the library->position [#174](https://github.com/monarc-project/MonarcAppFO/issues/174)
+- Import analysis -> conflict on uuid on objects [#175](https://github.com/monarc-project/MonarcAppFO/issues/175)
+- FO > Knowledge base > OP risks [#177](https://github.com/monarc-project/MonarcAppFO/issues/177)
+
 
 ## 2.8.2 (2019-05-28)
 

@@ -3,37 +3,38 @@ Installation on Ubuntu 18.04
 
 # 1. Install LAMP & dependencies
 
-## Install the dependencies
+## 1.1. Install system dependencies
 
-    $ sudo apt-get install vim zip unzip git gettext curl gsfonts
+    $ sudo apt-get install zip unzip git gettext curl gsfonts
 
 Some might already be installed.
 
-## Install MariaDB
+## 1.2. Install MariaDB
 
     $ sudo apt-get install mariadb-client mariadb-server
 
-# Secure the MariaDB installation
+### Secure the MariaDB installation
 
     $ sudo mysql_secure_installation
 
 Especially by setting a strong root password.
 
-## Install Apache2
+## 1.3. Install Apache2
 
     $ sudo apt-get install apache2
 
-## Enable modules, settings, and default of SSL in Apache
+### Enable modules, settings, and default of SSL in Apache
 
     $ sudo a2dismod status
     $ sudo a2enmod ssl
     $ sudo a2enmod rewrite
     $ sudo a2enmod headers
 
-## Apache Virtual Host
+### Apache Virtual Host
 
-    <VirtualHost *:80>
-        ServerName monarc.localhost
+    <VirtualHost _default_:80>
+        ServerAdmin admin@localhost.lu
+        ServerName monarc.local
         DocumentRoot /var/lib/monarc/fo/public
 
         <Directory /var/lib/monarc/fo/public>
@@ -49,15 +50,15 @@ Especially by setting a strong root password.
            Header always set X-Frame-Options SAMEORIGIN
         </IfModule>
 
-        SetEnv APPLICATION_ENV "development"
+        SetEnv APP_ENV "development"
     </VirtualHost>
 
 
-## Install PHP and dependencies
+## 1.4. Install PHP and dependencies
 
-    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
+    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip composer
 
-## Apply all changes
+## 1.5 Apply all changes
 
     $ sudo systemctl restart apache2.service
 
@@ -65,41 +66,35 @@ Especially by setting a strong root password.
 
 # 2. Installation of MONARC
 
-## MONARC code
+## 2.1. MONARC source code
 
-Clone the repository and invoke `composer` using the shipped `composer.phar`:
-
-    $ cd /var/lib/monarc/
-    $ git clone https://github.com/monarc-project/MonarcAppFO.git fo
-    $ cd fo/
-    $ chown -R www-data data
+    $ mkdir -p /var/lib/monarc/fo
+    $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
+    $ cd /var/lib/monarc/fo
+    $ mkdir -p data/cache
+    $ mkdir -p data/LazyServices/Proxy
     $ chmod -R g+w data
-    $ sudo composer self-update
     $ composer install -o
 
-The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.
 
+### Back-end
 
-### Backend
-
-The backend is not directly modules of the project but libraries.
-You must create modules with symbolic links to libraries.
+The back-end is using the Zend Framework 3.
 
 Create two symbolic links:
 
-    $ mkdir module
-    $ cd module/
-    $ ln -s ./../vendor/monarc/core MonarcCore
-    $ ln -s ./../vendor/monarc/frontoffice MonarcFO
+    $ cd module/Monarc
+    $ ln -s ./../../vendor/monarc/core Core
+    $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
+    $ cd ../..
 
 There are 2 parts:
 
-* MonarcFO is only for front office;
-* MonarcCore is common to the front office and to the back office.
+* Monarc\FrontOffice is only for MONARC;
+* Monarc\Core is common to MONARC and to the back office of MONARC.
 
 
-### Frontend
+### Front-end
 
 The frontend is an AngularJS application.
 
@@ -110,18 +105,18 @@ The frontend is an AngularJS application.
 
 There are 2 parts:
 
-* one only for front office: ng_client;
-* one common for front office and back office: ng_anr.
+* one only for MONARC: ng_client;
+* one common for MONARC and the back office of MONARC: ng_anr.
 
 
-## Databases
+## 2.2. Databases
 
 ### Create 2 databases
 
 In your MariaDB interpreter:
 
-    CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-    CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    MariaDB [(none)]> CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    MariaDB [(none)]> CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
 * monarc_common contains models and data created by CASES;
 * monarc_cli contains all client risk analyses. Each analysis is based on CASES
@@ -145,17 +140,17 @@ And configure the database connection:
             'connection' => array(
                 'orm_default' => array(
                     'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
-                        'password' => 'password',
+                        'host' => 'localhost',
+                        'user' => 'sqlmonarcuser',
+                        'password' => '<password>',
                         'dbname' => 'monarc_common',
                     ),
                 ),
                 'orm_cli' => array(
                     'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
-                        'password' => 'password',
+                        'host' => 'localhost',
+                        'user' => 'sqlmonarcuser',
+                        'password' => '<password>',
                         'dbname' => 'monarc_cli',
                     ),
                 ),
@@ -165,22 +160,21 @@ And configure the database connection:
 
 
 
-# Update MONARC
+# 3. Update MONARC
 
-## Install Grunt
+Install Grunt:
 
     $ sudo apt-get -y install npm
     $ npm install -g grunt-cli
 
+then update MONARC:
 
-Update MONARC:
-
-    $ ./scripts/update-all.sh
+    $ ./scripts/update-all.sh -c
 
 
-# Create initial user
+# 4. Create initial user
 
-    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
 The username is *admin@admin.test* and the password is *admin*.
