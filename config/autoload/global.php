@@ -11,7 +11,11 @@
  * file.
  */
 
-$appconfdir = getenv('APP_CONF_DIR') ? getenv('APP_CONF_DIR') : '';
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
+use Monarc\Core\Service\DoctrineCacheServiceFactory;
+use Monarc\Core\Service\DoctrineLoggerFactory;
+
+$appconfdir = getenv('APP_CONF_DIR') ?? '';
 
 $datapath = "data";
 if( ! empty($appconfdir) ){
@@ -22,14 +26,14 @@ return array(
     // DOCTRINE CONF
     'service_manager' => array(
         'factories' => array(
-            'doctrine.cache.mycache' => 'MonarcCore\Service\DoctrineCacheServiceFactory',
-            'doctrine.monarc_logger' => 'MonarcCore\Service\DoctrineLoggerFactory',
+            'doctrine.cache.mycache' => DoctrineCacheServiceFactory::class,
+            'doctrine.monarc_logger' => DoctrineLoggerFactory::class,
         ),
     ),
     'doctrine' => array(
         'connection' => array(
             'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'driverClass' => Driver::class,
                 'params' => array(
                     'host' => 'localhost',
                     'port' => 3306,
@@ -45,7 +49,7 @@ return array(
                 ),
             ),
             'orm_cli' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'driverClass' => Driver::class,
                 'params' => array(
                     'host' => 'localhost',
                     'port' => 3306,

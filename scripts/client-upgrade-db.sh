@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage: ./scripts/client-upgrade-db.sh <module> <hostname> <user> <password> <db>
-# Example: ./scripts/client-upgrade-db.sh MonarcBO localhost root derp monarc_backoffice
+# Example: ./scripts/client-upgrade-db.sh Monarc/BackOffice localhost root derp monarc_backoffice
 
 MODULE=$1
 SQLHOST=$2
@@ -11,20 +11,20 @@ SQLBASE=$5
 
 path=""
 case $MODULE in
-    "MonarcCore"|"core")
-        path="module/MonarcCore"
+    "Monarc/Core"|"core")
+        path="module/Monarc/Core"
         if [ ! -d $path ]; then
             path="vendor/monarc/core"
         fi
         ;;
-    "MonarcFO"|"frontoffice")
-        path="module/MonarcFO"
+    "Monarc/FrontOffice"|"frontoffice")
+        path="module/Monarc/FrontOffice"
         if [ ! -d $path ]; then
             path="vendor/monarc/frontoffice"
         fi
         ;;
-    "MonarcBO"|"backoffice")
-        path="module/MonarcBO"
+    "Monarc/BackOffice"|"backoffice")
+        path="module/Monarc/BackOffice"
         if [ ! -d $path ]; then
             path="vendor/monarc/backoffice"
         fi

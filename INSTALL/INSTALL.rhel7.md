@@ -69,10 +69,10 @@ Clone the repository and invoke composer
 
 Backend
 
-    $ mkdir module
-    $ cd module/
-    $ ln -s ./../vendor/monarc/core MonarcCore
-    $ ln -s ./../vendor/monarc/frontoffice MonarcFO
+    $ cd module/Monarc
+    $ ln -s ./../../vendor/monarc/core Core
+    $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
+    $ cd ../..
 
 Frontend
 
@@ -97,7 +97,7 @@ Update MONARC (including npm config for explicit proxy)
 
 Create initial user
 
-    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 # Configure apache (as root)
 
@@ -128,4 +128,4 @@ Set file ownership for monarc installation
        Header always set X-Frame-Options SAMEORIGIN
     </IfModule>
 
-    SetEnv APPLICATION_ENV "development"
+    SetEnv APP_ENV "development"

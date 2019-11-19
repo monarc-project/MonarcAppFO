@@ -37,68 +37,31 @@ else
 	find -L public/img -type l -exec rm {} \;
 fi
 
-# Link modules resources
-if [ -d node_modules/ng_backoffice ]; then
-	cd public/views/ && find ../../node_modules/ng_backoffice/views -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd dialogs/ && find ../../../node_modules/ng_backoffice/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd ../partials/ && find ../../../node_modules/ng_backoffice/views/partials -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd ../../js/ && find ../../node_modules/ng_backoffice/src -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-	cd ../css/ && find ../../node_modules/ng_backoffice/css -name "*" -exec ln -s {} \; 2>/dev/null
-	cd ../img/ && find ../../node_modules/ng_backoffice/img -name "*" -exec ln -s {} \; 2>/dev/null
-    cd ../flags/ && find ../../node_modules/ng_backoffice/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
+# Link modules resources. TODO: Replace with Grunt tasks to minify the JS and CSS.
+cd public/views/ && find ../../node_modules/ng_client/views -name "*.html" -exec ln -s {} \; 2>/dev/null
+cd dialogs/ && find ../../../node_modules/ng_client/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
+cd ../../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
+cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
+cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
+cd ../flags/ && find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
 
-	if [ -d ../../node_modules/ng_anr ]; then
-		cd ../js/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/src -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
+cd ../js/
+mkdir -p anr
+cd anr && find ../../../node_modules/ng_anr/src -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
+cd ..
 
-		cd ../views/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/views -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
+cd ../views/
+mkdir -p anr
+cd anr && find ../../../node_modules/ng_anr/views -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
+cd ..
 
-		cd ../css/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
-	fi
+cd ../css/
+mkdir -p anr
+cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
+cd ..
 
-	cd ../..
+cd ../..
 
-	pushd node_modules/ng_backoffice
-	grunt concat
-	popd
-fi
-
-if [ -d node_modules/ng_client ]; then
-	cd public/views/ && find ../../node_modules/ng_client/views -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd dialogs/ && find ../../../node_modules/ng_client/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
-	cd ../../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
-	cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
-	cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
-	cd ../flags/ && find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
-
-	if [ -d ../../node_modules/ng_anr ]; then
-		cd ../js/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/src -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
-
-		cd ../views/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/views -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
-
-		cd ../css/
-		mkdir -p anr
-		cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -exec ln -s {} \; 2>/dev/null
-		cd ..
-	fi
-
-	cd ../..
-
-	pushd node_modules/ng_client
-	grunt concat
-	popd
-fi
+pushd node_modules/ng_client
+grunt concat
+popd

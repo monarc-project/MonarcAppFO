@@ -49,7 +49,7 @@ Especially by setting a strong root password.
            Header always set X-Frame-Options SAMEORIGIN
         </IfModule>
 
-        SetEnv APPLICATION_ENV "development"
+        SetEnv APP_ENV "development"
     </VirtualHost>
 
 
@@ -88,15 +88,15 @@ You must create modules with symbolic links to libraries.
 
 Create two symbolic links:
 
-    $ mkdir module
-    $ cd module/
-    $ ln -s ./../vendor/monarc/core MonarcCore
-    $ ln -s ./../vendor/monarc/frontoffice MonarcFO
+    $ cd module/Monarc
+    $ ln -s ./../../vendor/monarc/core Core
+    $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
+    $ cd ../..
 
 There are 2 parts:
 
-* MonarcFO is only for front office;
-* MonarcCore is common to the front office and to the back office.
+* Monarc\FrontOffice is only for front office;
+* Monarc\Core is common to the front office and to the back office.
 
 
 ### Frontend
@@ -188,7 +188,7 @@ execute the database migration scripts and compile the translations.
 
 # Create initial user
 
-    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/MonarcFO/migrations/phinx.php
+    $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
 The username is *admin@admin.test* and the password is *admin*.

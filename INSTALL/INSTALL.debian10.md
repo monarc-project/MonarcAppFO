@@ -1,17 +1,17 @@
-Installation on Ubuntu 18.04
-============================
+Installation on Debian 10
+=========================
 
 # 1. Install LAMP & dependencies
 
 ## 1.1. Install system dependencies
 
-    $ sudo apt-get install zip unzip git gettext curl gsfonts
+    $ sudo apt-get install zip unzip git gettext curl gsfonts software-properties-common
 
 Some might already be installed.
 
 ## 1.2. Install MariaDB
 
-    $ sudo apt-get install mariadb-client mariadb-server
+    $ sudo apt-get install mariadb-server
 
 ### Secure the MariaDB installation
 
@@ -56,7 +56,10 @@ Especially by setting a strong root password.
 
 ## 1.4. Install PHP and dependencies
 
-    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip composer
+    $ sudo apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php7.3-apcu php7.3-xml php7.3-mbstring php7.3-intl php7.3-imagick php7.3-zip
+
+    $ curl -sS https://getcomposer.org/installer -o composer-setup.php
+    $ sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
 
 ## 1.5 Apply all changes
 
@@ -164,7 +167,8 @@ And configure the database connection:
 
 Install Grunt:
 
-    $ sudo apt-get -y install npm
+    $ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    $ sudo apt-get install nodejs
     $ npm install -g grunt-cli
 
 then update MONARC:

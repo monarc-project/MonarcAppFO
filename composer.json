@@ -1,6 +1,6 @@
 {
-    "name": "monarc/skeleton",
-    "description": "Skeleton for Monarc project",
+    "name": "monarc/monarc",
+    "description": "Monarc application",
     "authors": [
         {"name": "Cyril Rouyer", "email": "cyril@netlor.fr"},
         {"name": "Guillaume Lesniak", "email": "guillaume@netlor.fr"},
@@ -9,35 +9,25 @@
         {"name": "Thomas Metois", "email": "thomas@netlor.fr"},
         {"name": "Jérôme Lombardi", "email": "jerome.lombardi@cases.lu"},
         {"name": "Juan Rocha", "email": "juan.rocha@cases.lu"},
-        {"name": "Cédric Bonhomme", "email": "cedric.bonhomme@cases.lu"}
+        {"name": "Cédric Bonhomme", "email": "cedric.bonhomme@cases.lu"},
+        {"name": "Ruslan Baidan", "email": "ruslan.baidan@cases.lu"}
     ],
     "require": {
-        "php": ">=5.5",
-        "zendframework/zendframework": "2.5.3",
-        "doctrine/doctrine-orm-module": "^0.10",
-        "robmorgan/phinx": "0.5.*",
-        "monarc/core": "dev-master",
-        "monarc/frontoffice": "dev-master",
-        "phing/phing": "~2.0",
-        "phpoffice/phpword": "dev-stable",
-        "ramsey/uuid": "^3.8",
-        "ramsey/uuid-doctrine": "^1.5"
+        "php": "^7.1",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "monarc/frontoffice": "~2.9",
+        "zendframework/zend-mvc": "^3.1",
+        "zendframework/zend-di": "^3.1",
+        "zendframework/zend-permissions-rbac": "^3.0",
+        "zendframework/zend-log": "^2.11",
+        "zendframework/zend-i18n": "^2.9"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "zendframework/zend-component-installer": "^2.1"
     },
     "config": {
         "bin-dir": "bin/"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/monarc-project/zm-core"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/monarc-project/zm-client"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/monarc-project/monarc_phpword"
-        }
-    ]
+    }
 }
