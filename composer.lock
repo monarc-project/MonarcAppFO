@@ -371,6 +371,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -1470,12 +1471,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "c704f57c9c9ebb0b9f28ac3862fb705d8036b49e"
+                "reference": "db89d0fecffdaafabdffdbe748383777954c305c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/c704f57c9c9ebb0b9f28ac3862fb705d8036b49e",
-                "reference": "c704f57c9c9ebb0b9f28ac3862fb705d8036b49e",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/db89d0fecffdaafabdffdbe748383777954c305c",
+                "reference": "db89d0fecffdaafabdffdbe748383777954c305c",
                 "shasum": ""
             },
             "require": {
@@ -1539,10 +1540,14 @@
                 {
                     "name": "Cédric Bonhomme",
                     "email": "cedric.bonhomme@cases.lu"
+                },
+                {
+                    "name": "Ruslan Baidan",
+                    "email": "ruslan.baidan@cases.lu"
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-11-19T07:46:02+00:00"
+            "time": "2019-11-20T08:03:33+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -1550,19 +1555,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "d89a1b15f6d352169d4a129eb7f5a0f3f4eee9d5"
+                "reference": "9feb6b8d1acaab8d9579f65f0e1d81d522636ace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/d89a1b15f6d352169d4a129eb7f5a0f3f4eee9d5",
-                "reference": "d89a1b15f6d352169d4a129eb7f5a0f3f4eee9d5",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/9feb6b8d1acaab8d9579f65f0e1d81d522636ace",
+                "reference": "9feb6b8d1acaab8d9579f65f0e1d81d522636ace",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-imagick": "*",
                 "ext-intl": "*",
-                "monarc/core": "~2.9",
+                "monarc/core": "^2.9",
                 "monarc/phpword": "^1.0",
                 "php": "^7.1",
                 "robmorgan/phinx": "^0.11.1",
@@ -1602,10 +1607,26 @@
                 {
                     "name": "Thomas Metois",
                     "email": "thomas@netlor.fr"
+                },
+                {
+                    "name": "Jérôme Lombardi",
+                    "email": "jerome.lombardi@cases.lu"
+                },
+                {
+                    "name": "Juan Rocha",
+                    "email": "juan.rocha@cases.lu"
+                },
+                {
+                    "name": "Cédric Bonhomme",
+                    "email": "cedric.bonhomme@cases.lu"
+                },
+                {
+                    "name": "Ruslan Baidan",
+                    "email": "ruslan.baidan@cases.lu"
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-11-19T08:25:45+00:00"
+            "time": "2019-11-19T14:55:05+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -4780,12 +4801,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "261562a9c048aa10932e5e1d596da6c761cf95bb"
+                "reference": "40fb2c205dd261ab6bb42ec29545934f0db7026f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/261562a9c048aa10932e5e1d596da6c761cf95bb",
-                "reference": "261562a9c048aa10932e5e1d596da6c761cf95bb",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/40fb2c205dd261ab6bb42ec29545934f0db7026f",
+                "reference": "40fb2c205dd261ab6bb42ec29545934f0db7026f",
                 "shasum": ""
             },
             "conflict": {
@@ -4853,7 +4874,7 @@
                 "league/commonmark": "<0.18.3",
                 "magento/magento1ce": "<1.9.4.3",
                 "magento/magento1ee": ">=1,<1.14.4.3",
-                "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.3",
+                "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2",
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
                 "onelogin/php-saml": "<2.10.4",
@@ -4990,7 +5011,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2019-11-15T09:15:43+00:00"
+            "time": "2019-11-19T14:18:57+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",

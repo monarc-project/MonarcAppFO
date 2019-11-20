@@ -9,7 +9,6 @@ migrations
 *.sublime-*
 vagrant/.vagrant/
 vagrant/*.log
-db-bootstrap/monarc-common.sql
 vendor/
 public/css/
 public/js/
@@ -26,4 +25,3 @@ data/*
 !data/DoctrineORMModule/Proxy/.gitkeep
 !data/LazyServices/Proxy/.gitkeep
 !data/json/.gitkeep
-scripts/public/
