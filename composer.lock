@@ -1547,7 +1547,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-11-20T08:03:33+00:00"
+            "time": "2019-11-20T08:38:49+00:00"
         },
         {
             "name": "monarc/frontoffice",
