@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6c747567731a714418e430190fda016",
+    "content-hash": "5377926879625fef4e42f7e516bee26f",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -1471,12 +1471,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "60ddfb24bdd29f362a6d71dca279cbc8b7ed83fe"
+                "reference": "a0da4dad5823ea3ef34236fb1286e2b046ddb6c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/60ddfb24bdd29f362a6d71dca279cbc8b7ed83fe",
-                "reference": "60ddfb24bdd29f362a6d71dca279cbc8b7ed83fe",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/a0da4dad5823ea3ef34236fb1286e2b046ddb6c6",
+                "reference": "a0da4dad5823ea3ef34236fb1286e2b046ddb6c6",
                 "shasum": ""
             },
             "require": {
@@ -1547,11 +1547,11 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-11-20T11:05:31+00:00"
+            "time": "2019-11-20T14:20:20+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
@@ -5069,6 +5069,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "monarc/frontoffice": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
