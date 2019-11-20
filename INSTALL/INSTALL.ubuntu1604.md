@@ -191,4 +191,4 @@ execute the database migration scripts and compile the translations.
     $ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
-The username is *admin@admin.test* and the password is *admin*.
+The username is *admin@admin.localhost* and the password is *admin*.
