@@ -129,6 +129,13 @@ ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
 
 
+mkdir -p $PATH_TO_MONARC/data/cache
+mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+chown -R www-data data
+chmod -R 777 data
+
+
 # Front-end
 mkdir node_modules
 cd node_modules
