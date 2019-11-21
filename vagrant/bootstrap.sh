@@ -266,8 +266,9 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 
 
 echo -e "\n--- Installation of Grunt… ---\n"
-sudo apt-get -y install npm > /dev/null
-npm install -g grunt-cli > /dev/null
+curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g grunt-cli
 
 
 
