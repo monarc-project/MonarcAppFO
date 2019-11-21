@@ -129,6 +129,13 @@ ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
 
 
+mkdir -p $PATH_TO_MONARC/data/cache
+mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+chown -R www-data data
+chmod -R 777 data
+
+
 # Front-end
 mkdir node_modules
 cd node_modules
@@ -259,8 +266,9 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 
 
 echo -e "\n--- Installation of Grunt… ---\n"
-sudo apt-get -y install npm > /dev/null
-npm install -g grunt-cli > /dev/null
+curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g grunt-cli
 
 
 
