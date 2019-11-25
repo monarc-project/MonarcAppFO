@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ec110512ee04ed5a05a4abe9c349baa",
+    "content-hash": "9d702d22e794c768bf9e8aff39eaf1fb",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -772,23 +772,23 @@
         },
         {
             "name": "doctrine/doctrine-module",
-            "version": "2.1.9",
+            "version": "2.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineModule.git",
-                "reference": "b1d4ac0bee00847188ba574f7998025c3caa771e"
+                "reference": "2b961e58eb911bfe1e99a6e9a69087e05a24201c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineModule/zipball/b1d4ac0bee00847188ba574f7998025c3caa771e",
-                "reference": "b1d4ac0bee00847188ba574f7998025c3caa771e",
+                "url": "https://api.github.com/repos/doctrine/DoctrineModule/zipball/2b961e58eb911bfe1e99a6e9a69087e05a24201c",
+                "reference": "2b961e58eb911bfe1e99a6e9a69087e05a24201c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/cache": "^1.7",
                 "doctrine/common": "^2.8",
                 "php": "^7.1",
-                "symfony/console": "^3.3 || ^4.0",
+                "symfony/console": "^3.3 || ^4.0 || ^5.0",
                 "zendframework/zend-authentication": "^2.5.3",
                 "zendframework/zend-cache": "^2.7.1",
                 "zendframework/zend-form": "^2.11",
@@ -848,6 +848,11 @@
                     "homepage": "http://www.spiffyjr.me/"
                 },
                 {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://marco-pivetta.com/"
+                },
+                {
                     "name": "Guilherme Blanco",
                     "email": "guilhermeblanco@hotmail.com"
                 },
@@ -855,11 +860,6 @@
                     "name": "Michaël Gallego",
                     "email": "mic.gallego@gmail.com",
                     "homepage": "http://www.michaelgallego.fr"
-                },
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://marco-pivetta.com/"
                 }
             ],
             "description": "Zend Framework Module that provides Doctrine basic functionality required for ORM and ODM modules",
@@ -869,20 +869,20 @@
                 "module",
                 "zf"
             ],
-            "time": "2019-02-17T20:11:57+00:00"
+            "time": "2019-11-23T21:33:35+00:00"
         },
         {
             "name": "doctrine/doctrine-orm-module",
-            "version": "2.1.5",
+            "version": "2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineORMModule.git",
-                "reference": "652d8aa636333b6b3f39a2f079c1565b5a9f5a6e"
+                "reference": "5693988999afae74cd74a8c43e78cddde1cff464"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineORMModule/zipball/652d8aa636333b6b3f39a2f079c1565b5a9f5a6e",
-                "reference": "652d8aa636333b6b3f39a2f079c1565b5a9f5a6e",
+                "url": "https://api.github.com/repos/doctrine/DoctrineORMModule/zipball/5693988999afae74cd74a8c43e78cddde1cff464",
+                "reference": "5693988999afae74cd74a8c43e78cddde1cff464",
                 "shasum": ""
             },
             "require": {
@@ -890,7 +890,7 @@
                 "doctrine/doctrine-module": "^2.1.3",
                 "doctrine/orm": "^2.6.3",
                 "php": "^7.1",
-                "symfony/console": "^3.3 || ^4.0",
+                "symfony/console": "^3.3 || ^4.0 || ^5.0",
                 "zendframework/zend-hydrator": "^2.3",
                 "zendframework/zend-mvc": "^3.1",
                 "zendframework/zend-servicemanager": "^3.3",
@@ -940,6 +940,11 @@
                     "homepage": "http://www.spiffyjr.me/"
                 },
                 {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://marco-pivetta.com/"
+                },
+                {
                     "name": "Evan Coury",
                     "email": "me@evancoury.com",
                     "homepage": "http://blog.evan.pro/"
@@ -947,11 +952,6 @@
                 {
                     "name": "Guilherme Blanco",
                     "email": "guilhermeblanco@hotmail.com"
-                },
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://marco-pivetta.com/"
                 }
             ],
             "description": "Zend Framework Module that provides Doctrine ORM functionality",
@@ -962,7 +962,7 @@
                 "orm",
                 "zf"
             ],
-            "time": "2019-07-10T21:59:42+00:00"
+            "time": "2019-11-23T22:00:58+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1467,16 +1467,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "dev-master",
+            "version": "v2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "5002338c1ab37ae74d149fe37bb50c7c17c09c20"
+                "reference": "84e0859987872ee21193425ae21927591ebad5f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/5002338c1ab37ae74d149fe37bb50c7c17c09c20",
-                "reference": "5002338c1ab37ae74d149fe37bb50c7c17c09c20",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/84e0859987872ee21193425ae21927591ebad5f1",
+                "reference": "84e0859987872ee21193425ae21927591ebad5f1",
                 "shasum": ""
             },
             "require": {
@@ -1548,27 +1548,27 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-11-21T08:23:34+00:00"
+            "time": "2019-11-22T09:56:44+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "dev-master",
+            "version": "2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "ee177ece89fa5facd610a04111c395a61eb13899"
+                "reference": "2fe86bfc9588b95b2223d1fae497fa49c9bc2d7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/ee177ece89fa5facd610a04111c395a61eb13899",
-                "reference": "ee177ece89fa5facd610a04111c395a61eb13899",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/2fe86bfc9588b95b2223d1fae497fa49c9bc2d7d",
+                "reference": "2fe86bfc9588b95b2223d1fae497fa49c9bc2d7d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-imagick": "*",
                 "ext-intl": "*",
-                "monarc/core": "dev-master",
+                "monarc/core": "^2.9",
                 "monarc/phpword": "^1.0",
                 "php": "^7.1",
                 "robmorgan/phinx": "^0.11.1",
@@ -1627,7 +1627,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-11-20T14:58:11+00:00"
+            "time": "2019-11-25T10:48:39+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -2537,26 +2537,26 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.0",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "d12b01cba60be77b583c9af660007211e3909854"
+                "reference": "0bf75c37a71ff41f718b14b9f5a0a7d6a7dd9b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/d12b01cba60be77b583c9af660007211e3909854",
-                "reference": "d12b01cba60be77b583c9af660007211e3909854",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/0bf75c37a71ff41f718b14b9f5a0a7d6a7dd9b84",
+                "reference": "0bf75c37a71ff41f718b14b9f5a0a7d6a7dd9b84",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2.5",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.4-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -2583,7 +2583,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-12T14:51:11+00:00"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -5071,7 +5071,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "monarc/frontoffice": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
