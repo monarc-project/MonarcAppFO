@@ -1,6 +1,31 @@
 MONARC Changelog
 ================
 
+## 2.9.3 (2019-12-09)
+
+### Fix
+
+- Configuration menu should not be scrollable
+  ([#212](https://github.com/monarc-project/MonarcAppFO/issues/212));
+- The type hint of parameter "theme" in method "setTheme" is invalid
+  ([#211](https://github.com/monarc-project/MonarcAppFO/issues/211));
+- Training VM does not show version number
+  ([#210](https://github.com/monarc-project/MonarcAppFO/issues/210));
+- library object duplicated
+  ([#208](https://github.com/monarc-project/MonarcAppFO/issues/208));
+- Drag and drop recommendations
+  ([#206](https://github.com/monarc-project/MonarcAppFO/issues/206));
+- Edit an asset in the library
+  ([#205](https://github.com/monarc-project/MonarcAppFO/issues/205)).
+
+
+## 2.9.2 (2019-11-25)
+
+### Fix
+
+- set composer.json to use dev-master instead of using fixed tag.
+
+
 ## 2.9.1 (2019-11-19)
 
 ### Enhancement
