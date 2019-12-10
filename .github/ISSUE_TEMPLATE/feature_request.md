@@ -2,6 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 labels: feature request, needs triage
+projects: monarc-project
 
 ---
 
