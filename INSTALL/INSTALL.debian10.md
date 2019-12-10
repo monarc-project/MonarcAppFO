@@ -50,13 +50,13 @@ Especially by setting a strong root password.
            Header always set X-Frame-Options SAMEORIGIN
         </IfModule>
 
-        SetEnv APP_ENV "development"
+        SetEnv APP_ENV "production"
     </VirtualHost>
 
 
 ## 1.4. Install PHP and dependencies
 
-    $ sudo apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php7.3-apcu php7.3-xml php7.3-mbstring php7.3-intl php7.3-imagick php7.3-zip
+    $ sudo apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php-apcu php7.3-xml php7.3-mbstring php7.3-intl php-imagick php7.3-zip
 
     $ curl -sS https://getcomposer.org/installer -o composer-setup.php
     $ sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
@@ -76,8 +76,9 @@ Especially by setting a strong root password.
     $ cd /var/lib/monarc/fo
     $ mkdir -p data/cache
     $ mkdir -p data/LazyServices/Proxy
-    $ chmod -R g+w data
     $ composer install -o
+    # chown -R www-data:www-data data/
+    # chmod -R 700 data/
 
 
 ### Back-end
@@ -86,6 +87,7 @@ The back-end is using the Zend Framework 3.
 
 Create two symbolic links:
 
+    $ mkdir -p module/Monarc
     $ cd module/Monarc
     $ ln -s ./../../vendor/monarc/core Core
     $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
@@ -114,6 +116,14 @@ There are 2 parts:
 
 ## 2.2. Databases
 
+### Create a MariaDB user for MONARC
+
+With the root MariaDB user create a new user for MONARC:
+
+MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
+MariaDB [(none)]> FLUSH PRIVILEGES;
+
 ### Create 2 databases
 
 In your MariaDB interpreter:
@@ -127,14 +137,14 @@ In your MariaDB interpreter:
 
 ### Initializes the database
 
-    $ mysql -u user monarc_common < db-bootstrap/monarc_structure.sql
-    $ mysql -u user monarc_common < db-bootstrap/monarc_data.sql
+    $ mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_structure.sql
+    $ mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_data.sql
 
 ### Database connection
 
 Create the configuration file:
 
-    $ sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
+    $ cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
 And configure the database connection:
 
@@ -144,16 +154,16 @@ And configure the database connection:
                 'orm_default' => array(
                     'params' => array(
                         'host' => 'localhost',
-                        'user' => 'sqlmonarcuser',
-                        'password' => '<password>',
+                        'user' => 'monarc',
+                        'password' => 'password',
                         'dbname' => 'monarc_common',
                     ),
                 ),
                 'orm_cli' => array(
                     'params' => array(
                         'host' => 'localhost',
-                        'user' => 'sqlmonarcuser',
-                        'password' => '<password>',
+                        'user' => 'monarc',
+                        'password' => 'password',
                         'dbname' => 'monarc_cli',
                     ),
                 ),
