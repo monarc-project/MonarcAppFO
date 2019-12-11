@@ -115,9 +115,9 @@ There are 2 parts:
 
 With the root MariaDB user create a new user for MONARC:
 
-MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
-MariaDB [(none)]> FLUSH PRIVILEGES;
+    MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
+    MariaDB [(none)]> FLUSH PRIVILEGES;
 
 ### Create 2 databases
 
