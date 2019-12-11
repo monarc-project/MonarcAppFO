@@ -3,6 +3,8 @@ MONARC Changelog
 
 ## 2.9.4 (2019-12-11)
 
+### Fix
+
 - Users anrs permissions are not revocable / snapshots are displayed in the list
   ([#215](https://github.com/monarc-project/MonarcAppFO/issues/215));
 - Drag and drop recommendations: fixes recommendations ordering
