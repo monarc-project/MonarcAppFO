@@ -1555,12 +1555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "bca08e3d12e64fd962e7022149ebb2a6edc8ba4a"
+                "reference": "3b00b273c8c1a9f5aca4c252dcc7ea239e1a374f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/bca08e3d12e64fd962e7022149ebb2a6edc8ba4a",
-                "reference": "bca08e3d12e64fd962e7022149ebb2a6edc8ba4a",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3b00b273c8c1a9f5aca4c252dcc7ea239e1a374f",
+                "reference": "3b00b273c8c1a9f5aca4c252dcc7ea239e1a374f",
                 "shasum": ""
             },
             "require": {
@@ -3074,24 +3074,27 @@
         },
         {
             "name": "zendframework/zend-code",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-code.git",
-                "reference": "46feaeecea14161734b56c1ace74f28cb329f194"
+                "reference": "268040548f92c2bfcba164421c1add2ba43abaaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/46feaeecea14161734b56c1ace74f28cb329f194",
-                "reference": "46feaeecea14161734b56c1ace74f28cb329f194",
+                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/268040548f92c2bfcba164421c1add2ba43abaaa",
+                "reference": "268040548f92c2bfcba164421c1add2ba43abaaa",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1",
                 "zendframework/zend-eventmanager": "^2.6 || ^3.0"
             },
+            "conflict": {
+                "phpspec/prophecy": "<1.9.0"
+            },
             "require-dev": {
-                "doctrine/annotations": "^1.0",
+                "doctrine/annotations": "^1.7",
                 "ext-phar": "*",
                 "phpunit/phpunit": "^7.5.16 || ^8.4",
                 "zendframework/zend-coding-standard": "^1.0",
@@ -3105,7 +3108,8 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.4.x-dev",
-                    "dev-develop": "3.5.x-dev"
+                    "dev-develop": "3.5.x-dev",
+                    "dev-dev-4.0": "4.0.x-dev"
                 }
             },
             "autoload": {
@@ -3123,7 +3127,7 @@
                 "code",
                 "zf"
             ],
-            "time": "2019-10-05T23:18:22+00:00"
+            "time": "2019-12-10T19:21:15+00:00"
         },
         {
             "name": "zendframework/zend-config",
@@ -3240,16 +3244,16 @@
         },
         {
             "name": "zendframework/zend-di",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-di.git",
-                "reference": "177e850e1bbd251f8d572ac2952d598741e73be7"
+                "reference": "8ec4660dad8c1c5a6f9eb91f594fb8a7cb921907"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-di/zipball/177e850e1bbd251f8d572ac2952d598741e73be7",
-                "reference": "177e850e1bbd251f8d572ac2952d598741e73be7",
+                "url": "https://api.github.com/repos/zendframework/zend-di/zipball/8ec4660dad8c1c5a6f9eb91f594fb8a7cb921907",
+                "reference": "8ec4660dad8c1c5a6f9eb91f594fb8a7cb921907",
                 "shasum": ""
             },
             "require": {
@@ -3259,12 +3263,13 @@
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "conflict": {
+                "phpspec/prophecy": "<1.9.0",
                 "zendframework/zend-servicemanager-di": "*"
             },
             "require-dev": {
                 "container-interop/container-interop": "^1.2.0",
-                "mikey179/vfsstream": "^1.6",
-                "phpunit/phpunit": "^7.3",
+                "mikey179/vfsstream": "^1.6.7",
+                "phpunit/phpunit": "^7.5.18 || ^8.5",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-servicemanager": "^3.0"
             },
@@ -3274,8 +3279,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev",
-                    "dev-develop": "3.2-dev"
+                    "dev-master": "3.1.x-dev",
+                    "dev-develop": "3.2.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Di",
@@ -3298,7 +3303,7 @@
                 "di",
                 "zf"
             ],
-            "time": "2019-01-15T09:06:24+00:00"
+            "time": "2019-12-10T20:29:27+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
