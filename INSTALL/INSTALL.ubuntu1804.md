@@ -111,6 +111,14 @@ There are 2 parts:
 
 ## 2.2. Databases
 
+### Create a MariaDB user for MONARC
+
+With the root MariaDB user create a new user for MONARC:
+
+    MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
+    MariaDB [(none)]> FLUSH PRIVILEGES;
+
 ### Create 2 databases
 
 In your MariaDB interpreter:
@@ -124,8 +132,8 @@ In your MariaDB interpreter:
 
 ### Initializes the database
 
-    $ mysql -u user monarc_common < db-bootstrap/monarc_structure.sql
-    $ mysql -u user monarc_common < db-bootstrap/monarc_data.sql
+    $ mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_structure.sql
+    $ mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_data.sql
 
 ### Database connection
 
@@ -141,16 +149,16 @@ And configure the database connection:
                 'orm_default' => array(
                     'params' => array(
                         'host' => 'localhost',
-                        'user' => 'sqlmonarcuser',
-                        'password' => '<password>',
+                        'user' => 'monarc',
+                        'password' => 'password',
                         'dbname' => 'monarc_common',
                     ),
                 ),
                 'orm_cli' => array(
                     'params' => array(
                         'host' => 'localhost',
-                        'user' => 'sqlmonarcuser',
-                        'password' => '<password>',
+                        'user' => 'monarc',
+                        'password' => 'password',
                         'dbname' => 'monarc_cli',
                     ),
                 ),
@@ -164,7 +172,8 @@ And configure the database connection:
 
 Install Grunt:
 
-    $ sudo apt-get -y install npm
+    $ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    $ sudo apt-get install nodejs
     $ npm install -g grunt-cli
 
 then update MONARC:

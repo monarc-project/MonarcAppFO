@@ -5,30 +5,30 @@ Installation on Debian 10
 
 ## 1.1. Install system dependencies
 
-    $ sudo apt-get install zip unzip git gettext curl gsfonts software-properties-common
+    # apt-get install zip unzip git gettext curl gsfonts software-properties-common
 
 Some might already be installed.
 
 ## 1.2. Install MariaDB
 
-    $ sudo apt-get install mariadb-server
+    # apt-get install mariadb-server
 
 ### Secure the MariaDB installation
 
-    $ sudo mysql_secure_installation
+    # mysql_secure_installation
 
 Especially by setting a strong root password.
 
 ## 1.3. Install Apache2
 
-    $ sudo apt-get install apache2
+    # apt-get install apache2
 
 ### Enable modules, settings, and default of SSL in Apache
 
-    $ sudo a2dismod status
-    $ sudo a2enmod ssl
-    $ sudo a2enmod rewrite
-    $ sudo a2enmod headers
+    # a2dismod status
+    # a2enmod ssl
+    # a2enmod rewrite
+    # a2enmod headers
 
 ### Apache Virtual Host
 
@@ -56,14 +56,14 @@ Especially by setting a strong root password.
 
 ## 1.4. Install PHP and dependencies
 
-    $ sudo apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php-apcu php7.3-xml php7.3-mbstring php7.3-intl php-imagick php7.3-zip
+    # apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php-apcu php7.3-xml php7.3-mbstring php7.3-intl php-imagick php7.3-zip
 
     $ curl -sS https://getcomposer.org/installer -o composer-setup.php
-    $ sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
+    # php composer-setup.php --install-dir=/usr/bin --filename=composer
 
 ## 1.5 Apply all changes
 
-    $ sudo systemctl restart apache2.service
+    # systemctl restart apache2.service
 
 
 
@@ -120,9 +120,9 @@ There are 2 parts:
 
 With the root MariaDB user create a new user for MONARC:
 
-MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
-MariaDB [(none)]> FLUSH PRIVILEGES;
+    MariaDB [(none)]> CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
+    MariaDB [(none)]> FLUSH PRIVILEGES;
 
 ### Create 2 databases
 
@@ -178,8 +178,8 @@ And configure the database connection:
 Install Grunt:
 
     $ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
-    $ sudo apt-get install nodejs
-    $ npm install -g grunt-cli
+    # apt-get install nodejs
+    # npm install -g grunt-cli
 
 then update MONARC:
 
