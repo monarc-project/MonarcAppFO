@@ -83,6 +83,7 @@ The back-end is using the Zend Framework 3.
 
 Create two symbolic links:
 
+    $ mkdir -p module/Monarc
     $ cd module/Monarc
     $ ln -s ./../../vendor/monarc/core Core
     $ ln -s ./../../vendor/monarc/frontoffice FrontOffice
