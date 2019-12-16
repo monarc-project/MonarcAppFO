@@ -10,6 +10,18 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v1
+      with:
+        php-version: '7.3'
+        extensions: imagick, intl, xml, mysql #optional, setup extensions
+        ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
+        coverage: xdebug #optional, setup coverage driver
+        pecl: false #optional, setup PECL
+
+    # - name: Install PHP extensions
+    #   run: sudo apt-get install -y php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip
+
     - name: Validate composer.json and composer.lock
       run: composer validate
 
@@ -21,4 +33,3 @@ jobs:
 
     # - name: Run test suite
     #   run: composer run-script test
-
