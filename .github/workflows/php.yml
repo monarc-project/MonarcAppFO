@@ -53,6 +53,8 @@ jobs:
 
     - name: Populating common database
       run: |
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql > /dev/null
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_data.sql > /dev/null
 
