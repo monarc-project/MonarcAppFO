@@ -4,11 +4,25 @@ on: [push]
 
 jobs:
   build:
+    env:
+      MYSQL_DATABASE: monarc_common
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: sqlmonarcuser
+      MYSQL_PASSWORD: password
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: Start MariaDB and create databases
+      uses: getong/mariadb-action@v1.1
+      with:
+        mariadb version: '10.4.10' # Optional, default value is "latest". The version of the MariaDB
+        mysql database: $MYSQL_DATABASE # Optional, default value is "test". The specified database which will be create
+        mysql root password: $MYSQL_ROOT_PASSWORD # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+        mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v1
@@ -27,6 +41,22 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Make PHP modules symlinks
+      run: |
+        mkdir -p module/Monarc
+        cd module/Monarc
+        ln -s ./../../vendor/monarc/core Core
+        ln -s ./../../vendor/monarc/frontoffice FrontOffice
+        cd ../..
+
+    - name: Populating common database
+      run: |
+        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql > /dev/null
+        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < db-bootstrap/monarc_data.sql > /dev/null
+
+
+
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
