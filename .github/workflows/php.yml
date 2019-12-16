@@ -28,6 +28,9 @@ jobs:
         mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
+    - name: Start MySQL (SUDO)
+        run: sudo service mysql start
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v1
       with:
@@ -56,10 +59,10 @@ jobs:
 
     - name: Populating common database
       run: |
-        mysql -u root -p$MYSQL_ROOT_PASSWORD -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
-        mysql -u root -p$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
-        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql > /dev/null
-        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE < db-bootstrap/monarc_data.sql > /dev/null
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
+        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql > /dev/null
+        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_data.sql > /dev/null
 
 
 
