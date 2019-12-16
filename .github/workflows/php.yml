@@ -16,6 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Shutdown Ubuntu MySQL (SUDO)
+      run: sudo service mysql stop
+
     - name: Start MariaDB and create databases
       uses: getong/mariadb-action@v1.1
       with:
