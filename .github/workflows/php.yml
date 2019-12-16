@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     env:
       MYSQL_DATABASE: monarc_common
       MYSQL_ROOT_PASSWORD: password
