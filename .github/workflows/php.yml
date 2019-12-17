@@ -9,7 +9,7 @@ jobs:
     env:
       MYSQL_HOST_PORT: 3800
       MYSQL_DATABASE: monarc_common
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: sqlmonarcuser
       MYSQL_PASSWORD: password
 
@@ -24,6 +24,7 @@ jobs:
       with:
         host port: $MYSQL_HOST_PORT
         mysql database: $MYSQL_DATABASE # Optional, default value is "test". The specified database which will be create
+        mysql root password: $MYSQL_ROOT_PASSWORD # Required if "mysql user" is empty, default is empty. The root superuser password
         mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
@@ -58,8 +59,8 @@ jobs:
 
     - name: Populating common database
       run: |
-        mysql -u root -P $MYSQL_HOST_PORT -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
-        mysql -u root -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
+        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql > /dev/null
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_data.sql > /dev/null
 
