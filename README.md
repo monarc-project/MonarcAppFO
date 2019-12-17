@@ -5,6 +5,9 @@ MONARC - Method for an Optimised aNAlysis of Risks by CASES
 ![License](https://img.shields.io/github/license/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Contributors](https://img.shields.io/github/contributors/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/monarc-project/MonarcAppFO.svg?style=flat-square)
+[![Workflow](https://github.com/monarc-project/MonarcAppFO/workflows/build/badge.svg)](https://github.com/monarc-project/MonarcAppFO/actions?query=build)
+[![Twitter](https://img.shields.io/twitter/follow/MONARCProject.svg?style=social&label=Follow&style=flat-square)](https://twitter.com/MONARCproject)
+
 
 Introduction
 ------------

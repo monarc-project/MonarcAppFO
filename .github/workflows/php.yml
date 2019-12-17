@@ -1,6 +1,6 @@
-name: PHP Composer
+name: build
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -43,10 +43,10 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-    - name: Install dependencies
+    - name: Install PHP dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Make PHP modules symlinks
+    - name: Create synlinks for MONARC PHP modules
       run: |
         mkdir -p module/Monarc
         cd module/Monarc
@@ -57,7 +57,7 @@ jobs:
     - name: Set MONARC configuration file
       run: cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
-    - name: Populating common database
+    - name: Creating and populating databases
       run: |
         mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
