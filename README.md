@@ -1,12 +1,12 @@
 MONARC - Method for an Optimised aNAlysis of Risks by CASES
 ===========================================================
 
-![Latest Release](https://img.shields.io/github/release/monarc-project/MonarcAppFO.svg?style=flat-square)
+[![Latest Release](https://img.shields.io/github/release/monarc-project/MonarcAppFO.svg?style=flat-square)](https://github.com/monarc-project/MonarcAppFO/releases/latest)
 ![License](https://img.shields.io/github/license/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Contributors](https://img.shields.io/github/contributors/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/monarc-project/MonarcAppFO.svg?style=flat-square)
 [![Workflow](https://github.com/monarc-project/MonarcAppFO/workflows/build/badge.svg)](https://github.com/monarc-project/MonarcAppFO/actions?query=build)
-[![Twitter](https://img.shields.io/twitter/follow/MONARCProject.svg?style=social&label=Follow&style=flat-square)](https://twitter.com/MONARCproject)
+[![Twitter](https://img.shields.io/twitter/follow/MONARCProject.svg?style=social&label=Follow)](https://twitter.com/MONARCproject)
 
 
 Introduction
@@ -84,6 +84,7 @@ This software is licensed under
 - Copyright (C) 2016-2017 Guillaume Lesniak
 - Copyright (C) 2016-2017 Thomas Metois
 - Copyright (C) 2016-2017 Jérôme De Almeida
+- Copyright (C) 2019 Ruslan Baidan - https://github.com/ruslanbaydan
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
@@ -94,4 +95,6 @@ Public Domain Dedication.
 These objects are available through the
 [MONARC Objects Sharing Plarform](https://objects.monarc.lu).
 If a specific author wants to license an object under a different license,
-a pull request can be requested.
+a pull request can be requested.  
+You can find more information about MOSP on the
+[dedicated repository](https://github.com/CASES-LU/MOSP).
