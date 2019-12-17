@@ -10,13 +10,7 @@
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being committed into version control.
  */
-
- $appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '/var/lib/monarc/fo';
- $string = file_get_contents($appdir.'/package.json');
- if($string === FALSE) {
-     $string = file_get_contents('./package.json');
- }
- $package_json = json_decode($string, true);
+$package_json = json_decode(file_get_contents('./package.json'), true);
 
 return array(
     'doctrine' => array(
@@ -24,7 +18,7 @@ return array(
             'orm_default' => array(
                 'params' => array(
                     'host' => 'localhost',
-                    'user' => 'root',
+                    'user' => 'sqlmonarcuser',
                     'password' => 'password',
                     'dbname' => 'monarc_common',
                 ),
@@ -32,7 +26,7 @@ return array(
             'orm_cli' => array(
                 'params' => array(
                     'host' => 'localhost',
-                    'user' => 'root',
+                    'user' => 'sqlmonarcuser',
                     'password' => 'password',
                     'dbname' => 'monarc_cli',
                 ),
