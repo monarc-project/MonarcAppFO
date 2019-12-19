@@ -52,7 +52,7 @@ if [ $? != 0 ]; then
        exit 1
 fi
 
-composer install -o --no-dev
+composer install -o
 
 pathCore="module/Monarc/Core"
 pathFO="module/Monarc/FrontOffice"
