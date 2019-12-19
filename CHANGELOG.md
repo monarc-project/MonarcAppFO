@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.9.5 (2019-12-18)
+## 2.9.5 (2019-12-19)
 
 ### Fix
 
@@ -9,6 +9,7 @@ MONARC Changelog
 - Fixed the library categories management (creation of the new ones under root
   and sub categories)
   ([#216](https://github.com/monarc-project/MonarcAppFO/issues/216)).
+
 
 ## 2.9.4 (2019-12-11)
 
