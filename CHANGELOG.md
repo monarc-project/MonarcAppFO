@@ -6,8 +6,9 @@ MONARC Changelog
 ### Fix
 
 - Fixed the creation of the snapshots with empty comment.
-- Fixed the library categories management (creation of the new ones under root and sub categories).
-([#216](https://github.com/monarc-project/MonarcAppFO/issues/216));
+- Fixed the library categories management (creation of the new ones under root
+  and sub categories)
+  ([#216](https://github.com/monarc-project/MonarcAppFO/issues/216)).
 
 ## 2.9.4 (2019-12-11)
 
