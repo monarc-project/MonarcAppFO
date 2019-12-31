@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/cache",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cache.git",
-                "reference": "855a920c479925262575ec5b404010e22049098c"
+                "reference": "c1153129d87e051acd6e09140c3139911b11ab79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cache/zipball/855a920c479925262575ec5b404010e22049098c",
-                "reference": "855a920c479925262575ec5b404010e22049098c",
+                "url": "https://api.github.com/repos/cakephp/cache/zipball/c1153129d87e051acd6e09140c3139911b11ab79",
+                "reference": "c1153129d87e051acd6e09140c3139911b11ab79",
                 "shasum": ""
             },
             "require": {
@@ -48,11 +48,11 @@
                 "caching",
                 "cakephp"
             ],
-            "time": "2019-11-20T00:00:46+00:00"
+            "time": "2019-12-22T10:32:04+00:00"
         },
         {
             "name": "cakephp/collection",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/collection.git",
@@ -98,7 +98,7 @@
         },
         {
             "name": "cakephp/core",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
@@ -148,16 +148,16 @@
         },
         {
             "name": "cakephp/database",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "c8a9123e8a393ac122bb0b51b100cafb3d34cece"
+                "reference": "b0b76f9e5b5703e1d923b001d4ddba13d2392d2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/c8a9123e8a393ac122bb0b51b100cafb3d34cece",
-                "reference": "c8a9123e8a393ac122bb0b51b100cafb3d34cece",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/b0b76f9e5b5703e1d923b001d4ddba13d2392d2e",
+                "reference": "b0b76f9e5b5703e1d923b001d4ddba13d2392d2e",
                 "shasum": ""
             },
             "require": {
@@ -192,11 +192,11 @@
                 "database abstraction",
                 "pdo"
             ],
-            "time": "2019-11-20T00:00:46+00:00"
+            "time": "2019-12-22T10:32:04+00:00"
         },
         {
             "name": "cakephp/datasource",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
@@ -246,7 +246,7 @@
         },
         {
             "name": "cakephp/log",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/log.git",
@@ -291,16 +291,16 @@
         },
         {
             "name": "cakephp/utility",
-            "version": "3.8.7",
+            "version": "3.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9"
+                "reference": "877801dfe21bbb4e1b80a5c623d6dc281824f9e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9",
-                "reference": "e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/877801dfe21bbb4e1b80a5c623d6dc281824f9e1",
+                "reference": "877801dfe21bbb4e1b80a5c623d6dc281824f9e1",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2019-11-21T14:18:54+00:00"
+            "time": "2019-12-13T18:04:11+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -1467,16 +1467,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.7",
+            "version": "2.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "56e8dfbd2c2320c953418a7650660733642ecef2"
+                "reference": "82fa44b53172225124157e8cb47bd65579ba6aec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/56e8dfbd2c2320c953418a7650660733642ecef2",
-                "reference": "56e8dfbd2c2320c953418a7650660733642ecef2",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/82fa44b53172225124157e8cb47bd65579ba6aec",
+                "reference": "82fa44b53172225124157e8cb47bd65579ba6aec",
                 "shasum": ""
             },
             "require": {
@@ -1548,20 +1548,20 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-12-20T15:35:08+00:00"
+            "time": "2019-12-31T10:16:06+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.5",
+            "version": "2.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "3259d59edc37920f3971b166bc9845fa3a031cea"
+                "reference": "9aa2e464671c70abe9ce12df87714835289ac0c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3259d59edc37920f3971b166bc9845fa3a031cea",
-                "reference": "3259d59edc37920f3971b166bc9845fa3a031cea",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/9aa2e464671c70abe9ce12df87714835289ac0c9",
+                "reference": "9aa2e464671c70abe9ce12df87714835289ac0c9",
                 "shasum": ""
             },
             "require": {
@@ -1627,7 +1627,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-12-18T10:11:50+00:00"
+            "time": "2019-12-31T10:19:31+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -2325,23 +2325,21 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "0.11.3",
+            "version": "0.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "3c6a171b0455225cf42716dc4864feb620da716f"
+                "reference": "10e8c3f6b09111f4c0ef128d5a43375e15286cc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/3c6a171b0455225cf42716dc4864feb620da716f",
-                "reference": "3c6a171b0455225cf42716dc4864feb620da716f",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/10e8c3f6b09111f4c0ef128d5a43375e15286cc5",
+                "reference": "10e8c3f6b09111f4c0ef128d5a43375e15286cc5",
                 "shasum": ""
             },
             "require": {
-                "cakephp/collection": "^3.6",
-                "cakephp/core": "^3.6",
-                "cakephp/database": "^3.6",
-                "cakephp/datasource": "^3.6",
+                "cakephp/collection": "^3.7",
+                "cakephp/database": "^3.7",
                 "php": ">=5.6",
                 "symfony/config": "^3.4|^4.0|^5.0",
                 "symfony/console": "^3.4|^4.0|^5.0",
@@ -2398,20 +2396,20 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2019-12-12T16:53:38+00:00"
+            "time": "2019-12-24T23:43:31+00:00"
         },
         {
             "name": "symfony/config",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "c0773efcc2c940ffbc4c34a0dba2836f2cf6dc9c"
+                "reference": "7f930484966350906185ba0a604728f7898b7ba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/c0773efcc2c940ffbc4c34a0dba2836f2cf6dc9c",
-                "reference": "c0773efcc2c940ffbc4c34a0dba2836f2cf6dc9c",
+                "url": "https://api.github.com/repos/symfony/config/zipball/7f930484966350906185ba0a604728f7898b7ba0",
+                "reference": "7f930484966350906185ba0a604728f7898b7ba0",
                 "shasum": ""
             },
             "require": {
@@ -2462,20 +2460,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-01T10:51:15+00:00"
+            "time": "2019-12-18T13:50:31+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "dae5ef273d700771168ab889d9f8a19b2d206656"
+                "reference": "fe6e3cd889ca64172d7a742a2eb058541404ef47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/dae5ef273d700771168ab889d9f8a19b2d206656",
-                "reference": "dae5ef273d700771168ab889d9f8a19b2d206656",
+                "url": "https://api.github.com/repos/symfony/console/zipball/fe6e3cd889ca64172d7a742a2eb058541404ef47",
+                "reference": "fe6e3cd889ca64172d7a742a2eb058541404ef47",
                 "shasum": ""
             },
             "require": {
@@ -2538,11 +2536,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-01T10:51:15+00:00"
+            "time": "2019-12-17T13:20:22+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2825,16 +2823,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.0.1",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "51b684480184fa767b97e28eaca67664e48dd3e9"
+                "reference": "847661e77afa48d99ecfa508e8b60f0b029a19c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/51b684480184fa767b97e28eaca67664e48dd3e9",
-                "reference": "51b684480184fa767b97e28eaca67664e48dd3e9",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/847661e77afa48d99ecfa508e8b60f0b029a19c0",
+                "reference": "847661e77afa48d99ecfa508e8b60f0b029a19c0",
                 "shasum": ""
             },
             "require": {
@@ -2880,7 +2878,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-18T17:27:11+00:00"
+            "time": "2019-12-10T11:06:55+00:00"
         },
         {
             "name": "true/punycode",
@@ -3888,21 +3886,21 @@
         },
         {
             "name": "zendframework/zend-log",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-log.git",
-                "reference": "cb278772afdacb1924342248a069330977625ae6"
+                "reference": "e5ec088dc8a7b4d96a3a6627761f720a738a36b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-log/zipball/cb278772afdacb1924342248a069330977625ae6",
-                "reference": "cb278772afdacb1924342248a069330977625ae6",
+                "url": "https://api.github.com/repos/zendframework/zend-log/zipball/e5ec088dc8a7b4d96a3a6627761f720a738a36b8",
+                "reference": "e5ec088dc8a7b4d96a3a6627761f720a738a36b8",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "psr/log": "^1.0",
+                "psr/log": "^1.1.2",
                 "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
@@ -3930,8 +3928,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
+                    "dev-master": "2.12.x-dev",
+                    "dev-develop": "2.13.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Log",
@@ -3954,7 +3952,7 @@
                 "logging",
                 "zf"
             ],
-            "time": "2019-08-23T21:28:18+00:00"
+            "time": "2019-12-27T16:18:31+00:00"
         },
         {
             "name": "zendframework/zend-mail",
@@ -4650,25 +4648,27 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.12.2",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "fd24920c2afcf2a70d11f67c3457f8f509453a62"
+                "reference": "b54acef1f407741c5347f2a97f899ab21f2229ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/fd24920c2afcf2a70d11f67c3457f8f509453a62",
-                "reference": "fd24920c2afcf2a70d11f67c3457f8f509453a62",
+                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/b54acef1f407741c5347f2a97f899ab21f2229ef",
+                "reference": "b54acef1f407741c5347f2a97f899ab21f2229ef",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
-                "php": "^5.6 || ^7.0",
+                "php": "^7.1",
                 "zendframework/zend-stdlib": "^3.2.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0.8 || ^5.7.15",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
                 "zendframework/zend-cache": "^2.6.1",
                 "zendframework/zend-coding-standard": "~1.0.0",
@@ -4696,8 +4696,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.12.x-dev",
-                    "dev-develop": "2.13.x-dev"
+                    "dev-master": "2.13.x-dev",
+                    "dev-develop": "2.14.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Validator",
@@ -4719,7 +4719,7 @@
                 "validator",
                 "zf"
             ],
-            "time": "2019-10-29T08:33:25+00:00"
+            "time": "2019-12-28T04:07:18+00:00"
         },
         {
             "name": "zendframework/zend-view",
@@ -4816,12 +4816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "181dd66fd666ed397991ded7b725fe90a8a00413"
+                "reference": "44a677c8e06241a66409ae6e4820dc166fc09ab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/181dd66fd666ed397991ded7b725fe90a8a00413",
-                "reference": "181dd66fd666ed397991ded7b725fe90a8a00413",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/44a677c8e06241a66409ae6e4820dc166fc09ab2",
+                "reference": "44a677c8e06241a66409ae6e4820dc166fc09ab2",
                 "shasum": ""
             },
             "conflict": {
@@ -4912,7 +4912,7 @@
                 "pusher/pusher-php-server": "<2.2.1",
                 "robrichards/xmlseclibs": ">=1,<3.0.4",
                 "sabre/dav": ">=1.6,<1.6.99|>=1.7,<1.7.11|>=1.8,<1.8.9",
-                "scheb/two-factor-bundle": "<3.26|>=4,<4.11",
+                "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
                 "sensiolabs/connect": "<4.2.3",
                 "serluck/phpwhois": "<=4.2.6",
                 "shopware/shopware": "<5.3.7",
@@ -5027,7 +5027,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2019-12-21T14:43:42+00:00"
+            "time": "2019-12-26T14:16:40+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",
