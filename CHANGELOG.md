@@ -1,6 +1,18 @@
 MONARC Changelog
 ================
 
+## 2.9.6 (2019-12-31)
+
+### Fix
+
+- Global object-> changes comment
+  ([#224](https://github.com/monarc-project/MonarcAppFO/issues/224)).
+- Inconsistent id and global asset
+  ([#225](https://github.com/monarc-project/MonarcAppFO/issues/225)).
+- Modification on global assets are not propagated properly
+  ([#226](https://github.com/monarc-project/MonarcAppFO/issues/226)).
+
+
 ## 2.9.5 (2019-12-19)
 
 ### Fix
