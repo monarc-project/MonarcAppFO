@@ -1,6 +1,13 @@
 MONARC Changelog
 ================
 
+## 2.9.7 (2020-01-03)
+
+### Fix
+
+- Randomly deletion of recommendations
+  ([#228](https://github.com/monarc-project/MonarcAppFO/issues/228)).
+
 ## 2.9.6 (2019-12-31)
 
 ### Fix

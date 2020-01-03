@@ -1467,16 +1467,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.8",
+            "version": "2.9.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "82fa44b53172225124157e8cb47bd65579ba6aec"
+                "reference": "4e8dbeacf1607acd2c55f7823745eda750cb6077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/82fa44b53172225124157e8cb47bd65579ba6aec",
-                "reference": "82fa44b53172225124157e8cb47bd65579ba6aec",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/4e8dbeacf1607acd2c55f7823745eda750cb6077",
+                "reference": "4e8dbeacf1607acd2c55f7823745eda750cb6077",
                 "shasum": ""
             },
             "require": {
@@ -1548,20 +1548,20 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2019-12-31T10:16:06+00:00"
+            "time": "2020-01-03T15:45:12+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.6",
+            "version": "2.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "9aa2e464671c70abe9ce12df87714835289ac0c9"
+                "reference": "ba8f029f8d6a69c602039c935f022b8e15e08522"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/9aa2e464671c70abe9ce12df87714835289ac0c9",
-                "reference": "9aa2e464671c70abe9ce12df87714835289ac0c9",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/ba8f029f8d6a69c602039c935f022b8e15e08522",
+                "reference": "ba8f029f8d6a69c602039c935f022b8e15e08522",
                 "shasum": ""
             },
             "require": {
@@ -1627,7 +1627,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2019-12-31T10:19:31+00:00"
+            "time": "2020-01-03T15:46:07+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -2986,6 +2986,7 @@
                 "ZendFramework",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-authentication",
             "time": "2019-05-14T18:06:07+00:00"
         },
         {
@@ -3069,6 +3070,7 @@
                 "psr-6",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-cache",
             "time": "2019-08-29T18:30:41+00:00"
         },
         {
@@ -3126,6 +3128,7 @@
                 "code",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2019-12-10T19:21:15+00:00"
         },
         {
@@ -3186,6 +3189,7 @@
                 "config",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-config",
             "time": "2019-06-08T18:58:54+00:00"
         },
         {
@@ -3239,6 +3243,7 @@
                 "console",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-console",
             "time": "2019-02-04T19:48:22+00:00"
         },
         {
@@ -3302,6 +3307,7 @@
                 "di",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-di",
             "time": "2019-12-10T20:29:27+00:00"
         },
         {
@@ -3347,6 +3353,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2019-09-05T20:03:20+00:00"
         },
         {
@@ -3401,6 +3408,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         },
         {
@@ -3466,6 +3474,7 @@
                 "filter",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-filter",
             "time": "2019-08-19T07:08:04+00:00"
         },
         {
@@ -3544,6 +3553,7 @@
                 "form",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-form",
             "time": "2019-10-04T10:46:36+00:00"
         },
         {
@@ -3599,6 +3609,7 @@
                 "zend",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-http",
             "time": "2019-12-04T23:02:34+00:00"
         },
         {
@@ -3659,6 +3670,7 @@
                 "hydrator",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-hydrator",
             "time": "2019-10-04T11:17:36+00:00"
         },
         {
@@ -3730,6 +3742,7 @@
                 "i18n",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-i18n",
             "time": "2019-12-12T14:08:22+00:00"
         },
         {
@@ -3787,6 +3800,7 @@
                 "inputfilter",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-inputfilter",
             "time": "2019-08-28T19:45:32+00:00"
         },
         {
@@ -3837,6 +3851,7 @@
                 "json",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-json",
             "time": "2019-10-09T13:56:13+00:00"
         },
         {
@@ -3882,6 +3897,7 @@
                 "loader",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-loader",
             "time": "2019-09-04T19:38:14+00:00"
         },
         {
@@ -3952,6 +3968,7 @@
                 "logging",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-log",
             "time": "2019-12-27T16:18:31+00:00"
         },
         {
@@ -4014,6 +4031,7 @@
                 "mail",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-mail",
             "time": "2018-06-07T13:37:07+00:00"
         },
         {
@@ -4064,6 +4082,7 @@
                 "mime",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-mime",
             "time": "2019-10-16T19:30:37+00:00"
         },
         {
@@ -4123,6 +4142,7 @@
                 "modulemanager",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-modulemanager",
             "time": "2019-10-28T13:29:38+00:00"
         },
         {
@@ -4195,6 +4215,7 @@
                 "mvc",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-mvc",
             "time": "2017-11-24T06:32:07+00:00"
         },
         {
@@ -4261,6 +4282,7 @@
                 "mvc",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-mvc-console",
             "time": "2018-04-30T19:10:26+00:00"
         },
         {
@@ -4326,6 +4348,7 @@
                 "paginator",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-paginator",
             "time": "2019-08-21T13:31:03+00:00"
         },
         {
@@ -4373,6 +4396,7 @@
                 "rbac",
                 "zend-permssions-rbac"
             ],
+            "abandoned": "laminas/laminas-permissions-rbac",
             "time": "2019-06-25T06:15:10+00:00"
         },
         {
@@ -4435,6 +4459,7 @@
                 "zend",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-router",
             "time": "2019-02-26T20:24:12+00:00"
         },
         {
@@ -4503,6 +4528,7 @@
                 "servicemanager",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-servicemanager",
             "time": "2018-12-22T06:05:09+00:00"
         },
         {
@@ -4549,6 +4575,7 @@
                 "stdlib",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
         },
         {
@@ -4644,6 +4671,7 @@
                 "uri",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-uri",
             "time": "2019-10-07T13:35:33+00:00"
         },
         {
@@ -4719,6 +4747,7 @@
                 "validator",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-validator",
             "time": "2019-12-28T04:07:18+00:00"
         },
         {
@@ -4806,6 +4835,7 @@
                 "view",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-view",
             "time": "2019-12-04T08:40:50+00:00"
         }
     ],
@@ -5079,6 +5109,7 @@
                 "plugin",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-component-installer",
             "time": "2019-09-04T19:10:43+00:00"
         }
     ],
