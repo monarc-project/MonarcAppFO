@@ -7,6 +7,8 @@ MONARC Changelog
 
 - Randomly deletion of recommendations
   ([#228](https://github.com/monarc-project/MonarcAppFO/issues/228)).
+- Upload a new delivery template
+  ([#227](https://github.com/monarc-project/MonarcAppFO/issues/227)).
 
 ## 2.9.6 (2019-12-31)
 

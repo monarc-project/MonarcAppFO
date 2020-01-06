@@ -1471,12 +1471,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "4e8dbeacf1607acd2c55f7823745eda750cb6077"
+                "reference": "ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/4e8dbeacf1607acd2c55f7823745eda750cb6077",
-                "reference": "4e8dbeacf1607acd2c55f7823745eda750cb6077",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb",
+                "reference": "ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb",
                 "shasum": ""
             },
             "require": {
@@ -1548,7 +1548,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-01-03T15:45:12+00:00"
+            "time": "2020-01-06T16:02:06+00:00"
         },
         {
             "name": "monarc/frontoffice",
