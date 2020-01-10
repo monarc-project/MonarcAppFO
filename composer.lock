@@ -1467,16 +1467,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.9",
+            "version": "2.9.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb"
+                "reference": "cccccfd5beca3cbe2fffb7c9a0a70ccb5dc07519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb",
-                "reference": "ab07ec4285fa9e9eb0b55bbfd691942c2cb73bcb",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/cccccfd5beca3cbe2fffb7c9a0a70ccb5dc07519",
+                "reference": "cccccfd5beca3cbe2fffb7c9a0a70ccb5dc07519",
                 "shasum": ""
             },
             "require": {
@@ -1548,20 +1548,20 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-01-06T16:02:06+00:00"
+            "time": "2020-01-10T10:30:23+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.7",
+            "version": "2.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "ba8f029f8d6a69c602039c935f022b8e15e08522"
+                "reference": "3e2113b3d855fed06969d95f532133609d876780"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/ba8f029f8d6a69c602039c935f022b8e15e08522",
-                "reference": "ba8f029f8d6a69c602039c935f022b8e15e08522",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3e2113b3d855fed06969d95f532133609d876780",
+                "reference": "3e2113b3d855fed06969d95f532133609d876780",
                 "shasum": ""
             },
             "require": {
@@ -1627,7 +1627,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-01-03T15:46:07+00:00"
+            "time": "2020-01-10T10:11:42+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -4624,6 +4624,7 @@
                 "text",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-text",
             "time": "2019-10-16T20:36:27+00:00"
         },
         {

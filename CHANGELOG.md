@@ -1,6 +1,17 @@
 MONARC Changelog
 ================
 
+## 2.9.8 (2020-01-13)
+
+### Fix
+
+- Library categories management issues
+  ([#221](https://github.com/monarc-project/MonarcAppFO/issues/221)).
+- Library -> global asset -> delete asset
+  ([#229](https://github.com/monarc-project/MonarcAppFO/issues/229)).
+- Library -> asset -> Asset used in the risks analysis
+  ([#218](https://github.com/monarc-project/MonarcAppFO/issues/218)).
+  
 ## 2.9.7 (2020-01-03)
 
 ### Fix
