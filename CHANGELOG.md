@@ -1,6 +1,27 @@
 MONARC Changelog
 ================
 
+## 2.9.9 (2020-01-20)
+
+### New
+
+- Give the possibility to administrators to create new account and directly
+  assign a temporary password for the new account
+  ([#236](https://github.com/monarc-project/MonarcAppFO/issues/236)).
+
+### Fix
+
+- Increase size of the fields related to Record of Processing Activities
+  ([#230](https://github.com/monarc-project/MonarcAppFO/issues/230));
+- Duplication of risks in Deliverable -> appendix D
+  ([#233](https://github.com/monarc-project/MonarcAppFO/issues/233));
+- Error during modification of information risk
+  ([#234](https://github.com/monarc-project/MonarcAppFO/issues/234));
+- It is no more possible to change the status of a user
+  ([#237](https://github.com/monarc-project/MonarcAppFO/issues/237)).
+
+
+
 ## 2.9.8 (2020-01-13)
 
 ### Fix
@@ -11,7 +32,8 @@ MONARC Changelog
   ([#229](https://github.com/monarc-project/MonarcAppFO/issues/229)).
 - Library -> asset -> Asset used in the risks analysis
   ([#218](https://github.com/monarc-project/MonarcAppFO/issues/218)).
-  
+
+
 ## 2.9.7 (2020-01-03)
 
 ### Fix
@@ -20,6 +42,7 @@ MONARC Changelog
   ([#228](https://github.com/monarc-project/MonarcAppFO/issues/228)).
 - Upload a new delivery template
   ([#227](https://github.com/monarc-project/MonarcAppFO/issues/227)).
+
 
 ## 2.9.6 (2019-12-31)
 
