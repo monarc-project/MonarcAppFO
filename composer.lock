@@ -1555,16 +1555,16 @@
         },
         {
             "name": "monarc/frontoffice",
-            "version": "v2.9.10",
+            "version": "2.9.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "6701eb1962300d0fc00c51d6951f29dd085bd72f"
+                "reference": "f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/6701eb1962300d0fc00c51d6951f29dd085bd72f",
-                "reference": "6701eb1962300d0fc00c51d6951f29dd085bd72f",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc",
+                "reference": "f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc",
                 "shasum": ""
             },
             "require": {
