@@ -1470,21 +1470,22 @@
         },
         {
             "name": "monarc/core",
-            "version": "v2.9.12",
+            "version": "2.9.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "922c4b01b73979aab46dd62619e59486252757c9"
+                "reference": "863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/922c4b01b73979aab46dd62619e59486252757c9",
-                "reference": "922c4b01b73979aab46dd62619e59486252757c9",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f",
+                "reference": "863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-intl": "*",
+                "ext-json": "*",
                 "ext-openssl": "*",
                 "ocramius/package-versions": "<1.5",
                 "ocramius/proxy-manager": "<2.3",
@@ -1551,20 +1552,20 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-01-20T15:07:18+00:00"
+            "time": "2020-01-29T08:46:49+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.12",
+            "version": "2.9.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc"
+                "reference": "a05de1eeeb14c8fdb62eb6ff85132af143d6dec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc",
-                "reference": "f57f3a42580a1be2f1d5332f7f3ef0ca31d38ddc",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/a05de1eeeb14c8fdb62eb6ff85132af143d6dec1",
+                "reference": "a05de1eeeb14c8fdb62eb6ff85132af143d6dec1",
                 "shasum": ""
             },
             "require": {
@@ -1630,7 +1631,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-01-21T15:40:13+00:00"
+            "time": "2020-01-29T08:45:42+00:00"
         },
         {
             "name": "monarc/phpword",

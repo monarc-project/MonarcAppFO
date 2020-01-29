@@ -1,6 +1,21 @@
 MONARC Changelog
 ================
 
+## 2.9.10 (2020-01-29)
+
+### New
+
+- Implement tiered indexing in Annex D of final report
+  ([#241](https://github.com/monarc-project/MonarcAppFO/issues/241));
+
+### Fix
+
+- BackOffice object export error
+  ([#239](https://github.com/monarc-project/MonarcAppFO/issues/239));
+- Import error
+  ([#243](https://github.com/monarc-project/MonarcAppFO/issues/243));
+
+
 ## 2.9.9 (2020-01-20)
 
 ### New
