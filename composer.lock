@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "cakephp/cache",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cache.git",
@@ -52,16 +52,16 @@
         },
         {
             "name": "cakephp/collection",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/collection.git",
-                "reference": "3541cdd1739334fcbe301daed8d6cb9458903fdd"
+                "reference": "013e9d02552c56d737a6bff91e59544c735efed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/collection/zipball/3541cdd1739334fcbe301daed8d6cb9458903fdd",
-                "reference": "3541cdd1739334fcbe301daed8d6cb9458903fdd",
+                "url": "https://api.github.com/repos/cakephp/collection/zipball/013e9d02552c56d737a6bff91e59544c735efed7",
+                "reference": "013e9d02552c56d737a6bff91e59544c735efed7",
                 "shasum": ""
             },
             "require": {
@@ -94,20 +94,20 @@
                 "collections",
                 "iterators"
             ],
-            "time": "2019-11-20T00:00:46+00:00"
+            "time": "2020-01-10T15:24:40+00:00"
         },
         {
             "name": "cakephp/core",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "e77b155f93fd63d1a944c07f27abc82651377956"
+                "reference": "16249fa6771663e6649cbdb832f7ff25bf568b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/e77b155f93fd63d1a944c07f27abc82651377956",
-                "reference": "e77b155f93fd63d1a944c07f27abc82651377956",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/16249fa6771663e6649cbdb832f7ff25bf568b84",
+                "reference": "16249fa6771663e6649cbdb832f7ff25bf568b84",
                 "shasum": ""
             },
             "require": {
@@ -144,20 +144,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-11-19T13:39:32+00:00"
+            "time": "2020-01-10T15:24:40+00:00"
         },
         {
             "name": "cakephp/database",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "b0b76f9e5b5703e1d923b001d4ddba13d2392d2e"
+                "reference": "f52cd444d4f5ef411a3a13f82510badda1d5280e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/b0b76f9e5b5703e1d923b001d4ddba13d2392d2e",
-                "reference": "b0b76f9e5b5703e1d923b001d4ddba13d2392d2e",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/f52cd444d4f5ef411a3a13f82510badda1d5280e",
+                "reference": "f52cd444d4f5ef411a3a13f82510badda1d5280e",
                 "shasum": ""
             },
             "require": {
@@ -192,11 +192,11 @@
                 "database abstraction",
                 "pdo"
             ],
-            "time": "2019-12-22T10:32:04+00:00"
+            "time": "2020-01-10T15:24:40+00:00"
         },
         {
             "name": "cakephp/datasource",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
@@ -246,16 +246,16 @@
         },
         {
             "name": "cakephp/log",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/log.git",
-                "reference": "9194c5aebaf30d4e9541e5635fa16f8c373af2f3"
+                "reference": "2dae5b32430ca89d66c73bd9d568fcf68736eae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/log/zipball/9194c5aebaf30d4e9541e5635fa16f8c373af2f3",
-                "reference": "9194c5aebaf30d4e9541e5635fa16f8c373af2f3",
+                "url": "https://api.github.com/repos/cakephp/log/zipball/2dae5b32430ca89d66c73bd9d568fcf68736eae5",
+                "reference": "2dae5b32430ca89d66c73bd9d568fcf68736eae5",
                 "shasum": ""
             },
             "require": {
@@ -287,20 +287,20 @@
                 "log",
                 "logging"
             ],
-            "time": "2019-11-20T00:00:46+00:00"
+            "time": "2020-01-10T15:24:40+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.8.8",
+            "version": "3.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "877801dfe21bbb4e1b80a5c623d6dc281824f9e1"
+                "reference": "71fe6e8b39f3ef0dedd036cbf112a6e84b01759b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/877801dfe21bbb4e1b80a5c623d6dc281824f9e1",
-                "reference": "877801dfe21bbb4e1b80a5c623d6dc281824f9e1",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/71fe6e8b39f3ef0dedd036cbf112a6e84b01759b",
+                "reference": "71fe6e8b39f3ef0dedd036cbf112a6e84b01759b",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2019-12-13T18:04:11+00:00"
+            "time": "2020-01-10T15:24:40+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -1474,12 +1474,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f"
+                "reference": "57cf12ccdd555d536d9f352bc5467d0261af4ab5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f",
-                "reference": "863e6fb4d9247d4f15cc24f420c6f3eb38de8f5f",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/57cf12ccdd555d536d9f352bc5467d0261af4ab5",
+                "reference": "57cf12ccdd555d536d9f352bc5467d0261af4ab5",
                 "shasum": ""
             },
             "require": {
@@ -1552,7 +1552,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-01-29T08:46:49+00:00"
+            "time": "2020-01-29T14:00:42+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -2272,29 +2272,28 @@
         },
         {
             "name": "ramsey/uuid-doctrine",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid-doctrine.git",
-                "reference": "2a56db8e68bff487508244f5a2008075279d0255"
+                "reference": "9facc4689547e72e03c1e18df4a0ee162b2778b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid-doctrine/zipball/2a56db8e68bff487508244f5a2008075279d0255",
-                "reference": "2a56db8e68bff487508244f5a2008075279d0255",
+                "url": "https://api.github.com/repos/ramsey/uuid-doctrine/zipball/9facc4689547e72e03c1e18df4a0ee162b2778b0",
+                "reference": "9facc4689547e72e03c1e18df4a0ee162b2778b0",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.5",
-                "php": "^5.4 || ^7.0",
-                "ramsey/uuid": "^3.0"
+                "php": "^5.4 | ^7 | ^8",
+                "ramsey/uuid": "^3.5 | ^4"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "^1.0",
-                "mockery/mockery": "^0.9 || ^1.1",
-                "php-coveralls/php-coveralls": "^1.1 || ^2.1",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5",
-                "squizlabs/php_codesniffer": "^3.3"
+                "jakub-onderka/php-parallel-lint": "^1",
+                "mockery/mockery": "^0.9 | ^1",
+                "phpunit/phpunit": "^4.8.36 | ^5.7 | ^6.5 | ^7",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "autoload": {
@@ -2306,26 +2305,16 @@
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Marijn Huizendveld",
-                    "email": "marijn.huizendveld@gmail.com"
-                },
-                {
-                    "name": "Ben Ramsey",
-                    "email": "ben@benramsey.com",
-                    "homepage": "http://benramsey.com"
-                }
-            ],
-            "description": "Allow the use of a ramsey/uuid UUID as Doctrine field type.",
+            "description": "Allow the use of ramsey/uuid as a Doctrine field type.",
             "homepage": "https://github.com/ramsey/uuid-doctrine",
             "keywords": [
+                "database",
                 "doctrine",
                 "guid",
                 "identifier",
                 "uuid"
             ],
-            "time": "2018-08-11T21:01:22+00:00"
+            "time": "2020-01-27T05:09:17+00:00"
         },
         {
             "name": "robmorgan/phinx",
@@ -4851,12 +4840,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5e2ebc8340c8b7dcdc3f938dcbb9e2b99b72fd8e"
+                "reference": "666ba252853924887ac57dc9f66e6b6af78d5a76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5e2ebc8340c8b7dcdc3f938dcbb9e2b99b72fd8e",
-                "reference": "5e2ebc8340c8b7dcdc3f938dcbb9e2b99b72fd8e",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/666ba252853924887ac57dc9f66e6b6af78d5a76",
+                "reference": "666ba252853924887ac57dc9f66e6b6af78d5a76",
                 "shasum": ""
             },
             "conflict": {
@@ -4974,7 +4963,8 @@
                 "sylius/admin-bundle": ">=1,<1.0.17|>=1.1,<1.1.9|>=1.2,<1.2.2",
                 "sylius/grid": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
                 "sylius/grid-bundle": ">=1,<1.1.19|>=1.2,<1.2.18|>=1.3,<1.3.13|>=1.4,<1.4.5|>=1.5,<1.5.1",
-                "sylius/sylius": ">=1,<1.1.18|>=1.2,<1.2.17|>=1.3,<1.3.12|>=1.4,<1.4.4",
+                "sylius/resource-bundle": ">=1,<1.3.13|>=1.4,<1.4.6|>=1.5,<1.5.1|>=1.6,<1.6.3",
+                "sylius/sylius": ">=1,<1.3.12|>=1.4,<1.4.4",
                 "symfony/cache": ">=3.1,<3.4.35|>=4,<4.2.12|>=4.3,<4.3.8",
                 "symfony/dependency-injection": ">=2,<2.0.17|>=2.7,<2.7.51|>=2.8,<2.8.50|>=3,<3.4.26|>=4,<4.1.12|>=4.2,<4.2.7",
                 "symfony/form": ">=2.3,<2.3.35|>=2.4,<2.6.12|>=2.7,<2.7.50|>=2.8,<2.8.49|>=3,<3.4.20|>=4,<4.0.15|>=4.1,<4.1.9|>=4.2,<4.2.1",
@@ -5060,10 +5050,15 @@
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
                     "role": "maintainer"
+                },
+                {
+                    "name": "Ilya Tribusean",
+                    "email": "slash3b@gmail.com",
+                    "role": "maintainer"
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-01-20T14:23:18+00:00"
+            "time": "2020-01-28T17:25:41+00:00"
         },
         {
             "name": "zendframework/zend-component-installer",
