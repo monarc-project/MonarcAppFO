@@ -15,6 +15,7 @@ Installation of VirtualBox and Vagrant
 .. code-block:: bash
 
     $ sudo apt-get install virtualbox vagrant
+    $ vagrant plugin install vagrant-disksize
 
 
 Deployment of the front office
