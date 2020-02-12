@@ -1470,16 +1470,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.13",
+            "version": "2.9.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "57cf12ccdd555d536d9f352bc5467d0261af4ab5"
+                "reference": "5f09e4949d00f16fcc4e69932bdf518aa55d496a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/57cf12ccdd555d536d9f352bc5467d0261af4ab5",
-                "reference": "57cf12ccdd555d536d9f352bc5467d0261af4ab5",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/5f09e4949d00f16fcc4e69932bdf518aa55d496a",
+                "reference": "5f09e4949d00f16fcc4e69932bdf518aa55d496a",
                 "shasum": ""
             },
             "require": {
@@ -1552,20 +1552,20 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-01-29T14:00:42+00:00"
+            "time": "2020-02-12T19:55:15+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.13",
+            "version": "2.9.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "ccaa667d2f051eef2f1b2fddbcbce060a54b558e"
+                "reference": "5acf0700bdbd55f869209b8df028c06ec91f371d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/ccaa667d2f051eef2f1b2fddbcbce060a54b558e",
-                "reference": "ccaa667d2f051eef2f1b2fddbcbce060a54b558e",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5acf0700bdbd55f869209b8df028c06ec91f371d",
+                "reference": "5acf0700bdbd55f869209b8df028c06ec91f371d",
                 "shasum": ""
             },
             "require": {
@@ -1576,9 +1576,9 @@
                 "monarc/phpword": "^1.0",
                 "php": "^7.1",
                 "robmorgan/phinx": "^0.11.1",
+                "symfony/console": "^5.0",
                 "zendframework/zend-di": "^3.1",
                 "zendframework/zend-mvc": "^3.1",
-                "zendframework/zend-mvc-console": "^1.2",
                 "zendframework/zend-permissions-rbac": "^3.0"
             },
             "require-dev": {
@@ -1631,7 +1631,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-01-29T13:52:21+00:00"
+            "time": "2020-02-10T14:46:38+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -4212,73 +4212,6 @@
             "time": "2017-11-24T06:32:07+00:00"
         },
         {
-            "name": "zendframework/zend-mvc-console",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/zend-mvc-console.git",
-                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-mvc-console/zipball/821c18e0d57e71b370166bd2f35623befddaf2ee",
-                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee",
-                "shasum": ""
-            },
-            "require": {
-                "container-interop/container-interop": "^1.1",
-                "php": "^5.6 || ^7.0",
-                "zendframework/zend-console": "^2.6",
-                "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
-                "zendframework/zend-modulemanager": "^2.7.1",
-                "zendframework/zend-mvc": "^3.0.3",
-                "zendframework/zend-router": "^3.0",
-                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-                "zendframework/zend-stdlib": "^2.7.5 || ^3.0",
-                "zendframework/zend-text": "^2.6",
-                "zendframework/zend-view": "^2.6.3"
-            },
-            "conflict": {
-                "zendframework/zend-mvc": "<3.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
-                "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-filter": "^2.6.1"
-            },
-            "suggest": {
-                "zendframework/zend-filter": "^2.6.1, to filter rendered results"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev",
-                    "dev-develop": "1.3.x-dev"
-                },
-                "zf": {
-                    "component": "Zend\\Mvc\\Console"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zend\\Mvc\\Console\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Integration between zend-mvc and zend-console",
-            "keywords": [
-                "ZendFramework",
-                "console",
-                "mvc",
-                "zf"
-            ],
-            "abandoned": "laminas/laminas-mvc-console",
-            "time": "2018-04-30T19:10:26+00:00"
-        },
-        {
             "name": "zendframework/zend-paginator",
             "version": "2.8.2",
             "source": {
@@ -4570,55 +4503,6 @@
             ],
             "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
-        },
-        {
-            "name": "zendframework/zend-text",
-            "version": "2.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/zend-text.git",
-                "reference": "41e32dafa4015e160e2f95a7039554385c71624d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-text/zipball/41e32dafa4015e160e2f95a7039554385c71624d",
-                "reference": "41e32dafa4015e160e2f95a7039554385c71624d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
-                "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-config": "^2.6"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7.x-dev",
-                    "dev-develop": "2.8.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Zend\\Text\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Create FIGlets and text-based tables",
-            "keywords": [
-                "ZendFramework",
-                "text",
-                "zf"
-            ],
-            "abandoned": "laminas/laminas-text",
-            "time": "2019-10-16T20:36:27+00:00"
         },
         {
             "name": "zendframework/zend-uri",
@@ -5119,6 +5003,122 @@
             ],
             "abandoned": "laminas/laminas-component-installer",
             "time": "2019-09-04T19:10:43+00:00"
+        },
+        {
+            "name": "zendframework/zend-mvc-console",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-mvc-console.git",
+                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-mvc-console/zipball/821c18e0d57e71b370166bd2f35623befddaf2ee",
+                "reference": "821c18e0d57e71b370166bd2f35623befddaf2ee",
+                "shasum": ""
+            },
+            "require": {
+                "container-interop/container-interop": "^1.1",
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-console": "^2.6",
+                "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
+                "zendframework/zend-modulemanager": "^2.7.1",
+                "zendframework/zend-mvc": "^3.0.3",
+                "zendframework/zend-router": "^3.0",
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+                "zendframework/zend-stdlib": "^2.7.5 || ^3.0",
+                "zendframework/zend-text": "^2.6",
+                "zendframework/zend-view": "^2.6.3"
+            },
+            "conflict": {
+                "zendframework/zend-mvc": "<3.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-filter": "^2.6.1"
+            },
+            "suggest": {
+                "zendframework/zend-filter": "^2.6.1, to filter rendered results"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev",
+                    "dev-develop": "1.3.x-dev"
+                },
+                "zf": {
+                    "component": "Zend\\Mvc\\Console"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Mvc\\Console\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Integration between zend-mvc and zend-console",
+            "keywords": [
+                "ZendFramework",
+                "console",
+                "mvc",
+                "zf"
+            ],
+            "abandoned": "laminas/laminas-mvc-console",
+            "time": "2018-04-30T19:10:26+00:00"
+        },
+        {
+            "name": "zendframework/zend-text",
+            "version": "2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-text.git",
+                "reference": "41e32dafa4015e160e2f95a7039554385c71624d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-text/zipball/41e32dafa4015e160e2f95a7039554385c71624d",
+                "reference": "41e32dafa4015e160e2f95a7039554385c71624d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
+                "zendframework/zend-config": "^2.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7.x-dev",
+                    "dev-develop": "2.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Text\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Create FIGlets and text-based tables",
+            "keywords": [
+                "ZendFramework",
+                "text",
+                "zf"
+            ],
+            "abandoned": "laminas/laminas-text",
+            "time": "2019-10-16T20:36:27+00:00"
         }
     ],
     "aliases": [],
