@@ -1,6 +1,26 @@
 MONARC Changelog
 ================
 
+## 2.9.11 (not yet released)
+
+### New
+
+- backend has been migrated from Zend Framework to Laminas
+  ([#249](https://github.com/monarc-project/MonarcAppFO/issues/249)).
+
+
+### Fix
+
+- The description area of the shelf life is too fair at the character level
+  ([#252](https://github.com/monarc-project/MonarcAppFO/issues/252));
+- In the description of destinations area; info is not kept after registration
+  ([#253](https://github.com/monarc-project/MonarcAppFO/issues/253));
+- [GDPR module] Issue when creating a new recipient with default values
+  ([#254](https://github.com/monarc-project/MonarcAppFO/issues/254));
+- Get the list controls in BO
+  ([#256](https://github.com/monarc-project/MonarcAppFO/issues/256));
+
+
 ## 2.9.10 (2020-01-29)
 
 ### New
