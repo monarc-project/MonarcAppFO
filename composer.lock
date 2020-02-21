@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcb3a4dbc6577fcc058ebe78d0a80f3d",
+    "content-hash": "3c8e29ef59d497907b29d077a85d2ea8",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -3573,16 +3573,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.14",
+            "version": "2.9.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "5f09e4949d00f16fcc4e69932bdf518aa55d496a"
+                "reference": "ddc1a1b7dcec4d7ae5bbcacbb1ea6655bee3bff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/5f09e4949d00f16fcc4e69932bdf518aa55d496a",
-                "reference": "5f09e4949d00f16fcc4e69932bdf518aa55d496a",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/ddc1a1b7dcec4d7ae5bbcacbb1ea6655bee3bff6",
+                "reference": "ddc1a1b7dcec4d7ae5bbcacbb1ea6655bee3bff6",
                 "shasum": ""
             },
             "require": {
@@ -3590,21 +3590,22 @@
                 "ext-intl": "*",
                 "ext-json": "*",
                 "ext-openssl": "*",
+                "laminas/laminas-console": "^2.8",
+                "laminas/laminas-dependency-plugin": "^1.0",
+                "laminas/laminas-di": "^3.1",
+                "laminas/laminas-i18n": "^2.9",
+                "laminas/laminas-log": "^2.11",
+                "laminas/laminas-mail": "^2.10",
+                "laminas/laminas-mvc": "^3.1",
                 "ocramius/package-versions": "<1.5",
                 "ocramius/proxy-manager": "<2.3",
                 "php": "^7.1",
                 "ramsey/uuid-doctrine": "^1.5",
-                "robmorgan/phinx": "^0.11.1",
-                "zendframework/zend-console": "^2.8",
-                "zendframework/zend-di": "^3.1",
-                "zendframework/zend-i18n": "^2.9",
-                "zendframework/zend-log": "^2.11",
-                "zendframework/zend-mail": "^2.10",
-                "zendframework/zend-mvc": "^3.1"
+                "robmorgan/phinx": "^0.11.1"
             },
             "require-dev": {
-                "roave/security-advisories": "dev-master",
-                "zendframework/zend-component-installer": "^2.1"
+                "laminas/laminas-component-installer": "^2.1",
+                "roave/security-advisories": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -3626,7 +3627,7 @@
                     "email": "guillaume@netlor.fr"
                 },
                 {
-                    "name": "Jerôme De Almeida",
+                    "name": "Jérôme De Almeida",
                     "email": "jerome.dealmeida@vesperiagroup.com"
                 },
                 {
@@ -3655,39 +3656,40 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-02-12T19:55:15+00:00"
+            "time": "2020-02-21T13:45:08+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "2.9.14",
+            "version": "v2.9.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "5a921f2c39ded38af3e6708bc9f8720704f765b1"
+                "reference": "85570ad2fc5cd0a46432d4e86797b81a07cf5343"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5a921f2c39ded38af3e6708bc9f8720704f765b1",
-                "reference": "5a921f2c39ded38af3e6708bc9f8720704f765b1",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/85570ad2fc5cd0a46432d4e86797b81a07cf5343",
+                "reference": "85570ad2fc5cd0a46432d4e86797b81a07cf5343",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-orm-module": "^2.1",
                 "ext-imagick": "*",
                 "ext-intl": "*",
-                "monarc/core": "^2.9",
+                "laminas/laminas-dependency-plugin": "^1.0",
+                "laminas/laminas-di": "^3.1",
+                "laminas/laminas-mvc": "^3.1",
+                "laminas/laminas-mvc-console": "^1.2",
+                "laminas/laminas-permissions-rbac": "^3.0",
+                "monarc/core": "^2.9.15",
                 "monarc/phpword": "^1.0",
                 "php": "^7.1",
                 "robmorgan/phinx": "^0.11.1",
-                "symfony/console": "^5.0",
-                "zendframework/zend-di": "^3.1",
-                "zendframework/zend-mvc": "^3.1",
-                "zendframework/zend-mvc-console": "^1.2",
-                "zendframework/zend-permissions-rbac": "^3.0"
+                "symfony/console": "^5.0"
             },
             "require-dev": {
-                "roave/security-advisories": "dev-master",
-                "zendframework/zend-component-installer": "^2.1"
+                "laminas/laminas-component-installer": "^2.1",
+                "roave/security-advisories": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -3706,7 +3708,7 @@
                     "email": "guillaume@netlor.fr"
                 },
                 {
-                    "name": "Jerôme De Almeida",
+                    "name": "Jérôme De Almeida",
                     "email": "jerome.dealmeida@vesperiagroup.com"
                 },
                 {
@@ -3735,7 +3737,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-02-12T20:22:20+00:00"
+            "time": "2020-02-21T13:58:46+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -4289,16 +4291,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.9.2",
+            "version": "3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb"
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7779489a47d443f845271badbdcedfe4df8e06fb",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7e1633a6964b48589b142d60542f9ed31bd37a92",
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92",
                 "shasum": ""
             },
             "require": {
@@ -4372,7 +4374,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2019-12-17T08:18:51+00:00"
+            "time": "2020-02-21T04:36:14+00:00"
         },
         {
             "name": "ramsey/uuid-doctrine",
