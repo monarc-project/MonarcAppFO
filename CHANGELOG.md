@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.9.11 (not yet released)
+## 2.9.11 (2020-02-21)
 
 ### New
 
