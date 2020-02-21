@@ -1,6 +1,6 @@
 <?php
 
-use Zend\Mvc\Application;
+use Laminas\Mvc\Application;
 
 chdir(dirname(__DIR__));
 
@@ -28,7 +28,7 @@ if (! class_exists(Application::class)) {
 
 $appConfig = require 'config/application.config.php';
 if (file_exists('config/development.config.php')) {
-    $appConfig = Zend\Stdlib\ArrayUtils::merge($appConfig, include 'config/development.config.php');
+    $appConfig = Laminas\Stdlib\ArrayUtils::merge($appConfig, include 'config/development.config.php');
 }
 
 Application::init($appConfig)->run();

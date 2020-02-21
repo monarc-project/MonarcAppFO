@@ -2,15 +2,42 @@
     "name": "monarc/monarc",
     "description": "Monarc application",
     "authors": [
-        {"name": "Cyril Rouyer", "email": "cyril@netlor.fr"},
-        {"name": "Guillaume Lesniak", "email": "guillaume@netlor.fr"},
-        {"name": "Jerôme De Almeida", "email": "jerome.dealmeida@vesperiagroup.com"},
-        {"name": "Benjamin Ganivet", "email": "benjamin@netlor.fr"},
-        {"name": "Thomas Metois", "email": "thomas@netlor.fr"},
-        {"name": "Jérôme Lombardi", "email": "jerome.lombardi@cases.lu"},
-        {"name": "Juan Rocha", "email": "juan.rocha@cases.lu"},
-        {"name": "Cédric Bonhomme", "email": "cedric.bonhomme@cases.lu"},
-        {"name": "Ruslan Baidan", "email": "ruslan.baidan@cases.lu"}
+        {
+            "name": "Cyril Rouyer",
+            "email": "cyril@netlor.fr"
+        },
+        {
+            "name": "Guillaume Lesniak",
+            "email": "guillaume@netlor.fr"
+        },
+        {
+            "name": "Jérôme De Almeida",
+            "email": "jerome.dealmeida@vesperiagroup.com"
+        },
+        {
+            "name": "Benjamin Ganivet",
+            "email": "benjamin@netlor.fr"
+        },
+        {
+            "name": "Thomas Metois",
+            "email": "thomas@netlor.fr"
+        },
+        {
+            "name": "Jérôme Lombardi",
+            "email": "jerome.lombardi@cases.lu"
+        },
+        {
+            "name": "Juan Rocha",
+            "email": "juan.rocha@cases.lu"
+        },
+        {
+            "name": "Cédric Bonhomme",
+            "email": "cedric.bonhomme@cases.lu"
+        },
+        {
+            "name": "Ruslan Baidan",
+            "email": "ruslan.baidan@cases.lu"
+        }
     ],
     "require": {
         "php": "^7.1",
@@ -18,16 +45,17 @@
         "ext-pdo": "*",
         "monarc/frontoffice": "^2.9",
         "monarc/core": "^2.9",
-        "zendframework/zend-mvc": "^3.1",
-        "zendframework/zend-di": "^3.1",
-        "zendframework/zend-permissions-rbac": "^3.0",
-        "zendframework/zend-log": "^2.11",
-        "zendframework/zend-i18n": "^2.9",
-        "symfony/console": "^5.0"
+        "laminas/laminas-mvc": "^3.1",
+        "laminas/laminas-di": "^3.1",
+        "laminas/laminas-permissions-rbac": "^3.0",
+        "laminas/laminas-log": "^2.11",
+        "laminas/laminas-i18n": "^2.9",
+        "symfony/console": "^5.0",
+        "laminas/laminas-dependency-plugin": "^1.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "zendframework/zend-component-installer": "^2.1"
+        "laminas/laminas-component-installer": "^2.1"
     },
     "config": {
         "bin-dir": "bin/"
