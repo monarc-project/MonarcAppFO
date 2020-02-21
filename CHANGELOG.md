@@ -5,6 +5,8 @@ MONARC Changelog
 
 ### New
 
+- added users creation command
+  ([PR 27](https://github.com/monarc-project/zm-client/pull/27));
 - backend has been migrated from Zend Framework to Laminas
   ([#249](https://github.com/monarc-project/MonarcAppFO/issues/249)).
 
