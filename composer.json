@@ -50,7 +50,8 @@
         "laminas/laminas-permissions-rbac": "^3.0",
         "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
-        "symfony/console": "^5.0"
+        "symfony/console": "^5.0",
+        "laminas/laminas-dependency-plugin": "^1.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
