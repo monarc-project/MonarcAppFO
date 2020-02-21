@@ -83,7 +83,7 @@ Especially by setting a strong root password.
 
 ### Back-end
 
-The back-end is using the Zend Framework 3.
+The back-end is using [Laminas](https://getlaminas.org).
 
 Create two symbolic links:
 

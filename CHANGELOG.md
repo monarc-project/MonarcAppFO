@@ -1,6 +1,30 @@
 MONARC Changelog
 ================
 
+## 2.9.11 (2020-02-21)
+
+### New
+
+- added users creation command
+  ([PR 27](https://github.com/monarc-project/zm-client/pull/27));
+- backend has been migrated from Zend Framework to Laminas
+  ([#249](https://github.com/monarc-project/MonarcAppFO/issues/249)).
+
+
+### Fix
+
+- The description area of the shelf life is too fair at the character level
+  ([#252](https://github.com/monarc-project/MonarcAppFO/issues/252));
+- In the description of destinations area; info is not kept after registration
+  ([#253](https://github.com/monarc-project/MonarcAppFO/issues/253));
+- [GDPR module] Issue when creating a new recipient with default values
+  ([#254](https://github.com/monarc-project/MonarcAppFO/issues/254));
+- Get the list controls in BO
+  ([#256](https://github.com/monarc-project/MonarcAppFO/issues/256));
+- fix: improved performance when drag and dropping assets
+  ([ff473d9](https://github.com/monarc-project/zm-core/commit/ff473d96b51ddbdbcd8e6c59927e59f246b7b67b)).
+
+
 ## 2.9.10 (2020-01-29)
 
 ### New
