@@ -21,6 +21,8 @@ MONARC Changelog
   ([#254](https://github.com/monarc-project/MonarcAppFO/issues/254));
 - Get the list controls in BO
   ([#256](https://github.com/monarc-project/MonarcAppFO/issues/256));
+- fix: improved performance when drag and dropping assets
+  ([ff473d9](https://github.com/monarc-project/zm-core/commit/ff473d96b51ddbdbcd8e6c59927e59f246b7b67b)).
 
 
 ## 2.9.10 (2020-01-29)
