@@ -36,7 +36,7 @@ composer_version=`echo $composer_version_string | awk 'BEGIN { FS="[ ]" } ; { pr
 
 if [[ $(vercomp $composer_version 1.9.0 ; echo $?) -eq 0 ]]; then
     echo -e "${RED}Please update your version of composer.${NC} The minimum requirements is 1.9.0."
-    echo -e "The minimum requirements is 1.9.0. You can use the folowing to update your composer installation:"
+    echo -e "The minimum requirement is 1.9.0. You can use the following to update your composer installation:"
 
     cat << EOF
 
