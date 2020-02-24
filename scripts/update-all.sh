@@ -54,7 +54,6 @@ fi
 
 ./scripts/check_composer.sh
 if [[ $? -eq 1 ]]; then
-    echo 'failed'
     exit 1
 fi
 
