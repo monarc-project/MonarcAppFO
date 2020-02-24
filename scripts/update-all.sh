@@ -52,6 +52,12 @@ if [ $? != 0 ]; then
        exit 1
 fi
 
+./scripts/check_composer.sh
+if [[ $? -eq 1 ]]; then
+    echo 'failed'
+    exit 1
+fi
+
 composer install -o --no-dev
 
 pathCore="module/Monarc/Core"
