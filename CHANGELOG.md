@@ -1,6 +1,24 @@
 MONARC Changelog
 ================
 
+## 2.9.12 (2020-03-02)
+
+### New
+
+- batch import of information risks from csv/xlsx file
+  ([#246](https://github.com/monarc-project/MonarcAppFO/issues/246)).
+
+### Enhancement
+
+- use a better encryption method for the export of objects and analysis
+  ([#260](https://github.com/monarc-project/MonarcAppFO/issues/260)).
+
+### Fix
+
+- resetting positions of recommendations in the Risk treatment plan management
+  is broken ([#258](https://github.com/monarc-project/MonarcAppFO/issues/258)).
+
+
 ## 2.9.11 (2020-02-21)
 
 ### New
