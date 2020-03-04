@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.9.12 (2020-03-02)
+## 2.9.12 (2020-03-04)
 
 ### New
 
@@ -11,7 +11,11 @@ MONARC Changelog
 ### Enhancement
 
 - use a better encryption method for the export of objects and analysis
-  ([#260](https://github.com/monarc-project/MonarcAppFO/issues/260)).
+  ([#260](https://github.com/monarc-project/MonarcAppFO/issues/260));
+- sort risk analysis by label instead of sorting by created date in the home
+  page ([011b4b8](https://github.com/monarc-project/ng-client/commit/011b4b84fd2e4ada29e3b506643e2f45b9b088e2));
+- aligned left recommendations in the implementation plan table
+  ([47d8678](https://github.com/monarc-project/zm-client/commit/47d867809dd4724f45f37b2e22b51b120af0bc1f)).
 
 ### Fix
 
