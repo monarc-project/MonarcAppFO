@@ -28,8 +28,8 @@ jobs:
         #mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         #mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
-    #- name: Start MySQL (SUDO)
-      #run: sudo service mysql start
+    - name: Start MySQL (SUDO)
+      run: sudo service mysql start
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v1
