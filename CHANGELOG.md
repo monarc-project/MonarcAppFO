@@ -1,6 +1,26 @@
 MONARC Changelog
 ================
 
+## 2.9.12 (2020-03-20)
+
+### New
+
+- batch import of information risks from csv/xlsx file
+  ([#246](https://github.com/monarc-project/MonarcAppFO/issues/246)).
+
+### Enhancement
+
+- use a better encryption method for the export of objects and analysis
+  ([#260](https://github.com/monarc-project/MonarcAppFO/issues/260)).
+
+### Fix
+
+- Remove comment field of threat in export object of library 
+  ([#245](https://github.com/monarc-project/MonarcAppFO/issues/245)).
+- Edition and creation of operational risk linked a tag in use on risk analysis 
+  ([#262](https://github.com/monarc-project/MonarcAppFO/issues/262)). 
+
+
 ## 2.9.11 (2020-02-21)
 
 ### New
