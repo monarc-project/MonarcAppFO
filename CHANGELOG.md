@@ -1,6 +1,16 @@
 MONARC Changelog
 ================
 
+## 2.9.13 (2020-04-14)
+
+### Fix
+
+- Reset positions of recommendations during assets drag-n-drop 
+  ([#261](https://github.com/monarc-project/MonarcAppFO/issues/261)).
+- Change http response code if authentication is failed
+  ([#266](https://github.com/monarc-project/MonarcAppFO/issues/266)).
+
+
 ## 2.9.12 (2020-03-20)
 
 ### New
