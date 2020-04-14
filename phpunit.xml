@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         forceCoversAnnotation="true"
+         verbose="true">
+
+    <testsuites>
+        <testsuite name="Functional">
+            <directory suffix="Test.php">tests/Functional</directory>
+        </testsuite>
+
+        <testsuite name="Integration">
+            <directory suffix="Test.php">tests/Integration</directory>
+        </testsuite>
+
+        <testsuite name="Unit">
+            <directory suffix="Test.php">tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <!--
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+    </logging>
+    -->
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">module/Monarc/Core/src</directory>
+            <directory suffix=".php">module/Monarc/FrontOffice/src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

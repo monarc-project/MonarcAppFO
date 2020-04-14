@@ -18,6 +18,10 @@ post_max_size=50M
 max_execution_time=100
 max_input_time=223
 memory_limit=512M
+# session expires in 1 week:
+session.gc_maxlifetime=604800
+session.gc_probability=1
+session.gc_divisor=1000
 PHP_INI=/etc/php/7.2/apache2/php.ini
 X_DEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf

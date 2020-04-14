@@ -37,3 +37,11 @@ The username is *admin@admin.localhost* and the password is *admin*.
 You can now edit the source code with your favorite editor and test it in your
 browser. The only thing is to not forget to restart Apache in the VM after a
 modification.
+
+------------------------------
+Run tests.
+The test can be run from Monarc root folder (/home/ubuntu/monarc) of your vagrant VM (params in square brackets are optional):
+
+sudo ./bin/phpunit [--testsuite Functional | --testsuite Integration | --testsuite Unit]
+
+In case of changing the DB configuration (tests/local.php) you can run them from your host machine.
