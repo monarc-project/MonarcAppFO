@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-PATH_TO_MONARC='/home/ubuntu/monarc'
+PATH_TO_MONARC='/home/vagrant/monarc'
 
 APPENV='local'
 ENVIRONMENT='development'
@@ -26,29 +26,29 @@ export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-locale-gen en_US.UTF-8
-dpkg-reconfigure locales
+sudo -E locale-gen en_US.UTF-8
+sudo -E dpkg-reconfigure locales
 
 
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
-apt-get update && apt-get upgrade
+sudo apt-get update && sudo apt-get upgrade
 
 echo -e "\n--- Install base packages… ---\n"
-apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
+sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
 
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
-apt-get -y install mariadb-server mariadb-client > /dev/null
+sudo apt-get -y install mariadb-server mariadb-client > /dev/null
 # Secure the MariaDB installation (especially by setting a strong root password)
-systemctl restart mariadb.service > /dev/null
+sudo systemctl restart mariadb.service > /dev/null
 sleep 5
-apt-get -y install expect > /dev/null
+sudo apt-get -y install expect > /dev/null
 ## do we need to spawn mysql_secure_install with sudo in future?
 expect -f - <<-EOF
   set timeout 10
-  spawn mysql_secure_installation
+  spawn sudo mysql_secure_installation
   expect "Enter current password for root (enter for none):"
   send -- "\r"
   expect "Set root password?"
@@ -70,36 +70,36 @@ EOF
 sudo apt-get purge -y expect php-xdebug > /dev/null 2>&1
 
 echo -e "\n--- Configuring… ---\n"
-sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
-sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" $MARIA_DB_CFG
+sudo sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
+sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" $MARIA_DB_CFG
 
 echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
-mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
-mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
-systemctl restart mariadb.service > /dev/null
+sudo mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
+sudo mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
+sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
+sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
+sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
 do
- sed -i "s/^\($key\).*/\1 = $(eval echo \${$key})/" $PHP_INI
+ sudo sed -i "s/^\($key\).*/\1 = $(eval echo \${$key})/" $PHP_INI
 done
 
 echo -e "\n--- Configuring Xdebug for development ---\n"
-cat > $X_DEBUG_CFG <<EOF
+sudo bash -c cat "<< EOF > $X_DEBUG_CFG
 zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
 xdebug.idekey=IDEKEY
-EOF
+EOF"
 
 echo -e "\n--- Enabling mod-rewrite and ssl… ---\n"
-a2enmod rewrite > /dev/null 2>&1
-a2enmod ssl > /dev/null 2>&1
-a2enmod headers > /dev/null 2>&1
+sudo a2enmod rewrite > /dev/null 2>&1
+sudo a2enmod ssl > /dev/null 2>&1
+sudo a2enmod headers > /dev/null 2>&1
 
 echo -e "\n--- Allowing Apache override to all ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
@@ -111,7 +111,7 @@ if [ $? -ne 0 ]; then
     echo "\nERROR: unable to install composer\n"
     exit 1;
 fi
-composer self-update
+# sudo composer self-update
 
 echo -e "\n--- Installing MONARC… ---\n"
 cd $PATH_TO_MONARC
@@ -151,13 +151,13 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 
-chown -R www-data $PATH_TO_MONARC
-chgrp -R www-data $PATH_TO_MONARC
-chmod -R 700 $PATH_TO_MONARC
+# chown -R www-data $PATH_TO_MONARC
+# chgrp -R www-data $PATH_TO_MONARC
+chmod -R 777 $PATH_TO_MONARC
 
 
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"
-cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
+sudo bash -c "cat << EOF > /etc/apache2/sites-enabled/000-default.conf
 <VirtualHost *:80>
     ServerName localhost
     DocumentRoot $PATH_TO_MONARC/public
@@ -170,7 +170,7 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 
     <IfModule mod_headers.c>
        Header always set X-Content-Type-Options nosniff
-       Header always set X-XSS-Protection "1; mode=block"
+       Header always set X-XSS-Protection '1; mode=block'
        Header always set X-Robots-Tag none
        Header always set X-Frame-Options SAMEORIGIN
     </IfModule>
@@ -178,23 +178,16 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
     SetEnv APP_ENV $ENVIRONMENT
     SetEnv APP_DIR $PATH_TO_MONARC
 </VirtualHost>
-EOF
+EOF"
 echo -e "\n--- Restarting Apache… ---\n"
-systemctl restart apache2.service > /dev/null
+sudo systemctl restart apache2.service > /dev/null
 
 
 
 
 echo -e "\n--- Configuration of MONARC database connection ---\n"
-cat > config/autoload/local.php <<EOF
+sudo bash -c "cat << EOF > config/autoload/local.php
 <?php
-\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
-\$string = file_get_contents(\$appdir.'/package.json');
-if(\$string === FALSE) {
-    \$string = file_get_contents('./package.json');
-}
-\$package_json = json_decode(\$string, true);
-
 return array(
     'doctrine' => array(
         'connection' => array(
@@ -235,7 +228,7 @@ return array(
     */
     'activeLanguages' => array('fr','en','de','nl',),
 
-    'appVersion' => \$package_json['version'],
+    'appVersion' => '2.9.13',
 
     'checkVersion' => false,
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
@@ -252,7 +245,7 @@ return array(
         'salt' => '', // private salt for password encryption
     ),
 );
-EOF
+EOF"
 
 
 echo -e "\n--- Creation of the data bases… ---\n"
@@ -274,7 +267,7 @@ sudo npm install -g grunt-cli
 
 
 echo -e "\n--- Update the project… ---\n"
-/bin/bash ./scripts/update-all.sh > /dev/null
+./scripts/update-all.sh > /dev/null
 
 
 
@@ -286,7 +279,7 @@ php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
 echo -e "\n--- Restarting Apache… ---\n"
-systemctl restart apache2.service > /dev/null
+sudo systemctl restart apache2.service > /dev/null
 
 
 
