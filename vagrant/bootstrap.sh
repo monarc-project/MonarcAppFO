@@ -228,7 +228,7 @@ return array(
     */
     'activeLanguages' => array('fr','en','de','nl',),
 
-    'appVersion' => '2.9.13',
+    'appVersion' => '-master',
 
     'checkVersion' => false,
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
@@ -267,6 +267,7 @@ sudo npm install -g grunt-cli
 
 
 echo -e "\n--- Update the project… ---\n"
+sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
 ./scripts/update-all.sh > /dev/null
 
 
