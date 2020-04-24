@@ -129,12 +129,6 @@ ln -s ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
 
 
-mkdir -p $PATH_TO_MONARC/data/cache
-mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
-mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
-chown -R www-data data
-chmod -R 777 data
-
 
 # Front-end
 mkdir node_modules
@@ -151,9 +145,6 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 
-# chown -R www-data $PATH_TO_MONARC
-# chgrp -R www-data $PATH_TO_MONARC
-chmod -R 777 $PATH_TO_MONARC
 
 
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"
@@ -263,6 +254,18 @@ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g grunt-cli
 
+
+
+echo -e "\n--- Creating cache folders for backend… ---\n"
+mkdir -p $PATH_TO_MONARC/data/cache
+mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+
+
+
+echo -e "\n--- Adjusting user mod… ---\n"
+sudo usermod -aG www-data vagrant
+sudo usermod -aG vagrant www-data
 
 
 
