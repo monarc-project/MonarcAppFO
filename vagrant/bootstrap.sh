@@ -19,7 +19,7 @@ max_execution_time=100
 max_input_time=223
 memory_limit=512M
 PHP_INI=/etc/php/7.2/apache2/php.ini
-X_DEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
+XDEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 export DEBIAN_FRONTEND=noninteractive
@@ -89,7 +89,7 @@ do
 done
 
 echo -e "\n--- Configuring Xdebug for development ---\n"
-sudo bash -c cat "<< EOF > $X_DEBUG_CFG
+sudo bash -c cat "<< EOF > $XDEBUG_CFG
 zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
