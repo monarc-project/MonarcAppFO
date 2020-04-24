@@ -124,21 +124,25 @@ composer install -o
 # Make modules symlinks.
 mkdir -p module/Monarc
 cd module/Monarc
-ln -s ./../../vendor/monarc/core Core
-ln -s ./../../vendor/monarc/frontoffice FrontOffice
+ln -sfn ./../../vendor/monarc/core Core
+ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
 cd $PATH_TO_MONARC
 
 
 
 # Front-end
-mkdir node_modules
+mkdir -p node_modules
 cd node_modules
-git clone --config core.fileMode=false https://github.com/monarc-project/ng-client.git ng_client > /dev/null 2>&1
+if [ ! -d "ng_client" ]; then
+  git clone --config core.fileMode=false https://github.com/monarc-project/ng-client.git ng_client > /dev/null 2>&1
+fi
 if [ $? -ne 0 ]; then
     echo "\nERROR: unable to clone the ng-client repository\n"
     exit 1;
 fi
-git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr > /dev/null 2>&1
+if [ ! -d "ng_anr" ]; then
+  git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr > /dev/null 2>&1
+fi
 if [ $? -ne 0 ]; then
     echo "\nERROR: unable to clone the ng-anr repository\n"
     exit 1;
