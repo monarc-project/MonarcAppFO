@@ -1,6 +1,18 @@
 MONARC Changelog
 ================
 
+## 2.9.14 (2020-04-24)
+
+### Fix
+
+- "Edit impacts" in version 2.9.13
+  ([#273](https://github.com/monarc-project/MonarcAppFO/issues/273)).
+- Duplicate assets
+  ([#279](https://github.com/monarc-project/MonarcAppFO/issues/279)).
+- Translation "Vulnerabilities" in the Knowledge Base
+  ([#275](https://github.com/monarc-project/MonarcAppFO/issues/275)). 
+
+
 ## 2.9.13 (2020-04-14)
 
 ### Fix
