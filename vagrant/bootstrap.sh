@@ -187,45 +187,29 @@ sudo systemctl restart apache2.service > /dev/null
 echo -e "\n--- Configuration of MONARC database connection ---\n"
 sudo bash -c "cat << EOF > config/autoload/local.php
 <?php
-return array(
-    'doctrine' => array(
-        'connection' => array(
-            'orm_default' => array(
-                'params' => array(
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
                     'host' => '$DBHOST',
                     'user' => '$DBUSER_MONARC',
                     'password' => '$DBPASSWORD_MONARC',
                     'dbname' => '$DBNAME_COMMON',
-                ),
-            ),
-            'orm_cli' => array(
-                'params' => array(
+                ],
+            ],
+            'orm_cli' => [
+                'params' => [
                     'host' => '$DBHOST',
                     'user' => '$DBUSER_MONARC',
                     'password' => '$DBPASSWORD_MONARC',
                     'dbname' => '$DBNAME_CLI',
-                    ),
-                ),
-            ),
-        ),
+                ],
+            ],
+        ],
+    ],
 
-    /* Link with (ModuleCore)
-    config['languages'] = [
-        'fr' => array(
-            'index' => 1,
-            'label' => 'Français'
-        ),
-        'en' => array(
-            'index' => 2,
-            'label' => 'English'
-        ),
-        'de' => array(
-            'index' => 3,
-            'label' => 'Deutsch'
-        ),
-    ]
-    */
-    'activeLanguages' => array('fr','en','de','nl',),
+    'activeLanguages' => ['fr','en','de','nl'],
 
     'appVersion' => '-master',
 
@@ -233,17 +217,21 @@ return array(
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
 
     'email' => [
-            'name' => 'MONARC',
-            'from' => 'info@monarc.lu',
+        'name' => 'MONARC',
+        'from' => 'info@monarc.lu',
     ],
 
     'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
 
-    'monarc' => array(
+    'monarc' => [
         'ttl' => 60, // timeout
         'salt' => '', // private salt for password encryption
-    ),
-);
+    ],
+
+    'statsApi' => [
+        'baseUrl' => 'http://localhost:5002'
+    ],
+];
 EOF"
 
 
