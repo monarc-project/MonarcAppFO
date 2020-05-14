@@ -44,7 +44,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "monarc/frontoffice": "dev-feature/stats",
-        "monarc/core": "^2.9.15",
+        "monarc/core": "dev-feature/stats as 2.9.18",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",

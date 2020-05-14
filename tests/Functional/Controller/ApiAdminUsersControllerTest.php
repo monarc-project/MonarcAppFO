@@ -20,7 +20,7 @@ class ApiAdminUsersControllerTest extends AbstractFunctionalTestCase
     /** @var ConnectedUserService */
     private $connectedUserService;
 
-    /** @var AuthenticationService|MockObject */
+    /** @var AuthenticationService */
     private $authenticationService;
 
     protected function configureServiceManager(ServiceManager $serviceManager)

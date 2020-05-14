@@ -1,29 +1,35 @@
 <?php
 
-use Doctrine\DBAL\Driver\PDOSqlite\Driver;
-
 $appdir = dirname(__DIR__);
 
 return [
     'doctrine' => [
         'connection' => [
             'orm_default' => [
-                'params' => array(
-                    'host' => 'localhost',
+                'params' => [
+                    'host' => '127.0.0.1',
                     'user' => 'sqlmonarcuser',
                     'password' => 'sqlmonarcuser',
                     'dbname' => 'monarc_common_test',
                     'port' => 3306,
-                ),
+                    // To execute tests from your host machine uncomment these lines:
+                    'options' => [
+                        PDO::MYSQL_ATTR_SSL_KEY => '~/web/monarc/MonarcAppFO/vagrant/.vagrant/machines/default/virtualbox/private_key'
+                    ]
+                ],
             ],
             'orm_cli' => [
-                'params' => array(
-                    'host' => 'localhost',
+                'params' => [
+                    'host' => '127.0.0.1',
                     'user' => 'sqlmonarcuser',
                     'password' => 'sqlmonarcuser',
                     'dbname' => 'monarc_cli_test',
                     'port' => 3306,
-                ),
+                    // To execute tests from your host machine uncomment these lines:
+                    'options' => [
+                        PDO::MYSQL_ATTR_SSL_KEY => '~/web/monarc/MonarcAppFO/vagrant/.vagrant/machines/default/virtualbox/private_key'
+                    ]
+                ],
             ],
         ],
         'entitymanager' => [
