@@ -5,8 +5,7 @@ namespace MonarcAppFo\Tests\Integration\Service;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Laminas\ServiceManager\ServiceManager;
-use Monarc\Core\Service\AuthenticationService;
-use Monarc\Core\Service\ConnectedUserService;
+use Monarc\FrontOffice\Model\Table\AnrTable;
 use Monarc\FrontOffice\Model\Table\SettingTable;
 use Monarc\FrontOffice\Provider\StatsApiProvider;
 use Monarc\FrontOffice\Service\Exception\StatsAlreadyCollectedException;
@@ -17,6 +16,13 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
 {
     /** @var MockHandler */
     private $mockHandler;
+
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        static::createMyPrintTestData();
+    }
 
     protected function configureServiceManager(ServiceManager $serviceManager)
     {
@@ -51,20 +57,60 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
 
         /** @var StatsAnrService $statsAnrService */
         $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
-        $statsAnrService->collectStats();
+        $statsAnrService->collectStats([99, 78]);
 
         $this->assertEquals('GET', $this->mockHandler->getLastRequest()->getMethod());
     }
 
-    public function testItCanGenerateTheStatsWhenItIsNotDoneForToday()
+    public function testItCanGenerateTheStatsForAllTheAnrs()
     {
+        /** @var AnrTable $anrTable */
+        $anrTable = $this->getApplicationServiceLocator()->get(AnrTable::class);
+        $anrs = $anrTable->findAll();
+        $anrUuid = [];
+        foreach ($anrs as $anr) {
+            $anrUuid[] = $anr->getUuid();
+        }
+
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
         $this->mockHandler->append(new Response(200, [], '{"status": "ok"}'));
 
-        // TODO: import MyPrint to test if the exact Json is generated and compare with the last request history.
         /** @var StatsAnrService $statsAnrService */
         $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
         $statsAnrService->collectStats();
+
+        $this->assertJsonStringEqualsJsonString(
+            $this->getExpectedStatsDataJson($anrUuid),
+            $this->mockHandler->getLastRequest()->getBody()->getContents()
+        );
+    }
+
+    public function testItGenerateTheStatsOnlyForPassedAnrs()
+    {
+        $anrIdsToGenerateTheStats = [1, 2, 3];
+
+        /** @var AnrTable $anrTable */
+        $anrTable = $this->getApplicationServiceLocator()->get(AnrTable::class);
+        $anrs = $anrTable->findAll();
+        $anrUuid = [];
+        foreach ($anrs as $num => $anr) {
+            if ($num + 1 > \count($anrIdsToGenerateTheStats)) {
+                break;
+            }
+            $anrUuid[] = $anr->getUuid();
+        }
+
+        $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
+        $this->mockHandler->append(new Response(200, [], '{"status": "ok"}'));
+
+        /** @var StatsAnrService $statsAnrService */
+        $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
+        $statsAnrService->collectStats($anrIdsToGenerateTheStats);
+
+        $this->assertJsonStringEqualsJsonString(
+            $this->getExpectedStatsDataJson($anrUuid),
+            $this->mockHandler->getLastRequest()->getBody()->getContents()
+        );
     }
 
     private function getStatsResponse(array $results = []): string
@@ -79,5 +125,24 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
             ],
             'results' => $results,
         ]);
+    }
+
+    private function getExpectedStatsDataJson(array $anrUuid): string
+    {
+        $allStatsData = json_decode(
+            file_get_contents($this->testPath . '/data/expected_stats_data_for_all_anrs.json'),
+            true
+        );
+
+        $expectedStats = [];
+        foreach ($allStatsData as $num => $statsData) {
+            if (!isset($anrUuid[$num])) {
+                break;
+            }
+            $statsData['anr_uuid'] = $anrUuid[$num];
+            $expectedStats[] = $statsData;
+        }
+
+        return json_encode($expectedStats);
     }
 }

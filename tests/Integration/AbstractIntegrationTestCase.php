@@ -7,18 +7,18 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 abstract class AbstractIntegrationTestCase extends AbstractHttpControllerTestCase
 {
+    /** @var string */
+    protected $testPath;
+
     protected function setUp(): void
     {
-        $this->setApplicationConfig(require dirname(__DIR__) . '/../config/application.config.php');
+        $this->testPath = getenv('TESTS_DIR');
+
+        $this->setApplicationConfig(require dirname($this->testPath) . '/config/application.config.php');
 
         parent::setUp();
 
         $this->configureServiceManager($this->getApplicationServiceLocator());
-    }
-
-    protected function tearDown(): void
-    {
-        // TODO: clear the db data.
     }
 
     public static function setUpBeforeClass(): void
@@ -29,7 +29,12 @@ abstract class AbstractIntegrationTestCase extends AbstractHttpControllerTestCas
 
     public static function tearDownAfterClass(): void
     {
-        // TODO: drop the database or clear the phinxlog table and all the data.
+        shell_exec(getenv('TESTS_DIR') . '/scripts/clean_client_database.sh');
+    }
+
+    protected static function createMyPrintTestData(): void
+    {
+        shell_exec(getenv('TESTS_DIR') . '/scripts/insert_my_print_anrs.sh');
     }
 
     protected function configureServiceManager(ServiceManager $serviceManager)
