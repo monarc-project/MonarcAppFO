@@ -649,16 +649,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "2.12.0",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "2053eafdf60c2172ee1373d1b9289ba1db7f1fc6"
+                "reference": "308728eae8d90412d850c155d40b1cfbede549da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/2053eafdf60c2172ee1373d1b9289ba1db7f1fc6",
-                "reference": "2053eafdf60c2172ee1373d1b9289ba1db7f1fc6",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/308728eae8d90412d850c155d40b1cfbede549da",
+                "reference": "308728eae8d90412d850c155d40b1cfbede549da",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +668,7 @@
                 "doctrine/event-manager": "^1.0",
                 "doctrine/inflector": "^1.0",
                 "doctrine/lexer": "^1.0",
-                "doctrine/persistence": "^1.1",
+                "doctrine/persistence": "^1.3.3",
                 "doctrine/reflection": "^1.0",
                 "php": "^7.1"
             },
@@ -728,7 +728,21 @@
                 "doctrine",
                 "php"
             ],
-            "time": "2020-01-10T15:49:25+00:00"
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcommon",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-05-15T05:51:54+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -2117,16 +2131,16 @@
         },
         {
             "name": "laminas/laminas-dependency-plugin",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-dependency-plugin.git",
-                "reference": "f269716dc584cd7b69e7f6e8ac1092d645ab56d5"
+                "reference": "38bf91861f5b4d49f9a1c530327c997f7a7fb2db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-dependency-plugin/zipball/f269716dc584cd7b69e7f6e8ac1092d645ab56d5",
-                "reference": "f269716dc584cd7b69e7f6e8ac1092d645ab56d5",
+                "url": "https://api.github.com/repos/laminas/laminas-dependency-plugin/zipball/38bf91861f5b4d49f9a1c530327c997f7a7fb2db",
+                "reference": "38bf91861f5b4d49f9a1c530327c997f7a7fb2db",
                 "shasum": ""
             },
             "require": {
@@ -2159,7 +2173,13 @@
                 "BSD-3-Clause"
             ],
             "description": "Replace zendframework and zfcampus packages with their Laminas Project equivalents.",
-            "time": "2020-01-14T19:36:52+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-05-20T13:45:39+00:00"
         },
         {
             "name": "laminas/laminas-di",
@@ -3844,16 +3864,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "bfbbdb6c998d50dbf69d2187cb78a5f1fa36e1e9"
+                "reference": "fcd87520e4943d968557803919523772475e8ea3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/bfbbdb6c998d50dbf69d2187cb78a5f1fa36e1e9",
-                "reference": "bfbbdb6c998d50dbf69d2187cb78a5f1fa36e1e9",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/fcd87520e4943d968557803919523772475e8ea3",
+                "reference": "fcd87520e4943d968557803919523772475e8ea3",
                 "shasum": ""
             },
             "require": {
@@ -3898,7 +3918,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-04-03T16:01:00+00:00"
+            "time": "2020-05-20T16:45:56+00:00"
         },
         {
             "name": "monarc/core",
@@ -3906,12 +3926,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "c1ec0a0c3e7e271c5ceb4556d40b5a2c5bf146d9"
+                "reference": "e9d60a0a2355fe29627fde15557dac5fd51a3ce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/c1ec0a0c3e7e271c5ceb4556d40b5a2c5bf146d9",
-                "reference": "c1ec0a0c3e7e271c5ceb4556d40b5a2c5bf146d9",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/e9d60a0a2355fe29627fde15557dac5fd51a3ce3",
+                "reference": "e9d60a0a2355fe29627fde15557dac5fd51a3ce3",
                 "shasum": ""
             },
             "require": {
@@ -3986,7 +4006,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-05-14T21:38:39+00:00"
+            "time": "2020-05-17T18:26:02+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -3994,12 +4014,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "99122fee81b899c0a61b83967baf746e3abf483f"
+                "reference": "dad60abefc72ba85046f20c5d80ad03c97e23250"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/99122fee81b899c0a61b83967baf746e3abf483f",
-                "reference": "99122fee81b899c0a61b83967baf746e3abf483f",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/dad60abefc72ba85046f20c5d80ad03c97e23250",
+                "reference": "dad60abefc72ba85046f20c5d80ad03c97e23250",
                 "shasum": ""
             },
             "require": {
@@ -4073,7 +4093,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-05-14T21:38:13+00:00"
+            "time": "2020-05-22T14:56:59+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -5768,16 +5788,16 @@
         },
         {
             "name": "laminas/laminas-test",
-            "version": "3.4.1",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-test.git",
-                "reference": "b540d62ca1d3efc0813cdb50bfaf8e4abcf88426"
+                "reference": "da508dd32bdedd8f2757887ad7dfed3cf5faea2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-test/zipball/b540d62ca1d3efc0813cdb50bfaf8e4abcf88426",
-                "reference": "b540d62ca1d3efc0813cdb50bfaf8e4abcf88426",
+                "url": "https://api.github.com/repos/laminas/laminas-test/zipball/da508dd32bdedd8f2757887ad7dfed3cf5faea2d",
+                "reference": "da508dd32bdedd8f2757887ad7dfed3cf5faea2d",
                 "shasum": ""
             },
             "require": {
@@ -5837,7 +5857,13 @@
                 "laminas",
                 "test"
             ],
-            "time": "2020-03-29T13:38:04+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-05-20T14:56:04+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6454,16 +6480,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.4",
+            "version": "8.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23"
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8474e22d7d642f665084ba5ec780626cbd1efd23",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/63dda3b212a0025d380a745f91bdb4d8c985adb7",
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
                 "shasum": ""
             },
             "require": {
@@ -6543,7 +6569,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-23T04:39:42+00:00"
+            "time": "2020-05-22T13:51:52+00:00"
         },
         {
             "name": "roave/security-advisories",
@@ -6551,12 +6577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "9b0501ceb2d00bea5814316c5333d513d7622ed5"
+                "reference": "e38de1df609b39d97144514d28b0804ad4daaddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9b0501ceb2d00bea5814316c5333d513d7622ed5",
-                "reference": "9b0501ceb2d00bea5814316c5333d513d7622ed5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e38de1df609b39d97144514d28b0804ad4daaddb",
+                "reference": "e38de1df609b39d97144514d28b0804ad4daaddb",
                 "shasum": ""
             },
             "conflict": {
@@ -6569,7 +6595,8 @@
                 "asymmetricrypt/asymmetricrypt": ">=0,<9.9.99",
                 "aws/aws-sdk-php": ">=3,<3.2.1",
                 "bagisto/bagisto": "<0.1.5",
-                "barrelstrength/sprout-base-email": "<3.9",
+                "barrelstrength/sprout-base-email": "<1.2.7",
+                "barrelstrength/sprout-forms": "<3.9",
                 "bolt/bolt": "<3.6.10",
                 "brightlocal/phpwhois": "<=4.2.5",
                 "buddypress/buddypress": "<5.1.2",
@@ -6596,10 +6623,10 @@
                 "doctrine/mongodb-odm": ">=1,<1.0.2",
                 "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
-                "dolibarr/dolibarr": "<=10.0.6",
+                "dolibarr/dolibarr": "<11.0.4",
                 "dompdf/dompdf": ">=0.6,<0.6.2",
-                "drupal/core": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
-                "drupal/drupal": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
+                "drupal/core": ">=7,<7.70|>=8,<8.7.14|>=8.8,<8.8.6",
+                "drupal/drupal": ">=7,<7.70|>=8,<8.7.14|>=8.8,<8.8.6",
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
@@ -6822,7 +6849,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-14T00:01:29+00:00"
+            "time": "2020-05-22T06:49:22+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

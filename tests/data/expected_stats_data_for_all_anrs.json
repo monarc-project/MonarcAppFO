@@ -1,7 +1,12 @@
 [
   {
-    "anr_uuid": "{{uuid_0}}",
-    "stats_data": {
+    "anr": "{{uuid_0}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -159,26 +164,33 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }
     }
   },
   {
-    "anr_uuid": "{{uuid_1}}",
-    "stats_data": {
+    "anr": "{{uuid_1}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -336,26 +348,33 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }
     }
   },
   {
-    "anr_uuid": "{{uuid_2}}",
-    "stats_data": {
+    "anr": "{{uuid_2}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -513,26 +532,33 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }
     }
   },
   {
-    "anr_uuid": "{{uuid_3}}",
-    "stats_data": {
+    "anr": "{{uuid_3}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -690,26 +716,33 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }
     }
   },
   {
-    "anr_uuid": "{{uuid_4}}",
-    "stats_data": {
+    "anr": "{{uuid_4}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -867,26 +900,33 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }
     }
   },
   {
-    "anr_uuid": "{{uuid_5}}",
-    "stats_data": {
+    "anr": "{{uuid_5}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "year": "{{year}}",
+    "data": {
       "real": {
         "impact": [
           0,
@@ -1044,18 +1084,20 @@
         },
         "operationalRisks": {
           "counters": {
-            "2": {
-              "1": 3
-            },
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
             "3": {
               "1": 9
-            },
-            "1": {
-              "1": 3
             }
           },
           "distributed": [
-            15
+            28
           ]
         }
       }

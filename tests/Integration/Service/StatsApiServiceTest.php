@@ -2,14 +2,16 @@
 
 namespace MonarcAppFo\Tests\Integration\Service;
 
+use DateTime;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Laminas\ServiceManager\ServiceManager;
 use Monarc\FrontOffice\Model\Table\AnrTable;
 use Monarc\FrontOffice\Model\Table\SettingTable;
-use Monarc\FrontOffice\Provider\StatsApiProvider;
-use Monarc\FrontOffice\Service\Exception\StatsAlreadyCollectedException;
-use Monarc\FrontOffice\Service\StatsAnrService;
+use Monarc\FrontOffice\Stats\DataObject\StatsDataObject;
+use Monarc\FrontOffice\Stats\Exception\StatsAlreadyCollectedException;
+use Monarc\FrontOffice\Stats\Provider\StatsApiProvider;
+use Monarc\FrontOffice\Stats\Service\StatsAnrService;
 use MonarcAppFo\Tests\Integration\AbstractIntegrationTestCase;
 
 class StatsApiServiceTest extends AbstractIntegrationTestCase
@@ -17,11 +19,21 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
     /** @var MockHandler */
     private $mockHandler;
 
+    /** @var array */
+    private $currentDateParams;
+
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
         static::createMyPrintTestData();
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->currentDateParams = $this->getCurrentDateParams();
     }
 
     protected function configureServiceManager(ServiceManager $serviceManager)
@@ -44,7 +56,31 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         $this->expectException(StatsAlreadyCollectedException::class);
         $this->expectExceptionMessage('The stats is already collected for today.');
 
-        $this->mockHandler->append(new Response(200, [], $this->getStatsResponse([['type' => 'risks']])));
+        $this->mockHandler->append(new Response(200, [], $this->getStatsResponse([
+            [
+                'type' => StatsDataObject::TYPE_RISK,
+                'data' => [
+                    'category' => 'ANR 1',
+                    'series' => [
+                        [
+                            'label' => 'Low risks',
+                            'value' => 50,
+
+                        ],
+                        [
+                            'label' => 'Medium risks',
+                            'value' => 30,
+
+                        ],
+                        [
+                            'label' => 'High risks',
+                            'value' => 10,
+
+                        ],
+                    ],
+                ],
+            ],
+        ])));
 
         /** @var StatsAnrService $statsAnrService */
         $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
@@ -91,14 +127,13 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
 
         /** @var AnrTable $anrTable */
         $anrTable = $this->getApplicationServiceLocator()->get(AnrTable::class);
-        $anrs = $anrTable->findAll();
+        $anrs = $anrTable->findByIds($anrIdsToGenerateTheStats);
         $anrUuid = [];
         foreach ($anrs as $num => $anr) {
-            if ($num + 1 > \count($anrIdsToGenerateTheStats)) {
-                break;
-            }
             $anrUuid[] = $anr->getUuid();
         }
+
+        $this->assertCount(\count($anrIdsToGenerateTheStats), $anrUuid);
 
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
         $this->mockHandler->append(new Response(200, [], '{"status": "ok"}'));
@@ -123,7 +158,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
                     'limit' => 0,
                 ],
             ],
-            'results' => $results,
+            'data' => $results,
         ]);
     }
 
@@ -139,10 +174,26 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
             if (!isset($anrUuid[$num])) {
                 break;
             }
-            $statsData['anr_uuid'] = $anrUuid[$num];
+            $statsData['anr'] = $anrUuid[$num];
+            $statsData['day'] = $this->currentDateParams['day'];
+            $statsData['week'] = $this->currentDateParams['week'];
+            $statsData['month'] = $this->currentDateParams['month'];
+            $statsData['year'] = $this->currentDateParams['year'];
             $expectedStats[] = $statsData;
         }
 
         return json_encode($expectedStats);
+    }
+
+    private function getCurrentDateParams(): array
+    {
+        $dateTime = new DateTime();
+
+        return [
+            'day' => (int)$dateTime->format('z') + 1,
+            'week' => (int)$dateTime->format('W'),
+            'month' => (int)$dateTime->format('m'),
+            'year' => (int)$dateTime->format('Y'),
+        ];
     }
 }
