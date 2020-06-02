@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6107b6c2ccc9839092c7eb1fd28903f",
+    "content-hash": "f2947caa1f59830fefb5b8af0e011eed",
     "packages": [
         {
             "name": "brick/math",
@@ -497,20 +497,20 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.10.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "35a4a70cd94e09e2259dfae7488afc6b474ecbd3"
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/35a4a70cd94e09e2259dfae7488afc6b474ecbd3",
-                "reference": "35a4a70cd94e09e2259dfae7488afc6b474ecbd3",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/382e7f4db9a12dc6c19431743a2b096041bcdd62",
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62",
                 "shasum": ""
             },
             "require": {
-                "php": "~7.1 || ^8.0"
+                "php": "~7.1"
             },
             "conflict": {
                 "doctrine/common": ">2.2,<2.4"
@@ -575,21 +575,7 @@
                 "redis",
                 "xcache"
             ],
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-05-27T16:24:54+00:00"
+            "time": "2019-11-29T15:36:20+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -3792,12 +3778,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "2fc512924ce2965661173ea08d8abbc8a5f30df1"
+                "reference": "e6acde70d5d3f7a1920b402aa41160d69a01736b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/2fc512924ce2965661173ea08d8abbc8a5f30df1",
-                "reference": "2fc512924ce2965661173ea08d8abbc8a5f30df1",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/e6acde70d5d3f7a1920b402aa41160d69a01736b",
+                "reference": "e6acde70d5d3f7a1920b402aa41160d69a01736b",
                 "shasum": ""
             },
             "require": {
@@ -3872,7 +3858,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-06-02T13:47:19+00:00"
+            "time": "2020-06-02T16:45:20+00:00"
         },
         {
             "name": "monarc/frontoffice",
