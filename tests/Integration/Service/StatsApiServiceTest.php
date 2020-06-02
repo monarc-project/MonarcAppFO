@@ -109,7 +109,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         }
 
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
-        $this->mockHandler->append(new Response(200, [], '{"status": "ok"}'));
+        $this->mockHandler->append(new Response(201, [], '{"status": "ok"}'));
 
         /** @var StatsAnrService $statsAnrService */
         $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
@@ -136,7 +136,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         $this->assertCount(\count($anrIdsToGenerateTheStats), $anrUuid);
 
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
-        $this->mockHandler->append(new Response(200, [], '{"status": "ok"}'));
+        $this->mockHandler->append(new Response(201, [], '{"status": "ok"}'));
 
         /** @var StatsAnrService $statsAnrService */
         $statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
