@@ -3792,12 +3792,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "76a4cb0ca796f64df17a76b39027afcbaf63253e"
+                "reference": "a01451bda99b68154e0aa94cb50af10c659e983b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/76a4cb0ca796f64df17a76b39027afcbaf63253e",
-                "reference": "76a4cb0ca796f64df17a76b39027afcbaf63253e",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/a01451bda99b68154e0aa94cb50af10c659e983b",
+                "reference": "a01451bda99b68154e0aa94cb50af10c659e983b",
                 "shasum": ""
             },
             "require": {
@@ -3872,7 +3872,7 @@
                 }
             ],
             "description": "Core for monarc/monarc application",
-            "time": "2020-06-03T09:56:14+00:00"
+            "time": "2020-06-03T10:36:14+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -3880,12 +3880,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "cbb6c1a35dff2c6890a9864257f90472245750c3"
+                "reference": "e69e2578bcf61b725b3abb8746a02d9bec4fa955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/cbb6c1a35dff2c6890a9864257f90472245750c3",
-                "reference": "cbb6c1a35dff2c6890a9864257f90472245750c3",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/e69e2578bcf61b725b3abb8746a02d9bec4fa955",
+                "reference": "e69e2578bcf61b725b3abb8746a02d9bec4fa955",
                 "shasum": ""
             },
             "require": {
@@ -3954,7 +3954,7 @@
                 }
             ],
             "description": "Frontoffice for monarc/monarc application",
-            "time": "2020-06-02T13:48:41+00:00"
+            "time": "2020-06-03T10:36:47+00:00"
         },
         {
             "name": "monarc/phpword",
