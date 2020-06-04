@@ -32,6 +32,12 @@ Especially by setting a strong root password.
 
 ### Apache Virtual Host
 
+Configure a new Apache Website
+
+    $ sudo vi /etc/apache2/sites-available/monarc.conf
+
+Copy/paste this configuration
+
     <VirtualHost _default_:80>
         ServerAdmin admin@localhost.lu
         ServerName monarc.local
@@ -53,6 +59,9 @@ Especially by setting a strong root password.
         SetEnv APP_ENV "development"
     </VirtualHost>
 
+Save the file and enable the site
+
+    $ sudo a2ensite monarc
 
 ## 1.4. Install PHP and dependencies
 
@@ -68,12 +77,12 @@ Especially by setting a strong root password.
 
 ## 2.1. MONARC source code
 
-    $ mkdir -p /var/lib/monarc/fo
+    $ sudo mkdir -p /var/lib/monarc/fo
     $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
     $ cd /var/lib/monarc/fo
-    $ mkdir -p data/cache
-    $ mkdir -p data/LazyServices/Proxy
-    $ chmod -R g+w data
+    $ sudo mkdir -p data/cache
+    $ sudo mkdir -p data/LazyServices/Proxy
+    $ sudo chmod -R g+w data
     $ composer install -o
 
 
