@@ -1,6 +1,22 @@
 MONARC Changelog
 ================
 
+## 2.9.15 (2020-06-02)
+
+### Fix
+
+- Impossible to export an analysis when a user has deleted a category of a measure
+  ([#282](https://github.com/monarc-project/MonarcAppFO/issues/282)).
+- Matched referentials cannot be unlinked
+  ([#289](https://github.com/monarc-project/MonarcAppFO/issues/289)).
+- Orphan categories of controls on import function
+  ([#290](https://github.com/monarc-project/MonarcAppFO/issues/290)).
+- Improvements and fixes for German translations
+  ([#293](https://github.com/monarc-project/MonarcAppFO/issues/293)).
+- Dashboard Diagrams "No Data" 2.9.14
+  ([#294](https://github.com/monarc-project/MonarcAppFO/issues/294)).
+
+
 ## 2.9.14 (2020-04-24)
 
 ### Fix
