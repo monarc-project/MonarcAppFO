@@ -103,9 +103,9 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         /** @var AnrTable $anrTable */
         $anrTable = $this->getApplicationServiceLocator()->get(AnrTable::class);
         $anrs = $anrTable->findAll();
-        $anrUuid = [];
+        $anrUuids = [];
         foreach ($anrs as $anr) {
-            $anrUuid[] = $anr->getUuid();
+            $anrUuids[] = $anr->getUuid();
         }
 
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
@@ -116,7 +116,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         $statsAnrService->collectStats();
 
         $this->assertJsonStringEqualsJsonString(
-            $this->getExpectedStatsDataJson($anrUuid),
+            $this->getExpectedStatsDataJson($anrUuids),
             $this->mockHandler->getLastRequest()->getBody()->getContents()
         );
     }
@@ -128,12 +128,12 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         /** @var AnrTable $anrTable */
         $anrTable = $this->getApplicationServiceLocator()->get(AnrTable::class);
         $anrs = $anrTable->findByIds($anrIdsToGenerateTheStats);
-        $anrUuid = [];
+        $anrUuids = [];
         foreach ($anrs as $num => $anr) {
-            $anrUuid[] = $anr->getUuid();
+            $anrUuids[] = $anr->getUuid();
         }
 
-        $this->assertCount(\count($anrIdsToGenerateTheStats), $anrUuid);
+        $this->assertCount(\count($anrIdsToGenerateTheStats), $anrUuids);
 
         $this->mockHandler->append(new Response(200, [], $this->getStatsResponse()));
         $this->mockHandler->append(new Response(201, [], '{"status": "ok"}'));
@@ -143,7 +143,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         $statsAnrService->collectStats($anrIdsToGenerateTheStats);
 
         $this->assertJsonStringEqualsJsonString(
-            $this->getExpectedStatsDataJson($anrUuid),
+            $this->getExpectedStatsDataJson($anrUuids),
             $this->mockHandler->getLastRequest()->getBody()->getContents()
         );
     }
@@ -162,7 +162,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         ]);
     }
 
-    private function getExpectedStatsDataJson(array $anrUuid): string
+    private function getExpectedStatsDataJson(array $anrUuids): string
     {
         $allStatsData = json_decode(
             file_get_contents($this->testPath . '/data/expected_stats_data_for_all_anrs.json'),
@@ -170,16 +170,19 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
         );
 
         $expectedStats = [];
-        foreach ($allStatsData as $num => $statsData) {
-            if (!isset($anrUuid[$num])) {
-                break;
+        foreach ($anrUuids as $num => $anrUuid) {
+            foreach ($allStatsData as $statsData) {
+                if ($statsData['anr'] !== '{{uuid_' . $num . '}}') {
+                    continue;
+                }
+                $statsData['anr'] = $anrUuid;
+                $statsData['day'] = $this->currentDateParams['day'];
+                $statsData['week'] = $this->currentDateParams['week'];
+                $statsData['month'] = $this->currentDateParams['month'];
+                $statsData['quarter'] = $this->currentDateParams['quarter'];
+                $statsData['year'] = $this->currentDateParams['year'];
+                $expectedStats[] = $statsData;
             }
-            $statsData['anr'] = $anrUuid[$num];
-            $statsData['day'] = $this->currentDateParams['day'];
-            $statsData['week'] = $this->currentDateParams['week'];
-            $statsData['month'] = $this->currentDateParams['month'];
-            $statsData['year'] = $this->currentDateParams['year'];
-            $expectedStats[] = $statsData;
         }
 
         return json_encode($expectedStats);
@@ -193,6 +196,7 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
             'day' => (int)$dateTime->format('z') + 1,
             'week' => (int)$dateTime->format('W'),
             'month' => (int)$dateTime->format('m'),
+            'quarter' => (int)ceil($dateTime->format('m') / 3),
             'year' => (int)$dateTime->format('Y'),
         ];
     }
