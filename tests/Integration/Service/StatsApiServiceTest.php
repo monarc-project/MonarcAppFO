@@ -164,24 +164,21 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
 
     private function getExpectedStatsDataJson(array $anrUuids): string
     {
-        $allStatsData = json_decode(
-            file_get_contents($this->testPath . '/data/expected_stats_data_for_all_anrs.json'),
+        $statsData = json_decode(
+            file_get_contents($this->testPath . '/data/expected_stats_data_for_my_print.json'),
             true
         );
 
         $expectedStats = [];
         foreach ($anrUuids as $num => $anrUuid) {
-            foreach ($allStatsData as $statsData) {
-                if ($statsData['anr'] !== '{{uuid_' . $num . '}}') {
-                    continue;
-                }
-                $statsData['anr'] = $anrUuid;
-                $statsData['day'] = $this->currentDateParams['day'];
-                $statsData['week'] = $this->currentDateParams['week'];
-                $statsData['month'] = $this->currentDateParams['month'];
-                $statsData['quarter'] = $this->currentDateParams['quarter'];
-                $statsData['year'] = $this->currentDateParams['year'];
-                $expectedStats[] = $statsData;
+            foreach ($statsData as $data) {
+                $data['anr'] = $anrUuid;
+                $data['day'] = $this->currentDateParams['day'];
+                $data['week'] = $this->currentDateParams['week'];
+                $data['month'] = $this->currentDateParams['month'];
+                $data['quarter'] = $this->currentDateParams['quarter'];
+                $data['year'] = $this->currentDateParams['year'];
+                $expectedStats[] = $data;
             }
         }
 

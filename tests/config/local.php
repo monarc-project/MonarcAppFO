@@ -1,6 +1,8 @@
 <?php
 
-$appdir = dirname(__DIR__);
+use Doctrine\Common\Proxy\AbstractProxyFactory;
+
+$dataPath = getenv('TESTS_DIR') . '/data';
 
 return [
     'doctrine' => [
@@ -34,38 +36,38 @@ return [
         ],
         'entitymanager' => [
             'orm_default' => [
-                'connection'    => 'orm_default',
+                'connection' => 'orm_default',
                 'configuration' => 'orm_default'
             ],
             'orm_cli' => [
-                'connection'    => 'orm_cli',
+                'connection' => 'orm_cli',
                 'configuration' => 'orm_cli',
             ],
         ],
         'configuration' => [
             'orm_default' => [
-                'metadata_cache'        => 'array',
-                'query_cache'           => 'array',
-                'result_cache'          => 'array',
-                'driver'                => 'orm_default',
-                'generate_proxies'      => false,
-                'filters'               => [],
-                'datetime_functions'    => [],
-                'string_functions'      => [],
-                'numeric_functions'     => [],
-                'second_level_cache'    => [],
+                'metadata_cache' => 'array',
+                'query_cache' => 'array',
+                'result_cache' => 'array',
+                'driver' => 'orm_default',
+                'generate_proxies' => AbstractProxyFactory::AUTOGENERATE_EVAL,
+                'filters' => [],
+                'datetime_functions' => [],
+                'string_functions' => [],
+                'numeric_functions' => [],
+                'second_level_cache' => [],
             ],
             'orm_cli' => [
-                'metadata_cache'        => 'array',
-                'query_cache'           => 'array',
-                'result_cache'          => 'array',
-                'driver'                => 'orm_cli',
-                'generate_proxies'      => false,
-                'filters'               => [],
-                'datetime_functions'    => [],
-                'string_functions'      => [],
-                'numeric_functions'     => [],
-                'second_level_cache'    => [],
+                'metadata_cache' => 'array',
+                'query_cache' => 'array',
+                'result_cache' => 'array',
+                'driver' => 'orm_cli',
+                'generate_proxies' => AbstractProxyFactory::AUTOGENERATE_EVAL,
+                'filters' => [],
+                'datetime_functions' => [],
+                'string_functions' => [],
+                'numeric_functions' => [],
+                'second_level_cache' => [],
             ],
         ],
     ],

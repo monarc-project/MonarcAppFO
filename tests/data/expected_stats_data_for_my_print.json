@@ -1,0 +1,2464 @@
+[
+  {
+    "anr": "{{uuid}}",
+    "type": "risk",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "quarter": "{{quarter}}",
+    "year": "{{year}}",
+    "data": {
+      "risks": {
+        "current": {
+          "informational": [
+            {
+              "level": "Low risks",
+              "value": 66
+            },
+            {
+              "level": "Medium risks",
+              "value": 27
+            },
+            {
+              "level": "High risks",
+              "value": 8
+            }
+          ],
+          "operational": [
+            {
+              "level": "Low risks",
+              "value": 18
+            },
+            {
+              "level": "Medium risks",
+              "value": 0
+            },
+            {
+              "level": "High risks",
+              "value": 10
+            }
+          ]
+        },
+        "residual": {
+          "informational": [
+            {
+              "level": "Low risks",
+              "value": 74
+            },
+            {
+              "level": "Medium risks",
+              "value": 26
+            },
+            {
+              "level": "High risks",
+              "value": 1
+            }
+          ],
+          "operational": [
+            {
+              "level": "Low risks",
+              "value": 28
+            },
+            {
+              "level": "Medium risks",
+              "value": 0
+            },
+            {
+              "level": "High risks",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "total": {
+        "current": {
+          "informational": 101,
+          "operational": 28
+        },
+        "residual": {
+          "informational": 101,
+          "operational": 28
+        }
+      }
+    }
+  },
+  {
+    "anr": "{{uuid}}",
+    "type": "threat",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "quarter": "{{quarter}}",
+    "year": "{{year}}",
+    "data": [
+      {
+        "averageRate": "2.82",
+        "count": 12,
+        "label1": "Erreur d'utilisation",
+        "label2": "Error in use",
+        "label3": "Benutzungsfehler",
+        "label4": "Gebruiksfout",
+        "maxRisk": 36,
+        "uuid": "b402d4e0-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.87",
+        "count": 8,
+        "label1": "Dysfonctionnement ou panne du matériel",
+        "label2": "Equipment malfunction or failure",
+        "label3": "Fehlfunktion oder Ausfallen von Betriebsmittel",
+        "label4": "Slecht functionerende of defecte hardware",
+        "maxRisk": 45,
+        "uuid": "b402d523-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.15",
+        "count": 6,
+        "label1": "Usurpation de droits",
+        "label2": "Forging of rights",
+        "label3": "Rechtsanmassung",
+        "label4": "Toe-eigening van rechten",
+        "maxRisk": 45,
+        "uuid": "b402d530-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Écoute passive",
+        "label2": "Eavesdropping",
+        "label3": "Passives mithören",
+        "label4": "Passieve afluistering",
+        "maxRisk": 1,
+        "uuid": "b402d557-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Espionnage à distance",
+        "label2": "Remote spying",
+        "label3": "Fern-spionage",
+        "label4": "Spionage op afstand",
+        "maxRisk": 1,
+        "uuid": "b402d563-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 2,
+        "label1": "Copie frauduleuse ou utilisation de logiciels contrefaits",
+        "label2": "Fraudulent copying or use of counterfeit software",
+        "label3": "Betrügeriches Kopieren oder Nutzung von Raubkopien von Software",
+        "label4": "Frauduleus kopiëren of gebruiken van nagemaakte software",
+        "maxRisk": 3,
+        "uuid": "b402d579-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 2,
+        "label1": "Altération des données",
+        "label2": "Corruption of data",
+        "label3": "Datenmanipulation",
+        "label4": "Wijziging van de gegevens",
+        "maxRisk": 2,
+        "uuid": "b402d584-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.74",
+        "count": 4,
+        "label1": "Reniement d'actions",
+        "label2": "Denial of actions",
+        "label3": "Verleugnung von aktionen",
+        "label4": "Ontkenning van handelingen",
+        "maxRisk": 27,
+        "uuid": "b402d58f-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.84",
+        "count": 7,
+        "label1": "Vol ou destruction de supports, de documents ou de matériel",
+        "label2": "Theft or destruction of media, documents or equipment",
+        "label3": "Entwenden oder Zerstören von Speichermedien, Dokumenten oder Datenträger",
+        "label4": "Diefstal of vernieling van dragers, documenten of hardware",
+        "maxRisk": 20,
+        "uuid": "b402d5af-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 2,
+        "label1": "Récupération de supports recyclés ou mis au rebut",
+        "label2": "Retrieval of recycled or discarded media",
+        "label3": "Übernahme recycelter oder ausgemusterter datenträger",
+        "label4": "Recuperatie van gerecycleerde of afgedankte dragers",
+        "maxRisk": 2,
+        "uuid": "b402d5c9-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3.00",
+        "count": 3,
+        "label1": "Infection par un malware",
+        "label2": "Malware infection",
+        "label3": "Infektion durch Schadsoftware (Malware)",
+        "label4": "Infectie met malware",
+        "maxRisk": 18,
+        "uuid": "b402d5d5-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.24",
+        "count": 4,
+        "label1": "Abus de droits",
+        "label2": "Abuse of rights",
+        "label3": "Rechtsmissbrauch",
+        "label4": "Misbruik van rechten",
+        "maxRisk": 30,
+        "uuid": "b402d5ea-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 2,
+        "label1": "Divulgation d'information",
+        "label2": "Disclosure",
+        "label3": "Verbreitung",
+        "label4": "Verspreiding van informatie",
+        "maxRisk": 6,
+        "uuid": "b402d600-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 4,
+        "label1": "Atteinte à la maintenabilité du système d'information",
+        "label2": "Breach of information system maintainability",
+        "label3": "Beeinträchtigung der wartbarkeit des informationssystems",
+        "label4": "Aantasting van de onderhoudbaarheid van het informatiesysteem",
+        "maxRisk": 12,
+        "uuid": "b402d60a-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 3,
+        "label1": "Atteinte à la disponibilité du personnel",
+        "label2": "Breach of personnel availability",
+        "label3": "Beeinträchtigung der personalverfügbarkeit",
+        "label4": "Aantasting van de beschikbaarheid van het personeel",
+        "maxRisk": 30,
+        "uuid": "b402d615-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 2,
+        "label1": "Destruction de matériel ou de supports",
+        "label2": "Destruction of equipment or supports",
+        "label3": "Beschädigung von Ausrüstung oder Datenträger",
+        "label4": "Vernietiging van hardware of dragers",
+        "maxRisk": 6,
+        "uuid": "b402d620-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 2,
+        "label1": "Incendie",
+        "label2": "Fire",
+        "label3": "Brand",
+        "label4": "Brand",
+        "maxRisk": 3,
+        "uuid": "b402d63d-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Dégâts des eaux",
+        "label2": "Water damage",
+        "label3": "Wasserschäden",
+        "label4": "Waterschade",
+        "maxRisk": 3,
+        "uuid": "b402d648-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Sinistre majeur",
+        "label2": "Major accident",
+        "label3": "Grösserer schadensfall",
+        "label4": "Schadegeval van de hoogste orde",
+        "maxRisk": 3,
+        "uuid": "b402d653-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.50",
+        "count": 2,
+        "label1": "Perte d'alimentation énergétique",
+        "label2": "Loss of power supply",
+        "label3": "Ausfall der energieversorgung",
+        "label4": "Verlies van energievoorziening",
+        "maxRisk": 6,
+        "uuid": "b402d673-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 2,
+        "label1": "Défaillance de la climatisation",
+        "label2": "Failure of air-conditioning",
+        "label3": "Ausfall der klimatisierungssysteme",
+        "label4": "Defect van de airconditioning",
+        "maxRisk": 12,
+        "uuid": "b402d67d-4576-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Sinistre environnemental (Incendie, eau, poussière, saleté, etc.)",
+        "label2": "Environmental disaster (fire, flood, dust, dirt, etc.)",
+        "label3": "Umweltkatastrophe (Feuer, Überschwemmung, Staub, Smutz, etc.)",
+        "label4": "Milieuramp (brand, water, stof, vuil enz.)",
+        "maxRisk": 3,
+        "uuid": "b402d688-4576-11e9-9173-0800277f0571"
+      }
+    ]
+  },
+  {
+    "anr": "{{uuid}}",
+    "type": "vulnerability",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "quarter": "{{quarter}}",
+    "year": "{{year}}",
+    "data": [
+      {
+        "averageRate": "4.00",
+        "count": 2,
+        "label1": "Absence de charte informatique précisant les exigences d'utilisation",
+        "label2": "No IT charter specifying the rules of use",
+        "label3": "Fehlende Informatik-Charta, in der die Benutzungsanforderungen definiert werden",
+        "label4": "Gebrek aan een informaticacharter waarin de gebruikseisen worden beschreven",
+        "maxRisk": 36,
+        "uuid": "69fc1ab1-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.50",
+        "count": 2,
+        "label1": "Les utilisateurs ne sont pas sensibilisés à la sécurité de l'information",
+        "label2": "Users are not made aware of information security",
+        "label3": "Die Benutzer sind nicht für das Thema Informationssicherheit sensibilisiert.",
+        "label4": "De gebruikers worden niet gesensibiliseerd voor informatiebeveiliging",
+        "maxRisk": 36,
+        "uuid": "69fc0421-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 2,
+        "label1": "Absence de formation sur les matériels ou logiciels utilisés",
+        "label2": "No training on the equipment or software used",
+        "label3": "Fehlende Schulung bezüglich der zum Einsatz kommenden Hardware- und Softwarekomponenten",
+        "label4": "Gebrek aan een opleiding omtrent de gebruikte hardware en software",
+        "maxRisk": 9,
+        "uuid": "69fc1b5f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 2,
+        "label1": "Possibilité que certains matériels provoquent des nuisances pour le personnel utilisateur (travail devant écran, ondes...)",
+        "label2": "Possibility of some equipment being harmful to users (working in front of a screen, emanations, etc.)",
+        "label3": "Möglichkeit, dass  bestimmte Betriebsmittel schädliche Einwirkungen auf das benutzende Personal haben (Arbeiten am Bildschirm, Wellen usw.)",
+        "label4": "Mogelijkheid dat bepaalde hardwarecomponenten hinder veroorzaken voor het gebruikspersoneel (werken voor een scherm, straling ...)",
+        "maxRisk": 27,
+        "uuid": "69fc0b02-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Matériel d'utilisation complexe ou peu ergonomique",
+        "label2": "Equipment that is complex to use or not user-friendly",
+        "label3": "Komplex anzuwendende und wenig ergonomische Hardware",
+        "label4": "Complexe of niet bijzonder ergonomische hardware",
+        "maxRisk": 18,
+        "uuid": "69fc0848-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.50",
+        "count": 2,
+        "label1": "Mauvaises conditions d'utilisation",
+        "label2": "Incorrect operating conditions",
+        "label3": "Schlechte Nutzungsbedingungen",
+        "label4": "Verkeerde gebruiksomstandigheden",
+        "maxRisk": 18,
+        "uuid": "69fc0833-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de support à l'utilisateur accessible",
+        "label2": "No accessible user support",
+        "label3": "Informationsmedien sind dem Benutzer nicht zugänglich",
+        "label4": "Gebrek aan toegankelijke gebruikersondersteuning",
+        "maxRisk": 9,
+        "uuid": "69fc20e0-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Insuffisance de compétence de l'utilisateur",
+        "label2": "Users lack competency",
+        "label3": "Mangelnder Sachverstand des Nutzers",
+        "label4": "Gebruiker beschikt over te weinig kennis",
+        "maxRisk": 9,
+        "uuid": "69fc1f2b-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Absence de base documentaire, de règles et de procédures",
+        "label2": "No document base for rules and procedures",
+        "label3": "Fehlende Unterlagendatenbank über Vorschriften und Prozeduren",
+        "label4": "Gebrek aan documentatiebasis, regels en procedures",
+        "maxRisk": 18,
+        "uuid": "69fc1d28-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Vieillissement du matériel",
+        "label2": "Ageing of the equipment",
+        "label3": "Veralterung des Materials",
+        "label4": "Veroudering van de hardware",
+        "maxRisk": 18,
+        "uuid": "69fc0a81-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Mauvaise fiabilité des matériels",
+        "label2": "Poor equipment reliability",
+        "label3": "Schlechte Zuverlässigkeit der Betriebsmittel",
+        "label4": "Geringe betrouwbaarheid van de hardware",
+        "maxRisk": 18,
+        "uuid": "69fc0a71-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Défaut de maintenance",
+        "label2": "Maintenance fault",
+        "label3": "Wartungsfehler",
+        "label4": "Onderhoudsfout",
+        "maxRisk": 18,
+        "uuid": "69fc0a5f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de protection contre les perturbations électriques",
+        "label2": "No protection against electrical disturbances",
+        "label3": "Fehlender Schutz gegen elektrische Störungen",
+        "label4": "Gebrek aan bescherming tegen elektrische storingen",
+        "maxRisk": 9,
+        "uuid": "69fc0828-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3.00",
+        "count": 2,
+        "label1": "Absence de gestion de niveau de service",
+        "label2": "No service level management",
+        "label3": "Kein Service-Level-Management",
+        "label4": "Gebrek aan beheer van het serviceniveau",
+        "maxRisk": 45,
+        "uuid": "69fc1324-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "5",
+        "count": 1,
+        "label1": "Les backups ne sont pas réalisés selon l'état de l'art",
+        "label2": "Backups are not carried out in accordance with the state of the art",
+        "label3": "Backups werden nicht nach dem neuesten technischen Stand durchgeführt.",
+        "label4": "De back-ups worden niet uitgevoerd volgens de regels van het vak",
+        "maxRisk": 30,
+        "uuid": "69fc0501-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Le matériel est connecté à des réseaux externes",
+        "label2": "The system is connected to external networks",
+        "label3": "Anschluss des Betriebsmittels an externe Netzwerke",
+        "label4": "De hardware is aangesloten op externe netwerken",
+        "maxRisk": 6,
+        "uuid": "69fc0aed-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Failles dans la gestion de comptes d'administration",
+        "label2": "Flaws in the management of administrator accounts",
+        "label3": "Verwaltung von Administratorkonten weist Mängel auf",
+        "label4": "Zwakke plekken in het beheer van de administratoraccounts",
+        "maxRisk": 12,
+        "uuid": "69fc16b2-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "4.50",
+        "count": 2,
+        "label1": "La gestion des autorisations comporte des failles",
+        "label2": "Authorisation management is flawed",
+        "label3": "Das Genehmigungsmanagement weist Mängel auf.",
+        "label4": "Het beheer van de machtiging vertoont mankementen",
+        "maxRisk": 45,
+        "uuid": "69fc04c4-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Failles dans la gestion ou l'utilisation dans les comptes à privilèges",
+        "label2": "Flaws in the management or use of accounts with privileges",
+        "label3": "Verwaltung oder Nutzung der Konten mit besonderen Berechtigungen weisen Mängel auf.",
+        "label4": "Zwakke plekken in het beheer of het gebruik van de accounts met bepaalde bevoegdheden",
+        "maxRisk": 6,
+        "uuid": "69fc05aa-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Possibilité d'administrer le système à distance",
+        "label2": "Possibility of remote system administration",
+        "label3": "Möglichkeit zur Fern-Systemadministration von jeder beliebigen Arbeitsstation aus",
+        "label4": "Mogelijkheid om het systeem op afstand te beheren",
+        "maxRisk": 6,
+        "uuid": "69fbfe5f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "4",
+        "count": 1,
+        "label1": "Absence de contrôle périodique des autorisations d’accès logique",
+        "label2": "Logical access authorisations are not checked regularly",
+        "label3": "Keine regelmäßige Kontrolle der Genehmigungen für den elektronischen Zugang",
+        "label4": "Gebrek aan een periodieke controle van de logische-toegangsbevoegdheden",
+        "maxRisk": 24,
+        "uuid": "69fc05c9-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de cloisonnement des réseaux de communication",
+        "label2": "No partitioning of communication networks",
+        "label3": "Fehlende Abtrennung der Kommunikationsnetze",
+        "label4": "Gebrek aan indeling van de communicatienetwerken",
+        "maxRisk": 1,
+        "uuid": "69fc011f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Écran observable depuis l'extérieur",
+        "label2": "Screen observable from outside",
+        "label3": "Von außen einsehbarer Bildschirm",
+        "label4": "Van buitenaf observeerbaar scherm",
+        "maxRisk": 1,
+        "uuid": "69fc0b46-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériel permettant l'enregistrement de données sur support (disquette, ZIP, graveur Cédérom/DVD)",
+        "label2": "Equipment allowing data to be recorded on media (floppy disc, ZIP disc, CD/DVD writer)",
+        "label3": "Hardware zur Aufzeichnung von Daten auf Datenträgern (Diskette, ZIP, CD-ROM/DVD-Brenner)",
+        "label4": "Hardware die het opslaan van gegevens op een drager mogelijk maakt (diskette, zipdisk, cd-rom/dvd-brander)",
+        "maxRisk": 3,
+        "uuid": "69fc0d2a-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de gestion des privilèges des profils (administrateurs, utilisateurs, invité...)",
+        "label2": "No management of profile privileges (administrators, users, guest, etc.)",
+        "label3": "Fehlende Verwaltung der Zugriffsprivilegien der einzelnen Profile (Administratoren, Anwender, Gäste usw.)",
+        "label4": "Gebrek aan beheer van de rechten van de profielen (administrators, gebruikers, gast ...)",
+        "maxRisk": 3,
+        "uuid": "69fc166f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de redondance ou procédure de sauvegarde",
+        "label2": "No back-up redundancy or procedure",
+        "label3": "Fehlende Redundanz oder Speicherprozedur",
+        "label4": "Gebrek aan redundantie of back-upprocedure",
+        "maxRisk": 2,
+        "uuid": "69fc0d35-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de règles de protection des données",
+        "label2": "No data protection rules",
+        "label3": "Fehlende Datenschutzvorschriften",
+        "label4": "Gebrek aan gegevensbeschermingsregels",
+        "maxRisk": 2,
+        "uuid": "69fc0c35-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Le matériel est accessible et utilisable par tous",
+        "label2": "The equipment can be accessed and used by everyone",
+        "label3": "Die Hardware ist allgemein zugänglich und von jedermann benutzbar",
+        "label4": "De hardware is voor iedereen toegankelijk en kan door iedereen worden gebruikt",
+        "maxRisk": 2,
+        "uuid": "69fc0b3b-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de dispositif de traces et d'audit",
+        "label2": "No tracking and auditing system",
+        "label3": "Fehlende Einrichtung für Protokolldaten und Audits",
+        "label4": "Gebrek aan traceer- en auditsystemen",
+        "maxRisk": 2,
+        "uuid": "69fc0b30-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3",
+        "count": 1,
+        "label1": "Absence de conservation des traces des activités",
+        "label2": "No storage of activity tracks",
+        "label3": "Fehlende Aufbewahrung von Protokolldaten, die Aufschluss über die Aktivitäten geben",
+        "label4": "Er worden geen sporen bewaard van de activiteiten",
+        "maxRisk": 27,
+        "uuid": "69fc1924-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de définition des responsabilités",
+        "label2": "No definition of responsibilities",
+        "label3": "Fehlende Definition der Verantwortungen",
+        "label4": "Gebrek aan een definitie van de verantwoordelijkheden",
+        "maxRisk": 6,
+        "uuid": "69fc1498-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériels attractifs (valeur marchande, technologique, stratégique)",
+        "label2": "Tempting equipment (trading value, technology, strategic)",
+        "label3": "Attraktive Betriebsmittel (Marktwert und technologische und strategische Werte)",
+        "label4": "Aantrekkelijke hardware (handelswaarde, technologische en strategische waarde)",
+        "maxRisk": 3,
+        "uuid": "69fc0973-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2.00",
+        "count": 3,
+        "label1": "Le principe du moindre privilège n'est pas appliqué",
+        "label2": "The principle of least privilege is not applied",
+        "label3": "Der Least-Privileg-Grundsatz wird nicht angewendet",
+        "label4": "Het “least privilege”-beginsel wordt niet toegepast",
+        "maxRisk": 18,
+        "uuid": "69fbfe14-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "5",
+        "count": 1,
+        "label1": "Failles dans les périmètres d'accès physiques",
+        "label2": "Flaws in the physical access boundaries",
+        "label3": "Mängel bei der physischen Zugangskontrolle",
+        "label4": "Zwakke plekken in de fysieke toegangsperimeters",
+        "maxRisk": 20,
+        "uuid": "69fc054b-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "5",
+        "count": 1,
+        "label1": "Les supports de backup ne sont pas entreposés dans un endroit adéquat",
+        "label2": "Backup media are not stored in a suitable place",
+        "label3": "Die Backup-Datenträger werden nicht an einem geeigneten Ort aufbewahrt.",
+        "label4": "De back-updragers worden niet op een geschikte plaats ondergebracht",
+        "maxRisk": 20,
+        "uuid": "69fc0574-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "5",
+        "count": 1,
+        "label1": "Absence de contrôle périodique des autorisations d’accès physique",
+        "label2": "Physical access authorisations are not checked regularly",
+        "label3": "Keine regelmäßige Kontrolle der Genehmigungen für den physischen Zugang",
+        "label4": "Gebrek aan een periodieke controle van de fysieke-toegangsbevoegdheden",
+        "maxRisk": 20,
+        "uuid": "69fc05bf-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 2,
+        "label1": "Présence de données résiduelles à l'insu de l'utilisateur de matériels réattribués ou mis au rebut",
+        "label2": "Presence of residual data unknown to the user of reallocated or discarded equipment",
+        "label3": "Vorhandensein von Restdaten ohne Wissen des Benutzers auf weitergegebenen oder ausgemusterten Betriebsmitteln",
+        "label4": "Aanwezigheid van residuele data buiten het medeweten van de gebruiker op herbestemde of afgedankte hardware",
+        "maxRisk": 2,
+        "uuid": "69fc0b85-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de système de détection des logiciels malveillants\n\n",
+        "label2": "No detection system of malicious programs",
+        "label3": "Fehlende Malware Erkennungssystem",
+        "label4": "Gebrek aan een systeem voor het detecteren van malware\n\n",
+        "maxRisk": 9,
+        "uuid": "69fc1afd-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "La gestion des mises à jour (patch) comporte des lacunes",
+        "label2": "Update management (patches) is flawed",
+        "label3": "Das Update-Management (Patches) weist Lücken auf.",
+        "label4": "Het beheer van de updates (patches) vertoont lacunes",
+        "maxRisk": 18,
+        "uuid": "69fc051f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence d'une politique de durcissement des systèmes",
+        "label2": "Lack of a system hardening policy",
+        "label3": "Keine Richtlinien für das Hardening der Systeme",
+        "label4": "Gebrek aan een beleid voor het versterken van de systemen",
+        "maxRisk": 9,
+        "uuid": "69fc059f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de procédure d'installation et de configuration",
+        "label2": "No procedures for system install and configuration",
+        "label3": "Fehlende Prozeduren zur Verwaltung der System Installation und Konfiguration",
+        "label4": "Gebrek aan een installatie- en configuratieprocedure",
+        "maxRisk": 6,
+        "uuid": "69fc1a87-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "5",
+        "count": 1,
+        "label1": "Absence de vigilance lors d'une intervention d’un tiers (fournisseur, femme de ménage, etc.)",
+        "label2": "No supervision of third-party access (supplier, cleaner, etc.)",
+        "label3": "Keine Beaufsichtigung Dritter bei ihren Einsätzen (Lieferanten, Reinigungskräfte usw.)",
+        "label4": "Gebrek aan waakzaamheid tijdens een interventie van een derde (leverancier, poetsvrouw enz.)",
+        "maxRisk": 30,
+        "uuid": "69fc05d3-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de coordination entre services concernés avant l'embauche et lors de la modification du contrat",
+        "label2": "No coordination between the departments concerned before hiring staff and when contracts are modified",
+        "label3": "Keine Koordination zwischen den betreffenden Abteilungen vor der Einstellung von Mitarbeitern und bei Vertragsänderungen",
+        "label4": "Gebrek aan coördinatie tussen de betrokken diensten vóór de indienstneming en tijdens de wijziging van het contract",
+        "maxRisk": 6,
+        "uuid": "69fc063b-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3",
+        "count": 1,
+        "label1": "Absence de règles de contrôle des entrées/sorties des matériels dans l'organisme",
+        "label2": "No rules for checking equipment entering/leaving the organisation",
+        "label3": "Fehlende Kontrollvorschriften für ein- und ausgelieferte Betriebsmittel",
+        "label4": "Gebrek aan regels voor de controle van inkomende/uitgaande hardware in het organisme",
+        "maxRisk": 6,
+        "uuid": "69fc190e-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Les données de production sont utilisées à des fins de test ou de développement",
+        "label2": "Production data are used for tests or development",
+        "label3": "Die Produktivdaten werden für Test- oder Entwicklungszwecke verwendet.",
+        "label4": "De productiegegevens worden gebruikt voor test- of ontwikkelingsdoeleinden",
+        "maxRisk": 2,
+        "uuid": "69fc05dd-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériels obsolètes",
+        "label2": "Obsolete hardware",
+        "label3": "Veraltete Betriebsmittel",
+        "label4": "Verouderde hardware",
+        "maxRisk": 6,
+        "uuid": "69fc0ad8-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériels à configurations non évolutives",
+        "label2": "Non-upgradable hardware",
+        "label3": "Hardware ohne weiterentwicklungsfähige Konfigurationen",
+        "label4": "Hardware met niet-evolutieve configuraties",
+        "maxRisk": 6,
+        "uuid": "69fc0acd-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence d'organisation de gestion des incidents de sécurité",
+        "label2": "No organisation for management of security incidents",
+        "label3": "Fehlende Organisation zur Verwaltung von Sicherheitszwischenfällen",
+        "label4": "Gebrek aan beheer van de veiligheidsincidenten",
+        "maxRisk": 4,
+        "uuid": "69fc18f7-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3",
+        "count": 1,
+        "label1": "Absence de plan de reprise",
+        "label2": "No recovery plan",
+        "label3": "Kein Disaster Recovery-Plan",
+        "label4": "Gebrek aan een herstelprogramma",
+        "maxRisk": 12,
+        "uuid": "69fc04f7-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "3.00",
+        "count": 2,
+        "label1": "Non-redondance du personnel stratégique",
+        "label2": "No substitutes for strategic personnel",
+        "label3": "Keine Redundanz des strategischen Personals",
+        "label4": "Niet-redundantie van het strategische personeel",
+        "maxRisk": 30,
+        "uuid": "69fc1cfd-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériel accessible à des personnes non autorisées",
+        "label2": "Equipment accessible to unauthorized persons",
+        "label3": "Zugänglichkeit der Betriebsmittel durch Fremde",
+        "label4": "Hardware toegankelijk voor onbevoegde personen",
+        "maxRisk": 6,
+        "uuid": "69fc091c-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Fragilité des matériels",
+        "label2": "Fragility of equipment",
+        "label3": "Empfindlichkeit der Betriebsmittel",
+        "label4": "Broosheid van de hardware",
+        "maxRisk": 6,
+        "uuid": "69fc088a-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériel utilisant des matériaux inflammables (ex.: imprimantes de masse provoquant des poussières)",
+        "label2": "Equipment using flammable materials (e.g. bulk printers producing dust)",
+        "label3": "Betriebsmittel in Kontakt mit brennbaren Stoffen (z. B. stauberzeugende Massendrucker)",
+        "label4": "Hardware die gebruikmaakt van brandbare materialen (bv.: massaprinters die stof veroorzaken)",
+        "maxRisk": 3,
+        "uuid": "69fc087f-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1.00",
+        "count": 3,
+        "label1": "Absence de matériels de remplacement",
+        "label2": "No substitution equipment",
+        "label3": "Fehlende Ersatz-Betriebsmittel",
+        "label4": "Gebrek aan een vervangingshardware",
+        "maxRisk": 3,
+        "uuid": "69fc0852-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Matériel sensible aux perturbations électriques (chutes de tension, surtensions, microcoupure)",
+        "label2": "Equipment sensitive to electrical disturbances (voltage drops, overvoltages, transient power-cuts)",
+        "label3": "Störempfindliches Material (Spannungsabfälle, Überspannungen, Mikrounterbrechungen)",
+        "label4": "Hardware gevoelig voor elektrische storingen (spanningsdalingen, overspanningen, micro-onderbrekingen)",
+        "maxRisk": 6,
+        "uuid": "69fc0929-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Mauvais dimensionnement des dispositifs de secours énergie (onduleur, batteries...)",
+        "label2": "Incorrect sizing of emergency power supply equipment (inverter, batteries, etc.)",
+        "label3": "Schlechte Dimensionierung der Notversorgungseinheiten (Wechselrichter, Batterien usw.)",
+        "label4": "Verkeerde dimensionering van de noodvoedingssystemen (omzetter, batterijen ...)",
+        "maxRisk": 6,
+        "uuid": "69fc280e-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "2",
+        "count": 1,
+        "label1": "Matériel nécessitant une climatisation pour fonctionner",
+        "label2": "Equipment requiring air-conditioning in order to operate",
+        "label3": "Zu klimatisierende Betriebsmittel",
+        "label4": "Hardware die een airconditioning vereist om te werken",
+        "maxRisk": 12,
+        "uuid": "69fc0c63-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Absence de révision des besoins de climatisation en cas de modification des locaux ou d'ajout de matériel",
+        "label2": "No revision of air-conditioning needs when premises are modified or equipment is added.",
+        "label3": "Fehlende Nachkontrolle der Klimatisierungsbedürfnisse nach Umbau oder Hinzufügung von Betriebsmitteln",
+        "label4": "Gebrek aan herziening van de airconditioningsbehoeften in geval van een wijziging van de lokalen of toevoeging van hardware",
+        "maxRisk": 4,
+        "uuid": "69fc2475-4591-11e9-9173-0800277f0571"
+      },
+      {
+        "averageRate": "1",
+        "count": 1,
+        "label1": "Les locaux ne sont pas sécurisés ou peuvent être compromis par des éléments externes",
+        "label2": "Premises are not secure or could be compromised by external elements",
+        "label3": "Die Räumlichkeiten sind nicht gesichert bzw. können von fremden Personen betreten werden.",
+        "label4": "De lokalen zijn niet beveiligd of kunnen in gevaar worden gebracht door externe elementen",
+        "maxRisk": 3,
+        "uuid": "69fc0536-4591-11e9-9173-0800277f0571"
+      }
+    ]
+  },
+  {
+    "anr": "{{uuid}}",
+    "type": "cartography",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "quarter": "{{quarter}}",
+    "year": "{{year}}",
+    "data": {
+      "risks": {
+        "current": {
+          "informational": {
+            "1": {
+              "0": 12,
+              "1": 2,
+              "2": 3,
+              "6": 1
+            },
+            "2": {
+              "0": 5,
+              "1": 4,
+              "2": 3,
+              "3": 1,
+              "6": 1,
+              "8": 1,
+              "10": 3
+            },
+            "3": {
+              "0": 12,
+              "1": 8,
+              "2": 15,
+              "3": 8,
+              "4": 2,
+              "6": 9,
+              "8": 1,
+              "9": 2,
+              "10": 3,
+              "12": 3,
+              "15": 2
+            }
+          },
+          "operational": {
+            "1": [
+              8,
+              6
+            ],
+            "2": {
+              "0": 2,
+              "1": 2,
+              "4": 1
+            },
+            "3": {
+              "2": 1,
+              "4": 8
+            }
+          }
+        },
+        "residual": {
+          "informational": {
+            "1": {
+              "0": 12,
+              "1": 2,
+              "2": 3,
+              "6": 1
+            },
+            "2": {
+              "0": 7,
+              "1": 4,
+              "2": 3,
+              "3": 1,
+              "4": 2,
+              "6": 1
+            },
+            "3": {
+              "0": 12,
+              "1": 8,
+              "2": 19,
+              "3": 11,
+              "4": 3,
+              "6": 9,
+              "9": 2,
+              "12": 1
+            }
+          },
+          "operational": {
+            "1": [
+              8,
+              6
+            ],
+            "2": [
+              2,
+              3
+            ],
+            "3": {
+              "1": 9
+            }
+          }
+        }
+      },
+      "scales": {
+        "impact": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "likelihood": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          12,
+          15,
+          16,
+          20
+        ],
+        "probability": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "anr": "{{uuid}}",
+    "type": "compliance",
+    "day": "{{day}}",
+    "week": "{{week}}",
+    "month": "{{month}}",
+    "quarter": "{{quarter}}",
+    "year": "{{year}}",
+    "data": [
+      {
+        "current": [
+          {
+            "controls": [
+              {
+                "code": "5.1.1",
+                "measure": "267fc596-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "5.1.2",
+                "measure": "267fc6a6-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              }
+            ],
+            "label1": "Politiques de sécurité de l'information",
+            "label2": "Information security policies",
+            "label3": "Informationssicherheitspolitik",
+            "label4": "Informatiebeveiligingsbeleid",
+            "value": "0.20"
+          },
+          {
+            "controls": [
+              {
+                "code": "6.1.1",
+                "measure": "267fc73c-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "6.1.2",
+                "measure": "267fd0b1-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "6.1.3",
+                "measure": "267fc7c0-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "6.1.4",
+                "measure": "267fc80f-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "6.1.5",
+                "measure": "267fe6b9-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              },
+              {
+                "code": "6.2.1",
+                "measure": "267fd9d0-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "6.2.2",
+                "measure": "267fda0e-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              }
+            ],
+            "label1": "Organisation de la sécurité de l'information",
+            "label2": "Organization of information security",
+            "label3": "Organisation der Informationssicherheit",
+            "label4": "Organiseren van informatiebeveiliging",
+            "value": "0.42"
+          },
+          {
+            "controls": [
+              {
+                "code": "7.1.1",
+                "measure": "267fca6b-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "7.1.2",
+                "measure": "267fcaad-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "7.2.1",
+                "measure": "267fc6f7-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "7.2.2",
+                "measure": "267fcaeb-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "7.2.3",
+                "measure": "267fcb29-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "7.3.1",
+                "measure": "267fcb79-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              }
+            ],
+            "label1": "La sécurité des ressources humaines",
+            "label2": "Human resource security",
+            "label3": "Personalsicherheit",
+            "label4": "Veilig personeel",
+            "value": "0.73"
+          },
+          {
+            "controls": [
+              {
+                "code": "8.1.1",
+                "measure": "267fc90c-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "8.1.2",
+                "measure": "267fc94c-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "8.1.3",
+                "measure": "267fc989-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "8.1.4",
+                "measure": "267fcbce-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "8.2.1",
+                "measure": "267fc9c9-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "8.2.2",
+                "measure": "267fca19-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "8.2.3",
+                "measure": "267fe71a-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "8.3.1",
+                "measure": "267fd32a-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              },
+              {
+                "code": "8.3.2",
+                "measure": "267fd369-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "8.3.3",
+                "measure": "267fd421-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              }
+            ],
+            "label1": "Gestion des actifs",
+            "label2": "Asset management",
+            "label3": "Asset Management",
+            "label4": "Beheer van bedrijfsmiddelen",
+            "value": "0.66"
+          },
+          {
+            "controls": [
+              {
+                "code": "9.1.1",
+                "measure": "267fd659-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "9.1.2",
+                "measure": "267fd81b-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "9.2.1",
+                "measure": "267fd899-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "9.2.2",
+                "measure": "267fe782-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "9.2.3",
+                "measure": "267fd69f-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "9.2.4",
+                "measure": "267fd6e4-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "9.2.5",
+                "measure": "267fd723-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "9.2.6",
+                "measure": "267fcc3c-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "9.3.1",
+                "measure": "267fd761-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "9.4.1",
+                "measure": "267fd993-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              },
+              {
+                "code": "9.4.2",
+                "measure": "267fd954-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "9.4.3",
+                "measure": "267fd8d8-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "9.4.4",
+                "measure": "267fd917-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "9.4.5",
+                "measure": "267fdbf1-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              }
+            ],
+            "label1": "Contrôle d'accès",
+            "label2": "Access control",
+            "label3": "Zugriffskontrolle",
+            "label4": "Toegangsbeveiliging",
+            "value": "0.55"
+          },
+          {
+            "controls": [
+              {
+                "code": "10.1.1",
+                "measure": "267fda8c-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "10.1.2",
+                "measure": "267fdacc-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              }
+            ],
+            "label1": "Cryptographie",
+            "label2": "Cryptography",
+            "label3": "Kryptografie",
+            "label4": "Cryptografie",
+            "value": "0.20"
+          },
+          {
+            "controls": [
+              {
+                "code": "11.1.1",
+                "measure": "267fcca4-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "11.1.2",
+                "measure": "267fcce9-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "11.1.3",
+                "measure": "267fcd30-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.1.4",
+                "measure": "267fcd6f-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "11.1.5",
+                "measure": "267fcdac-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.1.6",
+                "measure": "267fcdec-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "11.2.1",
+                "measure": "267fce44-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "11.2.2",
+                "measure": "267fce8a-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "11.2.3",
+                "measure": "267fcecb-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "11.2.4",
+                "measure": "267fcf0a-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.2.5",
+                "measure": "267fcfdf-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.2.6",
+                "measure": "267fcf4f-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.2.7",
+                "measure": "267fcf90-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "11.2.8",
+                "measure": "267fd7a0-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "11.2.9",
+                "measure": "267fd7dd-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              }
+            ],
+            "label1": "Sécurité physique et environnementale",
+            "label2": "Physical and environmental security",
+            "label3": "Physische und Umgebungssicherheit",
+            "label4": "Fysieke beveiliging en beveiliging van de omgeving",
+            "value": "0.70"
+          },
+          {
+            "controls": [
+              {
+                "code": "12.1.1",
+                "measure": "267fd029-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.1.2",
+                "measure": "267fd073-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "12.1.3",
+                "measure": "267fd1a8-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.1.4",
+                "measure": "267fd0ef-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "12.2.1",
+                "measure": "267fd22e-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.3.1",
+                "measure": "267fd272-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.4.1",
+                "measure": "267fd529-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.4.2",
+                "measure": "267fd567-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.4.3",
+                "measure": "267fd5ae-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "12.4.4",
+                "measure": "267fd610-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "12.5.1",
+                "measure": "267fdb18-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "12.6.1",
+                "measure": "267fdda3-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.6.2",
+                "measure": "267fe8fe-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "12.7.1",
+                "measure": "267fe660-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              }
+            ],
+            "label1": "Sécurité liée à l'exploitation",
+            "label2": "Operations security",
+            "label3": "Betriebssicherheit",
+            "label4": "Beveiliging bedrijfsvoering",
+            "value": "0.85"
+          },
+          {
+            "controls": [
+              {
+                "code": "13.1.1",
+                "measure": "267fd2b1-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "13.1.2",
+                "measure": "267fd2ee-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "13.1.3",
+                "measure": "267fd85b-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "13.2.1",
+                "measure": "267fd3a6-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "13.2.2",
+                "measure": "267fd3e3-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "13.2.3",
+                "measure": "267fd462-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "13.2.4",
+                "measure": "267fc77e-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              }
+            ],
+            "label1": "Sécurité des communications",
+            "label2": "Communications security",
+            "label3": "Kommunikationssicherheit",
+            "label4": "Communicatiebeveiliging",
+            "value": "0.71"
+          },
+          {
+            "controls": [
+              {
+                "code": "14.1.1",
+                "measure": "267fda50-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "14.1.2",
+                "measure": "267fd4ac-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "14.1.3",
+                "measure": "267fd4ed-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "14.2.1",
+                "measure": "267fe8a1-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "14.2.2",
+                "measure": "267fdc38-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "14.2.3",
+                "measure": "267fdc8c-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "14.2.4",
+                "measure": "267fdcf3-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "14.2.5",
+                "measure": "267fdf36-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "14.2.6",
+                "measure": "267fe847-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "14.2.7",
+                "measure": "267fdd55-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "14.2.8",
+                "measure": "267fe7e9-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "14.2.9",
+                "measure": "267fd1ea-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "14.3.1",
+                "measure": "267fdb78-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              }
+            ],
+            "label1": "Acquisition, développement et maintenance des systèmes d'information",
+            "label2": "System acquisition, development and maintenance",
+            "label3": "Systemerwerb, Entwicklung und Wartung",
+            "label4": "Acquisitie, ontwikkeling en onderhoud van informatiesystemen",
+            "value": "0.67"
+          },
+          {
+            "controls": [
+              {
+                "code": "15.1.1",
+                "measure": "267fc88e-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              },
+              {
+                "code": "15.1.2",
+                "measure": "267fc8cc-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "15.1.3",
+                "measure": "267fe959-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "15.2.1",
+                "measure": "267fd12f-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "15.2.2",
+                "measure": "267fd16b-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              }
+            ],
+            "label1": "Relations avec le fournisseurs",
+            "label2": "Supplier relationships",
+            "label3": "Lieferantenbeziehungen",
+            "label4": "Leveranciersrelaties",
+            "value": "0.68"
+          },
+          {
+            "controls": [
+              {
+                "code": "16.1.1",
+                "measure": "267fde78-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "16.1.2",
+                "measure": "267fddeb-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              },
+              {
+                "code": "16.1.3",
+                "measure": "267fde31-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "16.1.4",
+                "measure": "267fe9b4-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "16.1.5",
+                "measure": "267fea11-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "16.1.6",
+                "measure": "267fdeb8-f705-11e8-b555-0800279aaa2b",
+                "value": "0.00"
+              },
+              {
+                "code": "16.1.7",
+                "measure": "267fdef6-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              }
+            ],
+            "label1": "Gestion des incidents liés à la sécurité de l'information",
+            "label2": "information security incident management",
+            "label3": "Informationssicherheits-Störfallmanagement",
+            "label4": "Beheer van informatiebeveiligingsincidenten",
+            "value": "0.62"
+          },
+          {
+            "controls": [
+              {
+                "code": "17.1.1",
+                "measure": "267fdf76-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "17.1.2",
+                "measure": "267fdfbe-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "17.1.3",
+                "measure": "267fe022-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "17.2.1",
+                "measure": "267fea72-f705-11e8-b555-0800279aaa2b",
+                "value": "0.20"
+              }
+            ],
+            "label1": "Aspects de la sécurité de l'information dans la gestion de la continuité de l'activité",
+            "label2": "Information security aspects of business continuity management",
+            "label3": "Informationssicherheitsaspekte des betrieblichen Kontinuitätsmanagement",
+            "label4": "Informatiebeveiligingsaspecten van bedrijfscontinuïteitsbeheer",
+            "value": "0.75"
+          },
+          {
+            "controls": [
+              {
+                "code": "18.1.1",
+                "measure": "267fe08b-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "18.1.2",
+                "measure": "267fe307-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              },
+              {
+                "code": "18.1.3",
+                "measure": "267fe37d-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "18.1.4",
+                "measure": "267fe3de-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "18.1.5",
+                "measure": "267fe510-f705-11e8-b555-0800279aaa2b",
+                "value": "0.40"
+              },
+              {
+                "code": "18.2.1",
+                "measure": "267fc84f-f705-11e8-b555-0800279aaa2b",
+                "value": "0.60"
+              },
+              {
+                "code": "18.2.2",
+                "measure": "267fe58f-f705-11e8-b555-0800279aaa2b",
+                "value": "1.00"
+              },
+              {
+                "code": "18.2.3",
+                "measure": "267fe600-f705-11e8-b555-0800279aaa2b",
+                "value": "0.80"
+              }
+            ],
+            "label1": "Conformité",
+            "label2": "Compliance",
+            "label3": "Konformität",
+            "label4": "Naleving",
+            "value": "0.77"
+          }
+        ],
+        "label1": "ISO 27002",
+        "label2": "ISO 27002",
+        "label3": "ISO 27002",
+        "label4": "ISO 27002",
+        "referential": "98ca84fb-db87-11e8-ac77-0800279aaa2b",
+        "target": [
+          {
+            "controls": [
+              {
+                "code": "5.1.1",
+                "measure": "267fc596-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "5.1.2",
+                "measure": "267fc6a6-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Politiques de sécurité de l'information",
+            "label2": "Information security policies",
+            "label3": "Informationssicherheitspolitik",
+            "label4": "Informatiebeveiligingsbeleid",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "6.1.1",
+                "measure": "267fc73c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "6.1.2",
+                "measure": "267fd0b1-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "6.1.3",
+                "measure": "267fc7c0-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "6.1.4",
+                "measure": "267fc80f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "6.1.5",
+                "measure": "267fe6b9-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              },
+              {
+                "code": "6.2.1",
+                "measure": "267fd9d0-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "6.2.2",
+                "measure": "267fda0e-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              }
+            ],
+            "label1": "Organisation de la sécurité de l'information",
+            "label2": "Organization of information security",
+            "label3": "Organisation der Informationssicherheit",
+            "label4": "Organiseren van informatiebeveiliging",
+            "value": "0.71"
+          },
+          {
+            "controls": [
+              {
+                "code": "7.1.1",
+                "measure": "267fca6b-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "7.1.2",
+                "measure": "267fcaad-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "7.2.1",
+                "measure": "267fc6f7-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "7.2.2",
+                "measure": "267fcaeb-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "7.2.3",
+                "measure": "267fcb29-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "7.3.1",
+                "measure": "267fcb79-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "La sécurité des ressources humaines",
+            "label2": "Human resource security",
+            "label3": "Personalsicherheit",
+            "label4": "Veilig personeel",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "8.1.1",
+                "measure": "267fc90c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.1.2",
+                "measure": "267fc94c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.1.3",
+                "measure": "267fc989-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.1.4",
+                "measure": "267fcbce-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.2.1",
+                "measure": "267fc9c9-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.2.2",
+                "measure": "267fca19-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.2.3",
+                "measure": "267fe71a-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.3.1",
+                "measure": "267fd32a-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              },
+              {
+                "code": "8.3.2",
+                "measure": "267fd369-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "8.3.3",
+                "measure": "267fd421-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Gestion des actifs",
+            "label2": "Asset management",
+            "label3": "Asset Management",
+            "label4": "Beheer van bedrijfsmiddelen",
+            "value": "0.90"
+          },
+          {
+            "controls": [
+              {
+                "code": "9.1.1",
+                "measure": "267fd659-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.1.2",
+                "measure": "267fd81b-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.1",
+                "measure": "267fd899-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.2",
+                "measure": "267fe782-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.3",
+                "measure": "267fd69f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.4",
+                "measure": "267fd6e4-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.5",
+                "measure": "267fd723-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.2.6",
+                "measure": "267fcc3c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.3.1",
+                "measure": "267fd761-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.4.1",
+                "measure": "267fd993-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              },
+              {
+                "code": "9.4.2",
+                "measure": "267fd954-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.4.3",
+                "measure": "267fd8d8-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.4.4",
+                "measure": "267fd917-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "9.4.5",
+                "measure": "267fdbf1-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Contrôle d'accès",
+            "label2": "Access control",
+            "label3": "Zugriffskontrolle",
+            "label4": "Toegangsbeveiliging",
+            "value": "0.92"
+          },
+          {
+            "controls": [
+              {
+                "code": "10.1.1",
+                "measure": "267fda8c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "10.1.2",
+                "measure": "267fdacc-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              }
+            ],
+            "label1": "Cryptographie",
+            "label2": "Cryptography",
+            "label3": "Kryptografie",
+            "label4": "Cryptografie",
+            "value": "0.50"
+          },
+          {
+            "controls": [
+              {
+                "code": "11.1.1",
+                "measure": "267fcca4-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.1.2",
+                "measure": "267fcce9-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.1.3",
+                "measure": "267fcd30-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.1.4",
+                "measure": "267fcd6f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.1.5",
+                "measure": "267fcdac-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.1.6",
+                "measure": "267fcdec-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.1",
+                "measure": "267fce44-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.2",
+                "measure": "267fce8a-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.3",
+                "measure": "267fcecb-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.4",
+                "measure": "267fcf0a-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.5",
+                "measure": "267fcfdf-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.6",
+                "measure": "267fcf4f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.7",
+                "measure": "267fcf90-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.8",
+                "measure": "267fd7a0-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "11.2.9",
+                "measure": "267fd7dd-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Sécurité physique et environnementale",
+            "label2": "Physical and environmental security",
+            "label3": "Physische und Umgebungssicherheit",
+            "label4": "Fysieke beveiliging en beveiliging van de omgeving",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "12.1.1",
+                "measure": "267fd029-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.1.2",
+                "measure": "267fd073-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.1.3",
+                "measure": "267fd1a8-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.1.4",
+                "measure": "267fd0ef-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.2.1",
+                "measure": "267fd22e-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.3.1",
+                "measure": "267fd272-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.4.1",
+                "measure": "267fd529-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.4.2",
+                "measure": "267fd567-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.4.3",
+                "measure": "267fd5ae-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.4.4",
+                "measure": "267fd610-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.5.1",
+                "measure": "267fdb18-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.6.1",
+                "measure": "267fdda3-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.6.2",
+                "measure": "267fe8fe-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "12.7.1",
+                "measure": "267fe660-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Sécurité liée à l'exploitation",
+            "label2": "Operations security",
+            "label3": "Betriebssicherheit",
+            "label4": "Beveiliging bedrijfsvoering",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "13.1.1",
+                "measure": "267fd2b1-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.1.2",
+                "measure": "267fd2ee-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.1.3",
+                "measure": "267fd85b-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.2.1",
+                "measure": "267fd3a6-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.2.2",
+                "measure": "267fd3e3-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.2.3",
+                "measure": "267fd462-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "13.2.4",
+                "measure": "267fc77e-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Sécurité des communications",
+            "label2": "Communications security",
+            "label3": "Kommunikationssicherheit",
+            "label4": "Communicatiebeveiliging",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "14.1.1",
+                "measure": "267fda50-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.1.2",
+                "measure": "267fd4ac-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.1.3",
+                "measure": "267fd4ed-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.1",
+                "measure": "267fe8a1-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.2",
+                "measure": "267fdc38-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.3",
+                "measure": "267fdc8c-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.4",
+                "measure": "267fdcf3-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.5",
+                "measure": "267fdf36-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.6",
+                "measure": "267fe847-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.7",
+                "measure": "267fdd55-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.8",
+                "measure": "267fe7e9-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.2.9",
+                "measure": "267fd1ea-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "14.3.1",
+                "measure": "267fdb78-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Acquisition, développement et maintenance des systèmes d'information",
+            "label2": "System acquisition, development and maintenance",
+            "label3": "Systemerwerb, Entwicklung und Wartung",
+            "label4": "Acquisitie, ontwikkeling en onderhoud van informatiesystemen",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "15.1.1",
+                "measure": "267fc88e-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "15.1.2",
+                "measure": "267fc8cc-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "15.1.3",
+                "measure": "267fe959-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "15.2.1",
+                "measure": "267fd12f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "15.2.2",
+                "measure": "267fd16b-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Relations avec le fournisseurs",
+            "label2": "Supplier relationships",
+            "label3": "Lieferantenbeziehungen",
+            "label4": "Leveranciersrelaties",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "16.1.1",
+                "measure": "267fde78-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "16.1.2",
+                "measure": "267fddeb-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              },
+              {
+                "code": "16.1.3",
+                "measure": "267fde31-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "16.1.4",
+                "measure": "267fe9b4-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "16.1.5",
+                "measure": "267fea11-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "16.1.6",
+                "measure": "267fdeb8-f705-11e8-b555-0800279aaa2b",
+                "value": "0"
+              },
+              {
+                "code": "16.1.7",
+                "measure": "267fdef6-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Gestion des incidents liés à la sécurité de l'information",
+            "label2": "information security incident management",
+            "label3": "Informationssicherheits-Störfallmanagement",
+            "label4": "Beheer van informatiebeveiligingsincidenten",
+            "value": "0.71"
+          },
+          {
+            "controls": [
+              {
+                "code": "17.1.1",
+                "measure": "267fdf76-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "17.1.2",
+                "measure": "267fdfbe-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "17.1.3",
+                "measure": "267fe022-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "17.2.1",
+                "measure": "267fea72-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Aspects de la sécurité de l'information dans la gestion de la continuité de l'activité",
+            "label2": "Information security aspects of business continuity management",
+            "label3": "Informationssicherheitsaspekte des betrieblichen Kontinuitätsmanagement",
+            "label4": "Informatiebeveiligingsaspecten van bedrijfscontinuïteitsbeheer",
+            "value": "1.00"
+          },
+          {
+            "controls": [
+              {
+                "code": "18.1.1",
+                "measure": "267fe08b-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.1.2",
+                "measure": "267fe307-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.1.3",
+                "measure": "267fe37d-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.1.4",
+                "measure": "267fe3de-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.1.5",
+                "measure": "267fe510-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.2.1",
+                "measure": "267fc84f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.2.2",
+                "measure": "267fe58f-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              },
+              {
+                "code": "18.2.3",
+                "measure": "267fe600-f705-11e8-b555-0800279aaa2b",
+                "value": "1"
+              }
+            ],
+            "label1": "Conformité",
+            "label2": "Compliance",
+            "label3": "Konformität",
+            "label4": "Naleving",
+            "value": "1.00"
+          }
+        ]
+      }
+    ]
+  }
+]
