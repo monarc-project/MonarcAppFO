@@ -84,7 +84,7 @@ sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
+sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug php-bcmath > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit

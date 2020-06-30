@@ -147,7 +147,37 @@ class StatsApiServiceTest extends AbstractIntegrationTestCase
             $this->mockHandler->getLastRequest()->getBody()->getContents()
         );
     }
+/*
+    public function testItThrowsTheExceptionIfUserIsNotLoggedIn()
+    {
 
+    }
+
+    public function testItThrowsTheExceptionIfUserDeosNotHaveTheRightsToGetTheStats()
+    {
+
+    }
+
+    public function testItAddsToTheFilterAlloedForTheUserAnrUuids()
+    {
+
+    }
+
+    public function testItAllowsToFilterBySpecificAnrsForCeoRole()
+    {
+
+    }
+
+    public function testItAllowsToGetStatsWithoutAnrsLimitationForCeoRole()
+    {
+
+    }
+
+    public function testItCanSendDifferentAgregationParamsToGetTheStats()
+    {
+
+    }
+*/
     private function getStatsResponse(array $results = []): string
     {
         return json_encode([

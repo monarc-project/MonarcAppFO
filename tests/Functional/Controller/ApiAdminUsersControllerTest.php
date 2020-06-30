@@ -9,7 +9,6 @@ use Monarc\Core\Model\Entity\UserRole;
 use Monarc\FrontOffice\Controller\ApiAdminUsersController;
 use Monarc\FrontOffice\Model\Entity\User;
 use MonarcAppFo\Tests\Functional\AbstractFunctionalTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 use Laminas\Http\Header\HeaderInterface;
 use Laminas\ServiceManager\ServiceManager;
 

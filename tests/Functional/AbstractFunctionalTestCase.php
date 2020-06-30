@@ -18,18 +18,15 @@ abstract class AbstractFunctionalTestCase extends AbstractHttpControllerTestCase
 
     protected function tearDown(): void
     {
-        // TODO: clear the db data.
     }
 
     public static function setUpBeforeClass(): void
     {
-        // Creates the DB with initial data, executes all the migrations.
         shell_exec(getenv('TESTS_DIR') . '/scripts/setup_db.sh');
     }
 
     public static function tearDownAfterClass(): void
     {
-        // TODO: drop the database or clear the phinxlog table and all the data.
     }
 
     protected function configureServiceManager(ServiceManager $serviceManager)
