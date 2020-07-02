@@ -43,6 +43,7 @@
         "php": "^7.1",
         "ext-json": "*",
         "ext-pdo": "*",
+        "ext-bcmath": "*",
         "monarc/frontoffice": "dev-feature/stats",
         "monarc/core": "dev-feature/stats as 2.9.18",
         "laminas/laminas-mvc": "^3.1",
@@ -51,7 +52,9 @@
         "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
         "symfony/console": "^5.0",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "^1.0",
+        "ocramius/proxy-manager": "<2.3",
+        "ocramius/package-versions": "<1.5"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
