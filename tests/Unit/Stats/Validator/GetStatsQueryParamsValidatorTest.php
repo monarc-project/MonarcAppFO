@@ -7,6 +7,7 @@ use Laminas\InputFilter\InputFilter;
 use Monarc\FrontOffice\Model\Entity\Anr;
 use Monarc\FrontOffice\Model\Table\AnrTable;
 use Monarc\FrontOffice\Stats\DataObject\StatsDataObject;
+use Monarc\FrontOffice\Stats\Service\StatsAnrService;
 use Monarc\FrontOffice\Stats\Validator\GetStatsQueryParamsValidator;
 use Monarc\FrontOffice\Validator\FieldValidator\AnrExistenceValidator;
 use MonarcAppFo\Tests\Unit\AbstractUnitTestCase;
@@ -72,7 +73,13 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
 
         static::assertEmpty($this->getStatsQueryParamsValidator->getErrorMessages());
         static::assertEquals(
-            ['dateFrom' => '2019-12-01', 'dateTo' => '2020-06-01', 'anrs' => [], 'type' => StatsDataObject::TYPE_RISK],
+            [
+                'dateFrom' => '2019-12-01',
+                'dateTo' => '2020-06-01',
+                'anrs' => [],
+                'type' => StatsDataObject::TYPE_RISK,
+                'aggregationPeriod' => null
+            ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
 
@@ -84,7 +91,13 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
 
         static::assertEmpty($this->getStatsQueryParamsValidator->getErrorMessages());
         static::assertEquals(
-            ['dateFrom' => '2019-12-01', 'dateTo' => '2019-12-01', 'anrs' => [], 'type' => StatsDataObject::TYPE_RISK],
+            [
+                'dateFrom' => '2019-12-01',
+                'dateTo' => '2019-12-01',
+                'anrs' => [],
+                'type' => StatsDataObject::TYPE_RISK,
+                'aggregationPeriod' => null
+            ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
     }
@@ -124,11 +137,36 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
         static::assertEquals(
             [
                 'type' => [
-                    'notInArray' => 'Type should be one of the values: '
+                    'notInArray' => 'Should be one of the values: '
                         . implode(', ', StatsDataObject::getAvailableTypes())
                 ]
             ],
             $this->getStatsQueryParamsValidator->getErrorMessages()
         );
+    }
+
+    public function testItIsNotValidOnlyWhenPassedWrongAggregationPeriod()
+    {
+        static::assertFalse($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+            'aggregationPeriod' => 'not-existed-period'
+        ]));
+        static::assertEquals(
+            [
+                'aggregationPeriod' => [
+                    'notInArray' => 'Should be one of the values: '
+                        . implode(', ', StatsAnrService::AVAILABLE_AGGREGATION_FIELDS)
+                ]
+            ],
+            $this->getStatsQueryParamsValidator->getErrorMessages()
+        );
+
+        static::assertTrue($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+        ]));
+        static::assertTrue($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+            'aggregationType' => 'week',
+        ]));
     }
 }

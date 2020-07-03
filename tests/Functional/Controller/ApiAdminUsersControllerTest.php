@@ -2,15 +2,15 @@
 
 namespace MonarcAppFo\Tests\Functional\Controller;
 
+use Laminas\Http\Header\HeaderInterface;
+use Laminas\ServiceManager\ServiceManager;
 use Monarc\Core\Model\Table\UserTable;
 use Monarc\Core\Service\AuthenticationService;
 use Monarc\Core\Service\ConnectedUserService;
-use Monarc\Core\Model\Entity\UserRole;
 use Monarc\FrontOffice\Controller\ApiAdminUsersController;
 use Monarc\FrontOffice\Model\Entity\User;
+use Monarc\FrontOffice\Model\Entity\UserRole;
 use MonarcAppFo\Tests\Functional\AbstractFunctionalTestCase;
-use Laminas\Http\Header\HeaderInterface;
-use Laminas\ServiceManager\ServiceManager;
 
 class ApiAdminUsersControllerTest extends AbstractFunctionalTestCase
 {
