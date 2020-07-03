@@ -6,6 +6,7 @@ nbproject
 .project
 .settings
 migrations
+!tests/migrations
 *.sublime-*
 vagrant/.vagrant/
 vagrant/*.log
