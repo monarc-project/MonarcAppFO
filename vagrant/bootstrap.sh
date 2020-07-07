@@ -306,7 +306,7 @@ source $HOME/.poetry/env
 
 git clone https://github.com/monarc-project/stats-service $PATH_TO_STATS_SERVICE
 cd $PATH_TO_STATS_SERVICE
-poetry install
+poetry install --no-dev
 
 bash -c "cat << EOF > $PATH_TO_STATS_SERVICE/instance/production.py
 HOST = '$STATS_HOST'
