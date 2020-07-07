@@ -299,6 +299,8 @@ sudo -u postgres psql -c "ALTER USER $DBUSER_MONARC WITH SUPERUSER;"
 cd ~
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 echo  'export PATH="$PATH:$HOME/.poetry/bin"' >> ~/.bashrc
+echo  'export FLASK_APP=runserver.py' >> ~/.bashrc
+echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
 source ~/.bashrc
 source $HOME/.poetry/env
 
