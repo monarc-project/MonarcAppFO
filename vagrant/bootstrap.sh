@@ -329,6 +329,8 @@ SQLALCHEMY_DATABASE_URI = 'postgres://{user}:{password}@{host}:{port}/{name}'.fo
     name=DATABASE_NAME, **DB_CONFIG_DICT
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+MOSP_URL = 'https://objects.monarc.lu'
 EOF"
 
 export FLASK_APP=runserver.py
