@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 PATH_TO_MONARC='/home/vagrant/monarc'
+PATH_TO_STATS_SERVICE='/home/vagrant/stats-service'
 
 APPENV='local'
 ENVIRONMENT='development'
@@ -12,6 +13,7 @@ DBUSER_ADMIN='root'
 DBPASSWORD_ADMIN="root"
 DBUSER_MONARC='sqlmonarcuser'
 DBPASSWORD_MONARC="sqlmonarcuser"
+DBNAME_STATS='statsservice'
 
 upload_max_filesize=200M
 post_max_size=50M
@@ -22,9 +24,13 @@ memory_limit=512M
 session.gc_maxlifetime=604800
 session.gc_probability=1
 session.gc_divisor=1000
+
 PHP_INI=/etc/php/7.2/apache2/php.ini
 XDEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
+
+STATS_HOST='0.0.0.0'
+STATS_PORT='5005'
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -235,6 +241,7 @@ return [
 EOF"
 
 
+
 echo -e "\n--- Creation of the data bases… ---\n"
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
@@ -246,7 +253,7 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 
 
 echo -e "\n--- Installation of Grunt… ---\n"
-curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g grunt-cli
 
@@ -282,6 +289,84 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
+echo -e "\n--- Installing the stats service… ---\n"
+sudo apt-get -y install postgresql python3-pip python3-venv
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+sudo -u postgres psql -c "CREATE USER $DBUSER_MONARC WITH PASSWORD '$DBPASSWORD_MONARC';"
+sudo -u postgres psql -c "ALTER USER $DBUSER_MONARC WITH SUPERUSER;"
+
+cd ~
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+echo  'export PATH="$PATH:$HOME/.poetry/bin"' >> ~/.bashrc
+source ~/.bashrc
+source $HOME/.poetry/env
+
+git clone https://github.com/monarc-project/stats-service $PATH_TO_STATS_SERVICE
+cd $PATH_TO_STATS_SERVICE
+poetry install
+
+bash -c "cat << EOF > $PATH_TO_STATS_SERVICE/instance/production.py
+HOST = '$STATS_HOST'
+PORT = $STATS_PORT
+DEBUG = False
+TESTING = False
+INSTANCE_URL = 'http://127.0.0.1:$STATS_PORT'
+
+ADMIN_EMAIL = 'info@cases.lu'
+ADMIN_URL = 'https://www.cases.lu'
+
+REMOTE_STATS_SERVER = 'https://dashboard.monarc.lu'
+
+DB_CONFIG_DICT = {
+    'user': '$DBUSER_MONARC',
+    'password': '$DBPASSWORD_MONARC',
+    'host': 'localhost',
+    'port': 5432,
+}
+DATABASE_NAME = '$DBNAME_STATS'
+SQLALCHEMY_DATABASE_URI = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
+    name=DATABASE_NAME, **DB_CONFIG_DICT
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+EOF"
+
+export FLASK_APP=runserver.py
+export STATS_CONFIG=production.py
+
+FLASK_APP=runserver.py poetry run flask db_create
+FLASK_APP=runserver.py poetry run flask db_init
 
 
-echo -e "\n--- MONARC is ready! Point your Web browser to http://127.0.0.1:5001 ---\n"
+sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
+[Unit]
+Description=Stats
+After=network.target
+
+[Service]
+User=vagrant
+Environment=LANG=en_US.UTF-8
+Environment=LC_ALL=en_US.UTF-8
+Environment=FLASK_APP=runserver.py
+Environment=FLASK_ENV=production
+Environment=STATS_CONFIG=production.py
+Environment=FLASK_RUN_HOST=$STATS_HOST
+Environment=FLASK_RUN_PORT=$STATS_PORT
+WorkingDirectory=$PATH_TO_STATS_SERVICE
+ExecStart=/home/vagrant/.poetry/bin/poetry run flask run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF"
+
+sudo systemctl daemon-reload
+sleep 1
+sudo systemctl enable statsservice.service
+sleep 3
+sudo systemctl restart statsservice
+#systemctl status statsservice.service
+
+
+echo -e "\n--- MONARC is ready and avalable at http://127.0.0.1:5001 ---\n"
+echo -e "\n--- Stats service is ready and available at http://127.0.0.1:$STATS_PORT ---\n"
