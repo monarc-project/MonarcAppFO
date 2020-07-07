@@ -235,7 +235,7 @@ return [
     ],
 
     'statsApi' => [
-        'baseUrl' => 'http://localhost:5002'
+        'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
     ],
 ];
 EOF"
