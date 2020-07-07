@@ -128,7 +128,7 @@ cd $PATH_TO_MONARC
 git config core.fileMode false
 
 echo -e "\n--- Installing the dependencies… ---\n"
-composer install -o
+composer ins
 
 
 # Make modules symlinks.
