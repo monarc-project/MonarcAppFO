@@ -1,5 +1,9 @@
 #! /usr/bin/env bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 PATH_TO_MONARC='/home/vagrant/monarc'
 PATH_TO_STATS_SERVICE='/home/vagrant/stats-service'
 
@@ -364,13 +368,13 @@ Restart=always
 WantedBy=multi-user.target
 EOF"
 
-sudo systemctl daemon-reload
+sudo systemctl daemon-reload > /dev/null
 sleep 1
-sudo systemctl enable statsservice.service
+sudo systemctl enable statsservice.service > /dev/null
 sleep 3
-sudo systemctl restart statsservice
+sudo systemctl restart statsservice > /dev/null
 #systemctl status statsservice.service
 
 
-echo -e "\n--- MONARC is ready and avalable at http://127.0.0.1:5001 ---\n"
-echo -e "\n--- Stats service is ready and available at http://127.0.0.1:$STATS_PORT ---\n"
+echo -e "MONARC is ready and avalable at http://127.0.0.1:5001"
+echo -e "Stats service is ready and available at http://127.0.0.1:$STATS_PORT"
