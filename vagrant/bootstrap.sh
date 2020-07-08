@@ -278,7 +278,7 @@ sudo usermod -aG vagrant www-data
 
 echo -e "\n--- Update the project… ---\n"
 sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
-./scripts/update-all.sh > /dev/null
+./scripts/update-all.sh -d > /dev/null
 
 
 
