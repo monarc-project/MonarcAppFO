@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Laminas\ServiceManager\ServiceManager;
+use LogicException;
 use Monarc\Core\Service\ConnectedUserService;
 use Monarc\FrontOffice\Model\Entity\Anr;
 use Monarc\FrontOffice\Model\Entity\UserAnr;
@@ -182,6 +183,20 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
             ->method('getConnectedUser')
             ->willReturn($user);
 
+        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_CARTOGRAPHY]);
+    }
+
+    public function testItThrowsLogicExceptionIfTypeIsNotPassed()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Filter parameter \'type\' is mandatory to get the stats.');
+
+        $user = $this->createMock(User::class);
+        $this->connectedUserService
+            ->expects($this->once())
+            ->method('getConnectedUser')
+            ->willReturn($user);
+
         $this->statsAnrService->getStats([]);
     }
 
@@ -203,18 +218,21 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         $this->connectedUserService->expects($this->exactly(2))->method('getConnectedUser')->willReturn($user);
         $this->statsApiMockHandler->append(new Response(200, [], $this->getStatsResponse()));
 
-        $stats = $this->statsAnrService->getStats([]);
+        $stats = $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_COMPLIANCE]);
 
         $this->assertEmpty($stats);
 
         $defaultDates = [
-            'dateFrom' => (new DateTime())->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
-            'dateTo' => (new DateTime())->format('Y-m-d'),
+            'date_from' => (new DateTime())->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
+            'date_to' => (new DateTime())->format('Y-m-d'),
         ];
         $queryParams = [];
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals(
-            array_merge(['anrs' => [$anr1->getUuid(), $anr2->getUuid(), $anr3->getUuid()]], $defaultDates),
+            array_merge([
+                'anrs' => [$anr1->getUuid(), $anr2->getUuid(), $anr3->getUuid()],
+                'type' => StatsDataObject::TYPE_COMPLIANCE,
+            ], $defaultDates),
             $queryParams
         );
 
@@ -245,13 +263,16 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         ]);
         $this->statsApiMockHandler->append(new Response(200, [], $statsResponse));
 
-        $stats = $this->statsAnrService->getStats(['anrs' => [1, 3, 7]]);
+        $stats = $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_RISK, 'anrs' => [1, 3, 7]]);
 
         $this->assertEquals($this->getStatsResponse($stats), $statsResponse);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals(
-            array_merge(['anrs' => [$anr1->getUuid(), $anr3->getUuid()]], $defaultDates),
+            array_merge([
+                'anrs' => [$anr1->getUuid(), $anr3->getUuid()],
+                'type' => StatsDataObject::TYPE_RISK,
+            ], $defaultDates),
             $queryParams
         );
     }
@@ -271,24 +292,28 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         }
 
         $defaultDates = [
-            'dateFrom' => (new DateTime())->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
-            'dateTo' => (new DateTime())->format('Y-m-d'),
+            'date_from' => (new DateTime())->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
+            'date_to' => (new DateTime())->format('Y-m-d'),
         ];
 
         $this->statsApiMockHandler->append(new Response(200, [], $this->getStatsResponse()));
         $this->statsApiMockHandler->append(new Response(200, [], $this->getStatsResponse()));
 
         $this->statsAnrService->getStats([
+            'type' => StatsDataObject::TYPE_RISK,
             'anrs' => [1, 2, 3, 99] // anr ID = 99 is not in thew db.
         ]);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
-        $this->assertEquals(array_merge(['anrs' => $anrUuids], $defaultDates), $queryParams);
+        $this->assertEquals(array_merge([
+            'anrs' => $anrUuids,
+            'type' => StatsDataObject::TYPE_RISK
+        ], $defaultDates), $queryParams);
 
-        $this->statsAnrService->getStats([]);
+        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_VULNERABILITY]);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
-        $this->assertEquals($defaultDates, $queryParams);
+        $this->assertEquals(array_merge(['type' => StatsDataObject::TYPE_VULNERABILITY], $defaultDates), $queryParams);
     }
 
     public function testItCanSendDifferentParamsToGetTheStats()
@@ -322,9 +347,12 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals(array_merge([
             'anrs' => $anrUuids,
-            'aggregationPeriod' => 'month',
+            'aggregation_period' => 'month',
             'type' => StatsDataObject::TYPE_COMPLIANCE
-        ], $datesRange), $queryParams);
+        ], [
+            'date_from' => $datesRange['dateFrom'],
+            'date_to' => $datesRange['dateTo'],
+        ]), $queryParams);
 
         $this->statsAnrService->getStats(array_merge([
             'aggregationPeriod' => 'week',
@@ -333,9 +361,12 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals(array_merge([
-            'aggregationPeriod' => 'week',
+            'aggregation_period' => 'week',
             'type' => StatsDataObject::TYPE_VULNERABILITY
-        ], $datesRange), $queryParams);
+        ], [
+            'date_from' => $datesRange['dateFrom'],
+            'date_to' => $datesRange['dateTo'],
+        ]), $queryParams);
     }
 
     public function testItFetchesStatsForDefaultPeriodIfFromAndToDatesAreNotPassed()
@@ -354,26 +385,35 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         $this->statsApiMockHandler->append(new Response(200, [], $this->getStatsResponse()));
         $this->statsApiMockHandler->append(new Response(200, [], $this->getStatsResponse()));
 
-        $this->statsAnrService->getStats([]);
-
-        parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
-        $this->assertEquals($defaultDates, $queryParams);
-
-        $this->statsAnrService->getStats(['dateFrom' => (new DateTime())->modify('-6 months')->format('Y-m-d')]);
+        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_THREAT]);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals([
-            'dateFrom' => (new DateTime())->modify('-6 months')->format('Y-m-d'),
-            'dateTo' => $defaultDates['dateTo']
+            'date_from' => $defaultDates['dateFrom'],
+            'date_to' => $defaultDates['dateTo'],
+            'type' => StatsDataObject::TYPE_THREAT,
+        ], $queryParams);
+
+        $this->statsAnrService->getStats([
+            'type' => StatsDataObject::TYPE_THREAT,
+            'dateFrom' => (new DateTime())->modify('-6 months')->format('Y-m-d')
+        ]);
+
+        parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
+        $this->assertEquals([
+            'date_from' => (new DateTime())->modify('-6 months')->format('Y-m-d'),
+            'date_to' => $defaultDates['dateTo'],
+            'type' => StatsDataObject::TYPE_THREAT,
         ], $queryParams);
 
         $dateTo = (new DateTimeImmutable())->modify('-6 months');
-        $this->statsAnrService->getStats(['dateTo' => $dateTo->format('Y-m-d')]);
+        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_THREAT, 'dateTo' => $dateTo->format('Y-m-d')]);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals([
-            'dateFrom' => $dateTo->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
-            'dateTo' => $dateTo->format('Y-m-d')
+            'type' => StatsDataObject::TYPE_THREAT,
+            'date_from' => $dateTo->modify('-' . StatsAnrService::DEFAULT_STATS_DATES_RANGE)->format('Y-m-d'),
+            'date_to' => $dateTo->format('Y-m-d')
         ], $queryParams);
     }
 
@@ -381,11 +421,9 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
     {
         return json_encode([
             'metadata' => [
-                'resultset' => [
-                    'count' => \count($results),
-                    'offset' => 0,
-                    'limit' => 0,
-                ],
+                'count' => \count($results),
+                'offset' => 0,
+                'limit' => 0,
             ],
             'data' => $results,
         ]);
