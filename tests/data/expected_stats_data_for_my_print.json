@@ -2,11 +2,7 @@
   {
     "anr": "{{uuid}}",
     "type": "risk",
-    "day": "{{day}}",
-    "week": "{{week}}",
-    "month": "{{month}}",
-    "quarter": "{{quarter}}",
-    "year": "{{year}}",
+    "date": "{{date}}",
     "data": {
       "risks": {
         "current": {
@@ -85,11 +81,7 @@
   {
     "anr": "{{uuid}}",
     "type": "threat",
-    "day": "{{day}}",
-    "week": "{{week}}",
-    "month": "{{month}}",
-    "quarter": "{{quarter}}",
-    "year": "{{year}}",
+    "date": "{{date}}",
     "data": [
       {
         "averageRate": "2.82",
@@ -316,11 +308,7 @@
   {
     "anr": "{{uuid}}",
     "type": "vulnerability",
-    "day": "{{day}}",
-    "week": "{{week}}",
-    "month": "{{month}}",
-    "quarter": "{{quarter}}",
-    "year": "{{year}}",
+    "date": "{{date}}",
     "data": [
       {
         "averageRate": "4.00",
@@ -917,11 +905,7 @@
   {
     "anr": "{{uuid}}",
     "type": "cartography",
-    "day": "{{day}}",
-    "week": "{{week}}",
-    "month": "{{month}}",
-    "quarter": "{{quarter}}",
-    "year": "{{year}}",
+    "date": "{{date}}",
     "data": {
       "risks": {
         "current": {
@@ -1050,11 +1034,7 @@
   {
     "anr": "{{uuid}}",
     "type": "compliance",
-    "day": "{{day}}",
-    "week": "{{week}}",
-    "month": "{{month}}",
-    "quarter": "{{quarter}}",
-    "year": "{{year}}",
+    "date": "{{date}}",
     "data": [
       {
         "current": [

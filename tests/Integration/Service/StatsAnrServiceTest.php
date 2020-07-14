@@ -30,8 +30,8 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
     /** @var MockHandler */
     private $statsApiMockHandler;
 
-    /** @var array */
-    private $currentDateParams;
+    /** @var string */
+    private $currentDate;
 
     /** @var StatsAnrService */
     private $statsAnrService;
@@ -50,7 +50,7 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
     {
         parent::setUp();
 
-        $this->currentDateParams = $this->getCurrentDateParams();
+        $this->currentDate = (new DateTime())->format('Y-m-d');
         $this->statsAnrService = $this->getApplicationServiceLocator()->get(StatsAnrService::class);
     }
 
@@ -440,28 +440,11 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         foreach ($anrUuids as $num => $anrUuid) {
             foreach ($statsData as $data) {
                 $data['anr'] = $anrUuid;
-                $data['day'] = $this->currentDateParams['day'];
-                $data['week'] = $this->currentDateParams['week'];
-                $data['month'] = $this->currentDateParams['month'];
-                $data['quarter'] = $this->currentDateParams['quarter'];
-                $data['year'] = $this->currentDateParams['year'];
+                $data['date'] = $this->currentDate;
                 $expectedStats[] = $data;
             }
         }
 
         return json_encode($expectedStats);
-    }
-
-    private function getCurrentDateParams(): array
-    {
-        $dateTime = new DateTime();
-
-        return [
-            'day' => (int)$dateTime->format('z') + 1,
-            'week' => (int)$dateTime->format('W'),
-            'month' => (int)$dateTime->format('m'),
-            'quarter' => (int)ceil($dateTime->format('m') / 3),
-            'year' => (int)$dateTime->format('Y'),
-        ];
     }
 }
