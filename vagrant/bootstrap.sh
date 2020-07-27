@@ -5,11 +5,11 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 PATH_TO_MONARC='/home/vagrant/monarc'
-PATH_TO_STATS_SERVICE='/home/vagrant/stats-service'
 
 APPENV='local'
 ENVIRONMENT='development'
 
+# MariaDB database
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
 DBNAME_CLI='monarc_cli'
@@ -17,8 +17,8 @@ DBUSER_ADMIN='root'
 DBPASSWORD_ADMIN="root"
 DBUSER_MONARC='sqlmonarcuser'
 DBPASSWORD_MONARC="sqlmonarcuser"
-DBNAME_STATS='statsservice'
 
+# PHP configuration
 upload_max_filesize=200M
 post_max_size=50M
 max_execution_time=100
@@ -33,8 +33,15 @@ PHP_INI=/etc/php/7.2/apache2/php.ini
 XDEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
+# Stats service
+STATS_PATH='/home/vagrant/stats-service'
 STATS_HOST='0.0.0.0'
 STATS_PORT='5005'
+STATS_DB_NAME='statsservice'
+STATS_DB_USER='sqlmonarcuser'
+STATS_DB_PASSWORD="sqlmonarcuser"
+STATS_SECRET_KEY="$(openssl rand -hex 32)"
+
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -297,8 +304,8 @@ echo -e "\n--- Installing the stats service… ---\n"
 sudo apt-get -y install postgresql python3-pip python3-venv
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 20
-sudo -u postgres psql -c "CREATE USER $DBUSER_MONARC WITH PASSWORD '$DBPASSWORD_MONARC';"
-sudo -u postgres psql -c "ALTER USER $DBUSER_MONARC WITH SUPERUSER;"
+sudo -u postgres psql -c "CREATE USER $STATS_DB_USER WITH PASSWORD '$STATS_DB_PASSWORD';"
+sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;"
 
 cd ~
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
@@ -308,11 +315,11 @@ echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
 source ~/.bashrc
 source $HOME/.poetry/env
 
-git clone https://github.com/monarc-project/stats-service $PATH_TO_STATS_SERVICE
-cd $PATH_TO_STATS_SERVICE
+git clone https://github.com/monarc-project/stats-service $STATS_PATH
+cd $STATS_PATH
 poetry install --no-dev
 
-bash -c "cat << EOF > $PATH_TO_STATS_SERVICE/instance/production.py
+bash -c "cat << EOF > $STATS_PATH/instance/production.py
 HOST = '$STATS_HOST'
 PORT = $STATS_PORT
 DEBUG = False
@@ -325,16 +332,18 @@ ADMIN_URL = 'https://www.cases.lu'
 REMOTE_STATS_SERVER = 'https://dashboard.monarc.lu'
 
 DB_CONFIG_DICT = {
-    'user': '$DBUSER_MONARC',
-    'password': '$DBPASSWORD_MONARC',
+    'user': '$STATS_DB_USER',
+    'password': '$STATS_DB_PASSWORD',
     'host': 'localhost',
     'port': 5432,
 }
-DATABASE_NAME = '$DBNAME_STATS'
+DATABASE_NAME = '$STATS_DB_NAME'
 SQLALCHEMY_DATABASE_URI = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
     name=DATABASE_NAME, **DB_CONFIG_DICT
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+SECRET_KEY = '$STATS_SECRET_KEY'
 
 MOSP_URL = 'https://objects.monarc.lu'
 EOF"
@@ -348,7 +357,7 @@ FLASK_APP=runserver.py poetry run flask db_init
 
 sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
 [Unit]
-Description=Stats
+Description=MONARC Stats service
 After=network.target
 
 [Service]
@@ -360,7 +369,7 @@ Environment=FLASK_ENV=production
 Environment=STATS_CONFIG=production.py
 Environment=FLASK_RUN_HOST=$STATS_HOST
 Environment=FLASK_RUN_PORT=$STATS_PORT
-WorkingDirectory=$PATH_TO_STATS_SERVICE
+WorkingDirectory=$STATS_PATH
 ExecStart=/home/vagrant/.poetry/bin/poetry run flask run
 Restart=always
 
