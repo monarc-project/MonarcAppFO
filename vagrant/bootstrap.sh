@@ -353,6 +353,7 @@ export STATS_CONFIG=production.py
 
 FLASK_APP=runserver.py poetry run flask db_create
 FLASK_APP=runserver.py poetry run flask db_init
+FLASK_APP=runserver.py poetry run flask create_client --name ADMIN --role admin
 
 
 sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
