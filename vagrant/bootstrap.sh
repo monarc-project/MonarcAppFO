@@ -317,6 +317,7 @@ source $HOME/.poetry/env
 
 git clone https://github.com/monarc-project/stats-service $STATS_PATH
 cd $STATS_PATH
+npm install
 poetry install --no-dev
 
 bash -c "cat << EOF > $STATS_PATH/instance/production.py
