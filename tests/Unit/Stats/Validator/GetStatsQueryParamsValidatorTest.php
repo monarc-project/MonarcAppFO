@@ -78,7 +78,8 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateTo' => '2020-06-01',
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
-                'aggregationPeriod' => null
+                'aggregationPeriod' => null,
+                'getLast' => false,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -96,7 +97,8 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateTo' => '2019-12-01',
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
-                'aggregationPeriod' => null
+                'aggregationPeriod' => null,
+                'getLast' => false,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -168,5 +170,55 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
             'type' => StatsDataObject::TYPE_RISK,
             'aggregationType' => 'week',
         ]));
+    }
+
+    public function testGetLastIsSetToFalseWhenNotPassed()
+    {
+        static::assertTrue($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+        ]));
+        static::assertEquals(
+            [
+                'type' => StatsDataObject::TYPE_RISK,
+                'getLast' => false,
+                'anrs' => [],
+                'dateFrom' => null,
+                'dateTo' => null,
+                'aggregationPeriod' => null,
+            ],
+            $this->getStatsQueryParamsValidator->getValidData()
+        );
+
+        static::assertTrue($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+            'getLast' => true,
+        ]));
+        static::assertEquals(
+            [
+                'type' => StatsDataObject::TYPE_RISK,
+                'getLast' => true,
+                'anrs' => [],
+                'dateFrom' => null,
+                'dateTo' => null,
+                'aggregationPeriod' => null,
+            ],
+            $this->getStatsQueryParamsValidator->getValidData()
+        );
+
+        static::assertTrue($this->getStatsQueryParamsValidator->isValid([
+            'type' => StatsDataObject::TYPE_RISK,
+            'getLast' => 'the value is converted to boolean.',
+        ]));
+        static::assertEquals(
+            [
+                'type' => StatsDataObject::TYPE_RISK,
+                'getLast' => true,
+                'anrs' => [],
+                'dateFrom' => null,
+                'dateTo' => null,
+                'aggregationPeriod' => null,
+            ],
+            $this->getStatsQueryParamsValidator->getValidData()
+        );
     }
 }
