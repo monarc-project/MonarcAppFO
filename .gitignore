@@ -5,6 +5,7 @@ nbproject
 .idea
 .project
 .settings
+*.cache
 migrations
 !tests/migrations
 *.sublime-*
