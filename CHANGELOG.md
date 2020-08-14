@@ -1,6 +1,26 @@
 MONARC Changelog
 ================
 
+## 2.9.16 (2020-08-14)
+
+### Fix
+
+- Risk treatment plan comment delete date.
+  ([#298](https://github.com/monarc-project/MonarcAppFO/issues/298)).
+- Read Only User logout during risk treatment.
+  ([#300](https://github.com/monarc-project/MonarcAppFO/issues/300)).
+- Importing operational risks, the rolfRisk and riskCacheCode fields does not match the knowledge base.
+  ([#303](https://github.com/monarc-project/MonarcAppFO/issues/303)).
+- Duplicate/snapshot sets always same amv uuid for all instances_risks.
+  ([#304](https://github.com/monarc-project/MonarcAppFO/issues/304)).
+- Import with the same threat linked to a specific risk doesn't work.
+  ([#305](https://github.com/monarc-project/MonarcAppFO/issues/305)).
+- Creation of models on BackOffice with risks in analyse.
+  ([#306](https://github.com/monarc-project/MonarcAppFO/issues/306)).
+- Add new deliverable model for record of processing
+  ([#307](https://github.com/monarc-project/MonarcAppFO/issues/307)).
+
+
 ## 2.9.15 (2020-06-02)
 
 ### Fix
