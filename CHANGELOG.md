@@ -5,6 +5,8 @@ MONARC Changelog
 
 ### Fix
 
+- User ejected when get in register GDPR with read rights
+  ([#190](https://github.com/monarc-project/MonarcAppFO/issues/190)).
 - Risk treatment plan comment delete date.
   ([#298](https://github.com/monarc-project/MonarcAppFO/issues/298)).
 - Read Only User logout during risk treatment.
@@ -19,6 +21,10 @@ MONARC Changelog
   ([#306](https://github.com/monarc-project/MonarcAppFO/issues/306)).
 - Add new deliverable model for record of processing
   ([#307](https://github.com/monarc-project/MonarcAppFO/issues/307)).
+
+### Enhancement
+- Add typecast to (string) to every uuid getter
+  ([#259](https://github.com/monarc-project/MonarcAppFO/issues/259)).
 
 
 ## 2.9.15 (2020-06-02)
