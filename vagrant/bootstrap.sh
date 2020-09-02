@@ -346,6 +346,8 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 SECRET_KEY = '$STATS_SECRET_KEY'
 
+LOG_PATH = './var/stats.log'
+
 MOSP_URL = 'https://objects.monarc.lu'
 EOF"
 
