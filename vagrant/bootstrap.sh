@@ -40,7 +40,6 @@ STATS_PORT='5005'
 STATS_DB_NAME='statsservice'
 STATS_DB_USER='sqlmonarcuser'
 STATS_DB_PASSWORD="sqlmonarcuser"
-STATS_API_KEY="$(openssl rand -hex 32)"
 STATS_SECRET_KEY="$(openssl rand -hex 32)"
 
 
@@ -200,108 +199,6 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
-
-
-echo -e "\n--- Configuration of MONARC database connection ---\n"
-sudo bash -c "cat << EOF > config/autoload/local.php
-<?php
-return [
-    'doctrine' => [
-        'connection' => [
-            'orm_default' => [
-                'params' => [
-                    'host' => '$DBHOST',
-                    'user' => '$DBUSER_MONARC',
-                    'password' => '$DBPASSWORD_MONARC',
-                    'dbname' => '$DBNAME_COMMON',
-                ],
-            ],
-            'orm_cli' => [
-                'params' => [
-                    'host' => '$DBHOST',
-                    'user' => '$DBUSER_MONARC',
-                    'password' => '$DBPASSWORD_MONARC',
-                    'dbname' => '$DBNAME_CLI',
-                ],
-            ],
-        ],
-    ],
-
-    'activeLanguages' => ['fr','en','de','nl'],
-
-    'appVersion' => '-master',
-
-    'checkVersion' => false,
-    'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
-
-    'email' => [
-        'name' => 'MONARC',
-        'from' => 'info@monarc.lu',
-    ],
-
-    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
-
-    'monarc' => [
-        'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
-    ],
-
-    'statsApi' => [
-        'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
-        'apiKey' => '$STATS_API_KEY',
-    ],
-];
-EOF"
-
-
-
-echo -e "\n--- Creation of the data bases… ---\n"
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
-echo -e "\n--- Populating MONARC DB… ---\n"
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_structure.sql > /dev/null
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
-
-
-
-
-echo -e "\n--- Installation of Grunt… ---\n"
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt-get install -y nodejs
-sudo npm install -g grunt-cli
-
-
-
-echo -e "\n--- Creating cache folders for backend… ---\n"
-mkdir -p $PATH_TO_MONARC/data/cache
-mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
-mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
-
-
-
-echo -e "\n--- Adjusting user mod… ---\n"
-sudo usermod -aG www-data vagrant
-sudo usermod -aG vagrant www-data
-
-
-
-echo -e "\n--- Update the project… ---\n"
-sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
-./scripts/update-all.sh -d > /dev/null
-
-
-
-
-echo -e "\n--- Create initial user and client ---\n"
-php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
-
-
-
-
-echo -e "\n--- Restarting Apache… ---\n"
-sudo systemctl restart apache2.service > /dev/null
-
-
 echo -e "\n--- Installing the stats service… ---\n"
 sudo apt-get -y install postgresql python3-pip python3-venv
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
@@ -359,7 +256,6 @@ export STATS_CONFIG=production.py
 FLASK_APP=runserver.py poetry run flask db_create
 FLASK_APP=runserver.py poetry run flask db_init
 FLASK_APP=runserver.py poetry run flask client_create --name ADMIN --role admin
-FLASK_APP=runserver.py poetry run flask client_create --name monarc --token $STATS_API_KEY
 
 
 sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
@@ -390,6 +286,100 @@ sudo systemctl enable statsservice.service > /dev/null
 sleep 3
 sudo systemctl restart statsservice > /dev/null
 #systemctl status statsservice.service
+
+# Create a new client and set the apiKey.
+cd $STATS_PATH ; apiKey=$(poetry run flask client_create --name admin_localhost | sed -nr 's/Token: (.*)$/\1/p')
+cd $PATH_TO_MONARC
+
+
+echo -e "\n--- Configuration of MONARC database connection ---\n"
+sudo bash -c "cat << EOF > config/autoload/local.php
+<?php
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
+                    'host' => '$DBHOST',
+                    'user' => '$DBUSER_MONARC',
+                    'password' => '$DBPASSWORD_MONARC',
+                    'dbname' => '$DBNAME_COMMON',
+                ],
+            ],
+            'orm_cli' => [
+                'params' => [
+                    'host' => '$DBHOST',
+                    'user' => '$DBUSER_MONARC',
+                    'password' => '$DBPASSWORD_MONARC',
+                    'dbname' => '$DBNAME_CLI',
+                ],
+            ],
+        ],
+    ],
+
+    'activeLanguages' => ['fr','en','de','nl'],
+
+    'appVersion' => '-master',
+
+    'checkVersion' => false,
+    'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
+
+    'email' => [
+        'name' => 'MONARC',
+        'from' => 'info@monarc.lu',
+    ],
+
+    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+
+    'monarc' => [
+        'ttl' => 60, // timeout
+        'salt' => '', // private salt for password encryption
+    ],
+
+    'statsApi' => [
+        'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
+        'apiKey' => '$apiKey',
+    ],
+];
+EOF"
+
+
+echo -e "\n--- Creation of the data bases… ---\n"
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
+echo -e "\n--- Populating MONARC DB… ---\n"
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_structure.sql > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
+
+
+echo -e "\n--- Installation of Grunt… ---\n"
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+sudo apt-get install -y nodejs
+sudo npm install -g grunt-cli
+
+
+echo -e "\n--- Creating cache folders for backend… ---\n"
+mkdir -p $PATH_TO_MONARC/data/cache
+mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+
+
+echo -e "\n--- Adjusting user mod… ---\n"
+sudo usermod -aG www-data vagrant
+sudo usermod -aG vagrant www-data
+
+
+echo -e "\n--- Update the project… ---\n"
+sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
+./scripts/update-all.sh -d > /dev/null
+
+
+echo -e "\n--- Create initial user and client ---\n"
+php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+
+
+echo -e "\n--- Restarting Apache… ---\n"
+sudo systemctl restart apache2.service > /dev/null
 
 
 echo -e "MONARC is ready and avalable at http://127.0.0.1:5001"
