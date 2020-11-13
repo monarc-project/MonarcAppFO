@@ -40,6 +40,7 @@ STATS_PORT='5005'
 STATS_DB_NAME='statsservice'
 STATS_DB_USER='sqlmonarcuser'
 STATS_DB_PASSWORD="sqlmonarcuser"
+STATS_API_KEY="$(openssl rand -hex 32)"
 STATS_SECRET_KEY="$(openssl rand -hex 32)"
 
 
@@ -247,6 +248,7 @@ return [
 
     'statsApi' => [
         'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
+        'apiKey' => '$STATS_API_KEY',
     ],
 ];
 EOF"
@@ -357,6 +359,7 @@ export STATS_CONFIG=production.py
 FLASK_APP=runserver.py poetry run flask db_create
 FLASK_APP=runserver.py poetry run flask db_init
 FLASK_APP=runserver.py poetry run flask client_create --name ADMIN --role admin
+FLASK_APP=runserver.py poetry run flask client_create --name monarc --token $STATS_API_KEY
 
 
 sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
