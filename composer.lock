@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f214cbb0f56cf32bc7dd52d17f4a4c7",
+    "content-hash": "bb7069d30d12bbf5d2e3859e21d5f379",
     "packages": [
         {
             "name": "brick/math",
@@ -4406,16 +4406,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "dev-feature/stats",
+            "version": "2.9.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "e107241d4f48f9522214e5bebc98c41e01478ba8"
+                "reference": "54f8b39e900885527834cfc527a0ac4a869a8d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/e107241d4f48f9522214e5bebc98c41e01478ba8",
-                "reference": "e107241d4f48f9522214e5bebc98c41e01478ba8",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/54f8b39e900885527834cfc527a0ac4a869a8d10",
+                "reference": "54f8b39e900885527834cfc527a0ac4a869a8d10",
                 "shasum": ""
             },
             "require": {
@@ -4491,22 +4491,22 @@
             "description": "Core for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-core/issues",
-                "source": "https://github.com/monarc-project/zm-core/tree/feature/stats"
+                "source": "https://github.com/monarc-project/zm-core/tree/2.9.21"
             },
-            "time": "2020-10-30T11:07:41+00:00"
+            "time": "2020-11-17T14:50:41+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "dev-feature/stats",
+            "version": "v2.9.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "9dda6a8fe84e462eca08d4538b61a532d78e2053"
+                "reference": "c24974cc587617d9de6de6186dca1a8b9cc4a9f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/9dda6a8fe84e462eca08d4538b61a532d78e2053",
-                "reference": "9dda6a8fe84e462eca08d4538b61a532d78e2053",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/c24974cc587617d9de6de6186dca1a8b9cc4a9f2",
+                "reference": "c24974cc587617d9de6de6186dca1a8b9cc4a9f2",
                 "shasum": ""
             },
             "require": {
@@ -4583,9 +4583,9 @@
             "description": "Frontoffice for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-client/issues",
-                "source": "https://github.com/monarc-project/zm-client/tree/feature/stats"
+                "source": "https://github.com/monarc-project/zm-client/tree/v2.9.20"
             },
-            "time": "2020-11-17T13:35:28+00:00"
+            "time": "2020-11-17T14:50:01+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -8755,18 +8755,9 @@
             "time": "2020-07-08T17:02:28+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "monarc/core",
-            "version": "dev-feature/stats",
-            "alias": "2.9.20",
-            "alias_normalized": "2.9.20.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "monarc/frontoffice": 20,
-        "monarc/core": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
