@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb7069d30d12bbf5d2e3859e21d5f379",
+    "content-hash": "38d10543612743cdf3236a4bc0c4beb6",
     "packages": [
         {
             "name": "brick/math",
@@ -2398,16 +2398,16 @@
         },
         {
             "name": "laminas/laminas-dependency-plugin",
-            "version": "2.0.0beta1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-dependency-plugin.git",
-                "reference": "49b2f099e29d18660c45150208db6cf52fded3e8"
+                "reference": "7738ded196287dd88dec24d1a3cb58f5d4453e69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-dependency-plugin/zipball/49b2f099e29d18660c45150208db6cf52fded3e8",
-                "reference": "49b2f099e29d18660c45150208db6cf52fded3e8",
+                "url": "https://api.github.com/repos/laminas/laminas-dependency-plugin/zipball/7738ded196287dd88dec24d1a3cb58f5d4453e69",
+                "reference": "7738ded196287dd88dec24d1a3cb58f5d4453e69",
                 "shasum": ""
             },
             "require": {
@@ -2415,17 +2415,13 @@
                 "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "composer/composer": "^1.9 || ~2.0.0@dev || ^2.0",
+                "composer/composer": "^1.9 || ^2.0",
                 "mikey179/vfsstream": "^1.6",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "roave/security-advisories": "dev-master"
             },
             "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev",
-                    "dev-develop": "2.0.x-dev"
-                },
                 "class": "Laminas\\DependencyPlugin\\DependencyRewriterPluginDelegator"
             },
             "autoload": {
@@ -2440,7 +2436,7 @@
             "description": "Replace zendframework and zfcampus packages with their Laminas Project equivalents.",
             "support": {
                 "issues": "https://github.com/laminas/laminas-dependency-plugin/issues",
-                "source": "https://github.com/laminas/laminas-dependency-plugin/tree/2.0.0beta1"
+                "source": "https://github.com/laminas/laminas-dependency-plugin/tree/2.0.0"
             },
             "funding": [
                 {
@@ -2448,7 +2444,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-07-01T20:02:48+00:00"
+            "time": "2020-10-30T14:51:02+00:00"
         },
         {
             "name": "laminas/laminas-di",
@@ -4406,16 +4402,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "2.9.21",
+            "version": "v2.9.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "54f8b39e900885527834cfc527a0ac4a869a8d10"
+                "reference": "91886006faf00be500ca50a7e3f42e2dbd2c1946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/54f8b39e900885527834cfc527a0ac4a869a8d10",
-                "reference": "54f8b39e900885527834cfc527a0ac4a869a8d10",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/91886006faf00be500ca50a7e3f42e2dbd2c1946",
+                "reference": "91886006faf00be500ca50a7e3f42e2dbd2c1946",
                 "shasum": ""
             },
             "require": {
@@ -4424,7 +4420,7 @@
                 "ext-json": "*",
                 "ext-openssl": "*",
                 "laminas/laminas-console": "^2.8",
-                "laminas/laminas-dependency-plugin": "2.0.0beta1",
+                "laminas/laminas-dependency-plugin": "^2.0",
                 "laminas/laminas-di": "^3.1",
                 "laminas/laminas-filter": "^2.9",
                 "laminas/laminas-i18n": "^2.9",
@@ -4491,9 +4487,9 @@
             "description": "Core for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-core/issues",
-                "source": "https://github.com/monarc-project/zm-core/tree/2.9.21"
+                "source": "https://github.com/monarc-project/zm-core/tree/v2.9.21"
             },
-            "time": "2020-11-17T14:50:41+00:00"
+            "time": "2020-11-17T16:04:30+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -4501,12 +4497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "c24974cc587617d9de6de6186dca1a8b9cc4a9f2"
+                "reference": "3b0553a168069f0737d17a8b2bb16a395f144858"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/c24974cc587617d9de6de6186dca1a8b9cc4a9f2",
-                "reference": "c24974cc587617d9de6de6186dca1a8b9cc4a9f2",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3b0553a168069f0737d17a8b2bb16a395f144858",
+                "reference": "3b0553a168069f0737d17a8b2bb16a395f144858",
                 "shasum": ""
             },
             "require": {
@@ -4516,7 +4512,7 @@
                 "ext-intl": "*",
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.5",
-                "laminas/laminas-dependency-plugin": "2.0.0beta1",
+                "laminas/laminas-dependency-plugin": "^2.0",
                 "laminas/laminas-di": "^3.1",
                 "laminas/laminas-filter": "^2.9",
                 "laminas/laminas-inputfilter": "^2.10",
@@ -4585,7 +4581,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.9.20"
             },
-            "time": "2020-11-17T14:50:01+00:00"
+            "time": "2020-11-17T16:04:07+00:00"
         },
         {
             "name": "monarc/phpword",

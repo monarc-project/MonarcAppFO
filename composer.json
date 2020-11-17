@@ -52,7 +52,7 @@
         "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
         "symfony/console": "^5.0",
-        "laminas/laminas-dependency-plugin": "2.0.0beta1",
+        "laminas/laminas-dependency-plugin": "^2.0",
         "ocramius/proxy-manager": "<2.3",
         "ocramius/package-versions": "<1.5"
     },
