@@ -40,9 +40,10 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "ext-json": "*",
         "ext-pdo": "*",
+        "ext-bcmath": "*",
         "monarc/frontoffice": "^2.9.15",
         "monarc/core": "^2.9.15",
         "laminas/laminas-mvc": "^3.1",
@@ -51,10 +52,19 @@
         "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
         "symfony/console": "^5.0",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "^2.0",
+        "ocramius/proxy-manager": "<2.3",
+        "ocramius/package-versions": "<1.5"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "phpunit/phpunit": "^8.3",
+        "laminas/laminas-test": "^3.4"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MonarcAppFo\\Tests\\": "tests/"
+        }
     },
     "config": {
         "bin-dir": "bin/"

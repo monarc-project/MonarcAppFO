@@ -1,10 +1,15 @@
 #! /usr/bin/env bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 PATH_TO_MONARC='/home/vagrant/monarc'
 
 APPENV='local'
 ENVIRONMENT='development'
 
+# MariaDB database
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
 DBNAME_CLI='monarc_cli'
@@ -13,14 +18,30 @@ DBPASSWORD_ADMIN="root"
 DBUSER_MONARC='sqlmonarcuser'
 DBPASSWORD_MONARC="sqlmonarcuser"
 
+# PHP configuration
 upload_max_filesize=200M
 post_max_size=50M
 max_execution_time=100
 max_input_time=223
 memory_limit=512M
+# session expires in 1 week:
+session.gc_maxlifetime=604800
+session.gc_probability=1
+session.gc_divisor=1000
+
 PHP_INI=/etc/php/7.2/apache2/php.ini
 XDEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
+
+# Stats service
+STATS_PATH='/home/vagrant/stats-service'
+STATS_HOST='0.0.0.0'
+STATS_PORT='5005'
+STATS_DB_NAME='statsservice'
+STATS_DB_USER='sqlmonarcuser'
+STATS_DB_PASSWORD="sqlmonarcuser"
+STATS_SECRET_KEY="$(openssl rand -hex 32)"
+
 
 export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
@@ -80,7 +101,7 @@ sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug > /dev/null
+sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug php-bcmath > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
@@ -118,7 +139,7 @@ cd $PATH_TO_MONARC
 git config core.fileMode false
 
 echo -e "\n--- Installing the dependencies… ---\n"
-composer install -o
+composer ins
 
 
 # Make modules symlinks.
@@ -178,50 +199,125 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
+echo -e "\n--- Installing the stats service… ---\n"
+sudo apt-get -y install postgresql python3-pip python3-venv
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+sudo -u postgres psql -c "CREATE USER $STATS_DB_USER WITH PASSWORD '$STATS_DB_PASSWORD';"
+sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;"
+
+cd ~
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+echo  'export PATH="$PATH:$HOME/.poetry/bin"' >> ~/.bashrc
+echo  'export FLASK_APP=runserver.py' >> ~/.bashrc
+echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
+source ~/.bashrc
+source $HOME/.poetry/env
+
+git clone https://github.com/monarc-project/stats-service $STATS_PATH
+cd $STATS_PATH
+npm install
+poetry install --no-dev
+
+bash -c "cat << EOF > $STATS_PATH/instance/production.py
+HOST = '$STATS_HOST'
+PORT = $STATS_PORT
+DEBUG = False
+TESTING = False
+INSTANCE_URL = 'http://127.0.0.1:$STATS_PORT'
+
+ADMIN_EMAIL = 'info@cases.lu'
+ADMIN_URL = 'https://www.cases.lu'
+
+REMOTE_STATS_SERVER = 'https://dashboard.monarc.lu'
+
+DB_CONFIG_DICT = {
+    'user': '$STATS_DB_USER',
+    'password': '$STATS_DB_PASSWORD',
+    'host': 'localhost',
+    'port': 5432,
+}
+DATABASE_NAME = '$STATS_DB_NAME'
+SQLALCHEMY_DATABASE_URI = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
+    name=DATABASE_NAME, **DB_CONFIG_DICT
+)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+SECRET_KEY = '$STATS_SECRET_KEY'
+
+LOG_PATH = './var/stats.log'
+
+MOSP_URL = 'https://objects.monarc.lu'
+EOF"
+
+export FLASK_APP=runserver.py
+export STATS_CONFIG=production.py
+
+FLASK_APP=runserver.py poetry run flask db_create
+FLASK_APP=runserver.py poetry run flask db_init
+FLASK_APP=runserver.py poetry run flask client_create --name ADMIN --role admin
+
+
+sudo bash -c "cat << EOF > /etc/systemd/system/statsservice.service
+[Unit]
+Description=MONARC Stats service
+After=network.target
+
+[Service]
+User=vagrant
+Environment=LANG=en_US.UTF-8
+Environment=LC_ALL=en_US.UTF-8
+Environment=FLASK_APP=runserver.py
+Environment=FLASK_ENV=production
+Environment=STATS_CONFIG=production.py
+Environment=FLASK_RUN_HOST=$STATS_HOST
+Environment=FLASK_RUN_PORT=$STATS_PORT
+WorkingDirectory=$STATS_PATH
+ExecStart=/home/vagrant/.poetry/bin/poetry run flask run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF"
+
+sudo systemctl daemon-reload > /dev/null
+sleep 1
+sudo systemctl enable statsservice.service > /dev/null
+sleep 3
+sudo systemctl restart statsservice > /dev/null
+#systemctl status statsservice.service
+
+# Create a new client and set the apiKey.
+cd $STATS_PATH ; apiKey=$(poetry run flask client_create --name admin_localhost | sed -nr 's/Token: (.*)$/\1/p')
+cd $PATH_TO_MONARC
 
 
 echo -e "\n--- Configuration of MONARC database connection ---\n"
 sudo bash -c "cat << EOF > config/autoload/local.php
 <?php
-return array(
-    'doctrine' => array(
-        'connection' => array(
-            'orm_default' => array(
-                'params' => array(
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
                     'host' => '$DBHOST',
                     'user' => '$DBUSER_MONARC',
                     'password' => '$DBPASSWORD_MONARC',
                     'dbname' => '$DBNAME_COMMON',
-                ),
-            ),
-            'orm_cli' => array(
-                'params' => array(
+                ],
+            ],
+            'orm_cli' => [
+                'params' => [
                     'host' => '$DBHOST',
                     'user' => '$DBUSER_MONARC',
                     'password' => '$DBPASSWORD_MONARC',
                     'dbname' => '$DBNAME_CLI',
-                    ),
-                ),
-            ),
-        ),
+                ],
+            ],
+        ],
+    ],
 
-    /* Link with (ModuleCore)
-    config['languages'] = [
-        'fr' => array(
-            'index' => 1,
-            'label' => 'Français'
-        ),
-        'en' => array(
-            'index' => 2,
-            'label' => 'English'
-        ),
-        'de' => array(
-            'index' => 3,
-            'label' => 'Deutsch'
-        ),
-    ]
-    */
-    'activeLanguages' => array('fr','en','de','nl',),
+    'activeLanguages' => ['fr','en','de','nl'],
 
     'appVersion' => '-master',
 
@@ -229,17 +325,22 @@ return array(
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
 
     'email' => [
-            'name' => 'MONARC',
-            'from' => 'info@monarc.lu',
+        'name' => 'MONARC',
+        'from' => 'info@monarc.lu',
     ],
 
     'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
 
-    'monarc' => array(
+    'monarc' => [
         'ttl' => 60, // timeout
         'salt' => '', // private salt for password encryption
-    ),
-);
+    ],
+
+    'statsApi' => [
+        'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
+        'apiKey' => '$apiKey',
+    ],
+];
 EOF"
 
 
@@ -251,13 +352,10 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
 
 
-
-
 echo -e "\n--- Installation of Grunt… ---\n"
-curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g grunt-cli
-
 
 
 echo -e "\n--- Creating cache folders for backend… ---\n"
@@ -266,30 +364,23 @@ mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
 mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
 
 
-
 echo -e "\n--- Adjusting user mod… ---\n"
 sudo usermod -aG www-data vagrant
 sudo usermod -aG vagrant www-data
 
 
-
 echo -e "\n--- Update the project… ---\n"
 sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
-./scripts/update-all.sh > /dev/null
-
-
+./scripts/update-all.sh -d > /dev/null
 
 
 echo -e "\n--- Create initial user and client ---\n"
 php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 
-
-
 echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
-
-
-echo -e "\n--- MONARC is ready! Point your Web browser to http://127.0.0.1:5001 ---\n"
+echo -e "MONARC is ready and avalable at http://127.0.0.1:5001"
+echo -e "Stats service is ready and available at http://127.0.0.1:$STATS_PORT"

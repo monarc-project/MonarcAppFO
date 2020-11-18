@@ -6,24 +6,27 @@ NC='\033[0m' # No Color
 
 bypass=0
 forceClearCache=0
-while getopts "hbc" option
+isDevEnv=0
+while getopts "hbcd" option
 do
-	case $option in
-		h)
-			echo -e "Update or install all Monarc modules, frontend views and migrate database."
-			echo -e "\t-b\tbypass migrate database"
-			echo -e "\t-c\tforce clear cache"
-			echo -e "\t-h\tdisplay this message"
-			exit 1
-			;;
-		b)
-			bypass=1
-			echo "Migrate database don't execute !!!"
-			;;
-		c)
-			forceClearCache=1
-			;;
-	esac
+  case $option in
+    h)
+      echo -e "Update or install all Monarc modules, frontend views and migrate database."
+      echo -e "\t-b\tbypass migrate database"
+      echo -e "\t-c\tforce clear cache"
+      echo -e "\t-h\tdisplay this message"
+      exit 1
+      ;;
+    b)
+      bypass=1
+      echo "Migrate database don't execute !!!"
+      ;;
+    c)
+      forceClearCache=1
+      ;;
+    d)
+      isDevEnv=1
+  esac
 done
 
 pull_if_exists() {
@@ -57,7 +60,11 @@ if [[ $? -eq 1 ]]; then
     exit 1
 fi
 
-composer install -o --no-dev
+if [[ $isDevEnv -eq 0 ]]; then
+  composer ins -o --no-dev
+else
+  composer ins
+fi
 
 pathCore="module/Monarc/Core"
 pathFO="module/Monarc/FrontOffice"
