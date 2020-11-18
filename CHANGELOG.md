@@ -1,6 +1,20 @@
 MONARC Changelog
 ================
 
+## 2.10.1 (2020-11-18) Includes 2 bug-fixes and a new feature of analysis statistics.  
+
+### Fix
+
+- Detaching of recommendations doesn't work
+  ([#314](https://github.com/monarc-project/MonarcAppFO/issues/314)).
+- Record of processing activities creation from an existing.
+  ([#315](https://github.com/monarc-project/MonarcAppFO/issues/315)).
+
+### New
+- Analysis statistics development (Epic)
+  ([#268](https://github.com/monarc-project/MonarcAppFO/issues/268)).
+
+
 ## 2.9.16 (2020-08-14)
 
 ### Fix
