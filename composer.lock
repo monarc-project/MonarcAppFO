@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38d10543612743cdf3236a4bc0c4beb6",
+    "content-hash": "a267d1b0279701cba6a04ee4529a68d7",
     "packages": [
         {
             "name": "brick/math",
@@ -7673,12 +7673,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "a7ebffcf8b453dcf36a9461cb7845885cb95d315"
+                "reference": "4100ec7deab9f78b3b7685fedc6c9b82c15b5c76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/a7ebffcf8b453dcf36a9461cb7845885cb95d315",
-                "reference": "a7ebffcf8b453dcf36a9461cb7845885cb95d315",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4100ec7deab9f78b3b7685fedc6c9b82c15b5c76",
+                "reference": "4100ec7deab9f78b3b7685fedc6c9b82c15b5c76",
                 "shasum": ""
             },
             "conflict": {
@@ -7708,7 +7708,7 @@
                 "composer/composer": "<=1-alpha.11",
                 "contao-components/mediaelement": ">=2.14.2,<2.21.1",
                 "contao/core": ">=2,<3.5.39",
-                "contao/core-bundle": ">=4,<4.4.52|>=4.5,<4.9.6|= 4.10.0",
+                "contao/core-bundle": "= 4.10.0|>=4,<4.4.52|>=4.5,<4.9.6",
                 "contao/listing-bundle": ">=4,<4.4.8",
                 "datadog/dd-trace": ">=0.30,<0.30.2",
                 "david-garcia/phpwhois": "<=4.3.1",
@@ -7982,7 +7982,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-16T22:01:59+00:00"
+            "time": "2020-11-18T07:02:14+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -8759,7 +8759,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1",
+        "php": "^7.2",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*"
