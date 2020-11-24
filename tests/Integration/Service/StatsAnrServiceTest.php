@@ -17,7 +17,14 @@ use Monarc\FrontOffice\Exception\AccessForbiddenException;
 use Monarc\FrontOffice\Exception\UserNotAuthorizedException;
 use Monarc\FrontOffice\Model\Entity\User;
 use Monarc\FrontOffice\Model\Table\AnrTable;
+use Monarc\FrontOffice\Model\Table\InstanceRiskOpTable;
+use Monarc\FrontOffice\Model\Table\InstanceRiskTable;
+use Monarc\FrontOffice\Model\Table\ReferentialTable;
+use Monarc\FrontOffice\Model\Table\ScaleTable;
 use Monarc\FrontOffice\Model\Table\SettingTable;
+use Monarc\FrontOffice\Model\Table\SnapshotTable;
+use Monarc\FrontOffice\Model\Table\SoaTable;
+use Monarc\FrontOffice\Model\Table\UserTable;
 use Monarc\FrontOffice\Stats\DataObject\StatsDataObject;
 use Monarc\FrontOffice\Stats\Exception\StatsAlreadyCollectedException;
 use Monarc\FrontOffice\Stats\Provider\StatsApiProvider;
@@ -58,16 +65,31 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
     {
         $serviceManager->setAllowOverride(true);
 
+        $serviceLocator = $this->getApplicationServiceLocator();
+        $config = ['statsApi' => ['baseUrl' => 'http://url.com', 'apiKey' => 'token12345']];
+
         $this->statsApiMockHandler = new MockHandler();
-        $statsApiProvider = new StatsApiProvider(
-            $serviceManager->get(SettingTable::class),
-            [],
-            $this->statsApiMockHandler
-        );
+        $statsApiProvider = new StatsApiProvider($config, $this->statsApiMockHandler);
         $serviceManager->setService(StatsApiProvider::class, $statsApiProvider);
 
         $this->connectedUserService = $this->createMock(ConnectedUserService::class);
         $serviceManager->setService(ConnectedUserService::class, $this->connectedUserService);
+
+        $statsAnrService = new StatsAnrService(
+            $serviceLocator->get(AnrTable::class),
+            $serviceLocator->get(ScaleTable::class),
+            $serviceLocator->get(InstanceRiskTable::class),
+            $serviceLocator->get(InstanceRiskOpTable::class),
+            $serviceLocator->get(ReferentialTable::class),
+            $serviceLocator->get(SoaTable::class),
+            $serviceLocator->get(StatsApiProvider::class),
+            $this->connectedUserService,
+            $serviceLocator->get(UserTable::class),
+            $serviceLocator->get(SnapshotTable::class),
+            $serviceLocator->get(SettingTable::class),
+            $config
+        );
+        $serviceManager->setService(StatsAnrService::class, $statsAnrService);
 
         $serviceManager->setAllowOverride(false);
     }
@@ -183,7 +205,7 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
             ->method('getConnectedUser')
             ->willReturn($user);
 
-        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_CARTOGRAPHY]);
+        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_CARTOGRAPHY, 'anrs' => []]);
     }
 
     public function testItThrowsLogicExceptionIfTypeIsNotPassed()
