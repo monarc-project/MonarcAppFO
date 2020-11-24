@@ -5,14 +5,15 @@
 
 for conf_file_path in /var/www/*/local.php
 do
-  export APP_CONF_DIR=$conf_file_path
+  config_path=$(dirname "$conf_file_path")
+  export APP_CONF_DIR=$config_path
 
-  echo "[$(date)] Collecting stats for client: $conf_file_path."
+  echo "[$(date)] Collecting stats for client: $config_path."
 
   # local use:
-  #/home/vagrant/monarc/bin/console monarc:collect-stats >> "$conf_file_path"/collect_stats.log
+  #/home/vagrant/monarc/bin/console monarc:collect-stats >> "$config_path"/collect_stats.log
 
-  /var/lib/monarc/fo/bin/console monarc:collect-stats >> "$conf_file_path"/data/collect_stats.log
+  /var/lib/monarc/fo/bin/console monarc:collect-stats >> "$config_path"/collect_stats.log
 
   echo "[$(date)] Finished."
 done
