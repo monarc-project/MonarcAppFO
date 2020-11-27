@@ -11,9 +11,9 @@ do
   echo "[$(date)] Collecting stats for client: $config_path."
 
   # local use:
-  #/home/vagrant/monarc/bin/console monarc:collect-stats >> "$config_path"/collect_stats.log
+  #/home/vagrant/monarc/bin/console monarc:collect-stats >> "$config_path"/data/collect_stats.log
 
-  /var/lib/monarc/fo/bin/console monarc:collect-stats >> "$config_path"/collect_stats.log
+  /var/lib/monarc/fo/bin/console monarc:collect-stats >> "$config_path"/data/collect_stats.log
 
   echo "[$(date)] Finished."
 done
