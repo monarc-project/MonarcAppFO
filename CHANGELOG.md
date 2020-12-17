@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.10.1 (2020-11-18) Includes 2 bug-fixes and a new feature of analysis statistics.  
+## 2.10.1 (2020-12-17) Includes 3 bug-fixes and a new feature of analysis global stats.  
 
 ### Fix
 
@@ -9,6 +9,8 @@ MONARC Changelog
   ([#314](https://github.com/monarc-project/MonarcAppFO/issues/314)).
 - Record of processing activities creation from an existing.
   ([#315](https://github.com/monarc-project/MonarcAppFO/issues/315)).
+- ANR_DOES_NOT_EXIST Error while creating new users.
+  ([#319](https://github.com/monarc-project/MonarcAppFO/issues/319)).
 
 ### New
 - Analysis statistics development (Epic)
