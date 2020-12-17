@@ -87,12 +87,17 @@ return array(
         'from' => 'info@monarc.lu',
     ],
 
-    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
-
     'terms' => 'https://my.monarc.lu/terms.html',
 
     'monarc' => array(
         'ttl' => 60, // timeout
         'cliModel' => 'generic', // model to display for the client, an ID of a specific model or 'generic' (empty for all)
     ),
+
+    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+
+    'statsApi' => [
+        'baseUrl' => 'http://127.0.0.1:5005',
+        'apiKey' => '',
+    ],
 );
