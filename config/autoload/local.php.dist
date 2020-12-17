@@ -69,10 +69,10 @@ return [
 
     'terms' => 'https://my.monarc.lu/terms.html',
 
-    'monarc' => array(
+    'monarc' => [
         'ttl' => 60,
         'cliModel' => 'generic',
-    ),
+    ],
 
     'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
 
@@ -80,4 +80,4 @@ return [
         'baseUrl' => 'http://127.0.0.1:5005',
         'apiKey' => '',
     ],
-);
+];
