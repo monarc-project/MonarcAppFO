@@ -143,29 +143,28 @@ Create the configuration file:
 
 And configure the database connection:
 
-    return array(
-        'doctrine' => array(
-            'connection' => array(
-                'orm_default' => array(
-                    'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
+    return [
+        'doctrine' => [
+            'connection' => [
+                'orm_default' => [
+                    'params' => [
+                        'host' => 'localhost',
+                        'user' => 'monarc',
                         'password' => 'password',
                         'dbname' => 'monarc_common',
-                    ),
-                ),
-                'orm_cli' => array(
-                    'params' => array(
-                        'host' => 'host',
-                        'user' => 'user',
+                    ],
+                ],
+                'orm_cli' => [
+                    'params' => [
+                        'host' => 'localhost',
+                        'user' => 'monarc',
                         'password' => 'password',
                         'dbname' => 'monarc_cli',
-                    ),
-                ),
-            ),
-        ),
-    );
-
+                    ],
+                ],
+            ],
+        ],
+    ];
 
 
 # Update MONARC
@@ -192,3 +191,18 @@ execute the database migration scripts and compile the translations.
 
 
 The username is *admin@admin.localhost* and the password is *admin*.
+
+
+# Statistics for Global Dashboard
+
+If you would like to use the global dashboard stats feature, you need to configure a StatsService on your server.
+The architecture, installation instructions and GitHub project can be found here:
+
+    https://monarc-stats-service.readthedocs.io/en/latest/architecture.html
+    https://monarc-stats-service.readthedocs.io/en/latest/installation.html
+    https://github.com/monarc-project/stats-service
+
+The communication of access to the StatsService is performed on each instance of FrontOffice.
+This includes the following lines change in your local.php file: 
+
+    https://github.com/monarc-project/MonarcAppFO/blob/master/config/autoload/local.php.dist#L99-L102

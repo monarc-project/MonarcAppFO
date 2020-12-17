@@ -30,13 +30,16 @@ MONARC will be automatically deployed in an Ubuntu Bionic Server.
     $ vagrant up
 
 Once the VM will be configured by Vagrant, go to the address
-http://127.0.0.1:5001.
+http://127.0.0.1:5001
 
 The username is *admin@admin.localhost* and the password is *admin*.
 
 You can now edit the source code with your favorite editor and test it in your
 browser. The only thing is to not forget to restart Apache in the VM after a
 modification.
+
+The StatsService service will be configured, launched and accessible by the following url:
+http://127.0.0.1:5005
 
 ------------------------------
 Run tests.

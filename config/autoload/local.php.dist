@@ -12,27 +12,27 @@
  */
 $package_json = json_decode(file_get_contents('./package.json'), true);
 
-return array(
-    'doctrine' => array(
-        'connection' => array(
-            'orm_default' => array(
-                'params' => array(
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
                     'host' => 'localhost',
                     'user' => 'sqlmonarcuser',
                     'password' => 'password',
                     'dbname' => 'monarc_common',
-                ),
-            ),
-            'orm_cli' => array(
-                'params' => array(
+                ],
+            ],
+            'orm_cli' => [
+                'params' => [
                     'host' => 'localhost',
                     'user' => 'sqlmonarcuser',
                     'password' => 'password',
                     'dbname' => 'monarc_cli',
-                ),
-            ),
-        ),
-    ),
+                ],
+            ],
+        ],
+    ],
 
     'languages' => [
         'fr' => [
@@ -55,27 +55,7 @@ return array(
 
     'defaultLanguageIndex' => 1,
 
-    /* Link with (ModuleCore)
-    config['languages'] = [
-        'fr' => array(
-            'index' => 1,
-            'label' => 'Français'
-        ),
-        'en' => array(
-            'index' => 2,
-            'label' => 'English'
-        ),
-        'de' => array(
-            'index' => 3,
-            'label' => 'Deutsch'
-        ),
-        'nl' => array(
-            'index' => 4,
-            'label' => 'Nederlands',
-        ),
-    ]
-    */
-    'activeLanguages' => array('fr','en','de','nl',),
+    'activeLanguages' => ['fr', 'en', 'de', 'nl',],
 
     'appVersion' => $package_json['version'],
 
@@ -90,8 +70,8 @@ return array(
     'terms' => 'https://my.monarc.lu/terms.html',
 
     'monarc' => array(
-        'ttl' => 60, // timeout
-        'cliModel' => 'generic', // model to display for the client, an ID of a specific model or 'generic' (empty for all)
+        'ttl' => 60,
+        'cliModel' => 'generic',
     ),
 
     'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
