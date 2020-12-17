@@ -337,7 +337,7 @@ return [
     ],
 
     'statsApi' => [
-        'baseUrl' => 'http://127.0.0.1:$STATS_PORT'
+        'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
         'apiKey' => '$apiKey',
     ],
 ];
