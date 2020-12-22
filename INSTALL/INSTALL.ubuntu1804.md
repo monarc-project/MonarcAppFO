@@ -1,6 +1,8 @@
 Installation on Ubuntu 18.04
 ============================
 
+This guide is also working with Ubuntu 20.04 LTS.
+
 # 1. Install LAMP & dependencies
 
 ## 1.1. Install system dependencies
@@ -56,7 +58,12 @@ Especially by setting a strong root password.
 
 ## 1.4. Install PHP and dependencies
 
-    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip composer
+    $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-bcmath
+    
+    $ curl https://getcomposer.org/installer --output composer-setup.php
+    $ sudo php composer-setup.php --install-dir=/usr/bin/ --filename composer
+    $ rm composer-setup.php
+
 
 ## 1.5 Apply all changes
 
@@ -172,7 +179,7 @@ And configure the database connection:
 
 Install Grunt:
 
-    $ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    $ curl -sL https://deb.nodesource.com/setup_15.x | sudo bash -
     $ sudo apt-get install nodejs
     $ npm install -g grunt-cli
 
@@ -191,14 +198,32 @@ The username is *admin@admin.localhost* and the password is *admin*.
 
 # 5. Statistics for Global Dashboard
 
-If you would like to use the global dashboard stats feature, you need to configure a StatsService on your server.
+If you would like to use the global dashboard stats feature, you need to
+configure a Stats Service instance on your server.
+
 The architecture, installation instructions and GitHub project can be found here:
 
-    https://monarc-stats-service.readthedocs.io/en/latest/architecture.html
-    https://monarc-stats-service.readthedocs.io/en/latest/installation.html
-    https://github.com/monarc-project/stats-service
+- https://monarc-stats-service.readthedocs.io/en/latest/architecture.html
+- https://monarc-stats-service.readthedocs.io/en/latest/installation.html
+- https://github.com/monarc-project/stats-service
 
-The communication of access to the StatsService is performed on each instance of FrontOffice.
-This includes the following lines change in your local.php file: 
+The communication of access to the StatsService is performed on each instance of
+FrontOffice (clients). This includes the following lines change in your
+local.php file: 
 
-    https://github.com/monarc-project/MonarcAppFO/blob/master/config/autoload/local.php.dist#L99-L102
+
+```diff
+'monarc' => [
+    'ttl' => 60,
+    'cliModel' => 'generic',
+],
+
+- 'mospApiUrl' => 'https://objects.monarc.lu/api/v1/'
++ 'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
++
++ 'statsApi' => [
++     'baseUrl' => 'http://127.0.0.1:5005',
++     'apiKey' => '<your-cli-API-key>',
++ ],
+];
+```
