@@ -4,8 +4,9 @@ return array(
     'languages' => [
         1 => 'Français',
         2 => 'English',
-        3 => 'Deutsch'
-        4 => 'Nederlands'
+        3 => 'Deutsch',
+        4 => 'Nederlands',
+        5 => 'Spanish'
     ],
 
     'defaultLanguageIndex' => 1,
@@ -31,5 +32,5 @@ return array(
     ]
     */
 
-    'activeLanguages' => array('fr','en','de','ne',)
+    'activeLanguages' => array('fr','en','de','ne','es')
 );

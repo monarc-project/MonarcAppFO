@@ -51,11 +51,15 @@ return [
             'index' => 4,
             'label' => 'Nederlands',
         ],
+        'es' => [
+            'index' => 5,
+            'label' => 'Spanish',
+        ],
     ],
 
     'defaultLanguageIndex' => 1,
 
-    'activeLanguages' => ['fr', 'en', 'de', 'nl',],
+    'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es'],
 
     'appVersion' => $package_json['version'],
 
