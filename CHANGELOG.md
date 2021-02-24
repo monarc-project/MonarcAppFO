@@ -1,6 +1,22 @@
 MONARC Changelog
 ================
 
+## 2.10.2 (2021-02-24) Includes 3 bug-fixes and a new feature.  
+
+### Fix
+
+- Export an asset
+  ([#325](https://github.com/monarc-project/MonarcAppFO/issues/325)).
+- Snapshot restore
+  ([#326](https://github.com/monarc-project/MonarcAppFO/issues/326)).
+- Multiple login sessions per user
+  ([#333](https://github.com/monarc-project/MonarcAppFO/issues/333)).
+
+### New
+- Enable or disable the statistics sharing per analyse
+  ([#329](https://github.com/monarc-project/MonarcAppFO/issues/329)).
+
+
 ## 2.10.1 (2020-12-17) Includes 3 bug-fixes and a new feature of analysis global stats.  
 
 ### Fix
