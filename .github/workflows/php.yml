@@ -32,13 +32,13 @@ jobs:
       run: sudo service mysql start
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@v1
+      uses: shivammathur/setup-php@v2
       with:
         php-version: '7.2'
-        extensions: imagick, intl, xml, mysql, bcmath, json #optional, setup extensions
+        extensions: imagick, intl, xml, mysql, bcmath #optional, setup extensions
         ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         coverage: xdebug #optional, setup coverage driver
-        pecl: false #optional, setup PECL
+        tools: pecl
 
     - name: Validate composer.json and composer.lock
       run: composer validate
