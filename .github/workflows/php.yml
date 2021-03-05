@@ -35,7 +35,7 @@ jobs:
       uses: shivammathur/setup-php@v1
       with:
         php-version: '7.2'
-        extensions: imagick, intl, xml, mysql #optional, setup extensions
+        extensions: imagick, intl, xml, mysql, bcmath, pdo, json #optional, setup extensions
         ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         coverage: xdebug #optional, setup coverage driver
         pecl: false #optional, setup PECL
