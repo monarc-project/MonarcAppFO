@@ -118,4 +118,6 @@ if [[ $forceClearCache -eq 0 && $bypass -eq 0 ]]; then
 	touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
 fi
 
+./scripts/update_config_variables.sh
+
 exit 0
