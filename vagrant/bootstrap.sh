@@ -295,6 +295,13 @@ cd $PATH_TO_MONARC
 echo -e "\n--- Configuration of MONARC database connection ---\n"
 sudo bash -c "cat << EOF > config/autoload/local.php
 <?php
+\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
+\$string = file_get_contents(\$appdir.'/package.json');
+if(\$string === FALSE) {
+    \$string = file_get_contents('./package.json');
+}
+\$package_json = json_decode(\$string, true);
+
 return [
     'doctrine' => [
         'connection' => [
@@ -319,7 +326,7 @@ return [
 
     'activeLanguages' => ['fr','en','de','nl'],
 
-    'appVersion' => '-master',
+    'appVersion' => \$package_json['version'],
 
     'checkVersion' => false,
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
@@ -339,6 +346,7 @@ return [
     'statsApi' => [
         'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
         'apiKey' => '$apiKey',
+        'userAgent' => 'MONARC v'. \$package_json['version']
     ],
 ];
 EOF"
