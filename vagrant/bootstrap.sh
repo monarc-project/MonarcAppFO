@@ -346,7 +346,7 @@ return [
     'statsApi' => [
         'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
         'apiKey' => '$apiKey',
-        'userAgent' => 'MONARC v'. \$package_json['version']
+        'userAgent' => 'MONARC/'. \$package_json['version']
     ],
 ];
 EOF"

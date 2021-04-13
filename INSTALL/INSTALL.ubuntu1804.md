@@ -224,6 +224,7 @@ local.php file:
 + 'statsApi' => [
 +     'baseUrl' => 'http://127.0.0.1:5005',
 +     'apiKey' => '<your-cli-API-key>',
++     'userAgent' => 'MONARC/<MONARC_VERSION_NUMBER>
 + ],
 ];
 ```
