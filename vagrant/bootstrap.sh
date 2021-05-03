@@ -29,8 +29,8 @@ session.gc_maxlifetime=604800
 session.gc_probability=1
 session.gc_divisor=1000
 
-PHP_INI=/etc/php/7.2/apache2/php.ini
-XDEBUG_CFG=/etc/php/7.2/apache2/conf.d/20-xdebug.ini
+PHP_INI=/etc/php/7.4/apache2/php.ini
+XDEBUG_CFG=/etc/php/7.4/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
@@ -54,7 +54,7 @@ sudo -E dpkg-reconfigure locales
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
-sudo apt-get update && sudo apt-get upgrade
+sudo apt-get update && sudo apt-get upgrade -y
 
 echo -e "\n--- Install base packages… ---\n"
 sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
@@ -199,6 +199,11 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
+echo -e "\n--- Installation of Node, NPM and Grunt… ---\n"
+curl -sL https://deb.nodesource.com/setup_15.x | sudo bash -
+sudo apt-get install -y nodejs
+
+
 echo -e "\n--- Installing the stats service… ---\n"
 sudo apt-get -y install postgresql python3-pip python3-venv
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
@@ -216,7 +221,7 @@ source $HOME/.poetry/env
 
 git clone https://github.com/monarc-project/stats-service $STATS_PATH
 cd $STATS_PATH
-npm install
+npm ci
 poetry install --no-dev
 
 bash -c "cat << EOF > $STATS_PATH/instance/production.py
@@ -238,7 +243,7 @@ DB_CONFIG_DICT = {
     'port': 5432,
 }
 DATABASE_NAME = '$STATS_DB_NAME'
-SQLALCHEMY_DATABASE_URI = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
+SQLALCHEMY_DATABASE_URI = 'postgresql://{user}:{password}@{host}:{port}/{name}'.format(
     name=DATABASE_NAME, **DB_CONFIG_DICT
 )
 SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -293,8 +298,15 @@ cd $PATH_TO_MONARC
 
 
 echo -e "\n--- Configuration of MONARC database connection ---\n"
-sudo bash -c "cat << EOF > config/autoload/local.php
+cat > config/autoload/local.php <<EOF
 <?php
+\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
+\$string = file_get_contents(\$appdir.'/package.json');
+if(\$string === FALSE) {
+    \$string = file_get_contents('./package.json');
+}
+\$package_json = json_decode(\$string, true);
+
 return [
     'doctrine' => [
         'connection' => [
@@ -319,7 +331,7 @@ return [
 
     'activeLanguages' => ['fr','en','de','nl'],
 
-    'appVersion' => '-master',
+    'appVersion' => \$package_json['version'],
 
     'checkVersion' => false,
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
@@ -341,7 +353,7 @@ return [
         'apiKey' => '$apiKey',
     ],
 ];
-EOF"
+EOF
 
 
 echo -e "\n--- Creation of the data bases… ---\n"
@@ -350,12 +362,6 @@ mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common D
 echo -e "\n--- Populating MONARC DB… ---\n"
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_structure.sql > /dev/null
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
-
-
-echo -e "\n--- Installation of Grunt… ---\n"
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt-get install -y nodejs
-sudo npm install -g grunt-cli
 
 
 echo -e "\n--- Creating cache folders for backend… ---\n"
@@ -371,7 +377,8 @@ sudo usermod -aG vagrant www-data
 
 echo -e "\n--- Update the project… ---\n"
 sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
-./scripts/update-all.sh -d > /dev/null
+sudo npm install -g grunt-cli
+./scripts/update-all.sh -d
 
 
 echo -e "\n--- Create initial user and client ---\n"
@@ -382,5 +389,5 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
-echo -e "MONARC is ready and avalable at http://127.0.0.1:5001"
+echo -e "MONARC is ready and available at http://127.0.0.1:5001"
 echo -e "Stats service is ready and available at http://127.0.0.1:$STATS_PORT"
