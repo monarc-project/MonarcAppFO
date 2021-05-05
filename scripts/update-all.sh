@@ -29,12 +29,14 @@ do
   esac
 done
 
-pull_if_exists() {
-	if [ -d $1 ]; then
-		pushd $1
-		git pull
-		popd
-	fi
+checkout_to_latest_tag() {
+  if [ -d $1 ]; then
+    pushd $1
+    git fetch --tags
+    tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+    git checkout $tag -b latest
+    popd
+  fi
 }
 
 migrate_module() {
@@ -86,8 +88,8 @@ fi
 
 if [[ -d node_modules && -d node_modules/ng_anr ]]; then
 	if [[ -d node_modules/ng_anr/.git ]]; then
-		pull_if_exists node_modules/ng_client
-		pull_if_exists node_modules/ng_anr
+		checkout_to_latest_tag node_modules/ng_client
+		checkout_to_latest_tag node_modules/ng_anr
 	else
 		npm update
 	fi
