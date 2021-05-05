@@ -84,7 +84,7 @@ return [
         'from' => 'info@monarc.lu',
     ],
 
-    'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
+    'mospApiUrl' => 'https://objects.monarc.lu/api/',
 
     'monarc' => [
         'ttl' => 60,

@@ -1,6 +1,16 @@
 MONARC Changelog
 ================
 
+## 2.10.3 (2021-??-??) Includes bug-fixes and a new feature.  
+
+### Fix
+
+TODO: add fixes!
+
+### New
+- Implementation of the library objects import and assets export from/to MOSP.
+  ([#320](https://github.com/monarc-project/MonarcAppFO/issues/320)).
+
 ## 2.10.2 (2021-02-24) Includes 3 bug-fixes and a new feature.  
 
 ### Fix

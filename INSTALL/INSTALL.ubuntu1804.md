@@ -219,7 +219,7 @@ local.php file:
 ],
 
 - 'mospApiUrl' => 'https://objects.monarc.lu/api/v1/'
-+ 'mospApiUrl' => 'https://objects.monarc.lu/api/v1/',
++ 'mospApiUrl' => 'https://objects.monarc.lu/api/',
 +
 + 'statsApi' => [
 +     'baseUrl' => 'http://127.0.0.1:5005',
