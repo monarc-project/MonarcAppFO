@@ -47,15 +47,43 @@ return [
             'index' => 3,
             'label' => 'Deutsch',
         ],
-        'ne' => [
+        'nl' => [
             'index' => 4,
             'label' => 'Nederlands',
+        ],
+        'es' => [
+            'index' => 5,
+            'label' => 'Spanish',
+        ],
+        'it' => [
+            'index' => 6,
+            'label' => 'Italian',
+        ],
+        'ru' => [
+            'index' => 7,
+            'label' => 'Russian',
+        ],
+        'pt' => [
+            'index' => 8,
+            'label' => 'Portuguese',
+        ],
+        'pl' => [
+            'index' => 9,
+            'label' => 'Polish',
+        ],
+        'jp' => [
+            'index' => 10,
+            'label' => 'Japanese',
+        ],
+        'zh' => [
+            'index' => 11,
+            'label' => 'Chinese',
         ],
     ],
 
     'defaultLanguageIndex' => 1,
 
-    'activeLanguages' => ['fr', 'en', 'de', 'nl',],
+    'activeLanguages' => array('fr','en','de','nl','es','it','ja','pl','pt','ru','zh'),
 
     'appVersion' => $package_json['version'],
 
