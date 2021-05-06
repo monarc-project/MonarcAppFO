@@ -329,7 +329,7 @@ return [
         ],
     ],
 
-    'activeLanguages' => ['fr','en','de','nl'],
+    'activeLanguages' => array('fr','en','de','nl','es','it','ja','pl','pt','ru','zh'),
 
     'appVersion' => \$package_json['version'],
 
