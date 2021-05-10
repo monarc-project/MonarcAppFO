@@ -94,11 +94,11 @@ if [[ -d node_modules && -d node_modules/ng_anr ]]; then
 		npm update
 	fi
 else
-	npm install
+	npm ci
 fi
 
 cd node_modules/ng_client
-npm install
+npm ci
 cd ../..
 
 ./scripts/link_modules_resources.sh
