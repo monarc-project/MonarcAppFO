@@ -1,15 +1,29 @@
 MONARC Changelog
 ================
 
-## 2.10.3 (2021-??-??) Includes bug-fixes and a new feature.  
+## 2.10.3 (2021-05-10) Includes bug-fixes, new features and an enhancement.  
+
+### New
+
+- Implement the UI language management
+  ([#318](https://github.com/monarc-project/MonarcAppFO/issues/318))
+- Implementation of the library objects import and assets export from/to MOSP
+  ([#320](https://github.com/monarc-project/MonarcAppFO/issues/320))
+- Possibility to export items from the Knowledge Base
+  ([#321](https://github.com/monarc-project/MonarcAppFO/issues/321))
+- Send MONARC version to Stats Service
+  ([#341](https://github.com/monarc-project/MonarcAppFO/issues/341))
 
 ### Fix
 
-TODO: add fixes!
+- [Front Office] export of measure related to "amvs" stoped working since v2.10.1
+  ([#340](https://github.com/monarc-project/MonarcAppFO/issues/340))
 
-### New
-- Implementation of the library objects import and assets export from/to MOSP.
-  ([#320](https://github.com/monarc-project/MonarcAppFO/issues/320)).
+### Enhancement
+
+- Improve the import speed of analyses and instances (*partially done*).
+  ([#248](https://github.com/monarc-project/MonarcAppFO/issues/248))
+
 
 ## 2.10.2 (2021-02-24) Includes 3 bug-fixes and a new feature.  
 

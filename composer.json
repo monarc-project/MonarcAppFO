@@ -1,6 +1,7 @@
 {
     "name": "monarc/monarc",
     "description": "Monarc application",
+    "license": "AGPL-3.0-or-later",
     "authors": [
         {
             "name": "Cyril Rouyer",
