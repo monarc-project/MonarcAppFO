@@ -6,6 +6,11 @@ projects: MONARC Development Overview
 
 ---
 
+This bug tracker is for tracking bugs, todos and confirmed new features.
+If you want to submit a feature request please discuss about it here:
+https://github.com/monarc-project/MonarcAppFO/discussions
+
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
