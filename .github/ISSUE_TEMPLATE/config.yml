@@ -4,3 +4,6 @@ contact_links:
   - name: MONARC Community Support
     url: https://github.com/monarc-project/MonarcAppFO/discussions
     about: Please ask and answer questions here.
+  - name: my.monarc.lu service
+    url: https://www.monarc.lu/service/
+    about: For requests related to the my.monarc.lu service
