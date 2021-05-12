@@ -31,7 +31,4 @@ if (file_exists('config/development.config.php')) {
     $appConfig = Laminas\Stdlib\ArrayUtils::merge($appConfig, include 'config/development.config.php');
 }
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 Application::init($appConfig)->run();
