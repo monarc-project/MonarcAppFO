@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.10.3 (2021-05-10) Includes bug-fixes, new features and an enhancement.  
+## 2.10.3 (2021-05-12) Includes bug-fixes, new features and an enhancement.  
 
 ### New
 

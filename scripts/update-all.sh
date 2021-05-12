@@ -34,8 +34,8 @@ checkout_to_latest_tag() {
     pushd $1
     git fetch --tags -f
     tag=$(git describe --tags)
-    git checkout $tag
-    #git pull origin $tag
+    git checkout $tag -b $tag
+    git pull origin $tag
     popd
   fi
 }
