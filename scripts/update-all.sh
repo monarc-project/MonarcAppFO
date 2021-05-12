@@ -33,9 +33,9 @@ checkout_to_latest_tag() {
   if [ -d $1 ]; then
     pushd $1
     git fetch --tags
-    tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-    git checkout $tag -b latest
-    git pull origin $tag
+    tag=$(git describe --tags)
+    git checkout $tag
+    #git pull origin $tag
     popd
   fi
 }
