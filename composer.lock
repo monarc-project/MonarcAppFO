@@ -4532,12 +4532,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "98bd35758dd3c14e4f757147e5a62780add9e15e"
+                "reference": "9182a7a70d4c853132c9dc65a3034c3251b12a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/98bd35758dd3c14e4f757147e5a62780add9e15e",
-                "reference": "98bd35758dd3c14e4f757147e5a62780add9e15e",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/9182a7a70d4c853132c9dc65a3034c3251b12a60",
+                "reference": "9182a7a70d4c853132c9dc65a3034c3251b12a60",
                 "shasum": ""
             },
             "require": {
@@ -4615,7 +4615,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.10.3"
             },
-            "time": "2021-06-01T12:26:43+00:00"
+            "time": "2021-06-04T16:01:44+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -4623,12 +4623,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "e7d145cd85b4f3b6430a13cced9cfc9d32d0249e"
+                "reference": "7d6810fb1725e97d63455c28218da2287399134f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/e7d145cd85b4f3b6430a13cced9cfc9d32d0249e",
-                "reference": "e7d145cd85b4f3b6430a13cced9cfc9d32d0249e",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/7d6810fb1725e97d63455c28218da2287399134f",
+                "reference": "7d6810fb1725e97d63455c28218da2287399134f",
                 "shasum": ""
             },
             "require": {
@@ -4711,7 +4711,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.10.3"
             },
-            "time": "2021-06-01T12:23:47+00:00"
+            "time": "2021-06-04T16:00:50+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -7996,12 +7996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "80f32ef3cff7c3b5b650d8aa823437b43d5c5056"
+                "reference": "9460a22455b82b353d2212fecedebcf73b141baa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/80f32ef3cff7c3b5b650d8aa823437b43d5c5056",
-                "reference": "80f32ef3cff7c3b5b650d8aa823437b43d5c5056",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9460a22455b82b353d2212fecedebcf73b141baa",
+                "reference": "9460a22455b82b353d2212fecedebcf73b141baa",
                 "shasum": ""
             },
             "conflict": {
@@ -8151,6 +8151,7 @@
                 "paypal/merchant-sdk-php": "<3.12",
                 "pear/archive_tar": "<1.4.12",
                 "personnummer/personnummer": "<3.0.2",
+                "phanan/koel": "<5.1.4",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
                 "phpmailer/phpmailer": "<6.1.6|>=6.1.8,<6.4.1",
                 "phpmussel/phpmussel": ">=1,<1.6",
@@ -8348,7 +8349,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T16:24:26+00:00"
+            "time": "2021-06-01T22:04:47+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9202,5 +9203,5 @@
         "ext-bcmath": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
