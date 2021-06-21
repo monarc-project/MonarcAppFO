@@ -45,7 +45,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
-        "monarc/frontoffice": "^2.10.3",
+        "monarc/frontoffice": "dev-feature/353 as 2.10.3",
         "monarc/core": "^2.10.3",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
