@@ -4619,12 +4619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "cb56195549e6dfc70e4386f98f5775c5c18f4b5b"
+                "reference": "3cffd949e46ca2869e3183143fa11291a7ae84dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/cb56195549e6dfc70e4386f98f5775c5c18f4b5b",
-                "reference": "cb56195549e6dfc70e4386f98f5775c5c18f4b5b",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3cffd949e46ca2869e3183143fa11291a7ae84dc",
+                "reference": "3cffd949e46ca2869e3183143fa11291a7ae84dc",
                 "shasum": ""
             },
             "require": {
@@ -4707,7 +4707,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.10.3"
             },
-            "time": "2021-06-21T15:05:21+00:00"
+            "time": "2021-06-22T10:37:56+00:00"
         },
         {
             "name": "monarc/phpword",
