@@ -4463,16 +4463,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.2.1",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "9aaa3fde4a184c53f893d938ea9d3f9375cd0622"
+                "reference": "13af2502d9bb6f7d33be2de4b51fb68c6cdb476e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/9aaa3fde4a184c53f893d938ea9d3f9375cd0622",
-                "reference": "9aaa3fde4a184c53f893d938ea9d3f9375cd0622",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/13af2502d9bb6f7d33be2de4b51fb68c6cdb476e",
+                "reference": "13af2502d9bb6f7d33be2de4b51fb68c6cdb476e",
                 "shasum": ""
             },
             "require": {
@@ -4521,7 +4521,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-06-24T10:54:07+00:00"
+            "time": "2021-06-24T12:49:22+00:00"
         },
         {
             "name": "monarc/core",
@@ -4529,12 +4529,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "209d2584252efed0aa68f87b94b63cfcb3cd5c45"
+                "reference": "10bc561f8f870ce57b9c65aa51a740caee51679b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/209d2584252efed0aa68f87b94b63cfcb3cd5c45",
-                "reference": "209d2584252efed0aa68f87b94b63cfcb3cd5c45",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/10bc561f8f870ce57b9c65aa51a740caee51679b",
+                "reference": "10bc561f8f870ce57b9c65aa51a740caee51679b",
                 "shasum": ""
             },
             "require": {
@@ -4612,7 +4612,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.10.4"
             },
-            "time": "2021-06-24T11:23:41+00:00"
+            "time": "2021-06-24T13:04:33+00:00"
         },
         {
             "name": "monarc/frontoffice",
