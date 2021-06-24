@@ -1,6 +1,16 @@
 MONARC Changelog
 ================
 
+## 2.10.4 (2021-06-24) Includes bug-fixes.
+
+### Fix
+
+- [FrontOffice] Snapshots creation error.
+  ([#362](https://github.com/monarc-project/MonarcAppFO/issues/362))
+- Foreign Key Error by when deactivating information security risks.
+  ([#358](https://github.com/monarc-project/MonarcAppFO/issues/358))
+
+
 ## 2.10.3 (2021-05-12) Includes bug-fixes, new features and an enhancement.  
 
 ### New
