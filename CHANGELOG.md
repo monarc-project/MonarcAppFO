@@ -9,6 +9,8 @@ MONARC Changelog
   ([#362](https://github.com/monarc-project/MonarcAppFO/issues/362))
 - Foreign Key Error by when deactivating information security risks.
   ([#358](https://github.com/monarc-project/MonarcAppFO/issues/358))
+- Dashboard cartography error for risk lists.
+  ([#359](https://github.com/monarc-project/MonarcAppFO/issues/359))
 
 
 ## 2.10.3 (2021-05-12) Includes bug-fixes, new features and an enhancement.  
