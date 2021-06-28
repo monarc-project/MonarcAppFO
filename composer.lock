@@ -2607,16 +2607,16 @@
         },
         {
             "name": "laminas/laminas-escaper",
-            "version": "2.7.1",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-escaper.git",
-                "reference": "67dac07c6b4857fbf2bd7a5257a4e1ca8a1c00d0"
+                "reference": "2d6dce99668b413610e9544183fa10392437f542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/67dac07c6b4857fbf2bd7a5257a4e1ca8a1c00d0",
-                "reference": "67dac07c6b4857fbf2bd7a5257a4e1ca8a1c00d0",
+                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/2d6dce99668b413610e9544183fa10392437f542",
+                "reference": "2d6dce99668b413610e9544183fa10392437f542",
                 "shasum": ""
             },
             "require": {
@@ -2666,7 +2666,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-06-24T16:45:38+00:00"
+            "time": "2021-06-26T14:26:08+00:00"
         },
         {
             "name": "laminas/laminas-eventmanager",
@@ -4620,12 +4620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "5f91f5829890510391fd3f41e66719217819eb78"
+                "reference": "1650453c9a4926695f2a13f462eabacb85e9a520"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5f91f5829890510391fd3f41e66719217819eb78",
-                "reference": "5f91f5829890510391fd3f41e66719217819eb78",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/1650453c9a4926695f2a13f462eabacb85e9a520",
+                "reference": "1650453c9a4926695f2a13f462eabacb85e9a520",
                 "shasum": ""
             },
             "require": {
@@ -4708,7 +4708,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.10.4"
             },
-            "time": "2021-06-25T12:58:39+00:00"
+            "time": "2021-06-28T16:14:23+00:00"
         },
         {
             "name": "monarc/phpword",
@@ -7986,12 +7986,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "ac0d045cdd1a9f1c87a0225a1dcda2bfb71be924"
+                "reference": "eb3ee0f5774a542e912e3eb7670dcbf1ef24c1a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ac0d045cdd1a9f1c87a0225a1dcda2bfb71be924",
-                "reference": "ac0d045cdd1a9f1c87a0225a1dcda2bfb71be924",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/eb3ee0f5774a542e912e3eb7670dcbf1ef24c1a8",
+                "reference": "eb3ee0f5774a542e912e3eb7670dcbf1ef24c1a8",
                 "shasum": ""
             },
             "conflict": {
@@ -8185,8 +8185,8 @@
                 "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
                 "sensiolabs/connect": "<4.2.3",
                 "serluck/phpwhois": "<=4.2.6",
-                "shopware/core": "<=6.3.5.2",
-                "shopware/platform": "<=6.3.5.2",
+                "shopware/core": "<=6.4.1",
+                "shopware/platform": "<=6.4.1",
                 "shopware/production": "<=6.3.5.2",
                 "shopware/shopware": "<=5.6.9",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
@@ -8352,7 +8352,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-24T09:02:34+00:00"
+            "time": "2021-06-28T17:35:52+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
