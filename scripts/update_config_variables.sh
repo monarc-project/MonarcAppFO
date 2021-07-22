@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/bin/bash
 
 conf_file='./config/autoload/local.php'
 if [ -f "$conf_file" ]; then

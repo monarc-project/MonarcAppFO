@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/bin/bash
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -34,16 +34,12 @@ vercomp () {
 composer_version_string=`composer --version`
 composer_version=`echo $composer_version_string | awk 'BEGIN { FS="[ ]" } ; { print $3 }'`
 
-if [[ $(vercomp $composer_version 1.9.0 ; echo $?) -eq 0 ]]; then
-    echo -e "${RED}Please update your version of composer.${NC} The minimum requirements is 1.9.0."
-    echo -e "The minimum requirement is 1.9.0. You can use the following to update your composer installation:"
+if [[ $(vercomp $composer_version 2.1.0 ; echo $?) -eq 0 ]]; then
+    echo -e "${RED}Please update your version of composer.${NC} The minimum requirements is 2.1.0."
+    echo -e "You can run 'composer self-update' command or follow the link with the installation details:"
 
     cat << EOF
-
-  $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-  $ php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-  $ php composer-setup.php --install-dir=/tmp --filename=composer
-  $ mv /tmp/composer /usr/local/bin/composer
+https://getcomposer.org/download/
 EOF
 
     exit 1
