@@ -1,6 +1,26 @@
 MONARC Changelog
 ================
 
+
+## 2.11.0 (2021-09-02)
+
+### New
+
+- Having the possibility to define custom scales for operational risks
+  ([#353](https://github.com/monarc-project/MonarcAppFO/issues/353));
+- introduction of the risk context and the risk owner
+  ([#21](https://github.com/monarc-project/MonarcAppFO/issues/21)),
+  ([#186](https://github.com/monarc-project/MonarcAppFO/issues/186));
+
+
+### Fix
+
+- update-all.sh: Could not read from remote repository
+  ([#365](https://github.com/monarc-project/MonarcAppFO/issues/365));
+- Some files in script do not have the correct permissions
+  ([#364](https://github.com/monarc-project/MonarcAppFO/issues/364)).
+
+
 ## 2.10.4 (2021-06-24) Includes bug-fixes.
 
 ### Fix
