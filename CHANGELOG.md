@@ -9,8 +9,8 @@ MONARC Changelog
 - Having the possibility to define custom scales for operational risks
   ([#353](https://github.com/monarc-project/MonarcAppFO/issues/353));
 - introduction of the risk context and the risk owner
-  ([#21](https://github.com/monarc-project/MonarcAppFO/issues/21)),
-  ([#186](https://github.com/monarc-project/MonarcAppFO/issues/186));
+  ([#21](https://github.com/monarc-project/MonarcAppFO/issues/21),
+  [#186](https://github.com/monarc-project/MonarcAppFO/issues/186));
 
 
 ### Fix
