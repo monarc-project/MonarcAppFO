@@ -46,7 +46,7 @@ For installation instructions see
 [INSTALL](https://www.monarc.lu/download/#source-code).
 
 You can also use the provided Virtual Machine
-[Virtual Machine](https://www.monarc.lu/download/#virtual-machine).
+[Virtual Machine](https://vm.monarc.lu).
 
 
 Contributing
