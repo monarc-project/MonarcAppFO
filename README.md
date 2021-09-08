@@ -45,8 +45,7 @@ You will find a user guide and a technical guide on the
 For installation instructions see
 [INSTALL](https://www.monarc.lu/download/#source-code).
 
-You can also use the provided Virtual Machine
-[Virtual Machine](https://vm.monarc.lu).
+You can also use the provided [Virtual Machine](https://vm.monarc.lu).
 
 
 Contributing
