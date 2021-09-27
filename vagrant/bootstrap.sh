@@ -110,7 +110,7 @@ do
 done
 
 echo -e "\n--- Configuring Xdebug for development ---\n"
-sudo bash -c cat "<< EOF > $XDEBUG_CFG
+sudo bash -c "cat << EOF > $XDEBUG_CFG
 zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
