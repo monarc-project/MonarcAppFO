@@ -4533,16 +4533,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "v2.11.0-p1",
+            "version": "v2.11.0-p2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "d13eaec2ae87b035d78e67545236e3bc4887d090"
+                "reference": "08cad630419531938a20b970360001ee800355b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/d13eaec2ae87b035d78e67545236e3bc4887d090",
-                "reference": "d13eaec2ae87b035d78e67545236e3bc4887d090",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/08cad630419531938a20b970360001ee800355b7",
+                "reference": "08cad630419531938a20b970360001ee800355b7",
                 "shasum": ""
             },
             "require": {
@@ -4618,9 +4618,9 @@
             "description": "Core for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-core/issues",
-                "source": "https://github.com/monarc-project/zm-core/tree/v2.11.0-p1"
+                "source": "https://github.com/monarc-project/zm-core/tree/v2.11.0-p2"
             },
-            "time": "2021-09-13T13:12:50+00:00"
+            "time": "2021-09-28T10:39:28+00:00"
         },
         {
             "name": "monarc/frontoffice",
