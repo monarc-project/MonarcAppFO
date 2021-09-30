@@ -3,13 +3,14 @@
 [WSL](https://docs.microsoft.com/en-us/windows/wsl/)
 is convenient to use in order to setup your development environment on Windows OS.
 
-WSL data can be accessible using ```\\wsl$``` on Windows.
+WSL data can be accessible using ```\\wsl$``` on File Explorer.
 
 
 ## Prerequisites
 
 * You must be running Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11.
 * Virtual Machine Platform and Windows Subsystem for Linux are enabled
+
 In PowerShell as Administrator run this commands
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
