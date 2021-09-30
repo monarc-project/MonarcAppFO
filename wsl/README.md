@@ -9,7 +9,15 @@ WSL data can be accessible using ```\\wsl$``` on Windows.
 ## Prerequisites
 
 * You must be running Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11.
-* Virtual Machine Platform and Windows Subsystem for Linux are enabled [[1]](https://docs.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues)
+* Virtual Machine Platform and Windows Subsystem for Linux are enabled
+In PowerShell as Administrator run this commands
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+```
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+```
+
 
 ## Installation of WSL
 
