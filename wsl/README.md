@@ -9,8 +9,7 @@ WSL data can be accessible using ```\\wsl$``` on Windows.
 ## Prerequisites
 
 * You must be running Windows 10 version 2004 and higher (Build 19041 and higher) or Windows 11.
-* Hyper-V Feature turned on [[1]](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell)
-* Virtual Machine Platform and Windows Subsystem for Linux are enabled [[2]](https://docs.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues)
+* Virtual Machine Platform and Windows Subsystem for Linux are enabled [[1]](https://docs.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues)
 
 ## Installation of WSL
 
