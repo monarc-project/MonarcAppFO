@@ -104,8 +104,8 @@ fi
 
 
 echo -e "\n--- Installing MONARC… ---\n"
-git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO.git $PATH_TO_MONARC > /dev/null 2>&1
 cd $PATH_TO_MONARC
+git config core.fileMode false
 
 echo -e "\n--- Installing the dependencies… ---\n"
 composer ins > /dev/null 2>&1
