@@ -38,8 +38,7 @@ In WLS shell:
 ```bash
     $ cd ~
     $ git clone https://github.com/monarc-project/MonarcAppFO
-    $ cd MonarcAppFO/wsl
-    $ bash installFO.sh
+    $ bash ./MonarcAppFO/wsl/installFO.sh
 ```
 
 Once the VM will be configured by WSL, go to the address in the browser
@@ -49,3 +48,25 @@ The username is *admin@admin.localhost* and the password is *admin*.
 
 The StatsService service will be configured, launched and
 accessible on```http://localhost:5005```
+
+## Deployment of the front office and back office together
+
+> **_NOTE_** : If you only want to intall the MONARC front office, just follow the instructions above.
+
+
+In WLS shell:
+
+```bash
+    $ cd ~
+    $ git clone https://github.com/monarc-project/MonarcAppFO
+    $ git clone https://github.com/monarc-project/MonarcAppBO
+    $ bash ./MonarcAppFO/wsl/installFull.sh
+```
+
+Once the VM will be configured by WSL:
+
+* **MONARC FrontOffice** is ready and available at ```http://localhost```
+* **MONARC BackOffice** is ready and available at ```http://localhost:8080```
+* **Stats service** is ready and available at ```http://localhost:5005```
+
+The username is *admin@admin.localhost* and the password is *admin*.

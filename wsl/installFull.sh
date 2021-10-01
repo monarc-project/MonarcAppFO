@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
-PATH_TO_MONARC=$HOME/MonarcAppFO
+PATH_TO_MONARC_FO=$HOME/MonarcAppFO
+PATH_TO_MONARC_BO=$HOME/MonarcAppBO
 
 APPENV='local'
 ENVIRONMENT='development'
@@ -8,11 +9,12 @@ ENVIRONMENT='development'
 # MariaDB database
 DBHOST='localhost'
 DBNAME_COMMON='monarc_common'
+DBNAME_MASTER='monarc_master'
 DBNAME_CLI='monarc_cli'
 DBUSER_ADMIN='root'
-DBPASSWORD_ADMIN="root"
+DBPASSWORD_ADMIN='root'
 DBUSER_MONARC='sqlmonarcuser'
-DBPASSWORD_MONARC="sqlmonarcuser"
+DBPASSWORD_MONARC='sqlmonarcuser'
 
 # PHP configuration
 upload_max_filesize=200M
@@ -92,8 +94,12 @@ sudo a2enmod rewrite > /dev/null 2>&1
 sudo a2enmod ssl > /dev/null 2>&1
 sudo a2enmod headers > /dev/null 2>&1
 
-echo -e "\n--- Allowing Apache override to all ---\n"
+echo -e "\n--- Configuring Apache  ---\n"
 sudo sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+sudo bash -c "cat << EOF >> /etc/apache2/apache2.conf
+AcceptFilter https none
+AcceptFilter http none
+EOF"
 
 echo -e "\n--- Installing composer… ---\n"
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer > /dev/null 2>&1
@@ -103,11 +109,12 @@ if [ $? -ne 0 ]; then
 fi
 
 
-echo -e "\n--- Installing MONARC… ---\n"
-cd $PATH_TO_MONARC
+echo -e "\n--- Installing MONARC … ---\n"
+cd $PATH_TO_MONARC_FO
 git config core.fileMode false
 
-echo -e "\n--- Installing the dependencies… ---\n"
+
+echo -e "\n--- Installing the FO dependencies… ---\n"
 composer ins > /dev/null 2>&1
 
 
@@ -116,7 +123,7 @@ mkdir -p module/Monarc
 cd module/Monarc
 ln -sfn ./../../vendor/monarc/core Core
 ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
-cd $PATH_TO_MONARC
+cd $PATH_TO_MONARC_FO
 
 
 
@@ -137,6 +144,39 @@ if [ $? -ne 0 ]; then
     echo "\nERROR: unable to clone the ng-anr repository\n"
     exit 1;
 fi
+
+cd $PATH_TO_MONARC_BO
+git config core.fileMode false
+
+echo -e "\n--- Installing the BO dependencies… ---\n"
+composer ins > /dev/null 2>&1
+
+
+# Make modules symlinks.
+mkdir -p module/Monarc
+cd module/Monarc
+ln -sfn ./../../vendor/monarc/core Core
+ln -sfn ./../../vendor/monarc/backoffice BackOffice
+cd $PATH_TO_MONARC_BO
+
+
+# Front-end
+mkdir -p node_modules
+cd node_modules
+if [ ! -d "ng_client" ]; then
+  git clone --config core.fileMode=false https://github.com/monarc-project/ng-backoffice.git ng_backoffice  > /dev/null 2>&1
+fi
+if [ $? -ne 0 ]; then
+    echo "\nERROR: unable to clone the ng-client repository\n"
+    exit 1;
+fi
+if [ ! -d "ng_anr" ]; then
+  git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr > /dev/null 2>&1
+fi
+if [ $? -ne 0 ]; then
+    echo "\nERROR: unable to clone the ng-anr repository\n"
+    exit 1;
+fi
 cd ..
 
 
@@ -145,9 +185,9 @@ echo -e "\n--- Add a VirtualHost for MONARC ---\n"
 sudo bash -c "cat << EOF > /etc/apache2/sites-enabled/000-default.conf
 <VirtualHost *:80>
     ServerName localhost
-    DocumentRoot $PATH_TO_MONARC/public
+    DocumentRoot $PATH_TO_MONARC_FO/public
 
-    <Directory $PATH_TO_MONARC/public>
+    <Directory $PATH_TO_MONARC_FO/public>
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
@@ -161,9 +201,33 @@ sudo bash -c "cat << EOF > /etc/apache2/sites-enabled/000-default.conf
     </IfModule>
 
     SetEnv APP_ENV $ENVIRONMENT
-    SetEnv APP_DIR $PATH_TO_MONARC
+    SetEnv APP_DIR $PATH_TO_MONARC_FO
+</VirtualHost>
+
+Listen 8080
+
+<VirtualHost *:8080>
+    ServerName localhost
+    DocumentRoot $PATH_TO_MONARC_BO/public
+
+    <Directory $PATH_TO_MONARC_BO/public>
+        DirectoryIndex index.php
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    <IfModule mod_headers.c>
+       Header always set X-Content-Type-Options nosniff
+       Header always set X-XSS-Protection '1; mode=block'
+       Header always set X-Robots-Tag none
+       Header always set X-Frame-Options SAMEORIGIN
+    </IfModule>
+
+    SetEnv APP_ENV $ENVIRONMENT
+    SetEnv APP_DIR $PATH_TO_MONARC_BO
 </VirtualHost>
 EOF"
+
 echo -e "\n--- Restarting Apache… ---\n"
 sudo service apache2 restart > /dev/null
 
@@ -234,13 +298,11 @@ FLASK_APP=runserver.py poetry run nohup python runserver.py > /dev/null 2>&1 &
 
 # Create a new client and set the apiKey.
 cd $STATS_PATH ; apiKey=$(poetry run flask client_create --name admin_localhost | sed -nr 's/Token: (.*)$/\1/p')
-cd $PATH_TO_MONARC
-
 
 echo -e "\n--- Configuration of MONARC database connection ---\n"
-cat > config/autoload/local.php <<EOF
+cat > $PATH_TO_MONARC_FO/config/autoload/local.php <<EOF
 <?php
-\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
+\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC_FO';
 \$string = file_get_contents(\$appdir.'/package.json');
 if(\$string === FALSE) {
     \$string = file_get_contents('./package.json');
@@ -295,30 +357,86 @@ return [
 ];
 EOF
 
+cat > $PATH_TO_MONARC_BO/config/autoload/local.php <<EOF
+<?php
+\$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC_BO';
+\$string = file_get_contents(\$appdir.'/package.json');
+if(\$string === FALSE) {
+    \$string = file_get_contents('./package.json');
+}
+\$package_json = json_decode(\$string, true);
+
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'params' => [
+                    'host' => '$DBHOST',
+                    'user' => '$DBUSER_MONARC',
+                    'password' => '$DBPASSWORD_MONARC',
+                    'dbname' => '$DBNAME_COMMON',
+                ],
+            ],
+            'orm_cli' => [
+                'params' => [
+                    'host' => '$DBHOST',
+                    'user' => '$DBUSER_MONARC',
+                    'password' => '$DBPASSWORD_MONARC',
+                    'dbname' => '$DBNAME_MASTER',
+                ],
+            ],
+        ],
+    ],
+
+    'activeLanguages' => array('fr','en','de','nl'),
+
+    'appVersion' => \$package_json['version'],
+
+    'checkVersion' => false,
+    'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
+
+    'monarc' => [
+        'ttl' => 60, // timeout
+        'salt' => '', // private salt for password encryption
+    ],
+
+];
+EOF
+
 
 echo -e "\n--- Creation of the data bases… ---\n"
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_master DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
 mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" > /dev/null
 echo -e "\n--- Populating MONARC DB… ---\n"
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_structure.sql > /dev/null
-mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < db-bootstrap/monarc_data.sql > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < $PATH_TO_MONARC_FO/db-bootstrap/monarc_structure.sql > /dev/null
+mysql -u $DBUSER_MONARC -p$DBPASSWORD_MONARC monarc_common < $PATH_TO_MONARC_FO/db-bootstrap/monarc_data.sql > /dev/null
 
 
 echo -e "\n--- Creating cache folders for backend… ---\n"
-mkdir -p $PATH_TO_MONARC/data/cache
-mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
-mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
-chmod -R g+w $PATH_TO_MONARC/data
-sudo chown -R www-data:www-data data
+mkdir -p $PATH_TO_MONARC_FO/data/cache
+mkdir -p $PATH_TO_MONARC_FO/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC_FO/data/DoctrineORMModule/Proxy
+chmod -R g+w $PATH_TO_MONARC_FO/data
+mkdir -p $PATH_TO_MONARC_BO/data/cache
+mkdir -p $PATH_TO_MONARC_BO/data/LazyServices/Proxy
+mkdir -p $PATH_TO_MONARC_BO/data/DoctrineORMModule/Proxy
+chmod -R g+w $PATH_TO_MONARC_BO/data
+sudo chown -R www-data:www-data $PATH_TO_MONARC_FO/data
+sudo chown -R www-data:www-data $PATH_TO_MONARC_BO/data
 
 
-echo -e "\n--- Update the project… ---\n"
-./scripts/update-all.sh -d
+echo -e "\n--- Update the projects… ---\n"
+cd $PATH_TO_MONARC_FO ; ./scripts/update-all.sh -d
+cd $PATH_TO_MONARC_BO ; ./scripts/update-all.sh
 
 
 echo -e "\n--- Create initial user and client ---\n"
+cd $PATH_TO_MONARC_FO
 php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
-
+cd $PATH_TO_MONARC_BO
+php ./bin/phinx seed:run -c ./module/Monarc/BackOffice/migrations/phinx.php
+cd ~
 
 echo -e "\n--- Restarting Apache… ---\n"
 sudo service apache2 restart > /dev/null
@@ -334,5 +452,6 @@ cd ~
 EOF
 
 echo -e "MONARC FO is ready and available at http://localhost"
+echo -e "MONARC BO is ready and available at http://localhost:8080"
 echo -e "Stats service is ready and available at http://localhost:$STATS_PORT"
 echo -e "user: admin@admin.localhost / password: admin"
