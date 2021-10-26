@@ -1,14 +1,35 @@
 MONARC Changelog
 ================
 
+## 2.11.1 (2021-10-27)
+
+### New
+
+- Add import of referential mapping from MOSP
+  ([#]391(https://github.com/monarc-project/MonarcAppFO/issues/391)).
+
+### Fix
+- Subsuming CIA criteria according to the maximum criteria does not work
+  ([#339](https://github.com/monarc-project/MonarcAppFO/issues/339)).
+- Incorrect sum and list of risks under the secondary assets
+  ([#367](https://github.com/monarc-project/MonarcAppFO/issues/367)).
+- If impact adjustments are made not only at the level of the primary assets but also at the level of the secondary assets, these assets are listed more than once
+  ([#387](https://github.com/monarc-project/MonarcAppFO/issues/387)).
+- Recommendation status change error in the Knowledge Base
+  ([#393](https://github.com/monarc-project/MonarcAppFO/issues/393)).
+- Import issue of setting operational risks values
+  ([#394](https://github.com/monarc-project/MonarcAppFO/issues/394)).
+- Fix possible circular iteration of the instance root -> parent -> child rendering
+  ([#395](https://github.com/monarc-project/MonarcAppFO/issues/395)).
+
 
 ## 2.11.0 (2021-09-02)
 
 ### New
 
-- having the possibility to define custom scales for operational risks
-  ([#353](https://github.com/monarc-project/MonarcAppFO/issues/353));
-- introduction of the risk context and the risk owner
+- Having the possibility to define custom scales for operational risks
+  ([#353](https://github.com/monarc-project/MonarcAppFO/issues/353)).
+- Introduction of the risk context and the risk owner
   ([#21](https://github.com/monarc-project/MonarcAppFO/issues/21),
   [#186](https://github.com/monarc-project/MonarcAppFO/issues/186)).
 
@@ -16,8 +37,8 @@ MONARC Changelog
 ### Fix
 
 - update-all.sh: Could not read from remote repository
-  ([#365](https://github.com/monarc-project/MonarcAppFO/issues/365));
-- some files in script do not have the correct permissions
+  ([#365](https://github.com/monarc-project/MonarcAppFO/issues/365)).
+- Ыome files in script do not have the correct permissions
   ([#364](https://github.com/monarc-project/MonarcAppFO/issues/364)).
 
 
@@ -25,12 +46,12 @@ MONARC Changelog
 
 ### Fix
 
-- Foreign Key Error by when deactivating information security risks.
-  ([#358](https://github.com/monarc-project/MonarcAppFO/issues/358))
-- Dashboard cartography error for risk lists.
-  ([#359](https://github.com/monarc-project/MonarcAppFO/issues/359))
-- [FrontOffice] Snapshots creation error.
-  ([#362](https://github.com/monarc-project/MonarcAppFO/issues/362))
+- Foreign Key Error by when deactivating information security risks
+  ([#358](https://github.com/monarc-project/MonarcAppFO/issues/358)).
+- Dashboard cartography error for risk lists
+  ([#359](https://github.com/monarc-project/MonarcAppFO/issues/359)).
+- [FrontOffice] Snapshots creation error
+  ([#362](https://github.com/monarc-project/MonarcAppFO/issues/362)).
 
 
 ## 2.10.3 (2021-05-12) Includes bug-fixes, new features and an enhancement.  
@@ -38,23 +59,23 @@ MONARC Changelog
 ### New
 
 - Implement the UI language management
-  ([#318](https://github.com/monarc-project/MonarcAppFO/issues/318))
+  ([#318](https://github.com/monarc-project/MonarcAppFO/issues/318)).
 - Implementation of the library objects import and assets export from/to MOSP
-  ([#320](https://github.com/monarc-project/MonarcAppFO/issues/320))
+  ([#320](https://github.com/monarc-project/MonarcAppFO/issues/320)).
 - Possibility to export items from the Knowledge Base
-  ([#321](https://github.com/monarc-project/MonarcAppFO/issues/321))
+  ([#321](https://github.com/monarc-project/MonarcAppFO/issues/321)).
 - Send MONARC version to Stats Service
-  ([#341](https://github.com/monarc-project/MonarcAppFO/issues/341))
+  ([#341](https://github.com/monarc-project/MonarcAppFO/issues/341)).
 
 ### Fix
 
 - [Front Office] export of measure related to "amvs" stoped working since v2.10.1
-  ([#340](https://github.com/monarc-project/MonarcAppFO/issues/340))
+  ([#340](https://github.com/monarc-project/MonarcAppFO/issues/340)).
 
 ### Enhancement
 
-- Improve the import speed of analyses and instances (*partially done*).
-  ([#248](https://github.com/monarc-project/MonarcAppFO/issues/248))
+- Improve the import speed of analyses and instances (*partially done*)
+  ([#248](https://github.com/monarc-project/MonarcAppFO/issues/248)).
 
 
 ## 2.10.2 (2021-02-24) Includes 3 bug-fixes and a new feature.  
