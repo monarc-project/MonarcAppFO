@@ -4694,12 +4694,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "f1e19dd5acf744a8ebac0c0e31779fcea9831b2b"
+                "reference": "b38ee87a79ccd2148b47a5fb7d613cec5fad2822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/f1e19dd5acf744a8ebac0c0e31779fcea9831b2b",
-                "reference": "f1e19dd5acf744a8ebac0c0e31779fcea9831b2b",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/b38ee87a79ccd2148b47a5fb7d613cec5fad2822",
+                "reference": "b38ee87a79ccd2148b47a5fb7d613cec5fad2822",
                 "shasum": ""
             },
             "require": {
@@ -4782,7 +4782,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1"
             },
-            "time": "2021-10-26T09:16:29+00:00"
+            "time": "2021-10-26T10:29:49+00:00"
         },
         {
             "name": "nikic/php-parser",
