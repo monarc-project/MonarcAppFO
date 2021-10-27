@@ -6,7 +6,7 @@ MONARC Changelog
 ### New
 
 - Add import of referential mapping from MOSP
-  ([#]391(https://github.com/monarc-project/MonarcAppFO/issues/391)).
+  ([#391](https://github.com/monarc-project/MonarcAppFO/issues/391)).
 
 ### Fix
 - Subsuming CIA criteria according to the maximum criteria does not work
@@ -21,6 +21,8 @@ MONARC Changelog
   ([#394](https://github.com/monarc-project/MonarcAppFO/issues/394)).
 - Fix possible circular iteration of the instance root -> parent -> child rendering
   ([#395](https://github.com/monarc-project/MonarcAppFO/issues/395)).
+- Mathematical representation of large numbers in the dashboard
+  ([#398](https://github.com/monarc-project/MonarcAppFO/issues/398)).
 
 
 ## 2.11.0 (2021-09-02)
