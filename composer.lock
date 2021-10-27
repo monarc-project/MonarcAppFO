@@ -4603,12 +4603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "24e0f2bc3f8d574a17066095a8c22698656462dd"
+                "reference": "2e3aeb83ff9cbaa633d26e5549120ac04dbbe00a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/24e0f2bc3f8d574a17066095a8c22698656462dd",
-                "reference": "24e0f2bc3f8d574a17066095a8c22698656462dd",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/2e3aeb83ff9cbaa633d26e5549120ac04dbbe00a",
+                "reference": "2e3aeb83ff9cbaa633d26e5549120ac04dbbe00a",
                 "shasum": ""
             },
             "require": {
@@ -4686,7 +4686,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.11.1"
             },
-            "time": "2021-10-26T09:17:04+00:00"
+            "time": "2021-10-27T10:57:37+00:00"
         },
         {
             "name": "monarc/frontoffice",
