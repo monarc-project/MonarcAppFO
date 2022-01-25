@@ -79,6 +79,7 @@ Especially by setting a strong root password.
     $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
     $ cd /var/lib/monarc/fo
     $ mkdir -p data/cache
+    $ mkdir -p data/DoctrineORMModule/Proxy
     $ mkdir -p data/LazyServices/Proxy
     $ chmod -R g+w data
     $ composer install -o
