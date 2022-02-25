@@ -7,14 +7,13 @@ return array(
         3 => 'Deutsch',
         4 => 'Nederlands',
         5 => 'Spanish',
-        6 => 'Italien',
-        7 => 'Japanese',
-        8 => 'Polish',
-        9 => 'Portuguese',
-        10 => 'Russian',
-        11 => 'Chinese',
-
-
+        6 => 'Romanian',
+        7 => 'Italien',
+        8 => 'Japanese',
+        9 => 'Polish',
+        10 => 'Portuguese',
+        11 => 'Russian',
+        12 => 'Chinese',
     ],
 
     'defaultLanguageIndex' => 1,
@@ -40,5 +39,5 @@ return array(
     ]
     */
 
-    'activeLanguages' => array('fr','en','de','nl','es','it','ja','pl','pt','ru','zh'),
+    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','ru','zh'),
 );
