@@ -83,7 +83,9 @@ otherwise you may get an error when initializing the database
 [mariadb]
 
 max_allowed_packet=8M
+```
 
+```sql
 CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE
 utf8_general_ci;
 
