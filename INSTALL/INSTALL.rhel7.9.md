@@ -2,6 +2,8 @@
 The core MONARC team cannot certify if this guide is working or not. Please help us in keeping it up to date and accurate.
 </aside>
 
+Installation on RHEL 7.9
+========================
 
 # RHEL Installation and preparation
 
@@ -31,7 +33,7 @@ The core MONARC team cannot certify if this guide is working or not. Please help
 [root@monarc ~]# yum install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
-## Install php7.4, required modules & dependencies from Remi's repository:
+## Install PHP 7.4, required modules & dependencies from Remi's repository:
 
 ```bash
 [root@monarc ~]# yum install php74.x86_64 php74-php.x86_64 \
@@ -59,7 +61,7 @@ php74-php-bcmath php74-php-mbstring.x86_64 php74-php-cli
 
 ## MariaDB
 
-Update MariaDB to V10:
+### Update MariaDB to V10
 
 https://mariadb.com/docs/deploy/upgrade-community-server-cs105-rhel7/
 
@@ -69,12 +71,14 @@ https://mariadb.com/docs/deploy/upgrade-community-server-cs105-rhel7/
 [root@monarc ~]# yum install php-mbstring php-intl
 ```
 
-Secure the MariaDB installation:
+### Secure the MariaDB installation
 
 ```bash
 [root@monarc ~]# systemctl start mariabdb
 [root@monarc ~]# mysql_secure_installation
 ```
+
+### MariaDB configuration
 
 Add the following line to server.cnf (/etc/my.cnf.d/server.cnf)
 otherwise you may get an error when initializing the database
@@ -86,11 +90,9 @@ max_allowed_packet=8M
 ```
 
 ```sql
-CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE
-utf8_general_ci;
+CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
-CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT
-COLLATE utf8_general_ci;
+CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 ```
 
 ## Restart Apache
@@ -98,6 +100,8 @@ COLLATE utf8_general_ci;
 ```bash
 [root@monarc ~]# systemctl restart httpd
 ```
+
+
 
 # MONARC installation and configuration
 
@@ -161,7 +165,7 @@ COLLATE utf8_general_ci;
 [root@monarc node_modules]# git clone https://github.com/monarc-project/ng-anr.git ng_anr
 ```
 
-## Install Database
+## Install database
 
 ```bash
 mysql -u root --p monarc_common < db-bootstrap/monarc_structure.sql
@@ -189,7 +193,7 @@ grant create, delete, insert, select, update, drop, alter on monarc_cli.* to 'mo
 Reference: <https://github.com/nodesource/distributions>
 
 
-## Install correct version of nodejs and grunt
+## Install correct version of NodeJS and Grunt
 
 ```bash
 [root@monarc fo]# yum remove -y nodejs npm
@@ -201,7 +205,7 @@ Reference: <https://github.com/nodesource/distributions>
 ## Set git branch
 
 ```bash
-[root@monarc fo]# git branch --set-upstream-to=origin/master v2.10.4
+[root@monarc fo]# git branch --set-upstream-to=origin/master v2.11.1
 ```
 
 ## Reconfigure SSH
@@ -225,7 +229,7 @@ StrictHostKeyChecking no
 [root@monarc html]# chown -R apache:apache monarc
 ```
 
-## (Re)Start the show
+## Restart the services
 
 ```bash
 [root@monarc fo]# cd /etc/httpd/conf.d/
