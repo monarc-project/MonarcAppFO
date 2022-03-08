@@ -4286,16 +4286,16 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.16.0",
+            "version": "2.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "329900ab7674c198e91e85b2e09080cdf493ce07"
+                "reference": "bdd503adc83d814a5c94e598ea0eb9fc7ca56339"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/329900ab7674c198e91e85b2e09080cdf493ce07",
-                "reference": "329900ab7674c198e91e85b2e09080cdf493ce07",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/bdd503adc83d814a5c94e598ea0eb9fc7ca56339",
+                "reference": "bdd503adc83d814a5c94e598ea0eb9fc7ca56339",
                 "shasum": ""
             },
             "require": {
@@ -4372,7 +4372,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-01-21T14:30:01+00:00"
+            "time": "2022-03-08T18:16:51+00:00"
         },
         {
             "name": "laminas/laminas-view",
@@ -4546,12 +4546,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "3f5fb0f104accf21c5f9ebbf4ee1db96e2dd70a0"
+                "reference": "f03e3fe36c7b7f0a6075adafb4813a4a6565399d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/3f5fb0f104accf21c5f9ebbf4ee1db96e2dd70a0",
-                "reference": "3f5fb0f104accf21c5f9ebbf4ee1db96e2dd70a0",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/f03e3fe36c7b7f0a6075adafb4813a4a6565399d",
+                "reference": "f03e3fe36c7b7f0a6075adafb4813a4a6565399d",
                 "shasum": ""
             },
             "require": {
@@ -4629,7 +4629,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.11.1-p6"
             },
-            "time": "2022-03-08T11:48:35+00:00"
+            "time": "2022-03-08T14:00:46+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -4637,12 +4637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "f61658c7b8148332fb71a8fb79f6cd8cb18bbe66"
+                "reference": "5760e473c8a022b759045ccdb03708d085a0f541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/f61658c7b8148332fb71a8fb79f6cd8cb18bbe66",
-                "reference": "f61658c7b8148332fb71a8fb79f6cd8cb18bbe66",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5760e473c8a022b759045ccdb03708d085a0f541",
+                "reference": "5760e473c8a022b759045ccdb03708d085a0f541",
                 "shasum": ""
             },
             "require": {
@@ -4725,7 +4725,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p11"
             },
-            "time": "2022-03-08T11:57:13+00:00"
+            "time": "2022-03-08T18:09:59+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7892,12 +7892,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6c48c3048166dc4142a1a5f28a325faed3a578a3"
+                "reference": "6cdb8691f0733e3994a4f1c4d976acfdce4d58a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6c48c3048166dc4142a1a5f28a325faed3a578a3",
-                "reference": "6c48c3048166dc4142a1a5f28a325faed3a578a3",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6cdb8691f0733e3994a4f1c4d976acfdce4d58a9",
+                "reference": "6cdb8691f0733e3994a4f1c4d976acfdce4d58a9",
                 "shasum": ""
             },
             "conflict": {
@@ -8340,7 +8340,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-05T18:49:45+00:00"
+            "time": "2022-03-08T16:29:59+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
