@@ -39,5 +39,5 @@ return array(
     ]
     */
 
-    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','ru','zh'),
+    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','zh'),
 );

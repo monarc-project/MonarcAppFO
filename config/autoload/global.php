@@ -11,15 +11,15 @@
  * file.
  */
 
-use Doctrine\DBAL\Driver\PDOMySql\Driver;
+use Doctrine\DBAL\Driver\PDO\MySql\Driver;
 use Monarc\Core\Service\DoctrineCacheServiceFactory;
 use Monarc\Core\Service\DoctrineLoggerFactory;
 
 $appconfdir = getenv('APP_CONF_DIR') ?? '';
 
 $datapath = "data";
-if( ! empty($appconfdir) ){
-    $datapath = $appconfdir.'/data';
+if (!empty($appconfdir)) {
+    $datapath = $appconfdir . '/data';
 }
 
 return array(

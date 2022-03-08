@@ -63,10 +63,6 @@ return [
             'index' => 7,
             'label' => 'Italian',
         ],
-        'ru' => [
-            'index' => 8,
-            'label' => 'Russian',
-        ],
         'pt' => [
             'index' => 9,
             'label' => 'Portuguese',
@@ -87,7 +83,7 @@ return [
 
     'defaultLanguageIndex' => 1,
 
-    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','ru','zh'),
+    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','zh'),
 
     'appVersion' => $package_json['version'],
 
