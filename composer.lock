@@ -4636,12 +4636,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "7f14b3f6172a7888dc098c7df5bd81315c130c51"
+                "reference": "098f41497907d38e8246b13184e6b9c812a38825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/7f14b3f6172a7888dc098c7df5bd81315c130c51",
-                "reference": "7f14b3f6172a7888dc098c7df5bd81315c130c51",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/098f41497907d38e8246b13184e6b9c812a38825",
+                "reference": "098f41497907d38e8246b13184e6b9c812a38825",
                 "shasum": ""
             },
             "require": {
@@ -4724,7 +4724,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p12"
             },
-            "time": "2022-03-21T15:08:41+00:00"
+            "time": "2022-03-22T11:35:17+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7891,12 +7891,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "681ac6df534af9555084589696aca768376a3e2b"
+                "reference": "16e67a9ace8f73d35c66827467d4032bd8571cee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/681ac6df534af9555084589696aca768376a3e2b",
-                "reference": "681ac6df534af9555084589696aca768376a3e2b",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/16e67a9ace8f73d35c66827467d4032bd8571cee",
+                "reference": "16e67a9ace8f73d35c66827467d4032bd8571cee",
                 "shasum": ""
             },
             "conflict": {
@@ -8022,10 +8022,12 @@
                 "gregwar/rst": "<1.0.3",
                 "grumpydictator/firefly-iii": "<5.6.5",
                 "guzzlehttp/guzzle": ">=4-rc.2,<4.2.4|>=5,<5.3.1|>=6,<6.2.1",
+                "guzzlehttp/psr7": "<1.8.4|>=2,<2.1.1",
                 "helloxz/imgurl": "<=2.31",
                 "hillelcoren/invoice-ninja": "<5.3.35",
                 "hjue/justwriting": "<=1",
                 "hov/jobfair": "<1.0.13|>=2,<2.0.2",
+                "hyn/multi-tenant": ">=5.6,<5.7.2",
                 "ibexa/post-install": "<=1.0.4",
                 "icecoder/icecoder": "<=8.1",
                 "illuminate/auth": ">=4,<4.0.99|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.10",
@@ -8263,7 +8265,7 @@
                 "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
                 "vanilla/safecurl": "<0.9.2",
                 "verot/class.upload.php": "<=1.0.3|>=2,<=2.0.4",
-                "vrana/adminer": "<4.7.9",
+                "vrana/adminer": "<4.8.1",
                 "wallabag/tcpdf": "<6.2.22",
                 "wanglelecc/laracms": "<=1.0.3",
                 "web-auth/webauthn-framework": ">=3.3,<3.3.4",
@@ -8344,7 +8346,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-21T11:08:46+00:00"
+            "time": "2022-03-21T21:04:03+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
