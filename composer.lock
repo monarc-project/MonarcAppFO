@@ -4541,16 +4541,16 @@
         },
         {
             "name": "monarc/core",
-            "version": "v2.11.1-p7",
+            "version": "v2.11.1-p8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "d60234a43d42fdc29d048a7344d04a7efc146fd7"
+                "reference": "d119b59ed8c2e2e30a844d222f76289a235a8540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/d60234a43d42fdc29d048a7344d04a7efc146fd7",
-                "reference": "d60234a43d42fdc29d048a7344d04a7efc146fd7",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/d119b59ed8c2e2e30a844d222f76289a235a8540",
+                "reference": "d119b59ed8c2e2e30a844d222f76289a235a8540",
                 "shasum": ""
             },
             "require": {
@@ -4626,22 +4626,22 @@
             "description": "Core for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-core/issues",
-                "source": "https://github.com/monarc-project/zm-core/tree/v2.11.1-p7"
+                "source": "https://github.com/monarc-project/zm-core/tree/v2.11.1-p8"
             },
-            "time": "2022-03-21T08:10:21+00:00"
+            "time": "2022-03-21T15:56:40+00:00"
         },
         {
             "name": "monarc/frontoffice",
-            "version": "v2.11.1-p11",
+            "version": "v2.11.1-p12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "5760e473c8a022b759045ccdb03708d085a0f541"
+                "reference": "7f14b3f6172a7888dc098c7df5bd81315c130c51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/5760e473c8a022b759045ccdb03708d085a0f541",
-                "reference": "5760e473c8a022b759045ccdb03708d085a0f541",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/7f14b3f6172a7888dc098c7df5bd81315c130c51",
+                "reference": "7f14b3f6172a7888dc098c7df5bd81315c130c51",
                 "shasum": ""
             },
             "require": {
@@ -4722,9 +4722,9 @@
             "description": "Frontoffice for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-client/issues",
-                "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p11"
+                "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p12"
             },
-            "time": "2022-03-08T18:09:59+00:00"
+            "time": "2022-03-21T15:08:41+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7891,12 +7891,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "4701a5552ca324de5333d742d51d9cf2786f3186"
+                "reference": "681ac6df534af9555084589696aca768376a3e2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4701a5552ca324de5333d742d51d9cf2786f3186",
-                "reference": "4701a5552ca324de5333d742d51d9cf2786f3186",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/681ac6df534af9555084589696aca768376a3e2b",
+                "reference": "681ac6df534af9555084589696aca768376a3e2b",
                 "shasum": ""
             },
             "conflict": {
@@ -8071,7 +8071,7 @@
                 "magento/magento1ee": ">=1,<1.14.4.3",
                 "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2-p.2",
                 "marcwillmann/turn": "<0.3.3",
-                "matyhtf/framework": "<=3.0.5",
+                "matyhtf/framework": "<3.0.6",
                 "mautic/core": "<4.2|= 2.13.1",
                 "mediawiki/core": ">=1.27,<1.27.6|>=1.29,<1.29.3|>=1.30,<1.30.2|>=1.31,<1.31.9|>=1.32,<1.32.6|>=1.32.99,<1.33.3|>=1.33.99,<1.34.3|>=1.34.99,<1.35",
                 "microweber/microweber": "<1.3",
@@ -8344,7 +8344,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-18T16:08:45+00:00"
+            "time": "2022-03-21T11:08:46+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9281,5 +9281,5 @@
         "ext-bcmath": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
