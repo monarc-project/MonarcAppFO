@@ -4635,16 +4635,16 @@
         },
         {
             "name": "monarc/frontoffice",
-            "version": "v2.11.1-p13",
+            "version": "v2.11.1-p14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "36160e98760295e8be9f3a5e09f1a1b468514a56"
+                "reference": "ce4f01df8d9aee55d412082f67903ecb88631d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/36160e98760295e8be9f3a5e09f1a1b468514a56",
-                "reference": "36160e98760295e8be9f3a5e09f1a1b468514a56",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/ce4f01df8d9aee55d412082f67903ecb88631d24",
+                "reference": "ce4f01df8d9aee55d412082f67903ecb88631d24",
                 "shasum": ""
             },
             "require": {
@@ -4725,9 +4725,9 @@
             "description": "Frontoffice for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-client/issues",
-                "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p13"
+                "source": "https://github.com/monarc-project/zm-client/tree/v2.11.1-p14"
             },
-            "time": "2022-03-30T12:06:23+00:00"
+            "time": "2022-03-31T13:24:11+00:00"
         },
         {
             "name": "nikic/php-parser",
