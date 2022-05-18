@@ -95,6 +95,8 @@ return [
         'from' => 'info@monarc.lu',
     ],
 
+    'instanceName' => 'Development', // for example a short URL or client name from ansible
+
     'terms' => 'https://my.monarc.lu/terms.html',
 
     'monarc' => [
