@@ -108,10 +108,10 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 ## Install MONARC
 
 ```bash
-[root@monarc ~]# mkdir -p /var/lib/monarc/fo
+[root@monarc ~]# mkdir -p /var/www/html/monarc/fo
 [root@monarc ~]# yum install git
-[root@monarc ~]# git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
-[root@monarc ~]# cd /var/lib/monarc/fo
+[root@monarc ~]# git clone https://github.com/monarc-project/MonarcAppFO.git /var/www/html/monarc/fo
+[root@monarc ~]# cd /var/www/html/monarc/fo
 [root@monarc fo]# mkdir -p data/cache
 [root@monarc fo]# mkdir -p data/LazyServices/Proxy
 [root@monarc fo]# chmod -R g+w data
@@ -183,7 +183,7 @@ grant create, delete, insert, select, update, drop, alter on monarc_cli.* to 'mo
 ## Set up database connection
 
 ```bash
-[root@monarc fo]# cd /var/lib/monarc/fo/config/autoload/
+[root@monarc fo]# cd /var/www/html/monarc/fo/config/autoload/
 [root@monarc autoload]# cp local.php.dist local.php
 [root@monarc autoload]# vi local.php
 ```
@@ -237,6 +237,7 @@ StrictHostKeyChecking no
 [root@monarc conf.d]# systemctl stop firewalld
 [root@monarc conf.d]# systemctl restart httpd.service
 ```
+monarc.conf can be found [here](https://github.com/monarc-project/MonarcAppFO/blob/master/INSTALL/INSTALL.rhel7.md#configure-virtual-host)
 
 ## Create MONARC Admin User
 
