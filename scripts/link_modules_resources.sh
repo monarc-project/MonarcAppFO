@@ -43,7 +43,7 @@ cd dialogs/ && find ../../../node_modules/ng_client/views/dialogs -maxdepth 1 -n
 cd ../../js/ && find ../../node_modules/ng_client/src -name "*" -exec ln -s {} \; 2>/dev/null
 cd ../css/ && find ../../node_modules/ng_client/css -name "*" -exec ln -s {} \; 2>/dev/null
 cd ../img/ && find ../../node_modules/ng_client/img -name "*" -exec ln -s {} \; 2>/dev/null
-cd ../flags/ && find ../../node_modules/ng_client/node_modules/ng-country-flags/dist/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
+cd ../flags/ && find ../../node_modules/ng_client/node_modules/flag-icons/flags -mindepth 1 -type d -exec ln -s {} \; 2>/dev/null
 
 cd ../js/
 mkdir -p anr
