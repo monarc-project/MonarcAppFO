@@ -76,9 +76,9 @@ License
 This software is licensed under
 [GNU Affero General Public License version 3](http://www.gnu.org/licenses/agpl-3.0.html)
 
+- Copyright (C) 2016-2022 SECURITYMADEIN.LU
 - Copyright (C) 2016-2022 Jérôme Lombardi - https://github.com/jerolomb
 - Copyright (C) 2016-2022 Juan Rocha - https://github.com/jfrocha
-- Copyright (C) 2016-2022 SMILE gie securitymadein.lu
 - Copyright (C) 2017-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
 - Copyright (C) 2016-2017 Guillaume Lesniak
 - Copyright (C) 2016-2017 Thomas Metois
