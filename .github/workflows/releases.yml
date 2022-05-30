@@ -63,8 +63,9 @@ jobs:
       working-directory: node_modules/ng_anr
 
     - name: Install ng_anr
+      # no package-lock.json in ng_anr
       run: | 
-        npm ci
+        npm install
       working-directory: node_modules/ng_anr
 
     # ng_client
@@ -81,6 +82,7 @@ jobs:
       working-directory: node_modules/ng_client
 
     - name: Install ng_client
+      # this one has a package-lock.json
       run: | 
         npm ci
       working-directory: node_modules/ng_client
