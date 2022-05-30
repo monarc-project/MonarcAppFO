@@ -30,6 +30,7 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: ${{ matrix.php-version }}
+        command: install
         #    php_extensions: json pdo bcmath
         version: 2.3.x
 
