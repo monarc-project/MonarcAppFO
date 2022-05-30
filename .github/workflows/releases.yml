@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: install deps
-      run: apt install -y gettext
+      run: sudo apt-get update && sudo apt install -y gettext
 
     # PHP
     - name: Setup PHP
