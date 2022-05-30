@@ -106,16 +106,16 @@ jobs:
     # prepare release
     - name: Get repository name
       id: repository
-      run: echo "::set-output name=pathref::$(echo '${{ github.repository }}' | cut -d'/' -f2)-${{ env.COMPONENT }}-$(echo '${{ github.ref_name }}' | sed 's/[^[:alnum:]\.]/_/g')"
+      run: echo "::set-output name=pathref::$(echo '${{ github.repository }}' | cut -d'/' -f2)-$(echo '${{ github.ref_name }}' | sed 's/[^[:alnum:]\.]/_/g')"
 
     - name: create artifact archive
       run: |
-        tar --exclude .git --exclude .github -zcf '${{ steps.repository.outputs.pathref }}.tar.gz' .
+        tar --exclude .git --exclude .github -zcf '../${{ steps.repository.outputs.pathref }}.tar.gz' .
 
     - name: release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ${{ env.COMPONENT }}/${{ steps.repository.outputs.pathref }}.tar.gz
+          ../${{ steps.repository.outputs.pathref }}.tar.gz
         fail_on_unmatched_files: true
       if: startsWith(github.ref, 'refs/tags/')
