@@ -19,6 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: install deps
+      run: apt install -y gettext
+
     # PHP
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -97,5 +100,5 @@ jobs:
     # final "cleanup"
     - name: post job
       run: |
-        ./scripts/link_modules_resources.sh
-        ./scripts/compile_translations.sh
+        bash -xe ./scripts/link_modules_resources.sh
+        bash -xe ./scripts/compile_translations.sh
