@@ -48,59 +48,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Prepare node_modules
-      run: | 
-        mkdir -p node_modules
-
-    # ng_anr
-    - name: Clone ng_anr
-      uses: actions/checkout@v2
-      with:
-        repository: monarc-project/ng-anr
-        path: node_modules/ng_anr
-
-    - name: checkout latest tag
-      run: |
-        git fetch --tags
-        git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
-      working-directory: node_modules/ng_anr
-
-    - name: Install ng_anr
-      # no package-lock.json in ng_anr
-      run: | 
-        npm install
-      working-directory: node_modules/ng_anr
-
-    # ng_client
-    - name: Clone ng_client
-      uses: actions/checkout@v2
-      with:
-        repository: monarc-project/ng-client
-        path: node_modules/ng_client
-
-    - name: checkout latest tag
-      run: |
-        head src/ClientApp.js
-        git fetch --tags
-        git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
-        head src/ClientApp.js
-      working-directory: node_modules/ng_client
-
-    - name: Install ng_client
-      # this one has a package-lock.json
-      run: | 
-        head src/ClientApp.js
-        npm ci
-        head src/ClientApp.js
-      working-directory: node_modules/ng_client
-
-    # rest of javascript deps
-    - name: Install grunt
-      run: npm install -g grunt-cli
-
     - name: Install dependencies
       run: |
-        head node_modules/ng_client/src/ClientApp.js
         npm install
         head node_modules/ng_client/src/ClientApp.js
 
