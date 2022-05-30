@@ -53,11 +53,21 @@ jobs:
         npm install
         head node_modules/ng_client/src/ClientApp.js
 
+    - name: Install ng-anr dependencies
+      run: |
+        npm install
+      working-direcory: node_modules/ng_anr/
+
+    - name: Install ng-client dependencies
+      run: |
+        npm install
+      working-direcory: node_modules/ng_client/
+
     # final "cleanup"
     - name: post job
       run: |
-        bash -x ./scripts/link_modules_resources.sh
-        bash -x ./scripts/compile_translations.sh
+        bash -ex ./scripts/link_modules_resources.sh
+        bash -ex ./scripts/compile_translations.sh
 
     # prepare release
     - name: Get repository name
