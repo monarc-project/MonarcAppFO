@@ -56,12 +56,12 @@ jobs:
     - name: Install ng-anr dependencies
       run: |
         npm install
-      working-direcory: node_modules/ng_anr/
+      working-directory: node_modules/ng_anr/
 
     - name: Install ng-client dependencies
       run: |
         npm install
-      working-direcory: node_modules/ng_client/
+      working-directory: node_modules/ng_client/
 
     # final "cleanup"
     - name: post job
