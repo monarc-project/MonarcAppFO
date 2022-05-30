@@ -100,5 +100,5 @@ jobs:
     # final "cleanup"
     - name: post job
       run: |
-        bash -xe ./scripts/link_modules_resources.sh
-        bash -xe ./scripts/compile_translations.sh
+        bash -x ./scripts/link_modules_resources.sh
+        bash -x ./scripts/compile_translations.sh
