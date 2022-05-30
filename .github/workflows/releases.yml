@@ -1,0 +1,97 @@
+name: MonarcAppFO releases
+
+on:
+  push:
+    branches: [ 'ci-releases' ]
+    tags: [ 'v*.*', 'v*.*.*', 'v*.*.*-*' ]
+  pull_request:
+    branches: [ 'master' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [ "16.x" ]
+        php-version: [ "7.4" ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # PHP
+    #- name: Cache Composer dependencies
+    #  uses: actions/cache@v2
+    #  with:
+    #    path: /tmp/composer-cache
+    #    key: ${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+      with:
+        php_version: ${{ matrix.php-version }}
+        php_extensions: json pdo bcmath
+        version: 2.3.x
+
+    - name: Symlink Monarc modules
+      run: | 
+        mkdir -p module/Monarc
+        ln -s ../../vendor/monarc/core module/Monarc/Core
+        ln -s ../../vendor/monarc/frontoffice module/Monarc/FrontOffice
+
+    # javascript
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Prepare node_modules
+      run: | 
+        mkdir -p node_modules
+
+    # ng_anr
+    - name: Clone ng_anr
+      uses: actions/checkout@v2
+      with:
+        repository: monarc-project/ng-anr
+        path: node_modules/ng_anr
+
+    - name: checkout latest tag
+      run: |
+        git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
+      working-directory: node_modules/ng_anr
+
+    - name: Install ng_anr
+      run: | 
+        npm ci
+      working-directory: node_modules/ng_anr
+
+    # ng_client
+    - name: Clone ng_client
+      uses: actions/checkout@v2
+      with:
+        repository: monarc-project/ng-client
+        path: node_modules/ng_client
+
+    - name: checkout latest tag
+      run: |
+        git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
+      working-directory: node_modules/ng_client
+
+    - name: Install ng_client
+      run: | 
+        npm ci
+      working-directory: node_modules/ng_client
+
+    # rest of javascript deps
+    - name: Install grunt
+      run: npm install -g grunt-cli
+
+    - name: Install dependencies
+      run: npm install
+
+    # final "cleanup"
+    - name: post job
+      run: |
+        ./scripts/link_modules_resources.sh
+        ./scripts/compile_translations.sh
