@@ -80,14 +80,18 @@ jobs:
 
     - name: checkout latest tag
       run: |
+        head src/ClientApp.js
         git fetch --tags
         git checkout "$(git describe --tags $(git rev-list --tags --max-count=1))"
+        head src/ClientApp.js
       working-directory: node_modules/ng_client
 
     - name: Install ng_client
       # this one has a package-lock.json
       run: | 
+        head src/ClientApp.js
         npm ci
+        head src/ClientApp.js
       working-directory: node_modules/ng_client
 
     # rest of javascript deps
@@ -95,7 +99,10 @@ jobs:
       run: npm install -g grunt-cli
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        head node_modules/ng_client/src/ClientApp.js
+        npm install
+        head node_modules/ng_client/src/ClientApp.js
 
     # final "cleanup"
     - name: post job
