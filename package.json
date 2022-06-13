@@ -10,8 +10,8 @@
   "author": "CASES",
   "license": "GNU Affero General Public License version 3",
   "dependencies": {
-    "ng_anr": "git+https://github.com/monarc-project/ng-anr.git#master",
-    "ng_client": "git+https://github.com/monarc-project/ng-client.git#master"
+    "ng_anr": "git+https://github.com/monarc-project/ng-anr.git#v2.11.1-p5",
+    "ng_client": "git+https://github.com/monarc-project/ng-client.git#v2.11.1-p7"
   },
   "devDependencies": {
     "grunt": "~1.5.2",
