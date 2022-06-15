@@ -11,7 +11,7 @@
   "license": "GNU Affero General Public License version 3",
   "dependencies": {
     "ng_anr": "git+https://github.com/monarc-project/ng-anr.git#v2.11.1-p5",
-    "ng_client": "git+https://github.com/monarc-project/ng-client.git#v2.11.1-p7"
+    "ng_client": "git+https://github.com/monarc-project/ng-client.git#v2.11.1-p12"
   },
   "devDependencies": {
     "grunt": "~1.5.2",
