@@ -1,0 +1,87 @@
+name: MonarcAppFO releases
+
+on:
+  push:
+    branches: [ 'master' ]
+    tags: [ 'v*.*', 'v*.*.*', 'v*.*.*-*' ]
+  pull_request:
+    branches: [ 'master' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [ "16.x" ]
+        php-version: [ "7.4" ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install deps
+      run: sudo apt-get update && sudo apt install -y gettext
+
+    # PHP
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        tools: composer:v2.3
+        extensions: bcmath
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install PHP dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest --no-dev
+
+    - name: Symlink Monarc modules
+      run: | 
+        mkdir -p module/Monarc
+        ln -s ../../vendor/monarc/core module/Monarc/Core
+        ln -s ../../vendor/monarc/frontoffice module/Monarc/FrontOffice
+
+    # javascript
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: |
+        npm install
+        head node_modules/ng_client/src/ClientApp.js
+
+    - name: Install ng-anr dependencies
+      run: |
+        npm install
+      working-directory: node_modules/ng_anr/
+
+    - name: Install ng-client dependencies
+      run: |
+        npm install
+      working-directory: node_modules/ng_client/
+
+    # final "cleanup"
+    - name: post job
+      run: |
+        bash -ex ./scripts/link_modules_resources.sh
+        bash -ex ./scripts/compile_translations.sh
+
+    # prepare release
+    - name: Get repository name
+      id: repository
+      run: echo "::set-output name=pathref::$(echo '${{ github.repository }}' | cut -d'/' -f2)-$(echo '${{ github.ref_name }}' | sed 's/[^[:alnum:]\.-]/_/g')"
+
+    - name: create artifact archive
+      run: |
+        tar --exclude .git --exclude .github -zcf '../${{ steps.repository.outputs.pathref }}.tar.gz' .
+
+    - name: release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ../${{ steps.repository.outputs.pathref }}.tar.gz
+        fail_on_unmatched_files: true
+      if: startsWith(github.ref, 'refs/tags/')
