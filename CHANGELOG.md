@@ -1,6 +1,21 @@
 MONARC Changelog
 ================
 
+## 2.12.0 (2021-06-20)
+
+### New
+
+- [compliance scale](https://github.com/monarc-project/MonarcAppFO/discussions/439);
+- [metadata assets](https://github.com/monarc-project/MonarcAppFO/discussions/437);
+- [two-factor authentication](https://github.com/monarc-project/MonarcAppFO/discussions/442)).
+
+### Fix
+
+- [Stats provider] removed the leading slash in the URI
+  ([e7dfba1](https://github.com/monarc-project/zm-client/commit/e7dfba1cf64322bc3e83630df6729b525d7d5c8d))
+
+
+
 ## 2.11.1 (2021-10-28)
 
 ### New
