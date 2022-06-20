@@ -7,7 +7,7 @@ MONARC Changelog
 
 - [compliance scale](https://github.com/monarc-project/MonarcAppFO/discussions/439);
 - [metadata assets](https://github.com/monarc-project/MonarcAppFO/discussions/437);
-- [two-factor authentication](https://github.com/monarc-project/MonarcAppFO/discussions/442)).
+- [two-factor authentication](https://github.com/monarc-project/MonarcAppFO/discussions/442).
 
 ### Fix
 
