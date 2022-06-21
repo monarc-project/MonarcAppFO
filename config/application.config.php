@@ -39,6 +39,7 @@ return [
         'Laminas\Di',
         'Laminas\Router',
         'Laminas\Validator',
+        'Laminas\Mvc\Middleware',
         'DoctrineModule',
         'DoctrineORMModule',
     ],
