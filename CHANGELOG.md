@@ -9,7 +9,7 @@ MONARC Changelog
   ([#445](https://github.com/monarc-project/MonarcAppFO/issues/445)).
 
 
-## 2.12.1 (2021-06-22)
+## 2.12.1 (2022-06-22)
 
 ### Enhancement
 
@@ -18,7 +18,7 @@ MONARC Changelog
   no more needed: QRCode generation is local.
 
 
-## 2.12.0 (2021-06-20)
+## 2.12.0 (2022-06-20)
 
 ### New
 
