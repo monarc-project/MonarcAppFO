@@ -1,7 +1,5 @@
-Installation on Ubuntu 18.04
+Installation on Ubuntu 20.04
 ============================
-
-This guide is also working with Ubuntu 20.04 LTS.
 
 # 1. Install LAMP & dependencies
 
