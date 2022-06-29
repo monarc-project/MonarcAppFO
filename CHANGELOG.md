@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.12.2 (not yet released)
+## 2.12.2 (2022-06-29)
 
 ### Fix
 
