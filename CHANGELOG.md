@@ -1,6 +1,38 @@
 MONARC Changelog
 ================
 
+## 2.12.2 (2022-06-29)
+
+### Fix
+
+- Error when exporting analysis with Statement of Applicability
+  ([#445](https://github.com/monarc-project/MonarcAppFO/issues/445)).
+
+
+## 2.12.1 (2022-06-22)
+
+### Enhancement
+
+- [Added new QRCode backend endroid/qr-code](https://github.com/monarc-project/zm-client/commit/406471458a9c729d2d4a9b677cc7a8518d640ab1)
+  NTP access to time.google.com:123 (NTP check removed) and api.qrserver.com is
+  no more needed: QRCode generation is local.
+
+
+## 2.12.0 (2022-06-20)
+
+### New
+
+- [compliance scale](https://github.com/monarc-project/MonarcAppFO/discussions/439);
+- [metadata assets](https://github.com/monarc-project/MonarcAppFO/discussions/437);
+- [two-factor authentication](https://github.com/monarc-project/MonarcAppFO/discussions/442).
+
+### Fix
+
+- [Stats provider] removed the leading slash in the URI
+  ([e7dfba1](https://github.com/monarc-project/zm-client/commit/e7dfba1cf64322bc3e83630df6729b525d7d5c8d))
+
+
+
 ## 2.11.1 (2021-10-28)
 
 ### New
