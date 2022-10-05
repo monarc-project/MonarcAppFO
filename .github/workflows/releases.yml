@@ -49,8 +49,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install ng-anr
-      run: |
-        npm install ng_anr
+      uses: actions/checkout@v2
+      with:
+        repository: monarc-project/ng-anr
+        path: './node_modules/ng_anr'
 
     - name: Install ng-client
       uses: actions/checkout@v2
@@ -60,8 +62,8 @@ jobs:
 
     - name: Install ng-client dependencies
       run: |
-        npm install
-      working-directory: node_modules/ng_client/
+        cd node_modules/ng_client
+        npm ci
 
     # final "cleanup"
     - name: post job
