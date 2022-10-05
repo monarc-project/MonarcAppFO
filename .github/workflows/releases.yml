@@ -48,10 +48,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install Local dependencies
+    - name: Install ng-anr
       run: |
         npm install ng_anr
-        npm install ng_client
+
+    - name: Install ng-client
+      uses: actions/checkout@v2
+      with:
+        repository: monarc-project/ng-client
+        path: './node_modules/ng_client'
 
     - name: Install ng-client dependencies
       run: |
