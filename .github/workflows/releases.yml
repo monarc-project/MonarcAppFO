@@ -48,6 +48,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Install Local dependencies
+      run: |
+        npm install ng_anr
+        npm install ng_client
+
     - name: Install ng-client dependencies
       run: |
         npm install
