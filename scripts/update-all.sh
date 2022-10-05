@@ -82,7 +82,7 @@ if [[ $bypass -eq 0 ]]; then
     else
         echo -e "${GREEN}Database backup not configured. Skipping.${NC}"
     fi
-    
+
     migrate_module $pathCore
     migrate_module $pathFO
 fi
@@ -94,8 +94,6 @@ if [[ -d node_modules && -d node_modules/ng_anr ]]; then
     else
         npm update
     fi
-else
-    npm ci
 fi
 
 cd node_modules/ng_client
