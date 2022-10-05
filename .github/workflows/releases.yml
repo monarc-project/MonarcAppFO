@@ -48,16 +48,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: |
-        npm install
-        head node_modules/ng_client/src/ClientApp.js
-
-    - name: Install ng-anr dependencies
-      run: |
-        npm install
-      working-directory: node_modules/ng_anr/
-
     - name: Install ng-client dependencies
       run: |
         npm install
