@@ -52,14 +52,14 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: monarc-project/ng-anr
-        ref: ${{ steps.latestrelease.outputs.releasetag }}
+        ref: ${{ github.event.releases.latest.tag_name }}
         path: './node_modules/ng_anr'
 
     - name: Install ng-client
       uses: actions/checkout@v3
       with:
         repository: monarc-project/ng-client
-        ref: ${{ steps.latestrelease.outputs.releasetag }}
+        ref: ${{ github.event.releases.latest.tag_name }}
         path: './node_modules/ng_client'
 
     - name: Install ng-client dependencies
