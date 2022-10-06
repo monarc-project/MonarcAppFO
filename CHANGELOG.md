@@ -1,6 +1,14 @@
 MONARC Changelog
 ================
 
+## 2.12.3 (2022-10-06)
+
+### Enhancement
+
+- Link multiple specific models per client.
+- Added a possibility to import assets in the library from CSV files.
+
+
 ## 2.12.2 (2022-06-29)
 
 ### Fix
