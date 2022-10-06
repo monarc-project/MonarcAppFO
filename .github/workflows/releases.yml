@@ -49,14 +49,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install ng-anr
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
         repository: monarc-project/ng-anr
         ref: ${{ github.event.releases.latest.tag_name }}
         path: './node_modules/ng_anr'
 
     - name: Install ng-client
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
         repository: monarc-project/ng-client
         ref: ${{ github.event.releases.latest.tag_name }}
