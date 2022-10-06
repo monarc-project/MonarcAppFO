@@ -10,7 +10,7 @@ MONARC Changelog
 
 ### Fix
 
-- Error when exporting analysis with Statement of Applicability
+- Error when adding a tag to instantiate an object.
   ([#459](https://github.com/monarc-project/MonarcAppFO/issues/459)).
 
 
