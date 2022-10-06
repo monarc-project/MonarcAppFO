@@ -8,6 +8,11 @@ MONARC Changelog
 - Link multiple specific models per client.
 - Added a possibility to import assets in the library from CSV files.
 
+### Fix
+
+- Error when exporting analysis with Statement of Applicability
+  ([#459](https://github.com/monarc-project/MonarcAppFO/issues/459)).
+
 
 ## 2.12.2 (2022-06-29)
 
