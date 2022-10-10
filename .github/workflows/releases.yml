@@ -48,18 +48,35 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install ng-anr
-      uses: actions/checkout@v2
+    - uses: oprypin/find-latest-tag@v1
       with:
         repository: monarc-project/ng-anr
-        ref: ${{ github.event.releases.latest.tag_name }}
+        releases-only: true
+      id: ng_anr_lasttag
+
+    - run: echo "ng-anr is at version ${{ steps.ng_anr_lasttag.outputs.tag }}"
+
+    - name: Install ng-anr
+      uses: actions/checkout@v3
+      with:
+        repository: monarc-project/ng-anr
+        ref: ${{ steps.ng_anr_lasttag.outputs.tag }}
         path: './node_modules/ng_anr'
 
+
+    - uses: oprypin/find-latest-tag@v1
+      with:
+        repository: monarc-project/ng-anr
+        releases-only: true
+      id: ng_client_lasttag
+
+    - run: echo "ng-client is at version ${{ steps.ng_client_lasttag.outputs.tag }}"
+
     - name: Install ng-client
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: monarc-project/ng-client
-        ref: ${{ github.event.releases.latest.tag_name }}
+        ref: ${{ steps.ng_client_lasttag.outputs.tag }}
         path: './node_modules/ng_client'
 
     - name: Install ng-client dependencies
