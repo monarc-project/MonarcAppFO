@@ -105,9 +105,9 @@ cd ../..
 
 if [[ $forceClearCache -eq 1 ]]; then
     # Clear Laminas cache
-    php ./public/index.php orm:clear-cache:metadata
-    php ./public/index.php orm:clear-cache:query
-    php ./public/index.php orm:clear-cache:result
+    rm -rf data/cache/*
+    rm -rf data/DoctrineORMModule/Proxy/*
+    rm -rf data/LazyServices/Proxy/*
 
     # Clear Laminas cache
     touch ./data/cache/upgrade && chmod 777 ./data/cache/upgrade
