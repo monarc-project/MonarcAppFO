@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+    apache:
+      build: .docker/apache
+      container_name: monarc_apache
+      ports:
+        - 8080:80
+      volumes:
+        - .docker/apache/sites-enabled:/etc/apache2/sites-enabled
+        - .:/home/www/monarc
+      depends_on:
+        - php
+
+    mariadb:
+      image: mariadb
+      restart: always
+      container_name: monarc_mariadb
+      command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      volumes:
+        - .docker/mariaDb/data/db:/var/lib/mysql
+        - .docker/mariaDb/init:/docker-entrypoint-initdb.d
+      ports:
+        - 3312:3306
+      environment:
+        MARIADB_ROOT_PASSWORD: root
+        MARIADB_USER: sqlmonarcuser
+        MARIADB_PASSWORD: sqlmonarcuser
+
+    php:
+      build: .docker/php
+      container_name: monarc_php
+      volumes:
+        - .:/home/www/monarc
+      # TODO: make it work -> command: sh -c "./.docker/php/install-app.sh && ./scripts/update-all.sh"
+      environment:
+        - maildev_host=monarc_maildev
+      depends_on:
+        - maildev
+        - mariadb
+
+    maildev:
+      image: djfarrelly/maildev
+      container_name: monarc_maildev
+      ports:
+        - 8001:80

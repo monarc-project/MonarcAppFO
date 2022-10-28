@@ -302,7 +302,7 @@ cat > config/autoload/local.php <<EOF
 <?php
 \$appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '$PATH_TO_MONARC';
 \$string = file_get_contents(\$appdir.'/package.json');
-if(\$string === FALSE) {
+if (\$string === false) {
     \$string = file_get_contents('./package.json');
 }
 \$package_json = json_decode(\$string, true);
