@@ -104,6 +104,8 @@ return [
         'cliModel' => 'generic',
     ],
 
+    'twoFactorAuthEnforced' => false,
+
     'mospApiUrl' => 'https://objects.monarc.lu/api/',
 
     'statsApi' => [

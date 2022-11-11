@@ -5,6 +5,14 @@ MONARC Changelog
 
 ### Enhancement
 
+- Implemented new dashboard chart views and a curve line that represents the average number tendency.
+- Added a possibility to enforce all the instance's users to enable 2-Factor Authentication.
+
+
+## 2.12.3 (2022-10-06)
+
+### Enhancement
+
 - Link multiple specific models per client.
 - Added a possibility to import assets in the library from CSV files.
 
