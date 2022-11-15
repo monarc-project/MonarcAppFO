@@ -59,7 +59,6 @@ sudo apt-get update && sudo apt-get upgrade -y
 echo -e "\n--- Install base packages… ---\n"
 sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
 
-
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 sudo apt-get -y install mariadb-server mariadb-client > /dev/null
 # Secure the MariaDB installation (especially by setting a strong root password)
@@ -101,7 +100,15 @@ sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug php-bcmath > /dev/null
+sudo apt-get -y install php apache2 libapache2-mod-php
+
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt install php8.0 libapache2-mod-php8.0
+sudo apt install php8.0-fpm libapache2-mod-fcgid
+sudo apt-get install -y php8.0-cli php8.0-common php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php8.0-bcmath php8.0-intl php8.0-imagic php8.0-xdebug > /dev/null
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php8.0-fpm
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit

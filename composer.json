@@ -41,12 +41,12 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
-        "monarc/frontoffice": "^2.10.3",
-        "monarc/core": "^2.10.3",
+        "monarc/frontoffice": "dev-feature/php8",
+        "monarc/core": "dev-feature/php8",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",
@@ -59,8 +59,8 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "^8.3",
-        "laminas/laminas-test": "^3.4"
+        "phpunit/phpunit": "^9.5",
+        "laminas/laminas-test": "^4.5"
     },
     "autoload-dev": {
         "psr-4": {
