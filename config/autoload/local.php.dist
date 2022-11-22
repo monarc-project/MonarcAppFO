@@ -96,7 +96,6 @@ return [
     ],
 
     'instanceName' => 'Development', // for example a short URL or client name from ansible
-    'twoFactorAuthEnforced' => false,
 
     'terms' => 'https://my.monarc.lu/terms.html',
 
