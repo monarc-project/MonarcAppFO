@@ -1,7 +1,24 @@
 MONARC Changelog
 ================
 
-## 2.12.3 (2022-10-06)
+## 2.12.5 (2022-12-21)
+
+### Enhancement
+
+- Rebranding of Monarc app (logos, titles) according to the "Cases" -> "NC3" move.
+- Improved the analyses import speed.
+
+### Fix
+
+- Fixed the autocomplete for passwords. Password filling for Import brakes the execution.
+- Record of processing activities processor creation JS error.
+- Fixed the long names displaying for assets (responsive view).
+- Dashboard fixes.
+- Added the possibility to modify the threat's theme.
+- Updated and added missing translations.
+
+
+## 2.12.4 (2022-11-11)
 
 ### Enhancement
 
