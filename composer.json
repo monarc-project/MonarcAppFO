@@ -45,6 +45,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
+        "ext-openssl": "*",
         "monarc/frontoffice": "dev-feature/php8",
         "monarc/core": "dev-feature/php8",
         "laminas/laminas-mvc": "^3.1",
