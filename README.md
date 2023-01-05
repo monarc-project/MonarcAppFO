@@ -1,12 +1,11 @@
-MONARC - Method for an Optimised aNAlysis of Risks by CASES
-===========================================================
+MONARC
+======
 
 [![Latest Release](https://img.shields.io/github/release/monarc-project/MonarcAppFO.svg?style=flat-square)](https://github.com/monarc-project/MonarcAppFO/releases/latest)
 ![License](https://img.shields.io/github/license/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Contributors](https://img.shields.io/github/contributors/monarc-project/MonarcAppFO.svg?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/monarc-project/MonarcAppFO.svg?style=flat-square)
 [![Workflow](https://github.com/monarc-project/MonarcAppFO/workflows/build/badge.svg)](https://github.com/monarc-project/MonarcAppFO/actions?query=build)
-[![Twitter](https://img.shields.io/twitter/follow/MONARCProject.svg?style=social&label=Follow)](https://twitter.com/MONARCproject)
 
 
 Introduction
@@ -76,14 +75,14 @@ License
 This software is licensed under
 [GNU Affero General Public License version 3](http://www.gnu.org/licenses/agpl-3.0.html)
 
-- Copyright (C) 2016-2022 SECURITYMADEIN.LU
-- Copyright (C) 2016-2022 Jérôme Lombardi - https://github.com/jerolomb
-- Copyright (C) 2016-2022 Juan Rocha - https://github.com/jfrocha
-- Copyright (C) 2017-2022 Cédric Bonhomme - https://www.cedricbonhomme.org
+- Copyright (C) 2016-2023 Luxembourg House of Cybersecurity
+- Copyright (C) 2016-2023 Jérôme Lombardi - https://github.com/jerolomb
+- Copyright (C) 2016-2023 Juan Rocha - https://github.com/jfrocha
+- Copyright (C) 2017-2023 Cédric Bonhomme - https://www.cedricbonhomme.org
 - Copyright (C) 2016-2017 Guillaume Lesniak
 - Copyright (C) 2016-2017 Thomas Metois
 - Copyright (C) 2016-2017 Jérôme De Almeida
-- Copyright (C) 2019-2022 Ruslan Baidan - https://github.com/ruslanbaydan
+- Copyright (C) 2019-2023 Ruslan Baidan - https://github.com/ruslanbaidan
 
 For more information, [the list of authors and contributors](AUTHORS) is available.
 
@@ -96,4 +95,4 @@ These objects are available through the
 If a specific author wants to license an object under a different license,
 a pull request can be requested.  
 You can find more information about MOSP on the
-[dedicated repository](https://github.com/CASES-LU/MOSP).
+[dedicated repository](https://github.com/NC3-LU/MOSP).
