@@ -10,6 +10,9 @@
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being committed into version control.
  */
+
+$appdir = getenv('APP_DIR') ?: '/var/lib/monarc';
+
 $package_json = json_decode(file_get_contents('./package.json'), true);
 
 return [
@@ -112,5 +115,10 @@ return [
     'statsApi' => [
         'baseUrl' => 'http://127.0.0.1:5005',
         'apiKey' => '',
+    ],
+
+    'import' => [
+        'uploadFolder' => $appdir . '/data/import/files',
+        'isBackgroundProcessActive' => true,
     ],
 ];

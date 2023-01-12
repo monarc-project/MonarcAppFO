@@ -22,4 +22,12 @@ module/
 npm-debug.log
 node_modules/
 bin/
-data/*
+!data/import/files/.gitkeep
+data/import/files/*
+!data/cache/.gitkeep
+data/cache/*
+!data/DoctrineORMModule/Proxy/.gitkeep
+data/DoctrineORMModule/Proxy/*
+!data/LazyServices/Proxy/.gitkeep
+data/LazyServices/Proxy/*
+.docker/mariaDb/data/*
