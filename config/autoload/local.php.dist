@@ -119,6 +119,6 @@ return [
 
     'import' => [
         'uploadFolder' => $appdir . '/data/import/files',
-        'isBackgroundProcessActive' => true,
+        'isBackgroundProcessActive' => false,
     ],
 ];
