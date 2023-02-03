@@ -596,16 +596,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "1.14.2",
+            "version": "1.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "ad785217c1e9555a7d6c6c8c9f406395a5e2882b"
+                "reference": "fb0d71a7393298a7b232cbf4c8b1f73f3ec3d5af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/ad785217c1e9555a7d6c6c8c9f406395a5e2882b",
-                "reference": "ad785217c1e9555a7d6c6c8c9f406395a5e2882b",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/fb0d71a7393298a7b232cbf4c8b1f73f3ec3d5af",
+                "reference": "fb0d71a7393298a7b232cbf4c8b1f73f3ec3d5af",
                 "shasum": ""
             },
             "require": {
@@ -666,9 +666,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/annotations/issues",
-                "source": "https://github.com/doctrine/annotations/tree/1.14.2"
+                "source": "https://github.com/doctrine/annotations/tree/1.14.3"
             },
-            "time": "2022-12-15T06:48:22+00:00"
+            "time": "2023-02-01T09:20:38+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1843,16 +1843,16 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "3.1.3",
+            "version": "3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "920da294b4bb0bb527f2a91ed60c18213435880f"
+                "reference": "8bf8ab15960787f1a49d405f6eb8c787b4841119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/920da294b4bb0bb527f2a91ed60c18213435880f",
-                "reference": "920da294b4bb0bb527f2a91ed60c18213435880f",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/8bf8ab15960787f1a49d405f6eb8c787b4841119",
+                "reference": "8bf8ab15960787f1a49d405f6eb8c787b4841119",
                 "shasum": ""
             },
             "require": {
@@ -1921,7 +1921,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/persistence/issues",
-                "source": "https://github.com/doctrine/persistence/tree/3.1.3"
+                "source": "https://github.com/doctrine/persistence/tree/3.1.4"
             },
             "funding": [
                 {
@@ -1937,7 +1937,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-19T13:39:42+00:00"
+            "time": "2023-02-03T11:13:07+00:00"
         },
         {
             "name": "endroid/qr-code",
@@ -4762,12 +4762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "fc8ca0916f84991c9f9dfe209579f98cc911d8a0"
+                "reference": "e6289d309289125f11643aef5ef5a23b12ebbaa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/fc8ca0916f84991c9f9dfe209579f98cc911d8a0",
-                "reference": "fc8ca0916f84991c9f9dfe209579f98cc911d8a0",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/e6289d309289125f11643aef5ef5a23b12ebbaa3",
+                "reference": "e6289d309289125f11643aef5ef5a23b12ebbaa3",
                 "shasum": ""
             },
             "require": {
@@ -4846,7 +4846,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.12.5"
             },
-            "time": "2022-12-20T14:42:03+00:00"
+            "time": "2023-02-03T14:21:14+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -4854,12 +4854,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "9c06acb9aabf8e5f3d804da65712d6ffb4b5ee26"
+                "reference": "3c0957387ce181128589962ad1ba91df47d4b9ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/9c06acb9aabf8e5f3d804da65712d6ffb4b5ee26",
-                "reference": "9c06acb9aabf8e5f3d804da65712d6ffb4b5ee26",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3c0957387ce181128589962ad1ba91df47d4b9ef",
+                "reference": "3c0957387ce181128589962ad1ba91df47d4b9ef",
                 "shasum": ""
             },
             "require": {
@@ -4942,7 +4942,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.12.5-p3"
             },
-            "time": "2023-02-02T10:23:13+00:00"
+            "time": "2023-02-03T14:25:05+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8058,12 +8058,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "9a9f90b6604361dad56243d9bdd5e0d6a65ff5c7"
+                "reference": "92f4424ad5419a427f950f7d1df1aae30b02687d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9a9f90b6604361dad56243d9bdd5e0d6a65ff5c7",
-                "reference": "9a9f90b6604361dad56243d9bdd5e0d6a65ff5c7",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/92f4424ad5419a427f950f7d1df1aae30b02687d",
+                "reference": "92f4424ad5419a427f950f7d1df1aae30b02687d",
                 "shasum": ""
             },
             "conflict": {
@@ -8097,6 +8097,7 @@
                 "barryvdh/laravel-translation-manager": "<0.6.2",
                 "barzahlen/barzahlen-php": "<2.0.1",
                 "baserproject/basercms": "<4.7.2",
+                "bassjobsen/bootstrap-3-typeahead": ">4.0.2",
                 "billz/raspap-webgui": "<=2.6.6",
                 "bk2k/bootstrap-package": ">=7.1,<7.1.2|>=8,<8.0.8|>=9,<9.0.4|>=9.1,<9.1.3|>=10,<10.0.10|>=11,<11.0.3",
                 "bmarshall511/wordpress_zero_spam": "<5.2.13",
@@ -8301,7 +8302,7 @@
                 "melisplatform/melis-front": "<5.0.1",
                 "mezzio/mezzio-swoole": "<3.7|>=4,<4.3",
                 "mgallegos/laravel-jqgrid": "<=1.3",
-                "microweber/microweber": "<=1.3.1",
+                "microweber/microweber": "<1.3.2",
                 "miniorange/miniorange-saml": "<1.4.3",
                 "mittwald/typo3_forum": "<1.2.1",
                 "modx/revolution": "<= 2.8.3-pl|<2.8",
@@ -8367,7 +8368,7 @@
                 "phpxmlrpc/extras": "<0.6.1",
                 "phpxmlrpc/phpxmlrpc": "<4.9.2",
                 "pimcore/data-hub": "<1.2.4",
-                "pimcore/pimcore": "<10.5.14",
+                "pimcore/pimcore": "<10.5.16",
                 "pocketmine/bedrock-protocol": "<8.0.2",
                 "pocketmine/pocketmine-mp": "<4.12.5|>= 4.0.0-BETA5, < 4.4.2",
                 "pressbooks/pressbooks": "<5.18",
@@ -8529,6 +8530,7 @@
                 "vova07/yii2-fileapi-widget": "<0.1.9",
                 "vrana/adminer": "<4.8.1",
                 "wallabag/tcpdf": "<6.2.22",
+                "wallabag/wallabag": ">=2-alpha.1,<2.5.3",
                 "wanglelecc/laracms": "<=1.0.3",
                 "web-auth/webauthn-framework": ">=3.3,<3.3.4",
                 "webcoast/deferred-image-processing": "<1.0.2",
@@ -8540,7 +8542,7 @@
                 "wp-cli/wp-cli": "<2.5",
                 "wp-graphql/wp-graphql": "<0.3.5",
                 "wpanel/wpanel4-cms": "<=4.3.1",
-                "wwbn/avideo": "<=11.6",
+                "wwbn/avideo": "<12.4",
                 "xataface/xataface": "<3",
                 "yeswiki/yeswiki": "<4.1",
                 "yetiforce/yetiforce-crm": "<=6.4",
@@ -8618,7 +8620,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-01T13:08:34+00:00"
+            "time": "2023-02-03T01:33:09+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
