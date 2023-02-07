@@ -1,4 +1,3 @@
-nbproject
 ._*
 .buildpath
 .DS_Store
@@ -8,7 +7,6 @@ nbproject
 *.cache
 migrations
 !tests/migrations
-*.sublime-*
 vagrant/.vagrant/
 vagrant/*.log
 vendor/
@@ -22,4 +20,6 @@ module/
 npm-debug.log
 node_modules/
 bin/
+!data/import/files/.gitkeep
 data/*
+.docker/mariaDb/data/*
