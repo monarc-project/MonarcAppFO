@@ -222,7 +222,7 @@ StrictHostKeyChecking no
 ## Trigger the update script
 
 ```bash
-[root@monarc fo]# ./scripts/update-all.sh -c
+[root@monarc fo]# ./scripts/update-all.sh
 ```
 
 ## Set permissions on MONARC website folder
