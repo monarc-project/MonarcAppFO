@@ -352,6 +352,11 @@ return [
         'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
         'apiKey' => '$apiKey',
     ],
+
+    'import' => [
+        'uploadFolder' => $appdir . '/data/import/files',
+        'isBackgroundProcessActive' => false,
+    ],
 ];
 EOF
 

@@ -1,6 +1,15 @@
 MONARC Changelog
 ================
 
+## 2.12.6 (2023-03-07)
+
+### Enhancement
+
+- Analysis background import.
+- Support of PHP8.
+- Specific error message on a wrong password input of analysis import.
+
+
 ## 2.12.5 (2022-12-21)
 
 ### Enhancement
