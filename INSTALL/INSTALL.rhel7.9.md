@@ -204,8 +204,11 @@ Reference: <https://github.com/nodesource/distributions>
 
 ## Set git branch
 
+For the commnad below, the {LATEST-RELEASE-TAG} parameter can be found here (for example: v2.12.5-p4):
+https://github.com/monarc-project/MonarcAppFO/releases
+
 ```bash
-[root@monarc fo]# git branch --set-upstream-to=origin/master v2.11.1
+[root@monarc fo]# git branch --set-upstream-to=origin/master {LATEST-RELEASE-TAG}
 ```
 
 ## Reconfigure SSH
