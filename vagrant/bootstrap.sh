@@ -24,10 +24,6 @@ post_max_size=50M
 max_execution_time=100
 max_input_time=223
 memory_limit=512M
-# session expires in 1 week:
-session.gc_maxlifetime=604800
-session.gc_probability=1
-session.gc_divisor=1000
 
 PHP_INI=/etc/php/8.1/apache2/php.ini
 XDEBUG_CFG=/etc/php/8.1/apache2/conf.d/20-xdebug.ini
@@ -60,7 +56,8 @@ echo -e "\n--- Install base packages… ---\n"
 sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
-sudo apt-get -y install mariadb-server mariadb-client > /dev/null
+sudo apt -y install mariadb-server mariadb-client
+
 # Secure the MariaDB installation (especially by setting a strong root password)
 sudo systemctl restart mariadb.service > /dev/null
 sleep 5
@@ -87,11 +84,14 @@ expect -f - <<-EOF
   send -- "y\r"
   expect eof
 EOF
-sudo apt-get purge -y expect php-xdebug > /dev/null 2>&1
+sudo apt-get purge -y expect > /dev/null 2>&1
 
 echo -e "\n--- Configuring… ---\n"
 sudo sed -i "s/skip-external-locking/#skip-external-locking/g" $MARIA_DB_CFG
 sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" $MARIA_DB_CFG
+sudo sed -i "s/.*character-set-server.*/character-set-server = utf8mb4/" $MARIA_DB_CFG
+sudo sed -i "s/.*collation-server.*/collation-server = utf8mb4_general_ci/" $MARIA_DB_CFG
+
 
 echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
 sudo mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
@@ -99,14 +99,21 @@ sudo mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DB
 sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
+echo -e "\n--- Installing Apache… ---\n"
+sudo apt install apache2 -y
+
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagic php8.1-xdebug > /dev/null
+sudo apt-get install -y php8.1 php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagic php8.1-xdebug > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
 do
  sudo sed -i "s/^\($key\).*/\1 = $(eval echo \${$key})/" $PHP_INI
 done
+# session expires in 1 week:
+sudo sed -i "s/^\(session\.gc_maxlifetime\).*/\1 = $(eval echo 604800)/" $PHP_INI
+sudo sed -i "s/^\(session\.gc_probability\).*/\1 = $(eval echo 1)/" $PHP_INI
+sudo sed -i "s/^\(session\.gc_divisor\).*/\1 = $(eval echo 1000)/" $PHP_INI
 
 echo -e "\n--- Configuring Xdebug for development ---\n"
 sudo bash -c "cat << EOF > $XDEBUG_CFG
@@ -131,7 +138,7 @@ if [ $? -ne 0 ]; then
     echo "\nERROR: unable to install composer\n"
     exit 1;
 fi
-# sudo composer self-update
+sudo composer self-update
 
 echo -e "\n--- Installing MONARC… ---\n"
 cd $PATH_TO_MONARC
@@ -151,6 +158,10 @@ cd $PATH_TO_MONARC
 
 
 # Front-end
+echo -e "\n--- Installation of Node, NPM… ---\n"
+curl -sL https://deb.nodesource.com/setup_15.x | sudo bash -
+sudo apt-get install -y nodejs npm
+
 mkdir -p node_modules
 cd node_modules
 if [ ! -d "ng_client" ]; then
@@ -198,15 +209,9 @@ echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
 
 
-echo -e "\n--- Installation of Node, NPM and Grunt… ---\n"
-curl -sL https://deb.nodesource.com/setup_15.x | sudo bash -
-sudo apt-get install -y nodejs
-
 
 echo -e "\n--- Installing the stats service… ---\n"
-sudo apt-get -y install postgresql python3-pip python3-venv
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 10
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+sudo apt-get -y install postgresql python3 python3-pip python3-venv
 sudo -u postgres psql -c "CREATE USER $STATS_DB_USER WITH PASSWORD '$STATS_DB_PASSWORD';"
 sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;"
 
