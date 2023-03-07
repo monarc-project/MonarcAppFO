@@ -29,8 +29,8 @@ session.gc_maxlifetime=604800
 session.gc_probability=1
 session.gc_divisor=1000
 
-PHP_INI=/etc/php/7.4/apache2/php.ini
-XDEBUG_CFG=/etc/php/7.4/apache2/conf.d/20-xdebug.ini
+PHP_INI=/etc/php/8.1/apache2/php.ini
+XDEBUG_CFG=/etc/php/8.1/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
@@ -58,7 +58,6 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 echo -e "\n--- Install base packages… ---\n"
 sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
-
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 sudo apt-get -y install mariadb-server mariadb-client > /dev/null
@@ -101,7 +100,7 @@ sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug php-bcmath > /dev/null
+sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagic php8.1-xdebug > /dev/null
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
@@ -112,8 +111,8 @@ done
 echo -e "\n--- Configuring Xdebug for development ---\n"
 sudo bash -c "cat << EOF > $XDEBUG_CFG
 zend_extension=xdebug.so
-xdebug.remote_enable=1
-xdebug.remote_connect_back=1
+xdebug.mode=debug
+xdebug.xdebug.discover_client_host=1
 xdebug.idekey=IDEKEY
 EOF"
 
@@ -354,7 +353,7 @@ return [
     ],
 
     'import' => [
-        'uploadFolder' => $appdir . '/data/import/files',
+        'uploadFolder' => '$appdir/data/import/files',
         'isBackgroundProcessActive' => false,
     ],
 ];

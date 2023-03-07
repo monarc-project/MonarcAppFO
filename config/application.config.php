@@ -24,7 +24,6 @@ if (!empty($appConfDir)) {
 
 return [
     'modules' => [
-        'Laminas\Mvc\Console',
         'Laminas\I18n',
         'Laminas\Mail',
         'Laminas\Log',

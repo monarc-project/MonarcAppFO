@@ -41,7 +41,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
@@ -60,8 +60,8 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "^8.3",
-        "laminas/laminas-test": "^3.4"
+        "phpunit/phpunit": "^9.5",
+        "laminas/laminas-test": "^4.5"
     },
     "autoload-dev": {
         "psr-4": {
