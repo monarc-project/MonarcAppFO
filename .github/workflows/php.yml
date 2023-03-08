@@ -34,7 +34,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.1'
         extensions: imagick, intl, xml, mysql, bcmath #optional, setup extensions
         ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
         coverage: xdebug #optional, setup coverage driver
@@ -44,7 +44,7 @@ jobs:
       run: composer validate
 
     - name: Install PHP dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress --no-suggest --ignore-platform-req=php
 
     - name: Create synlinks for MONARC PHP modules
       run: |
