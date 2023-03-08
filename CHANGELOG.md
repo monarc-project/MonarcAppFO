@@ -9,6 +9,9 @@ MONARC Changelog
 - Support of PHP8.
 - Specific error message on a wrong password input of analysis import.
 
+### Fix
+- Recommendations modification from the Knowledge Base when due date is set.
+
 
 ## 2.12.5 (2022-12-21)
 
