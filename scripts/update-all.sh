@@ -64,7 +64,7 @@ if [[ $? -eq 1 ]]; then
 fi
 
 if [[ $isDevEnv -eq 0 ]]; then
-    composer ins -o --no-dev
+    composer ins -o --no-dev --no-cache --ignore-platform-req=php
 else
     composer ins
 fi
