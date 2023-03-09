@@ -119,7 +119,7 @@ echo -e "\n--- Configuring Xdebug for development ---\n"
 sudo bash -c "cat << EOF > $XDEBUG_CFG
 zend_extension=xdebug.so
 xdebug.mode=debug
-xdebug.xdebug.discover_client_host=1
+xdebug.discover_client_host=1
 xdebug.idekey=IDEKEY
 EOF"
 
