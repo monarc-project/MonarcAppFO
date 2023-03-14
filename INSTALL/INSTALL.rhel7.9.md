@@ -126,24 +126,28 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 [root@monarc fo]# rm composer-setup.php
 ```
 
-## Install PHP 7.4
+## Install PHP. Php 7.4 (command below) can be a working solutin but recommended 8.0 or 8.1
 
 ```bash
 [root@monarc fo]# yum install php74-php-cli
 ```
 
-## Configure path
+## Configure path (can be adjusted depending on the php version)
 
 ```bash
 [root@monarc fo]# export PATH=$PATH:/opt/remi/php74/root/usr/bin:/opt/remi/php74/root/usr/sbin
 [root@monarc fo]# ln -s /usr/bin/php74 /usr/bin/php
 ```
 
-## Update
+## Apply PHP configuration settings in your php.ini
+
+https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+
+## Update (The option --ignore-platform-req=php is used in case of php8.1)
 
 ```bash
 [root@monarc fo]# composer self-update
-[root@monarc fo]# composer install -o
+[root@monarc fo]# composer install -o --ignore-platform-req=php
 ```
 
 ## Prepare Backend
