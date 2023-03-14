@@ -66,7 +66,7 @@ $ sudo a2enmod headers
 ```
 
 
-## 1.4. Install PHP and dependencies
+## 1.4. Install PHP and dependencies (It's recommended to install php8 or php8.1 and all the modules of the version)
 
 ```bash
 $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-xml php-mbstring php-intl php-imagick php-zip php-bcmath
