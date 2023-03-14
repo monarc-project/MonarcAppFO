@@ -72,6 +72,10 @@ $ sudo a2enmod headers
 $ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-xml php-mbstring php-intl php-imagick php-zip php-bcmath
 ```
 
+## Apply PHP configuration settings in your php.ini
+
+https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+
 
 ## 1.5 Apply all changes
 
