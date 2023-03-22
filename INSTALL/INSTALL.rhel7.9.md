@@ -33,7 +33,7 @@ Installation on RHEL 7.9
 [root@monarc ~]# yum install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
-## Install PHP 7.4, required modules & dependencies from Remi's repository:
+## Install PHP 7.4, required modules & dependencies from Remi's repository (PHP8 or PHP8.1 can be used from Monarc v2.15.6):
 
 ```bash
 [root@monarc ~]# yum install php74.x86_64 php74-php.x86_64 \
@@ -126,7 +126,7 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 [root@monarc fo]# rm composer-setup.php
 ```
 
-## Install PHP. Php 7.4 (command below) can be a working solutin but recommended 8.0 or 8.1
+## Install PHP. Php 7.4 (command below) can be a working solutin but recommended 8.0 or 8.1 from Monarc v2.15.6
 
 ```bash
 [root@monarc fo]# yum install php74-php-cli
