@@ -81,7 +81,9 @@ https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L
     $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
     $ cd /var/lib/monarc/fo
     $ mkdir -p data/cache
+    $ mkdir -p data/DoctrineORMModule/Proxy
     $ mkdir -p data/LazyServices/Proxy
+    $ mkdir -p data/import/files
     $ composer install -o
     # chown -R www-data:www-data data/
     # chmod -R 700 data/

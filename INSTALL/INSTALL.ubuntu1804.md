@@ -81,6 +81,7 @@ Especially by setting a strong root password.
     $ mkdir -p data/cache
     $ mkdir -p data/DoctrineORMModule/Proxy
     $ mkdir -p data/LazyServices/Proxy
+    $ mkdir -p data/import/files
     $ chmod -R g+w data
     $ composer install -o
 

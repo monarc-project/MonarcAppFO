@@ -114,6 +114,8 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 [root@monarc ~]# cd /var/www/html/monarc/fo
 [root@monarc fo]# mkdir -p data/cache
 [root@monarc fo]# mkdir -p data/LazyServices/Proxy
+[root@monarc fo]# mkdir -p data/DoctrineORMModule/Proxy
+[root@monarc fo]# mkdir -p data/import/files
 [root@monarc fo]# chmod -R g+w data
 [root@monarc fo]# yum remove php-5.4.16 php-cli-5.4.16 php-common-5.4.16
 ```

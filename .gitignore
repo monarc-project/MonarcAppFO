@@ -20,6 +20,5 @@ module/
 npm-debug.log
 node_modules/
 bin/
-!data/import/files/.gitkeep
 data/*
 .docker/mariaDb/data/*

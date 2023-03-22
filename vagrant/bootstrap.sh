@@ -377,6 +377,7 @@ echo -e "\n--- Creating cache folders for backend… ---\n"
 mkdir -p $PATH_TO_MONARC/data/cache
 mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
 mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+mkdir -p $PATH_TO_MONARC/data/import/files
 
 
 echo -e "\n--- Adjusting user mod… ---\n"
