@@ -167,21 +167,24 @@
         },
         {
             "name": "cakephp/core",
-            "version": "4.4.11",
+            "version": "4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "3730ce60f0153b609c9d756fe1b60978bc9c9fee"
+                "reference": "d6490294420e2602e4e65fb8a17f76547c10139e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/3730ce60f0153b609c9d756fe1b60978bc9c9fee",
-                "reference": "3730ce60f0153b609c9d756fe1b60978bc9c9fee",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/d6490294420e2602e4e65fb8a17f76547c10139e",
+                "reference": "d6490294420e2602e4e65fb8a17f76547c10139e",
                 "shasum": ""
             },
             "require": {
                 "cakephp/utility": "^4.0",
                 "php": ">=7.4.0"
+            },
+            "provide": {
+                "psr/container-implementation": "^1.0 || ^2.0"
             },
             "suggest": {
                 "cakephp/cache": "To use Configure::store() and restore().",
@@ -220,20 +223,20 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/core"
             },
-            "time": "2023-02-09T19:55:09+00:00"
+            "time": "2023-03-08T05:26:37+00:00"
         },
         {
             "name": "cakephp/database",
-            "version": "4.4.11",
+            "version": "4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/database.git",
-                "reference": "904c09ac6ac41bddd65ef62f11676870aa8837a0"
+                "reference": "855e9972882632bab7b77014dbf670e0356f52d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/database/zipball/904c09ac6ac41bddd65ef62f11676870aa8837a0",
-                "reference": "904c09ac6ac41bddd65ef62f11676870aa8837a0",
+                "url": "https://api.github.com/repos/cakephp/database/zipball/855e9972882632bab7b77014dbf670e0356f52d3",
+                "reference": "855e9972882632bab7b77014dbf670e0356f52d3",
                 "shasum": ""
             },
             "require": {
@@ -276,11 +279,11 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/database"
             },
-            "time": "2023-01-31T17:52:27+00:00"
+            "time": "2023-02-24T22:07:16+00:00"
         },
         {
             "name": "cakephp/datasource",
-            "version": "4.4.11",
+            "version": "4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/datasource.git",
@@ -338,16 +341,16 @@
         },
         {
             "name": "cakephp/utility",
-            "version": "4.4.11",
+            "version": "4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "3694d44728fb00ab474d9e031d51ed47f3d0e31c"
+                "reference": "a6a17c556d02c57259e21127a4f3d3ec5cd8481f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/3694d44728fb00ab474d9e031d51ed47f3d0e31c",
-                "reference": "3694d44728fb00ab474d9e031d51ed47f3d0e31c",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/a6a17c556d02c57259e21127a4f3d3ec5cd8481f",
+                "reference": "a6a17c556d02c57259e21127a4f3d3ec5cd8481f",
                 "shasum": ""
             },
             "require": {
@@ -393,7 +396,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/utility"
             },
-            "time": "2023-01-07T14:14:31+00:00"
+            "time": "2023-02-24T22:07:16+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -1598,12 +1601,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "25bd41a504e92bec4cc76fa6cac7380585412b15"
+                "reference": "aec35565024de102bedf55837d8b655a04d6ba15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/25bd41a504e92bec4cc76fa6cac7380585412b15",
-                "reference": "25bd41a504e92bec4cc76fa6cac7380585412b15",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/aec35565024de102bedf55837d8b655a04d6ba15",
+                "reference": "aec35565024de102bedf55837d8b655a04d6ba15",
                 "shasum": ""
             },
             "require": {
@@ -1691,7 +1694,7 @@
                 "issues": "https://github.com/doctrine/orm/issues",
                 "source": "https://github.com/doctrine/orm/tree/2.15.x"
             },
-            "time": "2023-03-19T21:46:07+00:00"
+            "time": "2023-03-24T07:27:38+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -2822,16 +2825,16 @@
         },
         {
             "name": "laminas/laminas-form",
-            "version": "3.10.0",
+            "version": "3.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-form.git",
-                "reference": "91dd0e884c0dacb28922166b3ec9a400bd6e8b47"
+                "reference": "3c32741b068c35e05dcbeddea2d289ed59c1046c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-form/zipball/91dd0e884c0dacb28922166b3ec9a400bd6e8b47",
-                "reference": "91dd0e884c0dacb28922166b3ec9a400bd6e8b47",
+                "url": "https://api.github.com/repos/laminas/laminas-form/zipball/3c32741b068c35e05dcbeddea2d289ed59c1046c",
+                "reference": "3c32741b068c35e05dcbeddea2d289ed59c1046c",
                 "shasum": ""
             },
             "require": {
@@ -2915,7 +2918,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-03-20T14:27:46+00:00"
+            "time": "2023-03-23T06:36:08+00:00"
         },
         {
             "name": "laminas/laminas-http",
@@ -4323,12 +4326,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "ccd8429b71f01f3f2eea1b43770ce1190eb6a31b"
+                "reference": "d0abecf7c47c1ad411138dd58e615678ab3b4e53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/ccd8429b71f01f3f2eea1b43770ce1190eb6a31b",
-                "reference": "ccd8429b71f01f3f2eea1b43770ce1190eb6a31b",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/d0abecf7c47c1ad411138dd58e615678ab3b4e53",
+                "reference": "d0abecf7c47c1ad411138dd58e615678ab3b4e53",
                 "shasum": ""
             },
             "require": {
@@ -4406,7 +4409,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.12.6"
             },
-            "time": "2023-03-09T11:50:02+00:00"
+            "time": "2023-03-22T12:36:31+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -4414,12 +4417,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "cdb2327c8a2ae59878567e1110f8e845ca723922"
+                "reference": "3b1695c18b4ec80c2fc7fa2f0188c9a1181e961b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/cdb2327c8a2ae59878567e1110f8e845ca723922",
-                "reference": "cdb2327c8a2ae59878567e1110f8e845ca723922",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/3b1695c18b4ec80c2fc7fa2f0188c9a1181e961b",
+                "reference": "3b1695c18b4ec80c2fc7fa2f0188c9a1181e961b",
                 "shasum": ""
             },
             "require": {
@@ -4436,7 +4439,7 @@
                 "laminas/laminas-inputfilter": "^2.10",
                 "laminas/laminas-mvc": "^3.1",
                 "laminas/laminas-permissions-rbac": "^3.0",
-                "monarc/core": "^2.10.3",
+                "monarc/core": "^2.12.6",
                 "php": "^7.4 || ^8.0",
                 "phpoffice/phpword": "^0.18.1",
                 "robmorgan/phinx": "^0.13.4",
@@ -4501,7 +4504,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.12.6"
             },
-            "time": "2023-03-09T11:50:22+00:00"
+            "time": "2023-03-24T08:53:22+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7534,12 +7537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "ea4755f8932eb1bd1c1152495811e9edb7cf3301"
+                "reference": "ca6f1d633e0a8d82bd27376fe7e27a92500417f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ea4755f8932eb1bd1c1152495811e9edb7cf3301",
-                "reference": "ea4755f8932eb1bd1c1152495811e9edb7cf3301",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/ca6f1d633e0a8d82bd27376fe7e27a92500417f1",
+                "reference": "ca6f1d633e0a8d82bd27376fe7e27a92500417f1",
                 "shasum": ""
             },
             "conflict": {
@@ -7573,7 +7576,7 @@
                 "barrelstrength/sprout-forms": "<3.9",
                 "barryvdh/laravel-translation-manager": "<0.6.2",
                 "barzahlen/barzahlen-php": "<2.0.1",
-                "baserproject/basercms": "<4.7.2",
+                "baserproject/basercms": "<4.7.5",
                 "bassjobsen/bootstrap-3-typeahead": ">4.0.2",
                 "billz/raspap-webgui": "<=2.6.6",
                 "bk2k/bootstrap-package": ">=7.1,<7.1.2|>=8,<8.0.8|>=9,<9.0.4|>=9.1,<9.1.3|>=10,<10.0.10|>=11,<11.0.3",
@@ -7643,7 +7646,7 @@
                 "elgg/elgg": "<3.3.24|>=4,<4.0.5",
                 "encore/laravel-admin": "<=1.8.19",
                 "endroid/qr-code-bundle": "<3.4.2",
-                "enshrined/svg-sanitize": "<0.16",
+                "enshrined/svg-sanitize": "<0.15",
                 "erusev/parsedown": "<1.7.2",
                 "ether/logs": "<3.0.4",
                 "exceedone/exment": "<4.4.3|>=5,<5.0.3",
@@ -7798,7 +7801,7 @@
                 "modx/revolution": "<= 2.8.3-pl|<2.8",
                 "mojo42/jirafeau": "<4.4",
                 "monolog/monolog": ">=1.8,<1.12",
-                "moodle/moodle": "<4.0.6|= 3.11|>=4.1-beta,<4.1.1",
+                "moodle/moodle": "<4.0.7|>=4.1-beta,<4.1.2|= 3.11",
                 "mustache/mustache": ">=2,<2.14.1",
                 "namshi/jose": "<2.2",
                 "neoan3-apps/template": "<1.1.1",
@@ -8120,7 +8123,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-20T21:03:58+00:00"
+            "time": "2023-03-24T00:14:17+00:00"
         },
         {
             "name": "sebastian/cli-parser",

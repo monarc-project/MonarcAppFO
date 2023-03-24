@@ -1,7 +1,7 @@
 MONARC Changelog
 ================
 
-## 2.12.6 (2023-03-07)
+## 2.12.6 (2023-03-24)
 
 ### Enhancement
 
@@ -11,6 +11,7 @@ MONARC Changelog
 
 ### Fix
 - Recommendations modification from the Knowledge Base when due date is set.
+- Recommendations modification fix of loading the linked recommendation set.
 
 
 ## 2.12.5 (2022-12-21)
