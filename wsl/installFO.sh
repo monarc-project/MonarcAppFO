@@ -185,7 +185,7 @@ sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;" > /dev/null
 
 cd ~
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python > /dev/null
-echo  'export PATH="$PATH:$HOME/.poetry/bin"' >> ~/.bashrc
+echo  'export PATH="$PATH:$HOME/.local/bin/poetry"' >> ~/.bashrc
 echo  'export FLASK_APP=runserver.py' >> ~/.bashrc
 echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
 
