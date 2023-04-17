@@ -21,8 +21,8 @@ max_execution_time=100
 max_input_time=223
 memory_limit=512M
 
-PHP_INI=/etc/php/7.4/apache2/php.ini
-XDEBUG_CFG=/etc/php/7.4/apache2/conf.d/20-xdebug.ini
+PHP_INI=/etc/php/8.1/apache2/php.ini
+XDEBUG_CFG=/etc/php/8.1/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
@@ -35,6 +35,7 @@ STATS_DB_PASSWORD="sqlmonarcuser"
 STATS_SECRET_KEY="$(openssl rand -hex 32)"
 
 echo -e "\n--- Installing now… ---\n"
+sudo chmod 755 $HOME
 sudo apt-get update > /dev/null 2>&1
 
 echo -e "\n--- Updating packages list… ---\n"
@@ -47,7 +48,7 @@ sudo apt-get -y install vim zip unzip git gettext curl gsfonts > /dev/null
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
 sudo apt-get -y install mariadb-server mariadb-client > /dev/null
 # Secure the MariaDB installation (especially by setting a strong root password)
-sudo service mysql restart > /dev/null
+sudo service mariadb restart > /dev/null
 sleep 5
 sudo mysql_secure_installation > /dev/null 2>&1 <<EOF
 
@@ -68,10 +69,10 @@ echo -e "\n--- Setting up our MariaDB user for MONARC… ---\n"
 sudo mysql -u root -p$DBPASSWORD_ADMIN -e "CREATE USER '$DBUSER_MONARC'@'%' IDENTIFIED BY '$DBPASSWORD_MONARC';"
 sudo mysql -u root -p$DBPASSWORD_ADMIN -e "GRANT ALL PRIVILEGES ON * . * TO '$DBUSER_MONARC'@'%';"
 sudo mysql -u root -p$DBPASSWORD_ADMIN -e "FLUSH PRIVILEGES;"
-sudo service mysql restart > /dev/null
+sudo service mariadb restart > /dev/null
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
-sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-imagick php-zip php-xdebug php-bcmath > /dev/null 2>&1
+sudo apt-get -y install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-apcu php-xml php-mbstring php-intl php-zip php-xdebug php-bcmath > /dev/null 2>&1
 
 echo -e "\n--- Configuring PHP… ---\n"
 for key in upload_max_filesize post_max_size max_execution_time max_input_time memory_limit
@@ -170,7 +171,7 @@ sudo service apache2 restart > /dev/null
 
 echo -e "\n--- Installation of Node, NPM and Grunt… ---\n"
 curl -sL https://deb.nodesource.com/setup_15.x | sudo bash - > /dev/null 2>&1
-sudo apt-get install -y nodejs > /dev/null 2>&1
+sudo apt-get install -y nodejs npm > /dev/null 2>&1
 sudo npm install -g grunt-cli > /dev/null 2>&1
 
 
@@ -190,7 +191,7 @@ echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
 
 git clone https://github.com/monarc-project/stats-service $STATS_PATH > /dev/null 2>&1
 cd $STATS_PATH
-export PATH="$PATH:$HOME/.poetry/bin"
+export PATH="$PATH:$HOME/.local/bin/poetry"
 export FLASK_APP=runserver.py
 export STATS_CONFIG=production.py
 npm ci > /dev/null 2>&1
@@ -292,6 +293,11 @@ return [
         'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
         'apiKey' => '$apiKey',
     ],
+
+    'import' => [
+        'uploadFolder' => '$appdir/data/import/files',
+        'isBackgroundProcessActive' => false,
+    ],
 ];
 EOF
 
@@ -308,6 +314,7 @@ echo -e "\n--- Creating cache folders for backend… ---\n"
 mkdir -p $PATH_TO_MONARC/data/cache
 mkdir -p $PATH_TO_MONARC/data/LazyServices/Proxy
 mkdir -p $PATH_TO_MONARC/data/DoctrineORMModule/Proxy
+mkdir -p $PATH_TO_MONARC/data/import/files
 chmod -R g+w $PATH_TO_MONARC/data
 sudo chown -R www-data:www-data data
 
@@ -326,7 +333,7 @@ sudo service apache2 restart > /dev/null
 echo -e "\n--- Adding autostart Services ---\n"
 cat >> ~/.bashrc <<EOF
 # Autostart services
-wsl.exe -u root service mysql start > /dev/null
+wsl.exe -u root service mariadb start > /dev/null
 wsl.exe -u root service apache2 start > /dev/null
 wsl.exe -u root service postgresql start > /dev/null
 cd ~/stats-service/ ; poetry run nohup python runserver.py > /dev/null 2>&1 &
