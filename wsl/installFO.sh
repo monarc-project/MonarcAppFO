@@ -185,13 +185,13 @@ sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;" > /dev/null
 
 cd ~
 curl -sSL https://install.python-poetry.org | python3 - > /dev/null
-echo  'export PATH="$PATH:$HOME/.local/bin/poetry"' >> ~/.bashrc
+echo  'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 echo  'export FLASK_APP=runserver.py' >> ~/.bashrc
 echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
 
 git clone https://github.com/monarc-project/stats-service $STATS_PATH > /dev/null 2>&1
 cd $STATS_PATH
-export PATH="$PATH:$HOME/.local/bin/poetry"
+export PATH="$PATH:$HOME/.local/bin"
 export FLASK_APP=runserver.py
 export STATS_CONFIG=production.py
 npm ci > /dev/null 2>&1
