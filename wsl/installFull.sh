@@ -257,7 +257,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export FLASK_APP=runserver.py
 export STATS_CONFIG=production.py
 npm ci > /dev/null 2>&1
-poetry install > /dev/null
+poetry install > /dev/null 2>&1
 cp instance/production.py.cfg instance/production.py
 
 sed -i "s/\"postgres\"/\"$STATS_DB_USER\"/" instance/production.py
