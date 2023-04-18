@@ -109,8 +109,8 @@ fi
 
 
 echo -e "\n--- Installing MONARC … ---\n"
-git git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO > /dev/null 2>&1
-git git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppBO > /dev/null 2>&1
+git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO > /dev/null 2>&1
+git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppBO > /dev/null 2>&1
 
 cd $PATH_TO_MONARC_FO
 
