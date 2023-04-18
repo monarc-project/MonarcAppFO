@@ -259,38 +259,8 @@ export PATH="$PATH:$HOME/.local/bin"
 export FLASK_APP=runserver.py
 export STATS_CONFIG=production.py
 npm ci > /dev/null 2>&1
-poetry install --no-dev > /dev/null
-
-bash -c "cat << EOF > $STATS_PATH/instance/production.py
-HOST = '$STATS_HOST'
-PORT = $STATS_PORT
-DEBUG = False
-TESTING = False
-INSTANCE_URL = 'http://127.0.0.1:$STATS_PORT'
-
-ADMIN_EMAIL = 'info@cases.lu'
-ADMIN_URL = 'https://www.cases.lu'
-
-REMOTE_STATS_SERVER = 'https://dashboard.monarc.lu'
-
-DB_CONFIG_DICT = {
-    'user': '$STATS_DB_USER',
-    'password': '$STATS_DB_PASSWORD',
-    'host': 'localhost',
-    'port': 5432,
-}
-DATABASE_NAME = '$STATS_DB_NAME'
-SQLALCHEMY_DATABASE_URI = 'postgresql://{user}:{password}@{host}:{port}/{name}'.format(
-    name=DATABASE_NAME, **DB_CONFIG_DICT
-)
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-SECRET_KEY = '$STATS_SECRET_KEY'
-
-LOG_PATH = './var/stats.log'
-
-MOSP_URL = 'https://objects.monarc.lu'
-EOF"
+poetry install > /dev/null
+cp instance/production.py.cfg instance/production.py
 
 FLASK_APP=runserver.py poetry run flask db_create
 FLASK_APP=runserver.py poetry run flask db_init
