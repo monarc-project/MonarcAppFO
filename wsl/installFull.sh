@@ -29,10 +29,10 @@ MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
 STATS_PATH=$HOME/stats-service
-STATS_PORT='5000'
 STATS_DB_NAME='statsservice'
-STATS_DB_USER='postgres'
+STATS_DB_USER='statsserviceuser'
 STATS_DB_PASSWORD="password"
+STATS_SECRET_KEY="$(openssl rand -hex 32)"
 
 echo -e "\n--- Installing now… ---\n"
 sudo chmod 755 $HOME
@@ -109,8 +109,8 @@ fi
 
 
 echo -e "\n--- Installing MONARC … ---\n"
-git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO > /dev/null 2>&1
-git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppBO > /dev/null 2>&1
+git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO $PATH_TO_MONARC_FO > /dev/null 2>&1
+git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppBO $PATH_TO_MONARC_BO > /dev/null 2>&1
 
 cd $PATH_TO_MONARC_FO
 
@@ -260,6 +260,10 @@ npm ci > /dev/null 2>&1
 poetry install > /dev/null
 cp instance/production.py.cfg instance/production.py
 
+sed -i "s/\"postgres\"/\"$STATS_DB_USER\"/" instance/production.py
+sed -i "s/password/$STATS_DB_PASSWORD/" instance/production.py
+sed -i "s/SECRET_KEY.*/SECRET_KEY = \"$STATS_SECRET_KEY\"/" instance/production.py
+
 FLASK_APP=runserver.py poetry run flask db_create
 FLASK_APP=runserver.py poetry run flask db_init
 FLASK_APP=runserver.py poetry run flask client_create --name ADMIN --role admin
@@ -320,7 +324,7 @@ return [
     ],
 
     'statsApi' => [
-        'baseUrl' => 'http://127.0.0.1:$STATS_PORT',
+        'baseUrl' => 'http://127.0.0.1:5000',
         'apiKey' => '$apiKey',
     ],
 
@@ -428,5 +432,5 @@ EOF
 
 echo -e "MONARC FO is ready and available at http://localhost"
 echo -e "MONARC BO is ready and available at http://localhost:8080"
-echo -e "Stats service is ready and available at http://localhost:$STATS_PORT"
+echo -e "Stats service is ready and available at http://localhost:5000"
 echo -e "user: admin@admin.localhost / password: admin"
