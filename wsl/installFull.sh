@@ -23,8 +23,8 @@ max_execution_time=100
 max_input_time=223
 memory_limit=512M
 
-PHP_INI=/etc/php/7.4/apache2/php.ini
-XDEBUG_CFG=/etc/php/7.4/apache2/conf.d/20-xdebug.ini
+PHP_INI=/etc/php/8.1/apache2/php.ini
+XDEBUG_CFG=/etc/php/8.1/apache2/conf.d/20-xdebug.ini
 MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
@@ -248,7 +248,7 @@ sudo -u postgres psql -c "CREATE USER $STATS_DB_USER WITH PASSWORD '$STATS_DB_PA
 sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;" > /dev/null
 
 cd ~
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python > /dev/null
+curl -sSL https://install.python-poetry.org | python3 - > /dev/null > /dev/null
 echo  'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
 echo  'export FLASK_APP=runserver.py' >> ~/.bashrc
 echo  'export STATS_CONFIG=production.py' >> ~/.bashrc
@@ -423,6 +423,7 @@ echo -e "\n--- Creating cache folders for backend… ---\n"
 mkdir -p $PATH_TO_MONARC_FO/data/cache
 mkdir -p $PATH_TO_MONARC_FO/data/LazyServices/Proxy
 mkdir -p $PATH_TO_MONARC_FO/data/DoctrineORMModule/Proxy
+mkdir -p $$PATH_TO_MONARC_FO/data/import/files
 chmod -R g+w $PATH_TO_MONARC_FO/data
 mkdir -p $PATH_TO_MONARC_BO/data/cache
 mkdir -p $PATH_TO_MONARC_BO/data/LazyServices/Proxy
