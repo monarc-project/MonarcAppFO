@@ -29,12 +29,10 @@ MARIA_DB_CFG=/etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Stats service
 STATS_PATH=$HOME/stats-service
-STATS_HOST='0.0.0.0'
-STATS_PORT='5005'
+STATS_PORT='5000'
 STATS_DB_NAME='statsservice'
-STATS_DB_USER='sqlmonarcuser'
-STATS_DB_PASSWORD="sqlmonarcuser"
-STATS_SECRET_KEY="$(openssl rand -hex 32)"
+STATS_DB_USER='postgres'
+STATS_DB_PASSWORD="password"
 
 echo -e "\n--- Installing now… ---\n"
 sudo chmod 755 $HOME
@@ -111,8 +109,10 @@ fi
 
 
 echo -e "\n--- Installing MONARC … ---\n"
+git git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppFO > /dev/null 2>&1
+git git clone --config core.fileMode=false https://github.com/monarc-project/MonarcAppBO > /dev/null 2>&1
+
 cd $PATH_TO_MONARC_FO
-git config core.fileMode false
 
 
 echo -e "\n--- Installing the FO dependencies… ---\n"
@@ -124,9 +124,8 @@ mkdir -p module/Monarc
 cd module/Monarc
 ln -sfn ./../../vendor/monarc/core Core
 ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
+
 cd $PATH_TO_MONARC_FO
-
-
 
 # Front-end
 mkdir -p node_modules
@@ -147,7 +146,6 @@ if [ $? -ne 0 ]; then
 fi
 
 cd $PATH_TO_MONARC_BO
-git config core.fileMode false
 
 echo -e "\n--- Installing the BO dependencies… ---\n"
 composer ins > /dev/null 2>&1
