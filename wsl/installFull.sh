@@ -235,7 +235,7 @@ sudo service apache2 restart > /dev/null
 
 echo -e "\n--- Installation of Node, NPM and Grunt… ---\n"
 curl -sL https://deb.nodesource.com/setup_15.x | sudo bash - > /dev/null 2>&1
-sudo apt-get install -y nodejs > /dev/null 2>&1
+sudo apt-get install -y nodejs npm > /dev/null 2>&1
 sudo npm install -g grunt-cli > /dev/null 2>&1
 
 
