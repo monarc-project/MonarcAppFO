@@ -65,27 +65,21 @@ sudo a2enmod headers
 </VirtualHost>
 ```
 
-
 ## 1.4. Install PHP and dependencies (It's recommended to install php8 or php8.1 and all the modules of the version)
 
 ```bash
-$ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-xml php-mbstring php-intl php-imagick php-zip php-bcmath
+sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql php-pear php-xml php-mbstring php-intl php-imagick php-zip php-bcmath
 ```
 
 ## 1.5 Apply PHP configuration settings in your php.ini
 
 https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
 
-## 1.6 Change access risghts
+
+## 1.6 Apply all changes
 
 ```bash
-sudo chown -R www-data:www-data /var/lib/monarc
-```
-
-## 1.7 Apply all changes
-
-```bash
-$ sudo systemctl restart apache2.service
+sudo systemctl restart apache2.service
 ```
 
 # 2. Installation of MONARC
@@ -109,6 +103,12 @@ ln -s /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL | sed 's/.tar.gz/
 mkdir -p $PATH_TO_MONARC_DATA/cache $PATH_TO_MONARC_DATA/DoctrineORMModule/Proxy $PATH_TO_MONARC_DATA/LazyServices/Proxy $PATH_TO_MONARC_DATA/import/files
 # Create data directory symlink
 ln -s $PATH_TO_MONARC_DATA $PATH_TO_MONARC/data
+```
+
+## 2.1 Change access rights
+
+```bash
+sudo chown -R www-data:www-data /var/lib/monarc
 ```
 
 
