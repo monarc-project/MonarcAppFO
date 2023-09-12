@@ -42,6 +42,14 @@ sudo a2enmod headers
 
 ### Apache Virtual Host
 
+Modify default Apache virtual host:
+
+```bash
+sudo vi /etc/apache2/sites-enabled/000-default.conf
+```
+
+With this configuration:
+
 ```conf
 <VirtualHost _default_:80>
     ServerAdmin admin@localhost.lu
@@ -189,15 +197,15 @@ And configure the database connection:
 # 3. Migrating MONARC DB
 
 ```bash
-$ php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
-$ php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/phinx.php
+sudo php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
+sudo php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/phinx.php
 ```
 
 
 # 4. Create initial user
 
 ```bash
-$ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+sudo php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 ```
 
 The username is *admin@admin.localhost* and the password is *admin*.
