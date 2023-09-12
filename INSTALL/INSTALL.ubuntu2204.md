@@ -81,8 +81,21 @@ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql ph
 
 ## 1.5 Apply PHP configuration settings in your php.ini
 
-https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+Edit php.ini file
 
+```bash
+sudo vi /etc/php/8.1/apache2/php.ini
+```
+Change these keys:
+
+```php
+upload_max_filesize = 200M
+post_max_size = 50M
+max_execution_time = 100
+max_input_time = 223
+memory_limit = 512M
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
+```
 
 ## 1.6 Apply all changes
 
