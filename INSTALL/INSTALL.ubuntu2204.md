@@ -113,7 +113,7 @@ mkdir -p $PATH_TO_MONARC_DATA/cache $PATH_TO_MONARC_DATA/DoctrineORMModule/Proxy
 ln -s $PATH_TO_MONARC_DATA $PATH_TO_MONARC/data
 ```
 
-## 2.1 Change access rights
+## 2.1 Change owner
 
 ```bash
 sudo chown -R www-data:www-data /var/lib/monarc
@@ -164,7 +164,7 @@ mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_data.sql
 Create the configuration file:
 
 ```bash
-$ sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
+sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 ```
 
 And configure the database connection:
@@ -197,15 +197,15 @@ And configure the database connection:
 # 3. Migrating MONARC DB
 
 ```bash
-sudo php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
-sudo php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/phinx.php
+php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
+php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/phinx.php
 ```
 
 
 # 4. Create initial user
 
 ```bash
-sudo php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 ```
 
 The username is *admin@admin.localhost* and the password is *admin*.
