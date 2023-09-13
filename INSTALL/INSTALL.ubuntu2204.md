@@ -84,7 +84,7 @@ sudo apt-get install php apache2 libapache2-mod-php php-curl php-gd php-mysql ph
 Edit php.ini file
 
 ```bash
-sudo vi /etc/php/8.1/apache2/php.ini
+sudo vi /etc/php/8.1/fpm/php.ini
 ```
 Change these keys:
 
