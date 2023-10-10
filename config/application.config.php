@@ -8,6 +8,8 @@
 $env = getenv('APPLICATION_ENV') ?: 'production';
 $appConfDir = getenv('APP_CONF_DIR') ?: null;
 
+defined('PROJECT_ROOT') or define('PROJECT_ROOT', __DIR__ . '/../');
+
 if ($env !== 'testing') {
     $confPaths = ['config/autoload/{,*.}{global,local}.php'];
 }
@@ -16,7 +18,9 @@ if (!empty($appConfDir)) {
     $confPaths[] = $appConfDir . '/local.php';
     $dataPath = $appConfDir . '/data';
     if (!is_dir($dataPath . '/cache')) {
-        if (!mkdir($concurrentDirectory = $dataPath . '/cache') && !is_dir($concurrentDirectory)) {
+        if (is_dir(PROJECT_ROOT . 'data/cache')) {
+            $dataPath = PROJECT_ROOT . 'data';
+        } elseif (!mkdir($concurrentDirectory = $dataPath . '/cache') && !is_dir($concurrentDirectory)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
     }
