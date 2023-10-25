@@ -1,6 +1,19 @@
 MONARC Changelog
 ================
 
+
+## 2.12.7 (2023-10-25)
+
+### Enhancement
+
+- [Alternative to 2FA QR code](https://github.com/monarc-project/MonarcAppFO/issues/505)
+- [Add context info to the list of analysis panel](https://github.com/monarc-project/MonarcAppFO/issues/506)
+
+### Fix
+
+- [Global dashboard max calculation error](https://github.com/monarc-project/MonarcAppFO/issues/507) 
+
+
 ## 2.12.6 (2023-03-24)
 
 ### Enhancement
