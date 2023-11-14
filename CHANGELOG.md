@@ -11,7 +11,8 @@ MONARC Changelog
 
 ### Fix
 
-- [Global dashboard max calculation error](https://github.com/monarc-project/MonarcAppFO/issues/507) 
+- [Global dashboard max calculation error](https://github.com/monarc-project/MonarcAppFO/issues/507)
+- [[FrontOffice] Fixed the operational risks import from CSV](https://github.com/monarc-project/MonarcAppFO/issues/484)
 
 
 ## 2.12.6 (2023-03-24)
