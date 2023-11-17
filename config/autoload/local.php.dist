@@ -10,6 +10,9 @@
  * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
  * credentials from accidentally being committed into version control.
  */
+
+$appdir = getenv('APP_DIR') ?: '/var/lib/monarc';
+
 $package_json = json_decode(file_get_contents('./package.json'), true);
 
 return [
@@ -95,6 +98,9 @@ return [
         'from' => 'info@monarc.lu',
     ],
 
+    'instanceName' => 'Development', // for example a short URL or client name from ansible
+    'twoFactorAuthEnforced' => false,
+
     'terms' => 'https://my.monarc.lu/terms.html',
 
     'monarc' => [
@@ -102,10 +108,17 @@ return [
         'cliModel' => 'generic',
     ],
 
+    'twoFactorAuthEnforced' => false,
+
     'mospApiUrl' => 'https://objects.monarc.lu/api/',
 
     'statsApi' => [
         'baseUrl' => 'http://127.0.0.1:5005',
         'apiKey' => '',
+    ],
+
+    'import' => [
+        'uploadFolder' => $appdir . '/data/import/files',
+        'isBackgroundProcessActive' => false,
     ],
 ];

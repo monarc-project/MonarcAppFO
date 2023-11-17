@@ -33,7 +33,7 @@ Installation on RHEL 7.9
 [root@monarc ~]# yum install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
-## Install PHP 7.4, required modules & dependencies from Remi's repository:
+## Install PHP 7.4, required modules & dependencies from Remi's repository (PHP8 or PHP8.1 can be used from Monarc v2.15.6):
 
 ```bash
 [root@monarc ~]# yum install php74.x86_64 php74-php.x86_64 \
@@ -108,12 +108,14 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 ## Install MONARC
 
 ```bash
-[root@monarc ~]# mkdir -p /var/lib/monarc/fo
+[root@monarc ~]# mkdir -p /var/www/html/monarc/fo
 [root@monarc ~]# yum install git
-[root@monarc ~]# git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
-[root@monarc ~]# cd /var/lib/monarc/fo
+[root@monarc ~]# git clone https://github.com/monarc-project/MonarcAppFO.git /var/www/html/monarc/fo
+[root@monarc ~]# cd /var/www/html/monarc/fo
 [root@monarc fo]# mkdir -p data/cache
 [root@monarc fo]# mkdir -p data/LazyServices/Proxy
+[root@monarc fo]# mkdir -p data/DoctrineORMModule/Proxy
+[root@monarc fo]# mkdir -p data/import/files
 [root@monarc fo]# chmod -R g+w data
 [root@monarc fo]# yum remove php-5.4.16 php-cli-5.4.16 php-common-5.4.16
 ```
@@ -126,24 +128,28 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 [root@monarc fo]# rm composer-setup.php
 ```
 
-## Install PHP 7.4
+## Install PHP. Php 7.4 (command below) can be a working solutin but recommended 8.0 or 8.1 from Monarc v2.15.6
 
 ```bash
 [root@monarc fo]# yum install php74-php-cli
 ```
 
-## Configure path
+## Configure path (can be adjusted depending on the php version)
 
 ```bash
 [root@monarc fo]# export PATH=$PATH:/opt/remi/php74/root/usr/bin:/opt/remi/php74/root/usr/sbin
 [root@monarc fo]# ln -s /usr/bin/php74 /usr/bin/php
 ```
 
-## Update
+## Apply PHP configuration settings in your php.ini
+
+https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+
+## Update (The option --ignore-platform-req=php is used in case of php8.1)
 
 ```bash
 [root@monarc fo]# composer self-update
-[root@monarc fo]# composer install -o
+[root@monarc fo]# composer install -o --ignore-platform-req=php
 ```
 
 ## Prepare Backend
@@ -183,7 +189,7 @@ grant create, delete, insert, select, update, drop, alter on monarc_cli.* to 'mo
 ## Set up database connection
 
 ```bash
-[root@monarc fo]# cd /var/lib/monarc/fo/config/autoload/
+[root@monarc fo]# cd /var/www/html/monarc/fo/config/autoload/
 [root@monarc autoload]# cp local.php.dist local.php
 [root@monarc autoload]# vi local.php
 ```
@@ -204,8 +210,11 @@ Reference: <https://github.com/nodesource/distributions>
 
 ## Set git branch
 
+For the commnad below, the {LATEST-RELEASE-TAG} parameter can be found here (for example: v2.12.5-p4):
+https://github.com/monarc-project/MonarcAppFO/releases
+
 ```bash
-[root@monarc fo]# git branch --set-upstream-to=origin/master v2.11.1
+[root@monarc fo]# git branch --set-upstream-to=origin/master {LATEST-RELEASE-TAG}
 ```
 
 ## Reconfigure SSH
@@ -219,7 +228,7 @@ StrictHostKeyChecking no
 ## Trigger the update script
 
 ```bash
-[root@monarc fo]# ./scripts/update-all.sh -c
+[root@monarc fo]# ./scripts/update-all.sh
 ```
 
 ## Set permissions on MONARC website folder
@@ -237,6 +246,7 @@ StrictHostKeyChecking no
 [root@monarc conf.d]# systemctl stop firewalld
 [root@monarc conf.d]# systemctl restart httpd.service
 ```
+monarc.conf can be found [here](https://github.com/monarc-project/MonarcAppFO/blob/master/INSTALL/INSTALL.rhel7.md#configure-virtual-host)
 
 ## Create MONARC Admin User
 

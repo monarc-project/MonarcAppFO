@@ -1,6 +1,103 @@
 MONARC Changelog
 ================
 
+
+## 2.12.7 (2023-10-25)
+
+### Enhancement
+
+- [Alternative to 2FA QR code](https://github.com/monarc-project/MonarcAppFO/issues/505)
+- [Add context info to the list of analysis panel](https://github.com/monarc-project/MonarcAppFO/issues/506)
+
+### Fix
+
+- [Global dashboard max calculation error](https://github.com/monarc-project/MonarcAppFO/issues/507)
+- [[FrontOffice] Fixed the operational risks import from CSV](https://github.com/monarc-project/MonarcAppFO/issues/484)
+
+
+## 2.12.6 (2023-03-24)
+
+### Enhancement
+
+- Analysis background import.
+- Support of PHP8.
+- Specific error message on a wrong password input of analysis import.
+
+### Fix
+- Recommendations modification from the Knowledge Base when due date is set.
+- Recommendations modification fix of loading the linked recommendation set.
+
+
+## 2.12.5 (2022-12-21)
+
+### Enhancement
+
+- Rebranding of Monarc app (logos, titles) according to the "Cases" -> "NC3" move.
+- Improved the analyses import speed.
+
+### Fix
+
+- Fixed the autocomplete for passwords. Password filling for Import brakes the execution.
+- Record of processing activities processor creation JS error.
+- Fixed the long names displaying for assets (responsive view).
+- Dashboard fixes.
+- Added the possibility to modify the threat's theme.
+- Updated and added missing translations.
+
+
+## 2.12.4 (2022-11-11)
+
+### Enhancement
+
+- Implemented new dashboard chart views and a curve line that represents the average number tendency.
+- Added a possibility to enforce all the instance's users to enable 2-Factor Authentication.
+
+
+## 2.12.3 (2022-10-06)
+
+### Enhancement
+
+- Link multiple specific models per client.
+- Added a possibility to import assets in the library from CSV files.
+
+### Fix
+
+- Error when adding a tag to instantiate an object.
+  ([#459](https://github.com/monarc-project/MonarcAppFO/issues/459)).
+
+
+## 2.12.2 (2022-06-29)
+
+### Fix
+
+- Error when exporting analysis with Statement of Applicability
+  ([#445](https://github.com/monarc-project/MonarcAppFO/issues/445)).
+
+
+## 2.12.1 (2022-06-22)
+
+### Enhancement
+
+- [Added new QRCode backend endroid/qr-code](https://github.com/monarc-project/zm-client/commit/406471458a9c729d2d4a9b677cc7a8518d640ab1)
+  NTP access to time.google.com:123 (NTP check removed) and api.qrserver.com is
+  no more needed: QRCode generation is local.
+
+
+## 2.12.0 (2022-06-20)
+
+### New
+
+- [compliance scale](https://github.com/monarc-project/MonarcAppFO/discussions/439);
+- [metadata assets](https://github.com/monarc-project/MonarcAppFO/discussions/437);
+- [two-factor authentication](https://github.com/monarc-project/MonarcAppFO/discussions/442).
+
+### Fix
+
+- [Stats provider] removed the leading slash in the URI
+  ([e7dfba1](https://github.com/monarc-project/zm-client/commit/e7dfba1cf64322bc3e83630df6729b525d7d5c8d))
+
+
+
 ## 2.11.1 (2021-10-28)
 
 ### New

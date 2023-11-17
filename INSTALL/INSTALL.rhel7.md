@@ -60,6 +60,11 @@ Add php to $PATH
 
     $ export PATH=$PATH:/opt/remi/php72/root/usr/bin:/opt/remi/php72/root/usr/sbin
 
+Apply PHP configuration settings in your php.ini
+
+https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+
+
 Clone the repository and invoke composer
 
     $ git clone https://github.com/monarc-project/MonarcAppFO.git fo

@@ -36,9 +36,7 @@ wsl -s Ubuntu
 In WLS shell:
 
 ```bash
-    $ cd ~
-    $ git clone https://github.com/monarc-project/MonarcAppFO
-    $ bash ./MonarcAppFO/wsl/installFO.sh
+    $ curl -sSL https://raw.githubusercontent.com/monarc-project/MonarcAppFO/master/wsl/installFO.sh | bash
 ```
 
 Once the VM will be configured by WSL, go to the address in the browser
@@ -57,10 +55,7 @@ accessible on```http://localhost:5005```
 In WLS shell:
 
 ```bash
-    $ cd ~
-    $ git clone https://github.com/monarc-project/MonarcAppFO
-    $ git clone https://github.com/monarc-project/MonarcAppBO
-    $ bash ./MonarcAppFO/wsl/installFull.sh
+    $ curl -sSL https://raw.githubusercontent.com/monarc-project/MonarcAppFO/master/wsl/installFull.sh | bash
 ```
 
 Once the VM will be configured by WSL:

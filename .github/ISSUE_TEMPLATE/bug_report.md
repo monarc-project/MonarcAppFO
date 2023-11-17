@@ -1,8 +1,9 @@
 ---
-name: Bug report
+name: Issue or bug report
 about: Create a report to help us improve
-labels: bug, potential-bug, needs triage
-projects: MONARC Development Overview
+title: ''
+labels: bug, needs triage, potential-bug
+assignees: ''
 
 ---
 

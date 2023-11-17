@@ -54,12 +54,18 @@ Especially by setting a strong root password.
     </VirtualHost>
 
 
-## 1.4. Install PHP and dependencies
+## 1.4. Install PHP and dependencies (It's recommended to install php8 or php8.1 and all the modules of the version).
 
     # apt-get install php7.3 libapache2-mod-php7.3 php7.3-curl php7.3-gd php7.3-mysql php-apcu php7.3-xml php7.3-mbstring php7.3-intl php-imagick php7.3-zip
 
     $ curl -sS https://getcomposer.org/installer -o composer-setup.php
     # php composer-setup.php --install-dir=/usr/bin --filename=composer
+    
+    
+## Apply PHP configuration settings in your php.ini
+
+https://github.com/monarc-project/MonarcAppFO/blob/master/vagrant/bootstrap.sh#L22-L26
+
 
 ## 1.5 Apply all changes
 
@@ -75,7 +81,9 @@ Especially by setting a strong root password.
     $ git clone https://github.com/monarc-project/MonarcAppFO.git /var/lib/monarc/fo
     $ cd /var/lib/monarc/fo
     $ mkdir -p data/cache
+    $ mkdir -p data/DoctrineORMModule/Proxy
     $ mkdir -p data/LazyServices/Proxy
+    $ mkdir -p data/import/files
     $ composer install -o
     # chown -R www-data:www-data data/
     # chmod -R 700 data/

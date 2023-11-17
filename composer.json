@@ -41,12 +41,13 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
-        "monarc/frontoffice": "^2.10.3",
-        "monarc/core": "^2.10.3",
+        "ext-openssl": "*",
+        "monarc/frontoffice": "^2.12.6",
+        "monarc/core": "^2.12.6",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",
@@ -54,12 +55,14 @@
         "laminas/laminas-i18n": "^2.9",
         "symfony/console": "^5.0",
         "laminas/laminas-dependency-plugin": "^2.0",
-        "laminas/laminas-mvc-middleware": "^2.2"
+        "laminas/laminas-mvc-middleware": "^2.2",
+        "robthree/twofactorauth": "^1.8",
+        "endroid/qr-code": "^4.4"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master",
-        "phpunit/phpunit": "^8.3",
-        "laminas/laminas-test": "^3.4"
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "^9.5",
+        "laminas/laminas-test": "^4.5"
     },
     "autoload-dev": {
         "psr-4": {
