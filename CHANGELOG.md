@@ -12,7 +12,9 @@ MONARC Changelog
 ### Fix
 
 - [Global dashboard max calculation error](https://github.com/monarc-project/MonarcAppFO/issues/507)
-- [[FrontOffice] Fixed the operational risks import from CSV](https://github.com/monarc-project/MonarcAppFO/issues/484)
+- [[FrontOffice] Fixed the operational risks import from CSV](https://github.com/monarc-project/MonarcAppFO/issues/484) - __Since patch1__
+- [Fixed removal of specific instance risks](https://github.com/monarc-project/MonarcAppFO/issues/520) - __Since patch2__
+- [Fixed the library objects disappearing after the specific risks removal](https://github.com/monarc-project/MonarcAppFO/discussions/516) - __Since patch2__
 
 
 ## 2.12.6 (2023-03-24)
