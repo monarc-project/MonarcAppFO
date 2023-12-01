@@ -69,7 +69,7 @@ With this configuration:
        Header always set X-Frame-Options SAMEORIGIN
     </IfModule>
 
-    SetEnv APP_ENV "development"
+    SetEnv APP_ENV "production"
 </VirtualHost>
 ```
 
@@ -93,7 +93,7 @@ upload_max_filesize = 200M
 post_max_size = 50M
 max_execution_time = 100
 max_input_time = 223
-memory_limit = 512M
+memory_limit = 2048M
 error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
 ```
 
@@ -143,7 +143,7 @@ Start MariaDB as root:
 sudo mysql
 ```
 
-Create a new user for MONARC:
+Create a new user for MONARC (please use more secured password):
 
 ```sql
 CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
@@ -180,7 +180,7 @@ Create the configuration file:
 sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
 ```
 
-And configure the database connection:
+And configure the database connection (use the secured password set on the DB user creation step):
 
 ```php
     return [
@@ -234,6 +234,9 @@ The architecture, installation instructions and GitHub project can be found here
 - https://www.monarc.lu/documentation/stats-service/master/architecture.html
 - https://www.monarc.lu/documentation/stats-service/master/installation.html
 - https://github.com/monarc-project/stats-service
+
+The Virtual Machine installation script could be used to detail more steps in case of additional configuration necessity:
+https://github.com/monarc-project/monarc-packer/blob/ubuntu-22.04/scripts/bootstrap.sh
 
 The communication of access to the StatsService is performed on each instance of
 FrontOffice (clients).
