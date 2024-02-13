@@ -4318,12 +4318,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "1dfa885dbb94d7851833554842e28bd860900ee9"
+                "reference": "f10274c6e2a2d21dc8f2766bb8c6c8808f56a534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/1dfa885dbb94d7851833554842e28bd860900ee9",
-                "reference": "1dfa885dbb94d7851833554842e28bd860900ee9",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/f10274c6e2a2d21dc8f2766bb8c6c8808f56a534",
+                "reference": "f10274c6e2a2d21dc8f2766bb8c6c8808f56a534",
                 "shasum": ""
             },
             "require": {
@@ -4401,7 +4401,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.12.7-p2"
             },
-            "time": "2024-02-12T12:03:40+00:00"
+            "time": "2024-02-13T13:14:12+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -7455,12 +7455,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "feb85d42c6880b348e404115e011ae2201f49bba"
+                "reference": "d43a7a39cd198dc91cc1504532911eba15e6ac28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/feb85d42c6880b348e404115e011ae2201f49bba",
-                "reference": "feb85d42c6880b348e404115e011ae2201f49bba",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d43a7a39cd198dc91cc1504532911eba15e6ac28",
+                "reference": "d43a7a39cd198dc91cc1504532911eba15e6ac28",
                 "shasum": ""
             },
             "conflict": {
@@ -7579,7 +7579,7 @@
                 "dolibarr/dolibarr": "<18.0.2",
                 "dompdf/dompdf": "<2.0.4",
                 "doublethreedigital/guest-entries": "<3.1.2",
-                "drupal/core": "<9.5.11|>=10,<10.0.11|>=10.1,<10.1.4",
+                "drupal/core": "<10.1.8|>=10.2,<10.2.2",
                 "drupal/drupal": ">=5,<5.11|>=6,<6.38|>=7,<7.80|>=8,<8.9.16|>=9,<9.1.12|>=9.2,<9.2.4",
                 "duncanmcclean/guest-entries": "<3.1.2",
                 "dweeves/magmi": "<=0.7.24",
@@ -7745,7 +7745,7 @@
                 "liftkit/database": "<2.13.2",
                 "limesurvey/limesurvey": "<3.27.19",
                 "livehelperchat/livehelperchat": "<=3.91",
-                "livewire/livewire": ">2.2.4,<2.2.6|>=3,<3.0.4",
+                "livewire/livewire": ">2.2.4,<2.2.6",
                 "lms/routes": "<2.1.1",
                 "localizationteam/l10nmgr": "<7.4|>=8,<8.7|>=9,<9.2",
                 "luyadev/yii-helpers": "<1.2.1",
@@ -7868,7 +7868,7 @@
                 "pimcore/ecommerce-framework-bundle": "<1.0.10",
                 "pimcore/perspective-editor": "<1.5.1",
                 "pimcore/pimcore": "<11.1.1",
-                "pixelfed/pixelfed": "<=0.11.4",
+                "pixelfed/pixelfed": "<0.11.11",
                 "plotly/plotly.js": "<2.25.2",
                 "pocketmine/bedrock-protocol": "<8.0.2",
                 "pocketmine/pocketmine-mp": "<=4.23|>=5,<5.3.1",
@@ -8184,7 +8184,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-09T23:04:23+00:00"
+            "time": "2024-02-13T00:14:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",
