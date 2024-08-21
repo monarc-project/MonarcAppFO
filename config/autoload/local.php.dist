@@ -54,39 +54,11 @@ return [
             'index' => 4,
             'label' => 'Nederlands',
         ],
-        'es' => [
-            'index' => 5,
-            'label' => 'Spanish',
-        ],
-        'ro' => [
-            'index' => 6,
-            'label' => 'Romanian',
-        ],
-        'it' => [
-            'index' => 7,
-            'label' => 'Italian',
-        ],
-        'pt' => [
-            'index' => 9,
-            'label' => 'Portuguese',
-        ],
-        'pl' => [
-            'index' => 10,
-            'label' => 'Polish',
-        ],
-        'jp' => [
-            'index' => 11,
-            'label' => 'Japanese',
-        ],
-        'zh' => [
-            'index' => 12,
-            'label' => 'Chinese',
-        ],
     ],
 
     'defaultLanguageIndex' => 1,
 
-    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','zh'),
+    'activeLanguages' => ['fr','en','de','nl','es','ro','it','ja','pl','pt','zh'],
 
     'appVersion' => $package_json['version'],
 
@@ -121,4 +93,12 @@ return [
         'uploadFolder' => $appdir . '/data/import/files',
         'isBackgroundProcessActive' => false,
     ],
+
+    /* Custom configuration of the smtp. The example config below is to make Mailcatcher work for the dev env.
+    'smtpOptions' => [
+        'name' => 'localhost',
+        'host' => '127.0.0.1',
+        'port' => 1025,
+    ],
+    */
 ];

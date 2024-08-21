@@ -394,6 +394,12 @@ sudo npm install -g grunt-cli
 echo -e "\n--- Create initial user and client ---\n"
 php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
+echo -e "\n--- Install and run mailcatcher ---\n"
+sudo apt-get install -y build-essential software-properties-common
+sudo apt-get install -y libsqlite3-dev ruby-dev
+sudo gem install mailcatcher
+sudo mailcatcher --http-ip 0.0.0.0
+
 
 echo -e "\n--- Restarting Apache… ---\n"
 sudo systemctl restart apache2.service > /dev/null
@@ -401,3 +407,4 @@ sudo systemctl restart apache2.service > /dev/null
 
 echo -e "MONARC is ready and available at http://127.0.0.1:5001"
 echo -e "Stats service is ready and available at http://127.0.0.1:$STATS_PORT"
+echo -e "Mailcatcher is available http://127.0.0.1:1080"
