@@ -22,10 +22,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
+  # The FO application port:
   config.vm.network :forwarded_port, guest: 80, host: 5001
+  # The stats-service port:
   config.vm.network :forwarded_port, guest: 5005, host: 5005
+  # The MySQL DB port:
   config.vm.network :forwarded_port, guest: 3306, host: 3306
+  # The PostgreSQL port:
   config.vm.network :forwarded_port, guest: 5432, host: 5435
+  # The MailCatcher port:
   config.vm.network :forwarded_port, guest: 1080, host: 1080
 
   # Create a private network, which allows host-only access to the machine
@@ -58,7 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "4092"]
-    vb.customize ["modifyvm", :id, "--name", "MONARC FO - Ubuntu 22.04 - NEW DEV"]
+    vb.customize ["modifyvm", :id, "--name", "MONARC FO - Ubuntu 22.04 - New"]
   end
   #
   # View the documentation for the provider you're using for more
