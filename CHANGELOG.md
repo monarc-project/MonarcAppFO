@@ -1,6 +1,33 @@
 MONARC Changelog
 ================
 
+## 2.13.1 (2024-10-07)
+
+### Enhancement
+
+- Refactored backend code. It includes the following changes points: 
+  - Removed the relying on the abstraction and sharing the same methods execution of services.
+  - Implemented the single responsibility approach to the entities.I
+  - Added the filtering functionality to process the incoming get requests data and prepare them for the filter and sort queries.
+  - Added the data validation at first place. Before the post, put, patch and delete requests data are passed to the services, they are validated.
+  - Removed the dependency on the abstract table common methods, where the entities positions were processed, and some specific code run.
+  - Implemented the common approach, not resources/time consuming, of the entities positioning based on interfaces and traits.
+  - Optimised the export and import functionality to be clean and fast.
+  - Added a common place to validate the analysis access and endpoints permissions before the controllers’ actions are reached. The Middleware passed an anr object to the actions automatically as an attribute.
+  - Restructured the components and code parts of the application for the based on responsibilities, relations and to be more clear.
+  - Removed many deprecated code parts and cleaned up the deprecated columns in the DB tables.
+  - Improved some DB indexes and renamed tables, columns to be more clear on the names.
+  - Added some first unit tests as a starting point for the full coverage.
+  - **Not refactored parts are the following**: `Questions`, `QuestionsChoices`, `Guide`, `Interviews`, `ROPA`, `Deliverable`.
+
+### User stories
+- Added possibility to export risk analysis with Knowledge Base (KB) and/or Assets Library (AL). That allows to optionally export all the KB a AL data without having the analysis modelling started. This is needed for sharing models between FrontOffices or update AL or KB with new versions of the structures.
+- Changed the export format of JSON export file to reduce its size and be similar to the api endpoints responses and the projects structures views. An old data converter is implemented for the backward compatibility.
+- Significantly improved the import time and made it always consistent. In case of import issues the data are not inserted, there are saved in the DB only at the end of the process (transactional approach).
+- Removed extra user’s information from password reset response and removed the endpoint access by the other users (points 5.1.1, 5.1.2).
+- Restricted analysis creation based on the models that are not available for the client by manually faking the request (point 5.2.3).
+- [Fixed the password change](https://github.com/monarc-project/MonarcAppFO/discussions/523).
+
 
 ## 2.12.7 (2023-10-25)
 
