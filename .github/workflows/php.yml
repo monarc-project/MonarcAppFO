@@ -31,7 +31,7 @@ jobs:
         mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
     - name: Start MySQL (SUDO)
-      run: sudo service maraidb start
+      run: sudo service mariadb start
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
