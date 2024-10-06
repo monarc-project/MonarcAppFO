@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Shutdown Ubuntu MySQL (SUDO)
+      run: sudo service mysql stop
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -43,9 +46,6 @@ jobs:
     - name: Set MONARC configuration file
       run: cp ./config/autoload/local.php.dist ./config/autoload/local.php
 
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop
-
     - name: Start MariaDB and create databases
       uses: getong/mariadb-action@v1.1
       with:
@@ -55,6 +55,11 @@ jobs:
         mysql root password: $MYSQL_ROOT_PASSWORD # Required if "mysql user" is empty, default is empty. The root superuser password
         mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
+
+    - name: Shutdown Ubuntu MySQL (SUDO)
+      run: sudo service mysql start
+
+    - name: Creating and populating databases
       run: |
         mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
         mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
@@ -63,28 +68,15 @@ jobs:
         mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql
         mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_data.sql
+
+
+    - name: Upgrading databases
+      run: |
         ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
         ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
-        ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
-#    - name: Creating and populating databases
-#      run: |
-#        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
-#        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
-#        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-#        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "GRANT ALL PRIVILEGES ON * . * TO '$MYSQL_USER'@'%';"
-#        mysql -u root -p$MYSQL_ROOT_PASSWORD -P $MYSQL_HOST_PORT -e "FLUSH PRIVILEGES;"
-#        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_structure.sql
-#        mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -P $MYSQL_HOST_PORT $MYSQL_DATABASE < db-bootstrap/monarc_data.sql
-#
-#
-#    - name: Upgrading databases
-#      run: |
-#        ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
-#        ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
-#
-#    - name: Creating initial user
-#      run: ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+    - name: Creating initial user
+      run: ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
