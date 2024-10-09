@@ -13,27 +13,24 @@ jobs:
       MYSQL_USER: sqlmonarcuser
       MYSQL_PASSWORD: password
 
-        #- name: Shutdown Ubuntu MySQL (SUDO)
-        #run: sudo service mysql stop
+    steps:
+    - uses: actions/checkout@v1
 
-        #- name: Start MariaDB and create databases
-        #uses: getong/mariadb-action@v1.1
-        #with:
-        #host port: $MYSQL_HOST_PORT
-        #mariadb version: $MYSQL_VERSION # Optional, default value is "latest". The version of the MariaDB
-        #mysql database: $MYSQL_DATABASE # Optional, default value is "test". The specified database which will be create
-        #mysql root password: $MYSQL_ROOT_PASSWORD # Required if "mysql user" is empty, default is empty. The root superuser password
-        #mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+      #- name: Shutdown Ubuntu MySQL (SUDO)
+      #run: sudo service mysql stop
+
+      #- name: Start MariaDB and create databases
+      #uses: getong/mariadb-action@v1.1
+      #with:
+      #host port: $MYSQL_HOST_PORT
+      #mariadb version: $MYSQL_VERSION # Optional, default value is "latest". The version of the MariaDB
+      #mysql database: $MYSQL_DATABASE # Optional, default value is "test". The specified database which will be create
+      #mysql root password: $MYSQL_ROOT_PASSWORD # Required if "mysql user" is empty, default is empty. The root superuser password
+      #mysql user: $MYSQL_USER # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
       #mysql password: $MYSQL_PASSWORD # Required if "mysql user" exists. The password for the "mysql user"
 
     - name: Start MySQL (SUDO)
       run: sudo service mysql start
-
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
