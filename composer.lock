@@ -5238,12 +5238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "a1df543101d4a5f9154df9376fd61f57e028dda5"
+                "reference": "6584e237f12d53c55f10bc840ac21581a0b7bb77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/a1df543101d4a5f9154df9376fd61f57e028dda5",
-                "reference": "a1df543101d4a5f9154df9376fd61f57e028dda5",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/6584e237f12d53c55f10bc840ac21581a0b7bb77",
+                "reference": "6584e237f12d53c55f10bc840ac21581a0b7bb77",
                 "shasum": ""
             },
             "require": {
@@ -5328,7 +5328,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.13.1"
             },
-            "time": "2024-10-09T14:41:13+00:00"
+            "time": "2024-10-09T18:15:24+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8460,12 +8460,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "4cb62de3d4cced8056a472da5fe788225dee4f1d"
+                "reference": "f9019349c835564133e2058d1199591fc93224e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4cb62de3d4cced8056a472da5fe788225dee4f1d",
-                "reference": "4cb62de3d4cced8056a472da5fe788225dee4f1d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f9019349c835564133e2058d1199591fc93224e7",
+                "reference": "f9019349c835564133e2058d1199591fc93224e7",
                 "shasum": ""
             },
             "conflict": {
@@ -9131,7 +9131,7 @@
                 "twbs/bootstrap": "<=3.4.1|>=4,<=4.6.2",
                 "twig/twig": "<1.44.8|>=2,<2.16.1|>=3,<3.11.1|>=3.12,<3.14",
                 "typo3/cms": "<9.5.29|>=10,<10.4.35|>=11,<11.5.23|>=12,<12.2",
-                "typo3/cms-backend": "<11.5.40|>=12,<12.4.21|>=13,<13.3.1",
+                "typo3/cms-backend": "<4.1.14|>=4.2,<4.2.15|>=4.3,<4.3.7|>=4.4,<4.4.4|>=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<10.4.46|>=11,<11.5.40|>=12,<12.4.21|>=13,<13.3.1",
                 "typo3/cms-core": "<=8.7.56|>=9,<=9.5.47|>=10,<=10.4.44|>=11,<=11.5.36|>=12,<=12.4.14|>=13,<=13.1",
                 "typo3/cms-extbase": "<6.2.24|>=7,<7.6.8|==8.1.1",
                 "typo3/cms-fluid": "<4.3.4|>=4.4,<4.4.1",
@@ -9284,7 +9284,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-08T23:05:25+00:00"
+            "time": "2024-10-09T17:05:08+00:00"
         },
         {
             "name": "sebastian/cli-parser",

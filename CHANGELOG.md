@@ -14,7 +14,7 @@ MONARC Changelog
   - Implemented the common approach, not resources/time consuming, of the entities positioning based on interfaces and traits.
   - Optimised the export and import functionality to be clean and fast.
   - Added a common place to validate the analysis access and endpoints permissions before the controllers’ actions are reached. The Middleware passed an anr object to the actions automatically as an attribute.
-  - Restructured the components and code parts of the application for the based on responsibilities, relations and to be more clear.
+  - Restructured the components and code parts of the application based on responsibilities, relations and to be more clear.
   - Removed many deprecated code parts and cleaned up the deprecated columns in the DB tables.
   - Improved some DB indexes and renamed tables, columns to be more clear on the names.
   - Added some first unit tests as a starting point for the full coverage.
