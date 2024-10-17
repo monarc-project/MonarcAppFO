@@ -3555,20 +3555,20 @@
         },
         {
             "name": "laminas/laminas-loader",
-            "version": "2.10.0",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-loader.git",
-                "reference": "e6fe952304ef40ce45cd814751ab35d42afdad12"
+                "reference": "f2eedd3a6e774d965158fd11946bb1eba72e298c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-loader/zipball/e6fe952304ef40ce45cd814751ab35d42afdad12",
-                "reference": "e6fe952304ef40ce45cd814751ab35d42afdad12",
+                "url": "https://api.github.com/repos/laminas/laminas-loader/zipball/f2eedd3a6e774d965158fd11946bb1eba72e298c",
+                "reference": "f2eedd3a6e774d965158fd11946bb1eba72e298c",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "conflict": {
                 "zendframework/zend-loader": "*"
@@ -3607,7 +3607,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-10-18T09:58:51+00:00"
+            "time": "2024-10-16T09:06:57+00:00"
         },
         {
             "name": "laminas/laminas-log",
@@ -4228,37 +4228,37 @@
         },
         {
             "name": "laminas/laminas-paginator",
-            "version": "2.18.1",
+            "version": "2.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-paginator.git",
-                "reference": "6a03499a899fb8ba650594ddf4b4338d4235252a"
+                "reference": "d6339e7ad61491fd76b1490cf9f723d0348ce430"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-paginator/zipball/6a03499a899fb8ba650594ddf4b4338d4235252a",
-                "reference": "6a03499a899fb8ba650594ddf4b4338d4235252a",
+                "url": "https://api.github.com/repos/laminas/laminas-paginator/zipball/d6339e7ad61491fd76b1490cf9f723d0348ce430",
+                "reference": "d6339e7ad61491fd76b1490cf9f723d0348ce430",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "laminas/laminas-stdlib": "^3.10.1",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0"
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "conflict": {
                 "zendframework/zend-paginator": "*"
             },
             "require-dev": {
-                "laminas/laminas-cache": "^3.9",
-                "laminas/laminas-cache-storage-adapter-memory": "^2.2.0",
-                "laminas/laminas-coding-standard": "^2.4.0",
-                "laminas/laminas-config": "^3.8.0",
-                "laminas/laminas-filter": "^2.30",
-                "laminas/laminas-servicemanager": "^3.22",
-                "laminas/laminas-view": "^2.25",
-                "phpunit/phpunit": "^9.5.27",
-                "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.4"
+                "laminas/laminas-cache": "^3.12.2",
+                "laminas/laminas-cache-storage-adapter-memory": "^2.3.0",
+                "laminas/laminas-coding-standard": "^2.5.0",
+                "laminas/laminas-config": "^3.9.0",
+                "laminas/laminas-filter": "^2.37",
+                "laminas/laminas-servicemanager": "^3.22.1",
+                "laminas/laminas-view": "^2.35",
+                "phpunit/phpunit": "^10.5.30",
+                "psalm/plugin-phpunit": "^0.19.0",
+                "vimeo/psalm": "^5.25"
             },
             "suggest": {
                 "laminas/laminas-cache": "Laminas\\Cache component to support cache features",
@@ -4303,7 +4303,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-01-11T11:00:36+00:00"
+            "time": "2024-10-16T13:10:19+00:00"
         },
         {
             "name": "laminas/laminas-permissions-rbac",
@@ -5148,12 +5148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "00462366aecccd51bf848953f307a44f4fd5e338"
+                "reference": "99ff290f795b95945f4db856c1afe5760956fccb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/00462366aecccd51bf848953f307a44f4fd5e338",
-                "reference": "00462366aecccd51bf848953f307a44f4fd5e338",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/99ff290f795b95945f4db856c1afe5760956fccb",
+                "reference": "99ff290f795b95945f4db856c1afe5760956fccb",
                 "shasum": ""
             },
             "require": {
@@ -5235,7 +5235,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.13.1"
             },
-            "time": "2024-10-08T17:19:59+00:00"
+            "time": "2024-10-17T08:17:10+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -5243,12 +5243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "7918717b0888f5ff4163b86ffecf0915eae41aca"
+                "reference": "d4514e52e82770bed39adb403baf24c0dc3450d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/7918717b0888f5ff4163b86ffecf0915eae41aca",
-                "reference": "7918717b0888f5ff4163b86ffecf0915eae41aca",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/d4514e52e82770bed39adb403baf24c0dc3450d9",
+                "reference": "d4514e52e82770bed39adb403baf24c0dc3450d9",
                 "shasum": ""
             },
             "require": {
@@ -5333,7 +5333,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.13.1"
             },
-            "time": "2024-10-14T15:26:13+00:00"
+            "time": "2024-10-17T08:18:03+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8465,17 +8465,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c3c55a0f6643119fa8699577cc83ca6256d98ab5"
+                "reference": "6360940d585658ef1c4965a053b6632314d4bd5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c3c55a0f6643119fa8699577cc83ca6256d98ab5",
-                "reference": "c3c55a0f6643119fa8699577cc83ca6256d98ab5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6360940d585658ef1c4965a053b6632314d4bd5b",
+                "reference": "6360940d585658ef1c4965a053b6632314d4bd5b",
                 "shasum": ""
             },
             "conflict": {
                 "3f/pygmentize": "<1.2",
-                "admidio/admidio": "<4.3.10",
+                "admidio/admidio": "<4.3.12",
                 "adodb/adodb-php": "<=5.20.20|>=5.21,<=5.21.3",
                 "aheinze/cockpit": "<2.2",
                 "aimeos/ai-admin-graphql": ">=2022.04.1,<2022.10.10|>=2023.04.1,<2023.10.6|>=2024.04.1,<2024.04.6",
@@ -9289,7 +9289,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-11T18:06:00+00:00"
+            "time": "2024-10-16T20:05:11+00:00"
         },
         {
             "name": "sebastian/cli-parser",
