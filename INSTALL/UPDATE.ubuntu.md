@@ -1,7 +1,7 @@
 Version update guide for any Ubuntu version (for the release based installation).
 =================================================================================
 ## The update guide is only applicable for the release based installation of the Monarc FrontOffice.
-Means based on the installation steps described (here)[https://github.com/monarc-project/MonarcAppFO/blob/master/INSTALL/INSTALL.ubuntu2204.md#2-installation-of-monarc].
+Means based on the installation steps described [here](https://github.com/monarc-project/MonarcAppFO/blob/master/INSTALL/INSTALL.ubuntu2204.md#2-installation-of-monarc).
 
 ## It is recommended to perform database or server backup / snapshot before starting the update process.
 
