@@ -24,7 +24,7 @@ ln -sfn /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL | sed 's/.tar.g
 # Migrate the DB:
 cd $PATH_TO_MONARC; ./scripts/upgrade-db.sh
 # Cleanup the cache directories:
-rm -rf $PATH_TO_MONARC_DATA/data/cache/* $PATH_TO_MONARC_DATA/data/DoctrineORMModule/Proxy/* $PATH_TO_MONARC_DATA/data/LazyServices/Proxy/*
+rm -rf $PATH_TO_MONARC_DATA/cache/* $PATH_TO_MONARC_DATA/DoctrineORMModule/Proxy/* $PATH_TO_MONARC_DATA/LazyServices/Proxy/*
 
 # Finally restart the apache service:
 sudo service apache reload
