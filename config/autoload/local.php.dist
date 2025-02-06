@@ -94,6 +94,25 @@ return [
         'isBackgroundProcessActive' => false,
     ],
 
+    'export' => [
+        'defaultWithEval' => true,
+    ],
+
+    'captcha' => [
+        'enabled' => true,
+        'failedLoginAttempts' => 3,
+        'params' => [
+            'name' => 'MonarcCaptcha',
+            'font' => $appdir . '/data/fonts/arial.ttf',
+            'fontSize' => 30,
+            'height' => 60,
+            'wordLen' => 6,
+            'timeout' => 300,
+            'imgDir' => $appdir . '/public/captcha',
+            'imgUrl' => '/captcha/',
+        ],
+    ],
+
     /* Custom configuration of the smtp. The example config below is to make Mailcatcher work for the dev env.
     'smtpOptions' => [
         'name' => 'localhost',

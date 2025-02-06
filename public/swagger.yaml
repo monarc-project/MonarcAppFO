@@ -1,0 +1,439 @@
+openapi: 3.0.0
+info:
+  title: MONARC Project API
+  version: 1.0.0
+paths:
+  # ApiAdminUsersController
+  /api/admin/users:
+    get:
+      summary: Retrieve all users
+      tags:
+        - Users
+      parameters:
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        role:
+                          type: string
+    post:
+      summary: Create a new user
+      tags:
+        - Users
+      parameters:
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+
+  /api/admin/users/{id}:
+    get:
+      summary: Retrieve a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+    put:
+      summary: Update a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                role:
+                  type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '204':
+          description: User deleted
+
+  /api/admin/users/{id}/reset-password:
+    post:
+      summary: Reset password for a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: Password reset successful
+
+  # ApiAdminUsersRolesController
+  /api/admin/users/roles:
+    get:
+      summary: Get roles for the current user
+      tags:
+        - Roles
+      parameters:
+        - in: header
+          name: token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+
+  /api/admin/users/{id}/roles:
+    get:
+      summary: Get roles for a specific user by ID
+      tags:
+        - Roles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: User roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  roles:
+                    type: array
+                    items:
+                      type: string
+
+  # ApiAdminPasswordsController
+  /api/admin/passwords:
+    post:
+      summary: Handle password-related actions (reset, verify token, change password)
+      tags:
+        - Passwords
+      parameters:
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                token:
+                  type: string
+                password:
+                  type: string
+                confirm:
+                  type: string
+      security:
+        - role: [superadmin]
+      responses:
+        '200':
+          description: Successful response
+        '422':
+          description: Validation error
+
+  # ApiAnrController
+  /api/anr:
+    get:
+      summary: Get list of ANRs
+      tags:
+        - ANR
+      parameters:
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin, userfo] # can do it only if it has at lease "r" permissions.
+      responses:
+        '200':
+          description: List of ANRs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  anrs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+    post:
+      summary: Create a new ANR
+      tags:
+        - ANR
+      parameters:
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      security:
+        - role: [superadmin, userfo]
+      responses:
+        '201':
+          description: ANR created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /api/anr/{id}:
+    get:
+      summary: Get ANR by ID
+      tags:
+        - ANR
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin, userfo] # can do it only if it has at lease "r" permissions.
+      responses:
+        '200':
+          description: ANR details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  description:
+                    type: string
+    patch:
+      summary: Update ANR by ID
+      tags:
+        - ANR
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      security:
+        - role: [superadmin, userfo] # can do it only if it has at lease "rw" permissions.
+      responses:
+        '200':
+          description: ANR updated
+    delete:
+      summary: Delete ANR by ID
+      tags:
+        - ANR
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: header
+          name: Token
+          required: true
+          schema:
+            type: string
+      security:
+        - role: [superadmin, userfo]
+      responses:
+        '204':
+          description: ANR deleted

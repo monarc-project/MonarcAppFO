@@ -57,7 +57,8 @@
         "laminas/laminas-dependency-plugin": "^2.0",
         "laminas/laminas-mvc-middleware": "^2.2",
         "robthree/twofactorauth": "^1.8",
-        "endroid/qr-code": "^4.4"
+        "endroid/qr-code": "^4.4",
+        "laminas/laminas-captcha": "^2.18"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

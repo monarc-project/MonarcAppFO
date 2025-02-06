@@ -1,6 +1,20 @@
 MONARC Changelog
 ================
 
+## 2.13.2 (2025-02-07)
+
+### Enhancement
+
+- An optional Captcha integration, that can appear after certain number, configured, of unsuccessful login attempts.
+  To enable Captcha a specific configuration has to be added (@see config/autoload/local.php.dist, 'captcha' option).
+- Configurable export of analyses with evaluations. By default, the option can be yes, so export with evaluations is not forgotten to be enabled.
+  To enable it a specific configuration has to be added (@see config/autoload/local.php.dist, 'export' option).
+- Added the risks IDs to all the tables to facilitate the traceability. Based on [the discussion](https://github.com/monarc-project/MonarcAppFO/discussions/419).
+
+### Fixes
+
+- [#552](https://github.com/monarc-project/MonarcAppFO/issues/552), Fix of Assets Library objects import.
+
 ## 2.13.1 (2024-10-15)
 
 ### Enhancement
