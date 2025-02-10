@@ -109,7 +109,7 @@ return [
             'wordLen' => 6,
             'timeout' => 300,
             'imgDir' => $appdir . '/public/captcha',
-            'imgUrl' => '/captcha/',
+            'imgUrl' => 'captcha/',
         ],
     ],
 
