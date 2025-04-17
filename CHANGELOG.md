@@ -1,6 +1,20 @@
 MONARC Changelog
 ================
 
+## 2.13.3 (2025-04-17)
+
+### Enhancement
+
+- Possibility to rest 2FA of users by the admin account along with the password reset.
+- The Global analyses stats is only available now to the users with CEO (global statistics) role.
+- Possibility to import on the BackOffice side risks with mode (generic | specific) property.
+
+### Fixes
+
+- Fixed analysis creation based on a specific model when the model has assets that consist of risks with generic threats or vulnerabilities.
+
+
+
 ## 2.13.2 (2025-02-07)
 
 ### Enhancement
@@ -14,6 +28,7 @@ MONARC Changelog
 ### Fixes
 
 - [#552](https://github.com/monarc-project/MonarcAppFO/issues/552), Fix of Assets Library objects import.
+
 
 ## 2.13.1 (2024-10-15)
 
