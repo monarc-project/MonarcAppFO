@@ -5152,12 +5152,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "296cbdf258eaed09fde3d9e63443f4c9bb0d2d91"
+                "reference": "8ec9b355456746d838d1010aac033e0af9c2e38f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/296cbdf258eaed09fde3d9e63443f4c9bb0d2d91",
-                "reference": "296cbdf258eaed09fde3d9e63443f4c9bb0d2d91",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/8ec9b355456746d838d1010aac033e0af9c2e38f",
+                "reference": "8ec9b355456746d838d1010aac033e0af9c2e38f",
                 "shasum": ""
             },
             "require": {
@@ -5239,7 +5239,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/v2.13.3-p1"
             },
-            "time": "2025-05-16T17:47:04+00:00"
+            "time": "2025-05-20T14:55:52+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -5247,12 +5247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "b25e6283930609f31cc6b3c5cab51729a506a799"
+                "reference": "bc007fce8bff9c8d6067e536a8651581ac306fbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/b25e6283930609f31cc6b3c5cab51729a506a799",
-                "reference": "b25e6283930609f31cc6b3c5cab51729a506a799",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/bc007fce8bff9c8d6067e536a8651581ac306fbf",
+                "reference": "bc007fce8bff9c8d6067e536a8651581ac306fbf",
                 "shasum": ""
             },
             "require": {
@@ -5337,7 +5337,7 @@
                 "issues": "https://github.com/monarc-project/zm-client/issues",
                 "source": "https://github.com/monarc-project/zm-client/tree/v2.13.3-p1"
             },
-            "time": "2025-05-20T10:29:12+00:00"
+            "time": "2025-05-20T14:54:59+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8465,12 +8465,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "7d5d7695d0e001bcc36f0d75b63b2c1ec4863b5e"
+                "reference": "4ee5027bbd72aab192ea6e14447745588e9ceb1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/7d5d7695d0e001bcc36f0d75b63b2c1ec4863b5e",
-                "reference": "7d5d7695d0e001bcc36f0d75b63b2c1ec4863b5e",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4ee5027bbd72aab192ea6e14447745588e9ceb1b",
+                "reference": "4ee5027bbd72aab192ea6e14447745588e9ceb1b",
                 "shasum": ""
             },
             "conflict": {
@@ -8572,7 +8572,7 @@
                 "chriskacerguis/codeigniter-restserver": "<=2.7.1",
                 "civicrm/civicrm-core": ">=4.2,<4.2.9|>=4.3,<4.3.3",
                 "ckeditor/ckeditor": "<4.25",
-                "clickstorm/cs-seo": ">=6,<6.7|>=7,<7.4|>=8,<8.3|>=9,<9.2",
+                "clickstorm/cs-seo": ">=6,<6.8|>=7,<7.5|>=8,<8.4|>=9,<9.3",
                 "co-stack/fal_sftp": "<0.2.6",
                 "cockpit-hq/cockpit": "<2.7|==2.7",
                 "codeception/codeception": "<3.1.3|>=4,<4.1.22",
@@ -8783,7 +8783,7 @@
                 "imdbphp/imdbphp": "<=5.1.1",
                 "impresscms/impresscms": "<=1.4.5",
                 "impresspages/impresspages": "<1.0.13",
-                "in2code/femanager": "<5.5.3|>=6,<6.3.4|>=7,<7.2.3",
+                "in2code/femanager": "<5.5.5|>=6,<6.4.1|>=7,<7.4.2|>=8,<8.2.2",
                 "in2code/ipandlanguageredirect": "<5.1.2",
                 "in2code/lux": "<17.6.1|>=18,<24.0.2",
                 "in2code/powermail": "<7.5.1|>=8,<8.5.1|>=9,<10.9.1|>=11,<12.4.1",
@@ -8936,6 +8936,7 @@
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
                 "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
                 "nilsteampassnet/teampass": "<3.1.3.1-dev",
+                "nitsan/ns-backup": "<13.0.1",
                 "nonfiction/nterchange": "<4.1.1",
                 "notrinos/notrinos-erp": "<=0.7",
                 "noumo/easyii": "<=0.9",
@@ -9060,6 +9061,7 @@
                 "really-simple-plugins/complianz-gdpr": "<6.4.2",
                 "redaxo/source": "<5.18.3",
                 "remdex/livehelperchat": "<4.29",
+                "renolit/reint-downloadmanager": "<4.0.2|>=5,<5.0.1",
                 "reportico-web/reportico": "<=8.1",
                 "rhukster/dom-sanitizer": "<1.0.7",
                 "rmccue/requests": ">=1.6,<1.8",
@@ -9114,7 +9116,7 @@
                 "simplesamlphp/xml-security": "==1.6.11",
                 "simplito/elliptic-php": "<1.0.6",
                 "sitegeist/fluid-components": "<3.5",
-                "sjbr/sr-feuser-register": "<2.6.2",
+                "sjbr/sr-feuser-register": "<2.6.2|>=5.1,<12.5",
                 "sjbr/sr-freecap": "<2.4.6|>=2.5,<2.5.3",
                 "sjbr/static-info-tables": "<2.3.1",
                 "slim/psr7": "<1.4.1|>=1.5,<1.5.1|>=1.6,<1.6.1",
@@ -9393,7 +9395,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-19T23:05:08+00:00"
+            "time": "2025-05-20T12:08:57+00:00"
         },
         {
             "name": "sebastian/cli-parser",
