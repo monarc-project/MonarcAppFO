@@ -1,6 +1,14 @@
 MONARC Changelog
 ================
 
+## 2.13.3-p1 (2025-05-20)
+
+### Fixes
+
+- Added the validation of the instances hierarchy to prevent a possible parent / child circular reference.
+- Fixed batch import validation error for measures, operational risks and operational risks tags.
+
+
 ## 2.13.3 (2025-04-17)
 
 ### Enhancement
@@ -12,7 +20,7 @@ MONARC Changelog
 ### Fixes
 
 - Fixed analysis creation based on a specific model when the model has assets that consist of risks with generic threats or vulnerabilities.
-
+- Fixed updating of the assets' metadata.
 
 
 ## 2.13.2 (2025-02-07)
