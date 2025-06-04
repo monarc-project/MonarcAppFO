@@ -1,6 +1,13 @@
 MONARC Changelog
 ================
 
+## 2.13.3-p2 (2025-06-04)
+
+### Fix
+
+- [#362](https://github.com/monarc-project/MonarcAppFO/issues/562) Fixed the final report generation error when the asset's context is set.
+
+
 ## 2.13.3-p1 (2025-05-20)
 
 ### Fixes
