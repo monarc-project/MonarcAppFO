@@ -1,11 +1,13 @@
 MONARC Changelog
 ================
 
-## 2.13.3-p2 (2025-06-04)
+## 2.13.3-p2 (2025-06-18)
 
 ### Fix
 
 - [#362](https://github.com/monarc-project/MonarcAppFO/issues/562) Fixed the final report generation error when the asset's context is set.
+- Fixed the scale impact type status validation during the import process. 
+  If an instance consequence is not hidden, but a corresponding scale impact type is hidden the consequence value is not used for the risk calculation.
 
 
 ## 2.13.3-p1 (2025-05-20)
