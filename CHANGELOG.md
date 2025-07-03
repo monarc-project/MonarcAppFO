@@ -1,6 +1,15 @@
 MONARC Changelog
 ================
 
+
+## 2.13.3-p3 (2025-07-03)
+
+### Fix
+
+- Import Asset Library objects from MOSP when selected category is root.
+- Snapshots creation when Record of Processing Activities are fully defined.
+
+
 ## 2.13.3-p2 (2025-06-18)
 
 ### Fix
