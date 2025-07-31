@@ -2,6 +2,13 @@ MONARC Changelog
 ================
 
 
+## 2.13.3-p4 (2025-07-31)
+
+### Fix
+
+- [Newly created statements of applicability not displayed](https://github.com/monarc-project/MonarcAppFO/issues/565).
+
+
 ## 2.13.3-p3 (2025-07-03)
 
 ### Fix
