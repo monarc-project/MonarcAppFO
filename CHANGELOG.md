@@ -2,6 +2,13 @@ MONARC Changelog
 ================
 
 
+## 2.13.3-p5 (2025-11-24)
+
+### Fix
+
+- [[FrontOffice] Fix import of global assets](https://github.com/monarc-project/MonarcAppFO/issues/575).
+
+
 ## 2.13.3-p4 (2025-07-31)
 
 ### Fix
