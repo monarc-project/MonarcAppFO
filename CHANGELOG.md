@@ -2,6 +2,13 @@ MONARC Changelog
 ================
 
 
+## 2.13.3-p6 (2025-12-18)
+
+### Fix
+
+- [FrontOffice] Fixed the issue of the analysis creation based on a model with context fields.
+
+
 ## 2.13.3-p5 (2025-11-24)
 
 ### Fix
