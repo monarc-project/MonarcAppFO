@@ -36,7 +36,7 @@ if [ ! -f "/var/www/stats-service/.docker-initialized" ]; then
     
     # Install Python dependencies with Poetry
     echo -e "${YELLOW}Installing Python dependencies with Poetry...${NC}"
-    poetry install --no-dev
+    poetry install --only=main
     
     # Create instance directory and configuration
     echo -e "${YELLOW}Creating configuration...${NC}"
@@ -83,7 +83,7 @@ EOF
     
     # Create client for MONARC and capture the API key
     echo -e "${YELLOW}Creating MONARC client...${NC}"
-    poetry run flask client_create --name admin_localhost | tee /tmp/client_output.txt
+    poetry run flask client_create --name admin_localhost
     
     # Mark initialization as complete
     touch /var/www/stats-service/.docker-initialized

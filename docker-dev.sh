@@ -44,7 +44,7 @@ case "$1" in
     start)
         check_env
         echo -e "${GREEN}Starting MONARC development environment...${NC}"
-        docker compose -f $COMPOSE_FILE up -d --build
+        docker compose -f "$COMPOSE_FILE" up -d --build
         echo -e "${GREEN}Services started!${NC}"
         echo -e "MONARC FrontOffice: http://localhost:5001"
         echo -e "Stats Service: http://localhost:5005"
@@ -54,26 +54,26 @@ case "$1" in
     
     stop)
         echo -e "${YELLOW}Stopping all services...${NC}"
-        docker compose -f $COMPOSE_FILE stop
+        docker compose -f "$COMPOSE_FILE" stop
         echo -e "${GREEN}Services stopped.${NC}"
         ;;
     
     restart)
         echo -e "${YELLOW}Restarting all services...${NC}"
-        docker compose -f $COMPOSE_FILE restart
+        docker compose -f "$COMPOSE_FILE" restart
         echo -e "${GREEN}Services restarted.${NC}"
         ;;
     
     logs)
-        docker compose -f $COMPOSE_FILE logs -f
+        docker compose -f "$COMPOSE_FILE" logs -f
         ;;
     
     logs-app)
-        docker compose -f $COMPOSE_FILE logs -f monarc
+        docker compose -f "$COMPOSE_FILE" logs -f monarc
         ;;
     
     logs-stats)
-        docker compose -f $COMPOSE_FILE logs -f stats-service
+        docker compose -f "$COMPOSE_FILE" logs -f stats-service
         ;;
     
     shell)
@@ -96,7 +96,7 @@ case "$1" in
         read -p "Are you sure? (yes/no): " confirm
         if [ "$confirm" = "yes" ]; then
             echo -e "${YELLOW}Stopping and removing all containers, volumes, and data...${NC}"
-            docker compose -f $COMPOSE_FILE down -v
+            docker compose -f "$COMPOSE_FILE" down -v
             echo -e "${GREEN}Reset complete. Run '$0 start' to start fresh.${NC}"
         else
             echo -e "${GREEN}Reset cancelled.${NC}"
@@ -104,15 +104,15 @@ case "$1" in
         ;;
     
     status)
-        docker compose -f $COMPOSE_FILE ps
+        docker compose -f "$COMPOSE_FILE" ps
         ;;
     
     stats-key)
         echo -e "${GREEN}Retrieving stats API key...${NC}"
-        docker compose -f $COMPOSE_FILE logs stats-service | grep "Token:" | tail -1
+        docker compose -f "$COMPOSE_FILE" logs stats-service | grep "Token:" | tail -1
         echo -e "\n${YELLOW}Note: Update this key in your .env file and restart MONARC service:${NC}"
         echo -e "  1. Edit .env and set STATS_API_KEY=<key>"
-        echo -e "  2. Run: docker compose -f $COMPOSE_FILE restart monarc"
+        echo -e "  2. Run: docker compose -f \"\$COMPOSE_FILE\" restart monarc"
         ;;
     
     *)

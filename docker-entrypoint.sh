@@ -125,7 +125,7 @@ return [
     ],
 
     'import' => [
-        'uploadFolder' => '\$appdir/data/import/files',
+        'uploadFolder' => '$appdir/data/import/files',
         'isBackgroundProcessActive' => false,
     ],
 ];
