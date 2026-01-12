@@ -11,6 +11,43 @@ This guide explains how to set up a local development environment for MONARC Fro
 
 ## Quick Start
 
+### Option 1: Using the Helper Script (Recommended)
+
+1. **Clone the repository** (if you haven't already):
+   ```bash
+   git clone https://github.com/monarc-project/MonarcAppFO
+   cd MonarcAppFO
+   ```
+
+2. **Start the development environment**:
+   ```bash
+   ./docker-dev.sh start
+   ```
+   
+   This will automatically:
+   - Create `.env` file from `.env.dev` if it doesn't exist
+   - Build and start all services
+   - Display access URLs
+   
+   The first run will take several minutes as it:
+   - Builds the Docker images
+   - Installs all dependencies (PHP, Node.js, Python)
+   - Clones frontend repositories
+   - Initializes databases
+   - Sets up the stats service
+   - Creates the initial admin user
+
+3. **Access the application**:
+   - MONARC FrontOffice: http://localhost:5001
+   - Stats Service: http://localhost:5005
+   - MailCatcher (email testing): http://localhost:1080
+
+4. **Login credentials**:
+   - Username: `admin@admin.localhost`
+   - Password: `admin`
+
+### Option 2: Using Docker Compose Directly
+
 1. **Clone the repository** (if you haven't already):
    ```bash
    git clone https://github.com/monarc-project/MonarcAppFO
@@ -35,14 +72,6 @@ This guide explains how to set up a local development environment for MONARC Fro
    docker-compose -f docker-compose.dev.yml up --build
    ```
 
-   The first run will take several minutes as it:
-   - Builds the Docker images
-   - Installs all dependencies (PHP, Node.js, Python)
-   - Clones frontend repositories
-   - Initializes databases
-   - Sets up the stats service
-   - Creates the initial admin user
-
 5. **Access the application**:
    - MONARC FrontOffice: http://localhost:5001
    - Stats Service: http://localhost:5005
@@ -51,7 +80,10 @@ This guide explains how to set up a local development environment for MONARC Fro
 6. **(Optional) Configure Stats API Key**:
    The stats service generates an API key on first run. To retrieve it:
    ```bash
-   # Check the stats service logs for the API key
+   # Using helper script
+   ./docker-dev.sh stats-key
+   
+   # Or manually check logs
    docker-compose -f docker-compose.dev.yml logs stats-service | grep "Token:"
    
    # Or create a new client and get the key
@@ -79,6 +111,25 @@ The development environment includes the following services:
 
 ## Development Workflow
 
+### Helper Script Commands
+
+The `docker-dev.sh` script provides convenient commands for managing the development environment:
+
+```bash
+./docker-dev.sh start         # Start all services
+./docker-dev.sh stop          # Stop all services
+./docker-dev.sh restart       # Restart all services
+./docker-dev.sh logs          # View logs from all services
+./docker-dev.sh logs-app      # View logs from MONARC application
+./docker-dev.sh logs-stats    # View logs from stats service
+./docker-dev.sh shell         # Open a shell in the MONARC container
+./docker-dev.sh shell-stats   # Open a shell in the stats service container
+./docker-dev.sh db            # Open MySQL client
+./docker-dev.sh status        # Show status of all services
+./docker-dev.sh stats-key     # Show the stats API key
+./docker-dev.sh reset         # Reset everything (removes all data)
+```
+
 ### Live Code Editing
 
 The application source code is mounted as a volume, so changes you make on your host machine will be immediately reflected in the container. After making changes:
@@ -93,67 +144,86 @@ The application source code is mounted as a volume, so changes you make on your 
 
 ### Accessing the Container
 
-To access the MONARC application container:
+Using helper script:
 ```bash
-docker exec -it monarc-fo-app bash
+./docker-dev.sh shell        # MONARC application
+./docker-dev.sh shell-stats  # Stats service
 ```
 
-To access the stats service container:
+Or directly with docker:
 ```bash
-docker exec -it monarc-fo-stats bash
+docker exec -it monarc-fo-app bash      # MONARC application
+docker exec -it monarc-fo-stats bash    # Stats service
 ```
 
 ### Database Access
 
-Connect to MariaDB:
+Using helper script:
 ```bash
-docker exec -it monarc-fo-db mysql -usqlmonarcuser -psqlmonarcuser monarc_common
+./docker-dev.sh db  # Connect to MariaDB
 ```
 
-Connect to PostgreSQL:
+Or directly with docker:
 ```bash
+# Connect to MariaDB
+docker exec -it monarc-fo-db mysql -usqlmonarcuser -psqlmonarcuser monarc_common
+
+# Connect to PostgreSQL
 docker exec -it monarc-fo-postgres psql -U sqlmonarcuser -d statsservice
 ```
 
 ### Viewing Logs
 
-View logs for all services:
+Using helper script:
 ```bash
-docker-compose -f docker-compose.dev.yml logs -f
+./docker-dev.sh logs          # All services
+./docker-dev.sh logs-app      # MONARC application only
+./docker-dev.sh logs-stats    # Stats service only
 ```
 
-View logs for a specific service:
+Or directly with docker compose:
 ```bash
+# View logs for all services
+docker-compose -f docker-compose.dev.yml logs -f
+
+# View logs for a specific service
 docker-compose -f docker-compose.dev.yml logs -f monarc
 docker-compose -f docker-compose.dev.yml logs -f stats-service
 ```
 
 ### Restarting Services
 
-Restart all services:
+Using helper script:
 ```bash
-docker-compose -f docker-compose.dev.yml restart
+./docker-dev.sh restart  # Restart all services
 ```
 
-Restart a specific service:
+Or directly with docker compose:
 ```bash
+# Restart all services
+docker-compose -f docker-compose.dev.yml restart
+
+# Restart a specific service
 docker-compose -f docker-compose.dev.yml restart monarc
 ```
 
 ### Stopping the Environment
 
-Stop all services (keeps data):
+Using helper script:
 ```bash
+./docker-dev.sh stop   # Stop all services (keeps data)
+./docker-dev.sh reset  # Stop and remove everything including data
+```
+
+Or directly with docker compose:
+```bash
+# Stop all services (keeps data)
 docker-compose -f docker-compose.dev.yml stop
-```
 
-Stop and remove containers (keeps volumes/data):
-```bash
+# Stop and remove containers (keeps volumes/data)
 docker-compose -f docker-compose.dev.yml down
-```
 
-Stop and remove everything including data:
-```bash
+# Stop and remove everything including data
 docker-compose -f docker-compose.dev.yml down -v
 ```
 
