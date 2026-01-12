@@ -16,6 +16,7 @@ RUN apt-get update && apt-get upgrade -y && \
     gettext \
     curl \
     gsfonts \
+    mariadb-client \
     apache2 \
     php8.1 \
     php8.1-cli \
@@ -111,4 +112,4 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 EXPOSE 80
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["apachectl", "-D", "FOREGROUND"]

@@ -48,7 +48,20 @@ This guide explains how to set up a local development environment for MONARC Fro
    - Stats Service: http://localhost:5005
    - MailCatcher (email testing): http://localhost:1080
 
-6. **Login credentials**:
+6. **(Optional) Configure Stats API Key**:
+   The stats service generates an API key on first run. To retrieve it:
+   ```bash
+   # Check the stats service logs for the API key
+   docker-compose -f docker-compose.dev.yml logs stats-service | grep "Token:"
+   
+   # Or create a new client and get the key
+   docker exec -it monarc-fo-stats poetry run flask client_create --name monarc
+   
+   # Update the .env file with the API key and restart the monarc service
+   docker-compose -f docker-compose.dev.yml restart monarc
+   ```
+
+7. **Login credentials**:
    - Username: `admin@admin.localhost`
    - Password: `admin`
 

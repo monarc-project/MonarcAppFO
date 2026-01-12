@@ -121,7 +121,7 @@ return [
 
     'statsApi' => [
         'baseUrl' => 'http://stats-service:5005',
-        'apiKey' => '${STATS_API_KEY}',
+        'apiKey' => '${STATS_API_KEY:-}',
     ],
 
     'import' => [
@@ -153,4 +153,4 @@ else
 fi
 
 # Execute the main command
-exec apache2-foreground
+exec apachectl -D FOREGROUND
