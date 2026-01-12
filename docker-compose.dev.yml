@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+  # MariaDB database for MONARC
+  db:
+    image: mariadb:10.11
+    container_name: monarc-fo-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DBPASSWORD_ADMIN}
+      MYSQL_DATABASE: ${DBNAME_COMMON}
+      MYSQL_USER: ${DBUSER_MONARC}
+      MYSQL_PASSWORD: ${DBPASSWORD_MONARC}
+    command: 
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_general_ci
+      - --bind-address=0.0.0.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - monarc-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DBPASSWORD_ADMIN}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL database for stats service
+  postgres:
+    image: postgres:15
+    container_name: monarc-fo-postgres
+    environment:
+      POSTGRES_USER: ${STATS_DB_USER}
+      POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
+      POSTGRES_DB: ${STATS_DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - monarc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${STATS_DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Stats service
+  stats-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.stats
+    container_name: monarc-fo-stats
+    environment:
+      STATS_HOST: ${STATS_HOST}
+      STATS_PORT: ${STATS_PORT}
+      STATS_DB_HOST: postgres
+      STATS_DB_NAME: ${STATS_DB_NAME}
+      STATS_DB_USER: ${STATS_DB_USER}
+      STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
+      STATS_SECRET_KEY: ${STATS_SECRET_KEY}
+    ports:
+      - "5005:5005"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - monarc-network
+    volumes:
+      - stats_data:/var/www/stats-service
+
+  # MailCatcher for email testing
+  mailcatcher:
+    image: sj26/mailcatcher:latest
+    container_name: monarc-fo-mailcatcher
+    ports:
+      - "1080:1080"  # Web interface
+      - "1025:1025"  # SMTP
+    networks:
+      - monarc-network
+
+  # Main MONARC FrontOffice application
+  monarc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: monarc-fo-app
+    environment:
+      DBHOST: db
+      DBNAME_COMMON: ${DBNAME_COMMON}
+      DBNAME_CLI: ${DBNAME_CLI}
+      DBUSER_MONARC: ${DBUSER_MONARC}
+      DBPASSWORD_MONARC: ${DBPASSWORD_MONARC}
+      STATS_API_KEY: ${STATS_API_KEY}
+      APP_ENV: development
+      APP_DIR: /var/www/html/monarc
+    ports:
+      - "5001:80"
+    depends_on:
+      db:
+        condition: service_healthy
+      stats-service:
+        condition: service_started
+    networks:
+      - monarc-network
+    volumes:
+      # Mount the application code for live development
+      - ./:/var/www/html/monarc
+      # Preserve vendor directory in named volume for better performance
+      - vendor_data:/var/www/html/monarc/vendor
+      - node_modules_data:/var/www/html/monarc/node_modules
+    working_dir: /var/www/html/monarc
+
+networks:
+  monarc-network:
+    driver: bridge
+
+volumes:
+  db_data:
+  postgres_data:
+  stats_data:
+  vendor_data:
+  node_modules_data:
