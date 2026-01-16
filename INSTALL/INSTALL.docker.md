@@ -9,10 +9,10 @@ This document provides installation instructions for setting up MONARC FrontOffi
 git clone https://github.com/monarc-project/MonarcAppFO
 cd MonarcAppFO
 
-# Start with the helper script (recommended)
-./docker-dev.sh start
+# Start with the Makefile (recommended)
+make start
 
-# Or use docker-compose directly
+# Or use docker compose directly
 cp .env.dev .env
 docker compose -f docker-compose.dev.yml up -d --build
 ```
@@ -92,11 +92,13 @@ You can customize these before starting the environment.
 
 ### Port Conflicts
 
-If ports 5001, 5005, 3306, 5432, or 1080 are already in use:
+If ports 5001, 5005, 3307, 5432, or 1080 are already in use:
 
 1. Edit `docker-compose.dev.yml`
 2. Change the host port (left side of the port mapping)
 3. Example: Change `"5001:80"` to `"8001:80"`
+
+You can also change the MariaDB host port by setting `DBPORT_HOST` in `.env`.
 
 ### Permission Issues
 
@@ -113,7 +115,7 @@ chmod -R 775 /var/www/html/monarc/data
 Check the logs:
 
 ```bash
-./docker-dev.sh logs
+make logs
 # or
 docker compose -f docker-compose.dev.yml logs
 ```
@@ -123,7 +125,7 @@ docker compose -f docker-compose.dev.yml logs
 To start completely fresh:
 
 ```bash
-./docker-dev.sh reset
+make reset
 # or
 docker compose -f docker-compose.dev.yml down -v
 ```
@@ -132,27 +134,27 @@ docker compose -f docker-compose.dev.yml down -v
 
 ### View Logs
 ```bash
-./docker-dev.sh logs
+make logs
 ```
 
 ### Access Container Shell
 ```bash
-./docker-dev.sh shell
+make shell
 ```
 
 ### Access Database
 ```bash
-./docker-dev.sh db
+make db
 ```
 
 ### Stop Services
 ```bash
-./docker-dev.sh stop
+make stop
 ```
 
 ### Restart Services
 ```bash
-./docker-dev.sh restart
+make restart
 ```
 
 ## Comparison with Other Installation Methods

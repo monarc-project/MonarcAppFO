@@ -1,6 +1,6 @@
 services:
   # MariaDB database for MONARC
-  db:
+  fodb:
     image: mariadb:10.11
     container_name: monarc-fo-db
     environment:
@@ -8,14 +8,15 @@ services:
       MYSQL_DATABASE: ${DBNAME_COMMON}
       MYSQL_USER: ${DBUSER_MONARC}
       MYSQL_PASSWORD: ${DBPASSWORD_MONARC}
-    command: 
+    command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_general_ci
       - --bind-address=0.0.0.0
     ports:
-      - "3306:3306"
+      - "${DBPORT_HOST:-3307}:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./docker/db-init:/docker-entrypoint-initdb.d:ro
     networks:
       - monarc-network
     healthcheck:
@@ -25,48 +26,48 @@ services:
       retries: 5
 
   # PostgreSQL database for stats service
-  postgres:
-    image: postgres:15
-    container_name: monarc-fo-postgres
-    environment:
-      POSTGRES_USER: ${STATS_DB_USER}
-      POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
-      POSTGRES_DB: ${STATS_DB_NAME}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - monarc-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${STATS_DB_USER}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # postgres:
+  #   image: postgres:15
+  #   container_name: monarc-fo-postgres
+  #   environment:
+  #     POSTGRES_USER: ${STATS_DB_USER}
+  #     POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
+  #     POSTGRES_DB: ${STATS_DB_NAME}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - monarc-network
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${STATS_DB_USER}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
 
-  # Stats service
-  stats-service:
-    build:
-      context: .
-      dockerfile: Dockerfile.stats
-    container_name: monarc-fo-stats
-    environment:
-      STATS_HOST: ${STATS_HOST}
-      STATS_PORT: ${STATS_PORT}
-      STATS_DB_HOST: postgres
-      STATS_DB_NAME: ${STATS_DB_NAME}
-      STATS_DB_USER: ${STATS_DB_USER}
-      STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
-      STATS_SECRET_KEY: ${STATS_SECRET_KEY}
-    ports:
-      - "5005:5005"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - monarc-network
-    volumes:
-      - stats_data:/var/www/stats-service
+  # # Stats service
+  # stats-service:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.stats
+  #   container_name: monarc-fo-stats
+  #   environment:
+  #     STATS_HOST: ${STATS_HOST}
+  #     STATS_PORT: ${STATS_PORT}
+  #     STATS_DB_HOST: postgres
+  #     STATS_DB_NAME: ${STATS_DB_NAME}
+  #     STATS_DB_USER: ${STATS_DB_USER}
+  #     STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
+  #     STATS_SECRET_KEY: ${STATS_SECRET_KEY}
+  #   ports:
+  #     - "5005:5005"
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - monarc-network
+  #   volumes:
+  #     - stats_data:/var/www/stats-service
 
   # MailCatcher for email testing
   mailcatcher:
@@ -79,27 +80,38 @@ services:
       - monarc-network
 
   # Main MONARC FrontOffice application
-  monarc:
+  monarcfoapp:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NODE_MAJOR: ${NODE_MAJOR:-16}
+        XDEBUG_ENABLED: ${XDEBUG_ENABLED:-1}
+        XDEBUG_MODE: ${XDEBUG_MODE:-debug}
+        XDEBUG_START_WITH_REQUEST: ${XDEBUG_START_WITH_REQUEST:-trigger}
+        XDEBUG_CLIENT_HOST: ${XDEBUG_CLIENT_HOST:-host.docker.internal}
+        XDEBUG_CLIENT_PORT: ${XDEBUG_CLIENT_PORT:-9003}
+        XDEBUG_IDEKEY: ${XDEBUG_IDEKEY:-IDEKEY}
+        XDEBUG_DISCOVER_CLIENT_HOST: ${XDEBUG_DISCOVER_CLIENT_HOST:-0}
     container_name: monarc-fo-app
     environment:
-      DBHOST: db
+      DBHOST: ${DBHOST:-fodb}
       DBNAME_COMMON: ${DBNAME_COMMON}
       DBNAME_CLI: ${DBNAME_CLI}
       DBUSER_MONARC: ${DBUSER_MONARC}
       DBPASSWORD_MONARC: ${DBPASSWORD_MONARC}
+      DBPASSWORD_ADMIN: ${DBPASSWORD_ADMIN}
+      USE_BO_COMMON: ${USE_BO_COMMON:-0}
       STATS_API_KEY: ${STATS_API_KEY}
       APP_ENV: development
       APP_DIR: /var/www/html/monarc
     ports:
       - "5001:80"
     depends_on:
-      db:
+      fodb:
         condition: service_healthy
-      stats-service:
-        condition: service_started
+      # stats-service:
+      #   condition: service_started
     networks:
       - monarc-network
     volumes:
@@ -112,10 +124,16 @@ services:
 
 networks:
   monarc-network:
-    driver: bridge
+    name: ${MONARC_NETWORK_NAME:-monarc-network}
+    external: true
 
 volumes:
   db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./docker/db_data
+      o: bind
   postgres_data:
   stats_data:
   vendor_data:

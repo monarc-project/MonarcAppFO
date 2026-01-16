@@ -25,3 +25,5 @@ data/*
 .docker/mariaDb/data/*
 .env
 .docker-initialized
+docker/db_data
+.vscode

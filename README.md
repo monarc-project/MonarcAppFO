@@ -54,7 +54,7 @@ For local development, you can use either:
 
 - **Docker** (recommended): See [README.docker.md](README.docker.md) for instructions
   ```bash
-  ./docker-dev.sh start
+  make start
   ```
 
 - **Vagrant**: See [vagrant/README.rst](vagrant/README.rst) for instructions

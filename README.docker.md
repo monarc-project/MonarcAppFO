@@ -11,7 +11,7 @@ This guide explains how to set up a local development environment for MONARC Fro
 
 ## Quick Start
 
-### Option 1: Using the Helper Script (Recommended)
+### Option 1: Using the Makefile (Recommended)
 
 1. **Clone the repository** (if you haven't already):
    ```bash
@@ -21,7 +21,7 @@ This guide explains how to set up a local development environment for MONARC Fro
 
 2. **Start the development environment**:
    ```bash
-   ./docker-dev.sh start
+   make start
    ```
    
    This will automatically:
@@ -69,7 +69,7 @@ This guide explains how to set up a local development environment for MONARC Fro
 
 4. **Start the development environment**:
    ```bash
-   docker-compose -f docker-compose.dev.yml up --build
+   docker compose -f docker-compose.dev.yml up --build
    ```
 
 5. **Access the application**:
@@ -80,17 +80,17 @@ This guide explains how to set up a local development environment for MONARC Fro
 6. **(Optional) Configure Stats API Key**:
    The stats service generates an API key on first run. To retrieve it:
    ```bash
-   # Using helper script
-   ./docker-dev.sh stats-key
+   # Using Makefile
+   make stats-key
    
    # Or manually check logs
-   docker-compose -f docker-compose.dev.yml logs stats-service | grep "Token:"
+   docker compose -f docker-compose.dev.yml logs stats-service | grep "Token:"
    
    # Or create a new client and get the key
    docker exec -it monarc-fo-stats poetry run flask client_create --name monarc
    
    # Update the .env file with the API key and restart the monarc service
-   docker-compose -f docker-compose.dev.yml restart monarc
+   docker compose -f docker-compose.dev.yml restart monarc
    ```
 
 7. **Login credentials**:
@@ -104,30 +104,31 @@ The development environment includes the following services:
 | Service | Description | Port | Container Name |
 |---------|-------------|------|----------------|
 | monarc | Main FrontOffice application (PHP/Apache) | 5001 | monarc-fo-app |
-| db | MariaDB database | 3306 | monarc-fo-db |
+| db | MariaDB database | 3307 | monarc-fo-db |
 | postgres | PostgreSQL database (for stats) | 5432 | monarc-fo-postgres |
 | stats-service | MONARC Statistics Service | 5005 | monarc-fo-stats |
 | mailcatcher | Email testing tool | 1080 (web), 1025 (SMTP) | monarc-fo-mailcatcher |
 
 ## Development Workflow
 
-### Helper Script Commands
+### Makefile Commands
 
-The `docker-dev.sh` script provides convenient commands for managing the development environment:
+The Makefile provides convenient commands for managing the development environment.
+Use `ENV=<name>` to select `docker compose.<name>.yml` (default: `dev`).
 
 ```bash
-./docker-dev.sh start         # Start all services
-./docker-dev.sh stop          # Stop all services
-./docker-dev.sh restart       # Restart all services
-./docker-dev.sh logs          # View logs from all services
-./docker-dev.sh logs-app      # View logs from MONARC application
-./docker-dev.sh logs-stats    # View logs from stats service
-./docker-dev.sh shell         # Open a shell in the MONARC container
-./docker-dev.sh shell-stats   # Open a shell in the stats service container
-./docker-dev.sh db            # Open MySQL client
-./docker-dev.sh status        # Show status of all services
-./docker-dev.sh stats-key     # Show the stats API key
-./docker-dev.sh reset         # Reset everything (removes all data)
+make start         # Start all services
+make stop          # Stop all services
+make restart       # Restart all services
+make logs          # View logs from all services
+make logs-app      # View logs from MONARC application
+make logs-stats    # View logs from stats service
+make shell         # Open a shell in the MONARC container
+make shell-stats   # Open a shell in the stats service container
+make db            # Open MySQL client
+make status        # Show status of all services
+make stats-key     # Show the stats API key
+make reset         # Reset everything (removes all data)
 ```
 
 ### Live Code Editing
@@ -144,10 +145,10 @@ The application source code is mounted as a volume, so changes you make on your 
 
 ### Accessing the Container
 
-Using helper script:
+Using Makefile:
 ```bash
-./docker-dev.sh shell        # MONARC application
-./docker-dev.sh shell-stats  # Stats service
+make shell        # MONARC application
+make shell-stats  # Stats service
 ```
 
 Or directly with docker:
@@ -158,9 +159,9 @@ docker exec -it monarc-fo-stats bash    # Stats service
 
 ### Database Access
 
-Using helper script:
+Using Makefile:
 ```bash
-./docker-dev.sh db  # Connect to MariaDB
+make db  # Connect to MariaDB
 ```
 
 Or directly with docker:
@@ -174,67 +175,83 @@ docker exec -it monarc-fo-postgres psql -U sqlmonarcuser -d statsservice
 
 ### Viewing Logs
 
-Using helper script:
+Using Makefile:
 ```bash
-./docker-dev.sh logs          # All services
-./docker-dev.sh logs-app      # MONARC application only
-./docker-dev.sh logs-stats    # Stats service only
+make logs          # All services
+make logs-app      # MONARC application only
+make logs-stats    # Stats service only
 ```
 
 Or directly with docker compose:
 ```bash
 # View logs for all services
-docker-compose -f docker-compose.dev.yml logs -f
+docker compose -f docker-compose.dev.yml logs -f
 
 # View logs for a specific service
-docker-compose -f docker-compose.dev.yml logs -f monarc
-docker-compose -f docker-compose.dev.yml logs -f stats-service
+docker compose -f docker-compose.dev.yml logs -f monarc
+docker compose -f docker-compose.dev.yml logs -f stats-service
 ```
 
 ### Restarting Services
 
-Using helper script:
+Using Makefile:
 ```bash
-./docker-dev.sh restart  # Restart all services
+make restart  # Restart all services
 ```
 
 Or directly with docker compose:
 ```bash
 # Restart all services
-docker-compose -f docker-compose.dev.yml restart
+docker compose -f docker-compose.dev.yml restart
 
 # Restart a specific service
-docker-compose -f docker-compose.dev.yml restart monarc
+docker compose -f docker-compose.dev.yml restart monarc
 ```
 
 ### Stopping the Environment
 
-Using helper script:
+Using Makefile:
 ```bash
-./docker-dev.sh stop   # Stop all services (keeps data)
-./docker-dev.sh reset  # Stop and remove everything including data
+make stop   # Stop all services (keeps data)
+make reset  # Stop and remove everything including data
 ```
 
 Or directly with docker compose:
 ```bash
 # Stop all services (keeps data)
-docker-compose -f docker-compose.dev.yml stop
+docker compose -f docker-compose.dev.yml stop
 
 # Stop and remove containers (keeps volumes/data)
-docker-compose -f docker-compose.dev.yml down
+docker compose -f docker-compose.dev.yml down
 
 # Stop and remove everything including data
-docker-compose -f docker-compose.dev.yml down -v
+docker compose -f docker-compose.dev.yml down -v
 ```
 
 ## Common Tasks
+
+### Using BackOffice monarc_common
+
+To reuse the BackOffice `monarc_common` database:
+
+1. Set `USE_BO_COMMON=1` in `.env`.
+2. Point `DBHOST` to the BackOffice MariaDB host (for example, `monarc-bo-db` on a shared Docker network).
+3. Ensure the BackOffice database already has `monarc_common` and grants for `DBUSER_MONARC`.
+
+### Shared Docker Network
+
+To connect FrontOffice and BackOffice containers, use a shared external network:
+
+1. Create the network once: `docker network create monarc-network`
+2. Set `MONARC_NETWORK_NAME=monarc-network` in both projects' `.env` files.
+3. Ensure the BackOffice compose file also uses the same external network name.
 
 ### Resetting the Database
 
 To completely reset the databases:
 ```bash
-docker-compose -f docker-compose.dev.yml down -v
-docker-compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.dev.yml down -v
+docker compose -f docker-compose.dev.yml up --build
 ```
 
 ### Installing New PHP Dependencies
@@ -263,7 +280,7 @@ php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/mi
 
 ```bash
 docker exec -it monarc-fo-app bash
-php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 ```
 
 ### Rebuilding Frontend
@@ -278,7 +295,12 @@ cd /var/www/html/monarc
 
 ### Xdebug Configuration
 
-Xdebug is pre-configured in the development environment. To use it:
+Xdebug is enabled by default in the development image. To disable it, set
+`XDEBUG_ENABLED=0` in `.env` and rebuild the image (for example, `make start`).
+You can also tune the connection behavior via `.env`:
+`XDEBUG_START_WITH_REQUEST`, `XDEBUG_CLIENT_HOST`, and `XDEBUG_CLIENT_PORT`.
+
+When enabled, Xdebug is pre-configured. To use it:
 
 1. Configure your IDE to listen on port 9003
 2. Set the IDE key to `IDEKEY`
@@ -295,10 +317,10 @@ For PhpStorm:
 
 ```bash
 # Check if all services are running
-docker-compose -f docker-compose.dev.yml ps
+docker compose -f docker-compose.dev.yml ps
 
 # Check specific service health
-docker-compose -f docker-compose.dev.yml ps monarc
+docker compose -f docker-compose.dev.yml ps monarc
 ```
 
 ## Troubleshooting
@@ -310,6 +332,9 @@ If you get port conflicts, you can change the ports in the `docker-compose.dev.y
 ports:
   - "5001:80"  # Change 5001 to another available port
 ```
+
+To change the MariaDB host port without editing the compose file, set
+`DBPORT_HOST` in `.env` (default: `3307`).
 
 ### Permission Issues
 
@@ -324,24 +349,24 @@ chmod -R 775 /var/www/html/monarc/data
 
 Check if the database is healthy:
 ```bash
-docker-compose -f docker-compose.dev.yml ps db
+docker compose -f docker-compose.dev.yml ps db
 ```
 
 If needed, restart the database:
 ```bash
-docker-compose -f docker-compose.dev.yml restart db
+docker compose -f docker-compose.dev.yml restart db
 ```
 
 ### Stats Service Issues
 
 Check stats service logs:
 ```bash
-docker-compose -f docker-compose.dev.yml logs stats-service
+docker compose -f docker-compose.dev.yml logs stats-service
 ```
 
 Restart the stats service:
 ```bash
-docker-compose -f docker-compose.dev.yml restart stats-service
+docker compose -f docker-compose.dev.yml restart stats-service
 ```
 
 ### Rebuilding from Scratch
@@ -349,13 +374,13 @@ docker-compose -f docker-compose.dev.yml restart stats-service
 If something goes wrong and you want to start fresh:
 ```bash
 # Stop everything
-docker-compose -f docker-compose.dev.yml down -v
+docker compose -f docker-compose.dev.yml down -v
 
 # Remove all related containers, images, and volumes
 docker system prune -a
 
 # Rebuild and start
-docker-compose -f docker-compose.dev.yml up --build
+docker compose -f docker-compose.dev.yml up --build
 ```
 
 ## Performance Optimization
@@ -388,17 +413,29 @@ All environment variables are defined in the `.env` file:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
+| `DBHOST` | MariaDB host for MONARC | `db` |
+| `DBPORT_HOST` | MariaDB host port (published) | `3307` |
 | `DBPASSWORD_ADMIN` | MariaDB root password | `root` |
 | `DBNAME_COMMON` | Common database name | `monarc_common` |
 | `DBNAME_CLI` | CLI database name | `monarc_cli` |
 | `DBUSER_MONARC` | Database user | `sqlmonarcuser` |
 | `DBPASSWORD_MONARC` | Database password | `sqlmonarcuser` |
+| `USE_BO_COMMON` | Use BackOffice `monarc_common` (`1/0`, `true/false`, `yes/no`) | `0` |
+| `MONARC_NETWORK_NAME` | Shared Docker network name | `monarc-network` |
+| `NODE_MAJOR` | Node.js major version for frontend tools | `16` |
 | `STATS_HOST` | Stats service host | `0.0.0.0` |
 | `STATS_PORT` | Stats service port | `5005` |
 | `STATS_DB_NAME` | Stats database name | `statsservice` |
 | `STATS_DB_USER` | Stats database user | `sqlmonarcuser` |
 | `STATS_DB_PASSWORD` | Stats database password | `sqlmonarcuser` |
 | `STATS_SECRET_KEY` | Stats service secret key | `changeme_generate_random_secret_key_for_production` |
+| `XDEBUG_ENABLED` | Enable Xdebug in the build (`1/0`, `true/false`, `yes/no`) | `1` |
+| `XDEBUG_MODE` | Xdebug modes (`debug`, `develop`, etc.) | `debug` |
+| `XDEBUG_START_WITH_REQUEST` | Start mode (`trigger` or `yes`) | `trigger` |
+| `XDEBUG_CLIENT_HOST` | Host IDE address | `host.docker.internal` |
+| `XDEBUG_CLIENT_PORT` | IDE port | `9003` |
+| `XDEBUG_IDEKEY` | IDE key | `IDEKEY` |
+| `XDEBUG_DISCOVER_CLIENT_HOST` | Auto-detect client host (`1/0`) | `0` |
 
 ## Security Notes
 
@@ -422,6 +459,6 @@ For production deployments:
 If you encounter issues:
 
 1. Check the [troubleshooting section](#troubleshooting)
-2. Review the logs: `docker-compose -f docker-compose.dev.yml logs`
+2. Review the logs: `docker compose -f docker-compose.dev.yml logs`
 3. Open an issue on [GitHub](https://github.com/monarc-project/MonarcAppFO/issues)
 4. Join the MONARC community discussions
