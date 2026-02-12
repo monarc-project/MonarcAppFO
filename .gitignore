@@ -23,3 +23,7 @@ bin/
 data/*
 !data/fonts
 .docker/mariaDb/data/*
+.env
+.docker-initialized
+docker/db_data
+.vscode

@@ -145,7 +145,7 @@ cd $PATH_TO_MONARC
 git config core.fileMode false
 
 echo -e "\n--- Installing the dependencies… ---\n"
-composer ins --ignore-platform-req=php
+composer ins
 
 
 # Make modules symlinks.

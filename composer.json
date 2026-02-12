@@ -72,6 +72,9 @@
     },
     "config": {
         "bin-dir": "bin/",
+        "platform": {
+            "php": "8.1.0"
+        },
         "allow-plugins": {
             "laminas/laminas-dependency-plugin": true
         }

@@ -66,6 +66,22 @@ The API allows you to:
 Authentication is token-based. See the API documentation for details on obtaining and using authentication tokens.
 
 
+Development Environment
+-----------------------
+
+For local development, you can use either:
+
+- **Docker** (recommended): See [README.docker.md](README.docker.md) for instructions
+  ```bash
+  make start
+  ```
+
+- **Vagrant**: See [vagrant/README.rst](vagrant/README.rst) for instructions
+  ```bash
+  cd vagrant && vagrant up
+  ```
+
+
 Contributing
 ------------
 

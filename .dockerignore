@@ -1,0 +1,46 @@
+# Git files
+.git
+.gitignore
+.github
+
+# Documentation
+README.md
+CHANGELOG.md
+AUTHORS
+LICENSE
+SECURITY.md
+*.md
+
+# Development files
+vagrant/
+wsl/
+INSTALL/
+.idea
+.vscode
+.DS_Store
+
+# Dependencies (will be installed in container)
+vendor/
+node_modules/
+
+# Data directories (will be mounted as volumes)
+data/
+
+# Build artifacts
+public/css/
+public/js/
+public/img/
+public/flags/
+public/views/
+
+# Logs
+*.log
+npm-debug.log
+
+# Cache
+*.cache
+.docker-initialized
+
+# Environment files (should be configured separately)
+.env
+.env.dev
