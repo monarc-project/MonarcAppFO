@@ -34,7 +34,7 @@ jobs:
       run: composer validate
 
     - name: Install PHP dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --no-dev --ignore-platform-req=php
+      run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Symlink Monarc modules
       run: | 

@@ -1,0 +1,38 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANGUAGE=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV FLASK_APP=app.py
+ENV STATS_CONFIG=production.py
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    git \
+    curl \
+    python3 \
+    python3-pip \
+    python3-venv \
+    nodejs \
+    npm \
+    postgresql-client \
+    locales && \
+    locale-gen en_US.UTF-8 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 - && \
+    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+
+WORKDIR /var/www/stats-service
+
+# Copy entrypoint script
+COPY docker-stats-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-stats-entrypoint.sh
+
+EXPOSE 5005
+
+ENTRYPOINT ["docker-stats-entrypoint.sh"]
