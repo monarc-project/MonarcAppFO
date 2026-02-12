@@ -461,4 +461,4 @@ If you encounter issues:
 1. Check the [troubleshooting section](#troubleshooting)
 2. Review the logs: `docker compose -f docker-compose.dev.yml logs`
 3. Open an issue on [GitHub](https://github.com/monarc-project/MonarcAppFO/issues)
-4. Join the MONARC community discussions
+4. Join the community discussions on [GitHub](https://github.com/monarc-project/MonarcAppFO/discussions)

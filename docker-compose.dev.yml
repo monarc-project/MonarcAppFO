@@ -12,6 +12,7 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_general_ci
       - --bind-address=0.0.0.0
+      - --sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
     ports:
       - "${DBPORT_HOST:-3307}:3306"
     volumes:
@@ -26,48 +27,48 @@ services:
       retries: 5
 
   # PostgreSQL database for stats service
-  # postgres:
-  #   image: postgres:15
-  #   container_name: monarc-fo-postgres
-  #   environment:
-  #     POSTGRES_USER: ${STATS_DB_USER}
-  #     POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
-  #     POSTGRES_DB: ${STATS_DB_NAME}
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   networks:
-  #     - monarc-network
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U ${STATS_DB_USER}"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
+  postgres:
+    image: postgres:15
+    container_name: monarc-fo-postgres
+    environment:
+      POSTGRES_USER: ${STATS_DB_USER}
+      POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
+      POSTGRES_DB: ${STATS_DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - monarc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${STATS_DB_USER} -d ${STATS_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  # # Stats service
-  # stats-service:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.stats
-  #   container_name: monarc-fo-stats
-  #   environment:
-  #     STATS_HOST: ${STATS_HOST}
-  #     STATS_PORT: ${STATS_PORT}
-  #     STATS_DB_HOST: postgres
-  #     STATS_DB_NAME: ${STATS_DB_NAME}
-  #     STATS_DB_USER: ${STATS_DB_USER}
-  #     STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
-  #     STATS_SECRET_KEY: ${STATS_SECRET_KEY}
-  #   ports:
-  #     - "5005:5005"
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #   networks:
-  #     - monarc-network
-  #   volumes:
-  #     - stats_data:/var/www/stats-service
+  # Stats service
+  stats-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.stats
+    container_name: monarc-fo-stats
+    environment:
+      STATS_HOST: ${STATS_HOST}
+      STATS_PORT: ${STATS_PORT}
+      STATS_DB_HOST: postgres
+      STATS_DB_NAME: ${STATS_DB_NAME}
+      STATS_DB_USER: ${STATS_DB_USER}
+      STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
+      STATS_SECRET_KEY: ${STATS_SECRET_KEY}
+    ports:
+      - "5005:5005"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - monarc-network
+    volumes:
+      - stats_data:/var/www/stats-service
 
   # MailCatcher for email testing
   mailcatcher:
@@ -75,7 +76,7 @@ services:
     container_name: monarc-fo-mailcatcher
     ports:
       - "1080:1080"  # Web interface
-      - "1025:1025"  # SMTP
+      - "8825:1025"  #  SMTP
     networks:
       - monarc-network
 
@@ -137,4 +138,14 @@ volumes:
   postgres_data:
   stats_data:
   vendor_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./vendor
+      o: bind
   node_modules_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./node_modules
+      o: bind
