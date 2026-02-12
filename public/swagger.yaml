@@ -8,6 +8,17 @@ info:
     Most endpoints require authentication via a Token header. To authenticate:
     1. Login via POST /api/auth to receive a token
     2. Include the token in subsequent requests using the `Token` header
+
+    ## Two-Factor Authentication (2FA)
+    The login endpoint supports OTP and recovery codes. When 2FA is enabled or enforced:
+    - If 2FA is required and no OTP is provided, the API responds `401` with `token: "2FARequired"`.
+    - If the OTP is wrong, the API responds `401` with `token: "2FACodeNotCorrect"`.
+    - If 2FA is enforced and not configured, the API responds `401` with `token: "2FAToBeConfigured"`
+      and provides `secret` + `qrcode` to set up an authenticator app.
+
+    To complete authentication:
+    - Re-POST `/api/auth` with `login`, `password`, and `otp` (or `recoveryCode`) to get the real token.
+    - If 2FA setup is required, POST `login`, `password`, `otpSecret`, and `verificationCode`.
     
     ## Authorization
     Different endpoints require different user roles:
@@ -42,7 +53,7 @@ paths:
   /api/auth:
     post:
       summary: Authenticate user and get token
-      description: Login with email and password to receive an authentication token
+      description: Login with credentials to receive an authentication token
       tags:
         - Authentication
       security: []
@@ -53,17 +64,39 @@ paths:
             schema:
               type: object
               required:
-                - email
                 - password
+              oneOf:
+                - required: [login]
+                - required: [email]
               properties:
+                login:
+                  type: string
+                  format: email
+                  description: Login identifier (typically the email address).
+                  example: user@example.com
                 email:
                   type: string
                   format: email
+                  description: Deprecated alias for login. Prefer `login`.
                   example: user@example.com
                 password:
                   type: string
                   format: password
                   example: password123
+                otp:
+                  type: string
+                  description: One-time password for 2FA (if enabled).
+                  example: "123456"
+                recoveryCode:
+                  type: string
+                  description: 2FA recovery code (alternative to OTP).
+                otpSecret:
+                  type: string
+                  description: OTP secret returned when 2FA setup is required.
+                verificationCode:
+                  type: string
+                  description: Verification code from authenticator app during 2FA setup.
+                  example: "123456"
       responses:
         '200':
           description: Authentication successful
@@ -75,8 +108,34 @@ paths:
                   token:
                     type: string
                     description: Authentication token to use in subsequent requests
+                  uid:
+                    type: integer
+                    description: Authenticated user ID
+                  language:
+                    type: string
+                    description: User language
         '401':
-          description: Invalid credentials
+          description: Invalid credentials or 2FA required/failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: 2FA status token (2FARequired, 2FACodeNotCorrect, 2FAToBeConfigured)
+                  uid:
+                    type: integer
+                    description: User ID (when 2FA flow is in progress)
+                  language:
+                    type: string
+                    description: User language
+                  secret:
+                    type: string
+                    description: OTP secret for initial 2FA setup (only for 2FAToBeConfigured)
+                  qrcode:
+                    type: string
+                    description: Data URI QR code for initial 2FA setup (only for 2FAToBeConfigured)
           
   /api/auth/{id}:
     delete:
