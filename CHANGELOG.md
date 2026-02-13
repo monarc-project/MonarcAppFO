@@ -1,6 +1,22 @@
 MONARC Changelog
 ================
 
+## 2.13.4 (2026-02-13)
+
+### Enhancement
+
+- [Change from 27002:2013 to :2022 (default deployment)](https://github.com/monarc-project/MonarcAppFO/issues/539)
+- [Increased the password min length requirement from 9 to 12 characters](https://github.com/monarc-project/MonarcAppFO/issues/590).
+- [[FrontOffice] Add Docker environment for the dev env](https://github.com/monarc-project/MonarcAppFO/issues/597).
+- [Add the swagger files renderer and describe all the API endpoints](https://github.com/monarc-project/MonarcAppFO/issues/570).
+
+### Fix
+
+- [Implementation plan: Same measure reported multiple times](https://github.com/monarc-project/MonarcAppFO/issues/573)
+- [SQL syntax error (MySQL ONLY_FULL_GROUP_BY violation)](https://github.com/monarc-project/MonarcAppFO/issues/574)
+- [Dashboard Operational Risks PNG Export incorrect](https://github.com/monarc-project/MonarcAppFO/issues/578)
+- Updated the proxy-manager to use the LTS version and avoid the php version limitation.
+
 
 ## 2.13.3-p6 (2025-12-18)
 

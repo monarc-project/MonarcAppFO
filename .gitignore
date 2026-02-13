@@ -15,6 +15,7 @@ public/js/
 public/img/
 public/flags/
 public/views/
+public/captcha/
 scripts/public
 module/
 npm-debug.log

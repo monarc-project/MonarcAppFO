@@ -46,6 +46,25 @@ For installation instructions see
 
 You can also use the provided [Virtual Machine](https://vm.monarc.lu).
 
+API Documentation
+-----------------
+
+MONARC provides a comprehensive RESTful API for programmatic access. The API is documented using OpenAPI 3.0 (Swagger) specification.
+
+- **View API Documentation**: Navigate to `/swagger-ui.html` in your MONARC installation
+- **OpenAPI Specification**: Available at `/swagger.yaml`
+- **Documentation Guide**: See [public/API_DOCUMENTATION.md](public/API_DOCUMENTATION.md)
+
+The API allows you to:
+- Manage risk analyses (ANR)
+- Handle assets, threats, and vulnerabilities
+- Manage risks and operational risks
+- Create and track recommendations
+- Generate reports and exports
+- And much more...
+
+Authentication is token-based. See the API documentation for details on obtaining and using authentication tokens.
+
 
 Development Environment
 -----------------------
