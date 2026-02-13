@@ -1,10 +1,1046 @@
 openapi: 3.0.0
 info:
   title: MONARC Project API
-  version: 1.0.0
+  description: |
+    API for MONARC (Optimised Risk Analysis Method) - a risk analysis tool.
+    
+    ## Authentication
+    Most endpoints require authentication via a Token header. To authenticate:
+    1. Login via POST /api/auth to receive a token
+    2. Include the token in subsequent requests using the `Token` header
+
+    ## Two-Factor Authentication (2FA)
+    The login endpoint supports OTP and recovery codes. When 2FA is enabled or enforced:
+    - If 2FA is required and no OTP is provided, the API responds `401` with `token: "2FARequired"`.
+    - If the OTP is wrong, the API responds `401` with `token: "2FACodeNotCorrect"`.
+    - If 2FA is enforced and not configured, the API responds `401` with `token: "2FAToBeConfigured"`
+      and provides `secret` + `qrcode` to set up an authenticator app.
+
+    To complete authentication:
+    - Re-POST `/api/auth` with `login`, `password`, and `otp` (or `recoveryCode`) to get the real token.
+    - If 2FA setup is required, POST `login`, `password`, `otpSecret`, and `verificationCode`.
+    
+    ## Authorization
+    Different endpoints require different user roles:
+    - **superadmin**: Full system administration access
+    - **userfo**: Standard user with analysis access
+    - **ceo**: CEO role with specific permissions
+  version: 2.13.3
+  contact:
+    name: MONARC Project
+    url: https://www.monarc.lu
+  license:
+    name: GNU Affero General Public License version 3
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+
+servers:
+  - url: /
+    description: Current server
+
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Token
+      description: API token obtained from the authentication endpoint
+
+security:
+  - TokenAuth: []
+
 paths:
+  # Authentication
+  /api/auth:
+    post:
+      summary: Authenticate user and get token
+      description: Login with credentials to receive an authentication token
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - password
+              oneOf:
+                - required: [login]
+                - required: [email]
+              properties:
+                login:
+                  type: string
+                  format: email
+                  description: Login identifier (typically the email address).
+                  example: user@example.com
+                email:
+                  type: string
+                  format: email
+                  description: Deprecated alias for login. Prefer `login`.
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: password123
+                otp:
+                  type: string
+                  description: One-time password for 2FA (if enabled).
+                  example: "123456"
+                recoveryCode:
+                  type: string
+                  description: 2FA recovery code (alternative to OTP).
+                otpSecret:
+                  type: string
+                  description: OTP secret returned when 2FA setup is required.
+                verificationCode:
+                  type: string
+                  description: Verification code from authenticator app during 2FA setup.
+                  example: "123456"
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Authentication token to use in subsequent requests
+                  uid:
+                    type: integer
+                    description: Authenticated user ID
+                  language:
+                    type: string
+                    description: User language
+        '401':
+          description: Invalid credentials or 2FA required/failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: 2FA status token (2FARequired, 2FACodeNotCorrect, 2FAToBeConfigured)
+                  uid:
+                    type: integer
+                    description: User ID (when 2FA flow is in progress)
+                  language:
+                    type: string
+                    description: User language
+                  secret:
+                    type: string
+                    description: OTP secret for initial 2FA setup (only for 2FAToBeConfigured)
+                  qrcode:
+                    type: string
+                    description: Data URI QR code for initial 2FA setup (only for 2FAToBeConfigured)
+          
+  /api/auth/{id}:
+    delete:
+      summary: Logout and invalidate token
+      description: Logout the user and invalidate the authentication token
+      tags:
+        - Authentication
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: User ID or token identifier
+      responses:
+        '204':
+          description: Logout successful
+        '401':
+          description: Unauthorized
+
+  # Captcha
+  /api/captcha:
+    get:
+      summary: Get captcha image
+      tags:
+        - Captcha
+      security: []
+      responses:
+        '200':
+          description: Captcha image
+
+  # User Profile
+  /api/user/profile:
+    get:
+      summary: Get current user profile
+      tags:
+        - User Profile
+      responses:
+        '200':
+          description: User profile information
+    put:
+      summary: Update current user profile
+      tags:
+        - User Profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Profile updated successfully
+
+  /api/user/password/{id}:
+    put:
+      summary: Change user password
+      tags:
+        - User Profile
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - old
+                - new
+                - confirm
+              properties:
+                old:
+                  type: string
+                  format: password
+                new:
+                  type: string
+                  format: password
+                confirm:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Password changed successfully
+
+  /api/user/activate2FA/{id}:
+    post:
+      summary: Activate two-factor authentication
+      tags:
+        - User Profile
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 2FA activated successfully
+
+  /api/user/recoveryCodes/{id}:
+    get:
+      summary: Get recovery codes for 2FA
+      tags:
+        - User Profile
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Recovery codes
+
+  # Configuration
+  /api/config:
+    get:
+      summary: Get application configuration
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: Application configuration
+
   # ApiAdminUsersController
-  /api/admin/users:
+  /api/users:
+    get:
+      summary: Retrieve all users
+      tags:
+        - Users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        firstname:
+                          type: string
+                        lastname:
+                          type: string
+                        email:
+                          type: string
+                        role:
+                          type: array
+                          items:
+                            type: string
+    post:
+      summary: Create a new user
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firstname
+                - lastname
+                - email
+                - password
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                role:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /api/users/{id}:
+    get:
+      summary: Retrieve a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  firstname:
+                    type: string
+                  lastname:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: array
+                    items:
+                      type: string
+    put:
+      summary: Update a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                role:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted
+
+  /api/users/{id}/resetPassword:
+    post:
+      summary: Reset password for a user by ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Password reset successful
+
+  # ApiAdminUsersRolesController
+  /api/users-roles:
+    get:
+      summary: Get roles for the current user
+      tags:
+        - Roles
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+
+  /api/users-roles/{id}:
+    get:
+      summary: Get roles for a specific user by ID
+      tags:
+        - Roles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  roles:
+                    type: array
+                    items:
+                      type: string
+
+  # ApiAdminPasswordsController
+  /api/admin/passwords:
+    post:
+      summary: Handle password-related actions (reset, verify token, change password)
+      tags:
+        - Passwords
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                token:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                confirm:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Successful response
+        '422':
+          description: Validation error
+
+  # Clients
+  /api/client:
+    get:
+      summary: Get list of clients
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: List of clients
+    post:
+      summary: Create a new client
+      tags:
+        - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Client created
+
+  /api/client/{id}:
+    get:
+      summary: Get client by ID
+      tags:
+        - Clients
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Client details
+    patch:
+      summary: Update client by ID
+      tags:
+        - Clients
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Client updated
+    delete:
+      summary: Delete client by ID
+      tags:
+        - Clients
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Client deleted
+
+  # System Messages
+  /api/system-messages:
+    get:
+      summary: Get system messages
+      tags:
+        - System Messages
+      responses:
+        '200':
+          description: List of system messages
+    post:
+      summary: Create a system message
+      tags:
+        - System Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      responses:
+        '201':
+          description: System message created
+
+  /api/system-messages/{id}:
+    get:
+      summary: Get system message by ID
+      tags:
+        - System Messages
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: System message details
+    patch:
+      summary: Update system message
+      tags:
+        - System Messages
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      responses:
+        '200':
+          description: System message updated
+    delete:
+      summary: Delete system message
+      tags:
+        - System Messages
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: System message deleted
+
+  # Models
+  /api/models:
+    get:
+      summary: Get list of models
+      tags:
+        - Models
+      responses:
+        '200':
+          description: List of models
+    post:
+      summary: Create a new model
+      tags:
+        - Models
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '201':
+          description: Model created
+
+  /api/models/{id}:
+    get:
+      summary: Get model by ID
+      tags:
+        - Models
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Model details
+    patch:
+      summary: Update model
+      tags:
+        - Models
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Model updated
+    delete:
+      summary: Delete model
+      tags:
+        - Models
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Model deleted
+
+  # Referentials
+  /api/referentials:
+    get:
+      summary: Get list of referentials
+      tags:
+        - Referentials
+      responses:
+        '200':
+          description: List of referentials
+
+  # Guides
+  /api/guides:
+    get:
+      summary: Get list of guides
+      tags:
+        - Guides
+      responses:
+        '200':
+          description: List of guides
+    post:
+      summary: Create a new guide
+      tags:
+        - Guides
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '201':
+          description: Guide created
+
+  /api/guides/{id}:
+    get:
+      summary: Get guide by ID
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Guide details
+    patch:
+      summary: Update guide
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Guide updated
+    delete:
+      summary: Delete guide
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Guide deleted
+
+  # Guide Items
+  /api/guides-items:
+    get:
+      summary: Get list of guide items
+      tags:
+        - Guides
+      responses:
+        '200':
+          description: List of guide items
+    post:
+      summary: Create a new guide item
+      tags:
+        - Guides
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Guide item created
+
+  /api/guides-items/{id}:
+    get:
+      summary: Get guide item by ID
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Guide item details
+    patch:
+      summary: Update guide item
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Guide item updated
+    delete:
+      summary: Delete guide item
+      tags:
+        - Guides
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Guide item deleted
+
+  # Deliveries Models
+  /api/deliveriesmodels:
+    get:
+      summary: Get list of delivery models
+      tags:
+        - Deliveries
+      responses:
+        '200':
+          description: List of delivery models
+    post:
+      summary: Create a new delivery model
+      tags:
+        - Deliveries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Delivery model created
+
+  /api/deliveriesmodels/{id}:
+    get:
+      summary: Get delivery model by ID
+      tags:
+        - Deliveries
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Delivery model details
+    put:
+      summary: Update delivery model
+      tags:
+        - Deliveries
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Delivery model updated
+    delete:
+      summary: Delete delivery model
+      tags:
+        - Deliveries
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Delivery model deleted
+
+  # ApiAnrController
+  /api/client-anr:
+    get:
+      summary: Get list of ANRs (Risk Analyses)
+      description: Get all risk analyses accessible to the user
+      tags:
+        - ANR
+      responses:
+        '200':
+          description: List of ANRs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  anrs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        label:
+                          type: string
+    post:
+      summary: Create a new ANR (Risk Analysis)
+      tags:
+        - ANR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - label
+              properties:
+                label:
+                  type: string
+                  description: Name/label of the risk analysis
+                description:
+                  type: string
+                language:
+                  type: integer
+                  description: Language ID
+                modelId:
+                  type: integer
+                  description: Model ID to use for the analysis
+      responses:
+        '201':
+          description: ANR created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+
+  /api/client-anr/{id}:
     get:
       summary: Retrieve all users
       tags:
@@ -83,280 +1119,10 @@ paths:
                     type: string
 
   /api/admin/users/{id}:
-    get:
-      summary: Retrieve a user by ID
-      tags:
-        - Users
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: User details
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  email:
-                    type: string
-                  role:
-                    type: string
-    put:
-      summary: Update a user by ID
-      tags:
-        - Users
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                role:
-                  type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: User updated
-    delete:
-      summary: Delete a user by ID
-      tags:
-        - Users
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '204':
-          description: User deleted
-
-  /api/admin/users/{id}/reset-password:
-    post:
-      summary: Reset password for a user by ID
-      tags:
-        - Users
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: Password reset successful
-
-  # ApiAdminUsersRolesController
-  /api/admin/users/roles:
-    get:
-      summary: Get roles for the current user
-      tags:
-        - Roles
-      parameters:
-        - in: header
-          name: token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: List of roles
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  roles:
-                    type: array
-                    items:
-                      type: string
-
-  /api/admin/users/{id}/roles:
-    get:
-      summary: Get roles for a specific user by ID
-      tags:
-        - Roles
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: User roles
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  roles:
-                    type: array
-                    items:
-                      type: string
-
-  # ApiAdminPasswordsController
-  /api/admin/passwords:
-    post:
-      summary: Handle password-related actions (reset, verify token, change password)
-      tags:
-        - Passwords
-      parameters:
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                token:
-                  type: string
-                password:
-                  type: string
-                confirm:
-                  type: string
-      security:
-        - role: [superadmin]
-      responses:
-        '200':
-          description: Successful response
-        '422':
-          description: Validation error
-
-  # ApiAnrController
-  /api/anr:
-    get:
-      summary: Get list of ANRs
-      tags:
-        - ANR
-      parameters:
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin, userfo] # can do it only if it has at lease "r" permissions.
-      responses:
-        '200':
-          description: List of ANRs
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  anrs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-    post:
-      summary: Create a new ANR
-      tags:
-        - ANR
-      parameters:
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: string
-      security:
-        - role: [superadmin, userfo]
-      responses:
-        '201':
-          description: ANR created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-
-  /api/anr/{id}:
+  /api/client-anr/{id}:
     get:
       summary: Get ANR by ID
+      description: Get details of a specific risk analysis
       tags:
         - ANR
       parameters:
@@ -365,13 +1131,6 @@ paths:
           required: true
           schema:
             type: integer
-        - in: header
-          name: Token
-          required: true
-          schema:
-            type: string
-      security:
-        - role: [superadmin, userfo] # can do it only if it has at lease "r" permissions.
       responses:
         '200':
           description: ANR details
@@ -382,12 +1141,13 @@ paths:
                 properties:
                   id:
                     type: integer
-                  name:
+                  label:
                     type: string
                   description:
                     type: string
     patch:
       summary: Update ANR by ID
+      description: Update details of a specific risk analysis
       tags:
         - ANR
       parameters:
@@ -396,8 +1156,1308 @@ paths:
           required: true
           schema:
             type: integer
-        - in: header
-          name: Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: ANR updated
+    delete:
+      summary: Delete ANR by ID
+      description: Delete a specific risk analysis
+      tags:
+        - ANR
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: ANR deleted
+
+  /api/client-duplicate-anr:
+    post:
+      summary: Duplicate an ANR
+      description: Create a copy of an existing risk analysis
+      tags:
+        - ANR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: ID of the ANR to duplicate
+      responses:
+        '201':
+          description: ANR duplicated successfully
+
+  # ANR Child Routes - Assets
+  /api/client-anr/{anrid}/assets:
+    get:
+      summary: Get assets for an ANR
+      tags:
+        - ANR - Assets
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of assets
+    post:
+      summary: Create asset in ANR
+      tags:
+        - ANR - Assets
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                code:
+                  type: string
+                type:
+                  type: integer
+      responses:
+        '201':
+          description: Asset created
+
+  /api/client-anr/{anrid}/assets/{id}:
+    get:
+      summary: Get asset by ID
+      tags:
+        - ANR - Assets
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Asset details
+    patch:
+      summary: Update asset
+      tags:
+        - ANR - Assets
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '200':
+          description: Asset updated
+    delete:
+      summary: Delete asset
+      tags:
+        - ANR - Assets
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Asset deleted
+
+  # ANR Child Routes - AMVs (Asset-Measure-Vulnerability)
+  /api/client-anr/{anrid}/amvs:
+    get:
+      summary: Get AMVs for an ANR
+      tags:
+        - ANR - AMVs
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of AMVs
+    post:
+      summary: Create AMV in ANR
+      tags:
+        - ANR - AMVs
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: AMV created
+
+  /api/client-anr/{anrid}/amvs/{id}:
+    delete:
+      summary: Delete AMV
+      tags:
+        - ANR - AMVs
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: AMV deleted
+
+  # ANR Child Routes - Threats
+  /api/client-anr/{anrid}/threats:
+    get:
+      summary: Get threats for an ANR
+      tags:
+        - ANR - Threats
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of threats
+    post:
+      summary: Create threat in ANR
+      tags:
+        - ANR - Threats
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '201':
+          description: Threat created
+
+  /api/client-anr/{anrid}/threats/{id}:
+    get:
+      summary: Get threat by ID
+      tags:
+        - ANR - Threats
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Threat details
+    patch:
+      summary: Update threat
+      tags:
+        - ANR - Threats
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Threat updated
+    delete:
+      summary: Delete threat
+      tags:
+        - ANR - Threats
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Threat deleted
+
+  # ANR Child Routes - Vulnerabilities
+  /api/client-anr/{anrid}/vulnerabilities:
+    get:
+      summary: Get vulnerabilities for an ANR
+      tags:
+        - ANR - Vulnerabilities
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of vulnerabilities
+    post:
+      summary: Create vulnerability in ANR
+      tags:
+        - ANR - Vulnerabilities
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '201':
+          description: Vulnerability created
+
+  /api/client-anr/{anrid}/vulnerabilities/{id}:
+    get:
+      summary: Get vulnerability by ID
+      tags:
+        - ANR - Vulnerabilities
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vulnerability details
+    patch:
+      summary: Update vulnerability
+      tags:
+        - ANR - Vulnerabilities
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Vulnerability updated
+    delete:
+      summary: Delete vulnerability
+      tags:
+        - ANR - Vulnerabilities
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Vulnerability deleted
+
+  # ANR Child Routes - Measures
+  /api/client-anr/{anrid}/measures:
+    get:
+      summary: Get measures (controls) for an ANR
+      tags:
+        - ANR - Measures
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of measures
+    post:
+      summary: Create measure in ANR
+      tags:
+        - ANR - Measures
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                label:
+                  type: string
+      responses:
+        '201':
+          description: Measure created
+
+  /api/client-anr/{anrid}/measures/{id}:
+    get:
+      summary: Get measure by ID
+      tags:
+        - ANR - Measures
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Measure details
+    patch:
+      summary: Update measure
+      tags:
+        - ANR - Measures
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Measure updated
+    delete:
+      summary: Delete measure
+      tags:
+        - ANR - Measures
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Measure deleted
+
+  # ANR Child Routes - Referentials
+  /api/client-anr/{anrid}/referentials:
+    get:
+      summary: Get referentials for an ANR
+      tags:
+        - ANR - Referentials
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of referentials
+
+  /api/client-anr/{anrid}/referentials/{id}:
+    get:
+      summary: Get referential by ID
+      tags:
+        - ANR - Referentials
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Referential details
+
+  # ANR Child Routes - Instances
+  /api/client-anr/{anrid}/instances:
+    get:
+      summary: Get instances (asset instances) for an ANR
+      tags:
+        - ANR - Instances
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of instances
+    post:
+      summary: Create instance in ANR
+      tags:
+        - ANR - Instances
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                object:
+                  type: string
+                parent:
+                  type: integer
+                position:
+                  type: integer
+      responses:
+        '201':
+          description: Instance created
+
+  /api/client-anr/{anrid}/instances/{id}:
+    get:
+      summary: Get instance by ID
+      tags:
+        - ANR - Instances
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Instance details
+    patch:
+      summary: Update instance
+      tags:
+        - ANR - Instances
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Instance updated
+    delete:
+      summary: Delete instance
+      tags:
+        - ANR - Instances
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Instance deleted
+
+  # ANR Child Routes - Risks
+  /api/client-anr/{anrid}/risks:
+    get:
+      summary: Get information risks for an ANR
+      tags:
+        - ANR - Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of information risks
+    patch:
+      summary: Update risk treatment
+      tags:
+        - ANR - Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Risk updated
+
+  /api/client-anr/{anrid}/risks/{id}:
+    delete:
+      summary: Delete risk
+      tags:
+        - ANR - Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Risk deleted
+
+  # ANR Child Routes - Operational Risks
+  /api/client-anr/{anrid}/risksop:
+    get:
+      summary: Get operational risks for an ANR
+      tags:
+        - ANR - Operational Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of operational risks
+    post:
+      summary: Create operational risk
+      tags:
+        - ANR - Operational Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Operational risk created
+
+  /api/client-anr/{anrid}/risksop/{id}:
+    patch:
+      summary: Update operational risk
+      tags:
+        - ANR - Operational Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Operational risk updated
+    delete:
+      summary: Delete operational risk
+      tags:
+        - ANR - Operational Risks
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Operational risk deleted
+
+  # ANR Child Routes - Recommendations
+  /api/client-anr/{anrid}/recommendations:
+    get:
+      summary: Get recommendations for an ANR
+      tags:
+        - ANR - Recommendations
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of recommendations
+    post:
+      summary: Create recommendation
+      tags:
+        - ANR - Recommendations
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Recommendation created
+
+  /api/client-anr/{anrid}/recommendations/{id}:
+    get:
+      summary: Get recommendation by ID
+      tags:
+        - ANR - Recommendations
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recommendation details
+    patch:
+      summary: Update recommendation
+      tags:
+        - ANR - Recommendations
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Recommendation updated
+    delete:
+      summary: Delete recommendation
+      tags:
+        - ANR - Recommendations
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Recommendation deleted
+
+  # ANR Child Routes - Treatment Plan
+  /api/client-anr/{anrid}/treatment-plan:
+    get:
+      summary: Get treatment plan for an ANR
+      tags:
+        - ANR - Treatment Plan
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of treatment plan items
+
+  /api/client-anr/{anrid}/treatment-plan/{id}:
+    patch:
+      summary: Update treatment plan item
+      tags:
+        - ANR - Treatment Plan
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Treatment plan item updated
+
+  # ANR Child Routes - SOA (Statement of Applicability)
+  /api/client-anr/{anrid}/soa:
+    get:
+      summary: Get SOA for an ANR
+      tags:
+        - ANR - SOA
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of SOA items
+    post:
+      summary: Create SOA item
+      tags:
+        - ANR - SOA
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: SOA item created
+
+  /api/client-anr/{anrid}/soa/{id}:
+    get:
+      summary: Get SOA item by ID
+      tags:
+        - ANR - SOA
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: SOA item details
+    patch:
+      summary: Update SOA item
+      tags:
+        - ANR - SOA
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: SOA item updated
+    delete:
+      summary: Delete SOA item
+      tags:
+        - ANR - SOA
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: SOA item deleted
+
+  # ANR Child Routes - Records (GDPR)
+  /api/client-anr/{anrid}/records:
+    get:
+      summary: Get records of processing activities (GDPR)
+      tags:
+        - ANR - Records (GDPR)
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of records
+    post:
+      summary: Create record of processing activity
+      tags:
+        - ANR - Records (GDPR)
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '201':
+          description: Record created
+
+  /api/client-anr/{anrid}/records/{id}:
+    get:
+      summary: Get record by ID
+      tags:
+        - ANR - Records (GDPR)
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Record details
+    patch:
+      summary: Update record
+      tags:
+        - ANR - Records (GDPR)
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Record updated
+    delete:
+      summary: Delete record
+      tags:
+        - ANR - Records (GDPR)
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Record deleted
+
+  # ANR Child Routes - Scales
+  /api/client-anr/{anrid}/scales:
+    get:
+      summary: Get scales for an ANR
+      tags:
+        - ANR - Scales
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of scales
+    patch:
+      summary: Update scales
+      tags:
+        - ANR - Scales
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Scales updated
+
+  /api/client-anr/{anrid}/scales/{id}:
+    get:
+      summary: Get scale by ID
+      tags:
+        - ANR - Scales
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Scale details
+
+  # ANR Child Routes - Export
+  /api/client-anr/{anrid}/export:
+    post:
+      summary: Export ANR
+      description: Export the risk analysis to a file
+      tags:
+        - ANR - Export/Import
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Export file
+
+  # ANR Child Routes - Objects
+  /api/client-anr/{anrid}/objects:
+    get:
+      summary: Get objects for an ANR
+      tags:
+        - ANR - Objects
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of objects
+    post:
+      summary: Create object in ANR
+      tags:
+        - ANR - Objects
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Object created
+
+  /api/client-anr/{anrid}/objects/{id}:
+    get:
+      summary: Get object by ID
+      tags:
+        - ANR - Objects
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Object details
+    patch:
+      summary: Update object
+      tags:
+        - ANR - Objects
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
           required: true
           schema:
             type: string
@@ -410,30 +2470,226 @@ paths:
               properties:
                 name:
                   type: string
-                description:
-                  type: string
-      security:
-        - role: [superadmin, userfo] # can do it only if it has at lease "rw" permissions.
       responses:
         '200':
-          description: ANR updated
+          description: Object updated
     delete:
-      summary: Delete ANR by ID
+      summary: Delete object
       tags:
-        - ANR
+        - ANR - Objects
       parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Object deleted
+
+  # ANR Child Routes - Snapshots
+  /api/client-anr/{anrid}/snapshot:
+    get:
+      summary: Get snapshots for an ANR
+      tags:
+        - ANR - Snapshots
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of snapshots
+    post:
+      summary: Create snapshot
+      tags:
+        - ANR - Snapshots
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+      responses:
+        '201':
+          description: Snapshot created
+
+  /api/client-anr/{anrid}/snapshot/{id}:
+    delete:
+      summary: Delete snapshot
+      tags:
+        - ANR - Snapshots
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
         - in: path
           name: id
           required: true
           schema:
             type: integer
-        - in: header
-          name: Token
+      responses:
+        '204':
+          description: Snapshot deleted
+
+  /api/client-anr/{anrid}/restore-snapshot/{id}:
+    post:
+      summary: Restore ANR from snapshot
+      tags:
+        - ANR - Snapshots
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Snapshot restored
+
+  # ANR Child Routes - Dashboards
+  /api/client-anr/{anrid}/risks-dashboard:
+    get:
+      summary: Get risks dashboard data
+      tags:
+        - ANR - Dashboards
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dashboard data
+
+  /api/client-anr/{anrid}/carto-risks-dashboard:
+    get:
+      summary: Get cartography of risks dashboard data
+      tags:
+        - ANR - Dashboards
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cartography dashboard data
+
+  /api/client-anr/{anrid}/carto-risks-dashboard/{type}:
+    get:
+      summary: Get cartography of risks dashboard data by type
+      tags:
+        - ANR - Dashboards
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: type
           required: true
           schema:
             type: string
-      security:
-        - role: [superadmin, userfo]
+            enum: [all, real, targeted]
       responses:
-        '204':
-          description: ANR deleted
+        '200':
+          description: Cartography dashboard data
+
+  # Statistics
+  /api/stats:
+    get:
+      summary: Get statistics
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: Statistics data
+
+  /api/stats/processed:
+    get:
+      summary: Get processed statistics list
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: List of processed statistics
+
+  /api/stats/general-settings:
+    get:
+      summary: Get general statistics settings
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: Statistics settings
+    patch:
+      summary: Update general statistics settings
+      tags:
+        - Statistics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Settings updated
+
+  /api/stats/anrs-settings:
+    get:
+      summary: Get ANR statistics settings
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: ANR statistics settings
+    patch:
+      summary: Update ANR statistics settings
+      tags:
+        - Statistics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Settings updated
+
+  /api/stats/validate-stats-availability:
+    get:
+      summary: Validate statistics availability
+      tags:
+        - Statistics
+      responses:
+        '200':
+          description: Validation result

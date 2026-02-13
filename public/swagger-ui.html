@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONARC API Documentation</title>
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        .swagger-info {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            color: #3b4151;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            color: #3b4151;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .download-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4990e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .download-link:hover {
+            background-color: #357abd;
+        }
+        
+        .external-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #49cc90;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        
+        .external-link:hover {
+            background-color: #3da574;
+        }
+        
+        .instructions {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        
+        .instructions h2 {
+            color: #3b4151;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            line-height: 1.8;
+        }
+        
+        .instructions code {
+            background-color: #e7e7e7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="swagger-info">
+        <h1>MONARC API Documentation</h1>
+        
+        <div class="description">
+            <p>Welcome to the MONARC (Optimised Risk Analysis Method) API documentation.</p>
+            <p>This API allows you to programmatically interact with MONARC for risk analysis, asset management, threat assessment, and more.</p>
+        </div>
+        
+        <div>
+            <a href="swagger.yaml" class="download-link" download>Download OpenAPI Specification (YAML)</a>
+            <a href="https://editor.swagger.io/?url=" class="external-link" target="_blank" id="swagger-editor">View in Swagger Editor</a>
+        </div>
+        
+        <div class="instructions">
+            <h2>How to View the API Documentation</h2>
+            <ol>
+                <li><strong>Download the specification:</strong> Click the "Download OpenAPI Specification" button above to get the <code>swagger.yaml</code> file.</li>
+                <li><strong>Use Swagger Editor:</strong> Click the "View in Swagger Editor" button to view the documentation in the online Swagger Editor.</li>
+                <li><strong>Use Swagger UI locally:</strong> If you have Swagger UI installed locally, you can load the <code>swagger.yaml</code> file from <code>/public/swagger.yaml</code> path.</li>
+                <li><strong>Import into API clients:</strong> Import the OpenAPI specification into tools like Postman, Insomnia, or other API clients for testing.</li>
+            </ol>
+            
+            <h2>Authentication</h2>
+            <p>Most API endpoints require authentication via a <code>Token</code> header. To authenticate:</p>
+            <ol>
+                <li>Login via <code>POST /api/auth</code> with your email and password</li>
+                <li>Include the returned token in subsequent requests using the <code>Token</code> header</li>
+            </ol>
+            
+            <h2>Base URL</h2>
+            <p>All API endpoints are relative to the base URL of your MONARC installation.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Set the correct URL for Swagger Editor with the current server's swagger.yaml
+        const swaggerEditorLink = document.getElementById('swagger-editor');
+        const currentUrl = window.location.href.replace('swagger-ui.html', 'swagger.yaml');
+        swaggerEditorLink.href = 'https://editor.swagger.io/?url=' + encodeURIComponent(currentUrl);
+    </script>
+</body>
+</html>
