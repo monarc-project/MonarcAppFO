@@ -1,37 +1,29 @@
-Installation on Ubuntu 22.04
+Installation on Ubuntu 24.04
 ============================
 
-# 1. Install LAMP & dependencies
+# 1. Dependencies 
 
-## 1.1. Install system dependencies
-
+Install some utilities, database, webserver
 ```bash
-sudo apt-get install zip unzip git gettext curl jq
+sudo apt update
+sudo apt-get install -y curl jq mariadb-client mariadb-server apache2
 ```
 
-Some might already be installed.
-
-## 1.2. Install MariaDB
-
+Install PHP and its dependencies (the default php version in Ubuntu 24.04 is php8.3):
 ```bash
-sudo apt-get install mariadb-client mariadb-server
+sudo apt-get install -y php php-cli php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-bcmath php-intl php-imagick
 ```
 
-### Secure the MariaDB installation
+# 2. Monarc files
 
-```bash
-sudo mysql_secure_installation
-```
+Run the [get_and_unpack_the_latest_release.sh](./get_and_unpack_the_latest_release.sh) script with `sudo`
+ to download the latest Monarc release and unpack it into `/var/lib/monarc/`.
 
-Especially by setting a strong root password.
+> The script is built to be used in the CI/CD pipelines and will fail with a clear error if the release is not reachable or the deploy directory already exits.
 
-## 1.3. Install Apache2
+# 3. Webserver
 
-```bash
-sudo apt-get install apache2
-```
-
-### Enable modules, settings, and default of SSL in Apache
+Enable required Apache modules:
 
 ```bash
 sudo a2dismod status
@@ -40,19 +32,17 @@ sudo a2enmod rewrite
 sudo a2enmod headers
 ```
 
-### Apache Virtual Host
-
-Modify default Apache virtual host:
+Modify the default virtual host:
 
 ```bash
-sudo vi /etc/apache2/sites-enabled/000-default.conf
+sudo nano /etc/apache2/sites-enabled/000-default.conf
 ```
 
-With this configuration:
+Use this configuration as an example:
 
 ```conf
 <VirtualHost _default_:80>
-    ServerAdmin admin@localhost.lu
+    ServerAdmin admin@example.com
     ServerName monarc.local
     DocumentRoot /var/lib/monarc/fo/public
 
@@ -60,6 +50,20 @@ With this configuration:
         DirectoryIndex index.php
         AllowOverride All
         Require all granted
+        
+        # increase the default php limits
+        # better here then in the global php.ini as the webserver could run other projects
+        php_value upload_max_filesize 200M
+        php_value post_max_size 50M
+        php_value max_execution_time 100
+        php_value max_input_time 223
+        php_value memory_limit 512M
+        # Error logs settings for production:
+        php_value error_reporting E_ALL
+        php_flag log_errors On
+        # for development, set to "On"
+        php_flag display_errors Off
+
     </Directory>
 
     <IfModule mod_headers.c>
@@ -73,69 +77,23 @@ With this configuration:
 </VirtualHost>
 ```
 
-## 1.4. Install PHP and dependencies (It's recommended to install php8 or php8.1 and all the modules of the version)
+Check the configuration and apply changes:
 
 ```bash
-sudo apt-get install -y php8.1 php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagick
+apachectl configtest
+sudo apachectl restart
 ```
 
-## 1.5 Apply PHP configuration settings in your php.ini
 
-Edit php.ini file
+# 4. Database
+
+Secure the MariaDB installation and set a strong root password.
 
 ```bash
-sudo vi /etc/php/8.1/apache2/php.ini
-```
-Change these keys:
-
-```php
-upload_max_filesize = 200M
-post_max_size = 50M
-max_execution_time = 100
-max_input_time = 223
-memory_limit = 2048M
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE & ~E_WARNING
+sudo mysql_secure_installation
 ```
 
-## 1.6 Apply all changes
-
-```bash
-sudo systemctl restart apache2.service
-```
-
-# 2. Installation of MONARC
-
-```bash
-PATH_TO_MONARC='/var/lib/monarc/fo'
-PATH_TO_MONARC_DATA='/var/lib/monarc/fo-data'
-MONARC_VERSION=$(curl --silent -H 'Content-Type: application/json' https://api.github.com/repos/monarc-project/MonarcAppFO/releases/latest | jq  -r '.tag_name')
-MONARCFO_RELEASE_URL="https://github.com/monarc-project/MonarcAppFO/releases/download/$MONARC_VERSION/MonarcAppFO-$MONARC_VERSION.tar.gz"
-
-mkdir -p /var/lib/monarc/releases/
-# Download release
-curl -sL $MONARCFO_RELEASE_URL -o /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL`
-# Create release directory
-mkdir /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL | sed 's/.tar.gz//'`
-# Unarchive release
-tar -xzf /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL` -C /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL | sed 's/.tar.gz//'`
-# Create release symlink
-ln -s /var/lib/monarc/releases/`basename $MONARCFO_RELEASE_URL | sed 's/.tar.gz//'` $PATH_TO_MONARC
-# Create data and caches directories
-mkdir -p $PATH_TO_MONARC_DATA/cache $PATH_TO_MONARC_DATA/DoctrineORMModule/Proxy $PATH_TO_MONARC_DATA/LazyServices/Proxy $PATH_TO_MONARC_DATA/import/files
-# Create data directory symlink
-ln -s $PATH_TO_MONARC_DATA $PATH_TO_MONARC/data
-```
-
-## 2.1 Change owner
-
-```bash
-sudo chown -R www-data:www-data /var/lib/monarc
-```
-
-
-## 2.2. Databases
-
-### Create a MariaDB user for MONARC
+## 4.1 Create a database user
 
 Start MariaDB as root:
 
@@ -147,11 +105,12 @@ Create a new user for MONARC (please use more secured password):
 
 ```sql
 CREATE USER 'monarc'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'monarc'@'%';
+GRANT ALL PRIVILEGES ON monarc_cli.* TO 'monarc'@'%';
+GRANT ALL PRIVILEGES ON monarc_common.* TO 'monarc'@'%';
 FLUSH PRIVILEGES;
 ```
 
-### Create 2 databases
+## 4.2 Create 2 databases
 
 In your MariaDB interpreter:
 
@@ -161,26 +120,26 @@ CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_ge
 ```
 
 * monarc_common contains models and data created by CASES;
-* monarc_cli contains all client risk analyses. Each analysis is based on CASES
-  model of monarc_common.
+* monarc_cli contains all client risk analyses. Each analysis is based on CASES model of monarc_common.
 
-### Initializes the database
+## 4.3 Initialize the database
 
 ```bash
-cd /var/lib/monarc/releases/MonarcAppFO-$MONARC_VERSION
+cd /var/lib/monarc/fo
 mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_structure.sql
 mysql -u monarc -ppassword monarc_common < db-bootstrap/monarc_data.sql
 ```
 
-### Database connection
+## 4.4 Connect Monarc App to the database
 
-Create the configuration file:
+Create and edit the configuration file:
 
 ```bash
 sudo cp ./config/autoload/local.php.dist ./config/autoload/local.php
+sudo nano ./config/autoload/local.php
 ```
 
-And configure the database connection (use the secured password set on the DB user creation step):
+Configure the database connection (use the secured password set on the DB user creation step):
 
 ```php
     return [
@@ -207,7 +166,7 @@ And configure the database connection (use the secured password set on the DB us
     ];
 ```
 
-# 3. Migrating MONARC DB
+## 4.5 Migrate the MONARC DB
 
 ```bash
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
@@ -215,7 +174,7 @@ php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/
 ```
 
 
-# 4. Create initial user
+## 4.6 Create initial user
 
 ```bash
 php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
