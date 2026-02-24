@@ -16,6 +16,7 @@ MONARC Changelog
 - [SQL syntax error (MySQL ONLY_FULL_GROUP_BY violation)](https://github.com/monarc-project/MonarcAppFO/issues/574)
 - [Dashboard Operational Risks PNG Export incorrect](https://github.com/monarc-project/MonarcAppFO/issues/578)
 - Updated the proxy-manager to use the LTS version and avoid the php version limitation.
+- Fixed the recommendations export to .csv, removed the default limit of 25 records.
 
 
 ## 2.13.3-p6 (2025-12-18)
