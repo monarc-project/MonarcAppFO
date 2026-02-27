@@ -17,6 +17,7 @@ MONARC Changelog
 - [Dashboard Operational Risks PNG Export incorrect](https://github.com/monarc-project/MonarcAppFO/issues/578)
 - Updated the proxy-manager to use the LTS version and avoid the php version limitation.
 - Fixed the recommendations export to .csv, removed the default limit of 25 records.
+- Fixed the import process to replace the global objects' risks Existing controls fields and the threat CIA values.
 
 
 ## 2.13.3-p6 (2025-12-18)
