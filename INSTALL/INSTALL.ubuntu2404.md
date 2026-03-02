@@ -6,7 +6,7 @@ Installation on Ubuntu 24.04
 Install some utilities, database, webserver
 ```bash
 sudo apt update
-sudo apt-get install -y curl jq mariadb-client mariadb-server apache2
+sudo apt-get install -y zip unzip git gettext curl jq mariadb-client mariadb-server apache2
 ```
 
 Install PHP and its dependencies (the default php version in Ubuntu 24.04 is php8.3):
@@ -16,7 +16,7 @@ sudo apt-get install -y php php-cli php-common php-mysql php-zip php-gd php-mbst
 
 # 2. Monarc files
 
-Run the [get_and_unpack_the_latest_release.sh](./get_and_unpack_the_latest_release.sh) script with `sudo`
+Run the [install_latest_fo_release.sh](../scripts/install_latest_fo_release.sh) script with `sudo`
  to download the latest Monarc release and unpack it into `/var/lib/monarc/`.
 
 > The script is built to be used in the CI/CD pipelines and will fail with a clear error if the release is not reachable or the deploy directory already exits.
@@ -169,10 +169,8 @@ Configure the database connection (use the secured password set on the DB user c
 ## 4.5 Migrate the MONARC DB
 
 ```bash
-php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/FrontOffice/migrations/phinx.php
-php ./vendor/robmorgan/phinx/bin/phinx migrate -c module/Monarc/Core/migrations/phinx.php
+bash ./scripts/upgrade-db.sh
 ```
-
 
 ## 4.6 Create initial user
 
