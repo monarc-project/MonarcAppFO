@@ -44,7 +44,7 @@ ln -sfn "$DATA_DIR" "$TARGET_DIR/data"
 ln -sfn "$TARGET_DIR" "$APP_LINK"
 
 # change owner
-chown -R www-data:www-data /var/lib/monarc
+chown -R www-data:www-data "$BASE_DIR"
 
 echo "Monarc version $VERSION files was installed successfully!"
 echo "No database or web-server configuration changes were made."
