@@ -76,7 +76,7 @@ With this configuration:
 ## 1.4. Install PHP and dependencies (It's recommended to install php8 or php8.1 and all the modules of the version)
 
 ```bash
-sudo apt-get install -y php8.1 php8.1-cli php8.1-common hp8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagic
+sudo apt-get install -y php8.1 php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-imagick
 ```
 
 ## 1.5 Apply PHP configuration settings in your php.ini
