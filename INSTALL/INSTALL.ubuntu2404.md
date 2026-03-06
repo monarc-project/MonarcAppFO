@@ -16,7 +16,7 @@ sudo apt-get install -y php php-cli php-common php-mysql php-zip php-gd php-mbst
 
 # 2. Monarc files
 
-Run the [install_latest_fo_release.sh](../scripts/install_latest_fo_release.sh) script with `sudo`
+Create and run the [install_latest_fo_release.sh](../scripts/install_latest_fo_release.sh) script with `sudo`
  to download the latest Monarc release and unpack it into `/var/lib/monarc/`.
 
 > The script is built to be used in the CI/CD pipelines and will fail with a clear error if the release is not reachable or the deploy directory already exits.
