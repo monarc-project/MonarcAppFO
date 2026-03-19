@@ -11,7 +11,7 @@
  * credentials from accidentally being committed into version control.
  */
 
-$appdir = getenv('APP_DIR') ?: '/var/lib/monarc';
+$appdir = getenv('APP_DIR') ?: '/var/lib/monarc/fo';
 
 $package_json = json_decode(file_get_contents('./package.json'), true);
 
