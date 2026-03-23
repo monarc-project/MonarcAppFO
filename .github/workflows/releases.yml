@@ -179,6 +179,8 @@ jobs:
         file: ./.docker-release-context/Dockerfile.release
         push: true
         platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=release-app-image
+        cache-to: type=gha,mode=max,scope=release-app-image
         tags: ${{ steps.meta_app.outputs.tags }}
         labels: ${{ steps.meta_app.outputs.labels }}
 
@@ -203,5 +205,7 @@ jobs:
         file: ./Dockerfile.stats
         push: true
         platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=release-stats-image
+        cache-to: type=gha,mode=max,scope=release-stats-image
         tags: ${{ steps.meta_stats.outputs.tags }}
         labels: ${{ steps.meta_stats.outputs.labels }}
