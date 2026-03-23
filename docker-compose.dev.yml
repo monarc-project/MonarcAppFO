@@ -84,7 +84,7 @@ services:
   monarcfoapp:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       args:
         NODE_MAJOR: ${NODE_MAJOR:-16}
         XDEBUG_ENABLED: ${XDEBUG_ENABLED:-1}

@@ -111,6 +111,28 @@ jobs:
         fail_on_unmatched_files: true
       if: startsWith(github.ref, 'refs/tags/')
 
+    - name: Prepare app image build context
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        rm -rf .docker-release-context
+        mkdir -p .docker-release-context
+        tar \
+          --exclude .git \
+          --exclude .github \
+          --exclude .idea \
+          --exclude .vscode \
+          --exclude vagrant \
+          --exclude wsl \
+          --exclude INSTALL \
+          --exclude data \
+          --exclude .env \
+          --exclude .env.dev \
+          --exclude .DS_Store \
+          --exclude .docker-release-context \
+          --exclude .docker-stage-context \
+          -cf - . | tar -xf - -C .docker-release-context
+        rm -f .docker-release-context/.dockerignore
+
     - name: Set image names
       id: image_names
       if: startsWith(github.ref, 'refs/tags/')
@@ -153,8 +175,8 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
+        context: ./.docker-release-context
+        file: ./.docker-release-context/Dockerfile.release
         push: true
         platforms: linux/amd64,linux/arm64
         tags: ${{ steps.meta_app.outputs.tags }}

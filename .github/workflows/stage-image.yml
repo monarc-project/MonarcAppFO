@@ -15,6 +15,96 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: install deps
+      run: sudo apt-get update && sudo apt install -y gettext
+
+    # PHP
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: "8.1"
+        tools: composer:v2.3
+        extensions: bcmath
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install PHP dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest --no-dev
+
+    - name: Symlink Monarc modules
+      run: |
+        mkdir -p module/Monarc
+        ln -s ../../vendor/monarc/core module/Monarc/Core
+        ln -s ../../vendor/monarc/frontoffice module/Monarc/FrontOffice
+
+    # javascript
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: "16.x"
+
+    - uses: oprypin/find-latest-tag@v1
+      with:
+        repository: monarc-project/ng-anr
+        releases-only: true
+      id: ng_anr_lasttag
+
+    - run: echo "ng-anr is at version ${{ steps.ng_anr_lasttag.outputs.tag }}"
+
+    - name: Install ng-anr
+      uses: actions/checkout@v3
+      with:
+        repository: monarc-project/ng-anr
+        ref: ${{ steps.ng_anr_lasttag.outputs.tag }}
+        path: './node_modules/ng_anr'
+
+    - uses: oprypin/find-latest-tag@v1
+      with:
+        repository: monarc-project/ng-client
+        releases-only: true
+      id: ng_client_lasttag
+
+    - run: echo "ng-client is at version ${{ steps.ng_client_lasttag.outputs.tag }}"
+
+    - name: Install ng-client
+      uses: actions/checkout@v3
+      with:
+        repository: monarc-project/ng-client
+        ref: ${{ steps.ng_client_lasttag.outputs.tag }}
+        path: './node_modules/ng_client'
+
+    - name: Install ng-client dependencies
+      run: |
+        cd node_modules/ng_client
+        npm ci
+
+    - name: post job
+      run: |
+        bash -ex ./scripts/link_modules_resources.sh
+        bash -ex ./scripts/compile_translations.sh
+
+    - name: Prepare app image build context
+      run: |
+        rm -rf .docker-stage-context
+        mkdir -p .docker-stage-context
+        tar \
+          --exclude .git \
+          --exclude .github \
+          --exclude .idea \
+          --exclude .vscode \
+          --exclude vagrant \
+          --exclude wsl \
+          --exclude INSTALL \
+          --exclude data \
+          --exclude .env \
+          --exclude .env.dev \
+          --exclude .DS_Store \
+          --exclude .docker-stage-context \
+          --exclude .docker-release-context \
+          -cf - . | tar -xf - -C .docker-stage-context
+        rm -f .docker-stage-context/.dockerignore
+
     - name: Set image names
       id: image_names
       run: |
@@ -51,8 +141,8 @@ jobs:
     - name: Build and push app image (stage)
       uses: docker/build-push-action@v6
       with:
-        context: .
-        file: ./Dockerfile
+        context: ./.docker-stage-context
+        file: ./.docker-stage-context/Dockerfile.release
         push: true
         platforms: linux/amd64,linux/arm64
         tags: ${{ steps.meta_app_stage.outputs.tags }}

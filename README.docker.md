@@ -394,7 +394,7 @@ For better performance on macOS and Windows:
    - Memory: 8GB or more
    - Swap: 2GB or more
 
-3. **Enable caching**: The Dockerfile uses apt cache and composer optimizations.
+3. **Enable caching**: `Dockerfile.dev` uses apt cache and composer optimizations.
 
 ## Comparison with Vagrant
 
