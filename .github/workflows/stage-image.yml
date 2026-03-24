@@ -96,13 +96,13 @@ jobs:
           --exclude vagrant \
           --exclude wsl \
           --exclude INSTALL \
-          --exclude data \
           --exclude .env \
           --exclude .env.dev \
           --exclude .DS_Store \
           --exclude .docker-stage-context \
           --exclude .docker-release-context \
           -cf - . | tar -xf - -C .docker-stage-context
+        rm -rf .docker-stage-context/data
         rm -f .docker-stage-context/.dockerignore
 
     - name: Set image names
