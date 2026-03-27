@@ -167,7 +167,10 @@ EOF
 
     # Seed database with initial user
     echo -e "${YELLOW}Creating initial user and client...${NC}"
-    php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+    if ! php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php; then
+        echo -e "${YELLOW}Initial user/client seed failed. update-all completed successfully, so initialization will continue.${NC}"
+        echo -e "${YELLOW}If needed, rerun the seed manually after startup.${NC}"
+    fi
 
     # Set permissions
     echo -e "${YELLOW}Setting permissions...${NC}"
