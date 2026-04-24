@@ -97,6 +97,24 @@ This guide explains how to set up a local development environment for MONARC Fro
    - Username: `admin@admin.localhost`
    - Password: `admin`
 
+8. **(Optional) Enable Copilot**:
+   Edit `.env` and configure the Copilot variables:
+   ```bash
+   IS_COPILOT_ENABLED=1
+   COPILOT_OLLAMA_ENABLED=1
+   COPILOT_OLLAMA_TRANSPORT=openai-chat
+   COPILOT_OLLAMA_BASE_URL=http://127.0.0.1:11434
+   COPILOT_OLLAMA_ENDPOINT_PATH=/chat/completions
+   COPILOT_OLLAMA_MODEL=llama-70b
+   COPILOT_OLLAMA_API_KEY=
+   COPILOT_OLLAMA_JSON_MODE=0
+   COPILOT_OLLAMA_TIMEOUT=20
+   ```
+   Then restart the application container:
+   ```bash
+   docker compose -f docker-compose.dev.yml restart monarcfoapp
+   ```
+
 ## Services
 
 The development environment includes the following services:
@@ -229,6 +247,31 @@ docker compose -f docker-compose.dev.yml down -v
 ```
 
 ## Common Tasks
+
+### Enabling Copilot
+
+The Docker entrypoint prepares Copilot automatically on startup:
+
+- creates `module/Monarc/Copilot`
+- writes `config/autoload/copilot.local.php` from environment variables
+- recreates `public/js/copilot/CopilotWidget.js`
+- recreates `public/css/copilot/copilot.css`
+
+To enable the UI:
+
+1. Set `IS_COPILOT_ENABLED=1` in `.env`
+2. Point `COPILOT_OLLAMA_BASE_URL` to a reachable LLM endpoint
+3. Restart the application container:
+   ```bash
+   docker compose -f docker-compose.dev.yml restart monarcfoapp
+   ```
+
+If the Copilot button is still missing, verify:
+
+- `docker compose -f docker-compose.dev.yml exec monarcfoapp ls -l module/Monarc/Copilot`
+- `docker compose -f docker-compose.dev.yml exec monarcfoapp ls -l public/js/copilot public/css/copilot`
+- `docker compose -f docker-compose.dev.yml exec monarcfoapp cat config/autoload/copilot.local.php`
+- `docker compose -f docker-compose.dev.yml logs monarcfoapp`
 
 ### Using BackOffice monarc_common
 

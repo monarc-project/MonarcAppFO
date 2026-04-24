@@ -619,7 +619,7 @@ MONARC Changelog
 - the MONARC core objects (assets, threats, vulnerabilities and risks) are now
   identified with UUIDs. We published the objects on the
   [MONARC objects sharing platform](https://objects.monarc.lu). Risks from
-  the CASES models are also [available](https://objects.monarc.lu/schema/16);
+  the NC3 models are also [available](https://objects.monarc.lu/schema/16);
 - Assets, threats, vulnerabilities, risks and referentials can be imported
   in the knowledge base of your analysis from MOSP without leaving the MONARC
   user interface.

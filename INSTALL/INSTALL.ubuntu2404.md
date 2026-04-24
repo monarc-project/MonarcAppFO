@@ -123,8 +123,8 @@ CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_gener
 CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 ```
 
-* monarc_common contains models and data created by CASES;
-* monarc_cli contains all client risk analyses. Each analysis is based on CASES model of monarc_common.
+* monarc_common contains models and data created by NC3;
+* monarc_cli contains all client risk analyses. Each analysis is based on NC3 model of monarc_common.
 
 ## 4.3 Initialize the database
 
@@ -183,6 +183,71 @@ php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/m
 ```
 
 The username is *admin@admin.localhost* and the password is *admin*.
+
+
+## 4.7 Enable Copilot (optional)
+
+Recent FrontOffice releases already include the `monarc/copilot` Composer dependency. For custom source deployments, ensure dependencies are installed:
+
+```bash
+composer install
+```
+
+Create the Laminas module symlink:
+
+```bash
+cd /var/lib/monarc/fo
+mkdir -p module/Monarc
+ln -sfn ./../../vendor/monarc/copilot module/Monarc/Copilot
+```
+
+Enable the feature flag in `config/autoload/local.php`:
+
+```php
+    'isCopilotEnabled' => true,
+```
+
+Create the Copilot runtime configuration:
+
+```bash
+cp ./config/autoload/copilot.local.php.dist ./config/autoload/copilot.local.php
+nano ./config/autoload/copilot.local.php
+```
+
+Example configuration:
+
+```php
+<?php
+
+return [
+    'copilot' => [
+        'ollama' => [
+            'enabled' => true,
+            'transport' => 'openai-chat',
+            'baseUrl' => 'http://127.0.0.1:11434',
+            'endpointPath' => '/chat/completions',
+            'model' => 'llama-70b',
+            'apiKey' => '',
+            'jsonMode' => false,
+            'timeout' => 20,
+        ],
+    ],
+];
+```
+
+Refresh the linked frontend resources:
+
+```bash
+./scripts/update-all.sh -d
+```
+
+Restart Apache:
+
+```bash
+sudo apachectl restart
+```
+
+After login, the `Show copilot` button is available on ANR pages when `isCopilotEnabled` is enabled and the configured LLM endpoint is reachable.
 
 
 # 5. Statistics for Global Dashboard

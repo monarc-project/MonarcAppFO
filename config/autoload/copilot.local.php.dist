@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'copilot' => [
+        'ollama' => [
+            'enabled' => true,
+            'transport' => 'openai-chat',
+            'baseUrl' => 'http://127.0.0.1:11434',
+            'endpointPath' => '/chat/completions',
+            'model' => 'llama-70b',
+            'apiKey' => '',
+            'jsonMode' => false,
+            'timeout' => 20,
+        ],
+    ],
+];

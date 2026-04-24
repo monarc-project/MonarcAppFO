@@ -116,6 +116,7 @@ mkdir -p module/Monarc
 cd module/Monarc
 ln -sfn ./../../vendor/monarc/core Core
 ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
+ln -sfn ./../../vendor/monarc/copilot Copilot
 cd $PATH_TO_MONARC
 
 

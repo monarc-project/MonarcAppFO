@@ -24,6 +24,70 @@ is_true() {
     esac
 }
 
+to_php_bool() {
+    if is_true "$1"; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+ensure_module_symlinks() {
+    mkdir -p /var/www/html/monarc/module/Monarc
+    cd /var/www/html/monarc/module/Monarc
+    ln -sfn ./../../vendor/monarc/core Core
+    ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
+    ln -sfn ./../../vendor/monarc/copilot Copilot
+    cd /var/www/html/monarc
+}
+
+ensure_copilot_assets() {
+    mkdir -p /var/www/html/monarc/public/js/copilot
+    mkdir -p /var/www/html/monarc/public/css/copilot
+
+    find /var/www/html/monarc/public/js/copilot -maxdepth 1 -type l -exec rm {} \; 2>/dev/null || true
+    find /var/www/html/monarc/public/css/copilot -maxdepth 1 -type l -exec rm {} \; 2>/dev/null || true
+    rm -f /var/www/html/monarc/public/js/copilot/CopilotWidget.js
+    rm -f /var/www/html/monarc/public/css/copilot/copilot.css
+
+    if [ -d /var/www/html/monarc/vendor/monarc/copilot/public/dist ]; then
+        ln -s ../../../vendor/monarc/copilot/public/dist/copilot-widget.js /var/www/html/monarc/public/js/copilot/CopilotWidget.js
+        ln -s ../../../vendor/monarc/copilot/public/dist/copilot.css /var/www/html/monarc/public/css/copilot/copilot.css
+    elif [ -d /var/www/html/monarc/vendor/monarc/copilot/public/src ]; then
+        ln -s ../../../vendor/monarc/copilot/public/src/copilot-widget.js /var/www/html/monarc/public/js/copilot/CopilotWidget.js
+    fi
+}
+
+write_copilot_config() {
+    local copilot_enabled_php
+    local copilot_ollama_enabled_php
+    local copilot_ollama_json_mode_php
+
+    copilot_enabled_php=$(to_php_bool "${IS_COPILOT_ENABLED:-0}")
+    copilot_ollama_enabled_php=$(to_php_bool "${COPILOT_OLLAMA_ENABLED:-1}")
+    copilot_ollama_json_mode_php=$(to_php_bool "${COPILOT_OLLAMA_JSON_MODE:-0}")
+
+    cat > /var/www/html/monarc/config/autoload/copilot.local.php <<EOF
+<?php
+
+return [
+    'isCopilotEnabled' => ${copilot_enabled_php},
+    'copilot' => [
+        'ollama' => [
+            'enabled' => ${copilot_ollama_enabled_php},
+            'transport' => '${COPILOT_OLLAMA_TRANSPORT:-openai-chat}',
+            'baseUrl' => '${COPILOT_OLLAMA_BASE_URL:-http://127.0.0.1:11434}',
+            'endpointPath' => '${COPILOT_OLLAMA_ENDPOINT_PATH:-/chat/completions}',
+            'model' => '${COPILOT_OLLAMA_MODEL:-llama-70b}',
+            'apiKey' => '${COPILOT_OLLAMA_API_KEY:-}',
+            'jsonMode' => ${copilot_ollama_json_mode_php},
+            'timeout' => ${COPILOT_OLLAMA_TIMEOUT:-20},
+        ],
+    ],
+];
+EOF
+}
+
 # Check if this is the first run
 if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     echo -e "${GREEN}First run detected, initializing application...${NC}"
@@ -33,14 +97,6 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     # Install composer dependencies (always, to ensure binaries like Phinx are present)
     echo -e "${YELLOW}Installing Composer dependencies...${NC}"
     composer install --ignore-platform-req=php --no-interaction
-
-    # Create module symlinks
-    echo -e "${YELLOW}Creating module symlinks...${NC}"
-    mkdir -p module/Monarc
-    cd module/Monarc
-    ln -sfn ./../../vendor/monarc/core Core
-    ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
-    cd /var/www/html/monarc
 
     # Clone frontend repositories
     echo -e "${YELLOW}Setting up frontend repositories...${NC}"
@@ -180,6 +236,11 @@ EOF
 else
     echo -e "${GREEN}Application already initialized, starting services...${NC}"
 fi
+
+echo -e "${YELLOW}Ensuring module symlinks and Copilot config...${NC}"
+ensure_module_symlinks
+ensure_copilot_assets
+write_copilot_config
 
 # Execute the main command
 exec apachectl -D FOREGROUND

@@ -37,6 +37,18 @@ else
 	find -L public/img -type l -exec rm {} \;
 fi
 
+if [ ! -d public/js/copilot ]; then
+	mkdir -p public/js/copilot
+fi
+find public/js/copilot -maxdepth 1 -type l -exec rm {} \; 2>/dev/null
+rm -f public/js/copilot/CopilotWidget.js
+
+if [ ! -d public/css/copilot ]; then
+	mkdir -p public/css/copilot
+fi
+find public/css/copilot -maxdepth 1 -type l -exec rm {} \; 2>/dev/null
+rm -f public/css/copilot/copilot.css
+
 # Link modules resources. TODO: Replace with Grunt tasks to minify the JS and CSS.
 cd public/views/ && find ../../node_modules/ng_client/views -name "*.html" -exec ln -s {} \; 2>/dev/null
 cd dialogs/ && find ../../../node_modules/ng_client/views/dialogs -maxdepth 1 -name "*.html" -exec ln -s {} \; 2>/dev/null
@@ -61,6 +73,13 @@ cd anr && find ../../../node_modules/ng_anr/css -type f -maxdepth 1 -name "*" -e
 cd ..
 
 cd ../..
+
+if [ -d vendor/monarc/copilot/public/dist ]; then
+	ln -s ../../../vendor/monarc/copilot/public/dist/copilot-widget.js public/js/copilot/CopilotWidget.js 2>/dev/null
+	ln -s ../../../vendor/monarc/copilot/public/dist/copilot.css public/css/copilot/copilot.css 2>/dev/null
+elif [ -d vendor/monarc/copilot/public/src ]; then
+	ln -s ../../../vendor/monarc/copilot/public/src/copilot-widget.js public/js/copilot/CopilotWidget.js 2>/dev/null
+fi
 
 pushd node_modules/ng_client
 grunt concat

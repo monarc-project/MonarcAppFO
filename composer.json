@@ -25,19 +25,19 @@
         },
         {
             "name": "Jérôme Lombardi",
-            "email": "jerome.lombardi@cases.lu"
+            "email": "jerome.lombardi@nc3.lu"
         },
         {
             "name": "Juan Rocha",
-            "email": "juan.rocha@cases.lu"
+            "email": "juan.rocha@nc3.lu"
         },
         {
             "name": "Cédric Bonhomme",
-            "email": "cedric.bonhomme@cases.lu"
+            "email": "cedric.bonhomme@circl.lu"
         },
         {
             "name": "Ruslan Baidan",
-            "email": "ruslan.baidan@cases.lu"
+            "email": "ruslan.baidan@nc3.lu"
         }
     ],
     "require": {
@@ -48,6 +48,7 @@
         "ext-openssl": "*",
         "monarc/frontoffice": "^2.13.1",
         "monarc/core": "^2.13.1",
+        "monarc/copilot": "^0.1",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",

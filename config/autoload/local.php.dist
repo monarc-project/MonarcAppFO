@@ -113,6 +113,8 @@ return [
         ],
     ],
 
+    'isCopilotEnabled' => false,
+
     /* Custom configuration of the smtp. The example config below is to make Mailcatcher work for the dev env.
     'smtpOptions' => [
         'name' => 'localhost',

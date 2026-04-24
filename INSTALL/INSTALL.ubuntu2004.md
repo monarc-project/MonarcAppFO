@@ -130,9 +130,8 @@ MariaDB [(none)]> CREATE DATABASE monarc_cli DEFAULT CHARACTER SET utf8 DEFAULT 
 MariaDB [(none)]> CREATE DATABASE monarc_common DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 ```
 
-* monarc_common contains models and data created by CASES;
-* monarc_cli contains all client risk analyses. Each analysis is based on CASES
-  model of monarc_common.
+* monarc_common contains models and data created by NC3;
+* monarc_cli contains all client risk analyses. Each analysis is based on NC3 model of monarc_common.
 
 ### Initializes the database
 

@@ -22,7 +22,7 @@ investment represented by this approach in terms of the required cost and
 expertise is a barrier for many companies, especially SMEs.
 
 To remedy this situation and allow all organisations, both large and small, to
-benefit from the advantages that a risk analysis offers, CASES has developed an
+benefit from the advantages that a risk analysis offers, NC3 has developed an
 optimised risk analysis method: [MONARC](https://www.monarc.lu)
 (**Optimised Risk Analysis Method**), allowing precise and repeatable risk
 management.
@@ -80,6 +80,67 @@ For local development, you can use either:
   ```bash
   cd vagrant && vagrant up
   ```
+
+
+Copilot
+-------
+
+MONARC FrontOffice can expose a read-only Copilot panel in the ANR layout.
+
+Installation summary:
+
+1. Ensure the PHP package is installed.
+   Recent FrontOffice versions already require `monarc/copilot`. For custom deployments, run:
+   ```bash
+   composer install
+   ```
+2. Ensure the Laminas module symlink exists:
+   ```bash
+   mkdir -p module/Monarc
+   ln -sfn ./../../vendor/monarc/copilot module/Monarc/Copilot
+   ```
+3. Enable the UI flag in [config/autoload/local.php.dist](config/autoload/local.php.dist) by setting:
+   ```php
+   'isCopilotEnabled' => true,
+   ```
+4. Copy [config/autoload/copilot.local.php.dist](config/autoload/copilot.local.php.dist) to `config/autoload/copilot.local.php` and configure the LLM endpoint.
+5. Refresh public assets:
+   ```bash
+   ./scripts/update-all.sh -d
+   ```
+
+Usage:
+
+- The copilot button is shown only when `isCopilotEnabled` is `true`.
+- The panel is hidden by default; click `Show copilot` from an ANR page to open it.
+- The copilot provides read-only guidance for the current screen, workflow step, next actions, context text, and recommendations.
+- The backend route is available under `api/client-anr/:anrId/copilot`.
+
+Typical configuration:
+
+```php
+return [
+    'copilot' => [
+        'ollama' => [
+            'enabled' => true,
+            'transport' => 'openai-chat',
+            'baseUrl' => 'http://127.0.0.1:11434',
+            'endpointPath' => '/chat/completions',
+            'model' => 'llama-70b',
+            'apiKey' => '',
+            'jsonMode' => false,
+            'timeout' => 20,
+        ],
+    ],
+];
+```
+
+If the button does not appear, verify:
+
+- `api/config` returns `"isCopilotEnabled": true`
+- `module/Monarc/Copilot` points to `vendor/monarc/copilot`
+- `public/js/copilot/CopilotWidget.js` and `public/css/copilot/copilot.css` exist
+- the configured LLM `baseUrl` is reachable from the FrontOffice host/container
 
 
 Contributing

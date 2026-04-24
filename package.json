@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/monarc-project/MonarcAppFO"
   },
-  "author": "CASES",
+  "author": "NC3",
   "license": "GNU Affero General Public License version 3",
   "dependencies": {
     "ng_anr": "git+https://github.com/monarc-project/ng-anr.git",
