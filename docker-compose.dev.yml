@@ -118,6 +118,11 @@ services:
     volumes:
       # Mount the application code for live development
       - ./:/var/www/html/monarc
+      # Mount sibling repositories so Composer path symlinks and node_modules links resolve in-container
+      - ../zm-core:/var/www/html/zm-core
+      - ../zm-client:/var/www/html/zm-client
+      - ../ng-anr:/var/www/html/ng-anr
+      - ../ng-client:/var/www/html/ng-client
       # Preserve vendor directory in named volume for better performance
       - vendor_data:/var/www/html/monarc/vendor
       - node_modules_data:/var/www/html/monarc/node_modules

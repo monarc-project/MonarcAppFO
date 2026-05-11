@@ -1369,6 +1369,98 @@ paths:
         '204':
           description: AMV deleted
 
+  # Risk Sources
+  /api/risk-sources:
+    get:
+      summary: Get risk sources
+      tags:
+        - Risk Sources
+      parameters:
+        - in: query
+          name: filter
+          schema:
+            type: string
+          description: Filter risk sources by label
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [all, "0", "1"]
+          description: Return all, inactive only, or active only
+      responses:
+        '200':
+          description: List of risk sources
+    post:
+      summary: Create risk source
+      tags:
+        - Risk Sources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - label
+              properties:
+                label:
+                  type: string
+      responses:
+        '200':
+          description: Risk source created
+
+  /api/risk-sources/{id}:
+    get:
+      summary: Get risk source by ID
+      tags:
+        - Risk Sources
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Risk source details
+    put:
+      summary: Update risk source
+      tags:
+        - Risk Sources
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                is_active:
+                  type: boolean
+      responses:
+        '200':
+          description: Risk source updated
+    delete:
+      summary: Deactivate risk source
+      tags:
+        - Risk Sources
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Risk source deactivated
+
   # ANR Child Routes - Threats
   /api/client-anr/{anrid}/threats:
     get:
