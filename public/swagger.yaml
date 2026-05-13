@@ -1461,6 +1461,135 @@ paths:
         '200':
           description: Risk source deactivated
 
+  # ANR Child Routes - Reassessment Triggers
+  /api/client-anr/{anrid}/reassessment-triggers:
+    get:
+      summary: Get reassessment triggers for an ANR
+      tags:
+        - ANR - Reassessment Triggers
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: filter
+          schema:
+            type: string
+          description: Filter reassessment triggers by trigger type or description
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [all, "0", "1"]
+          description: Return all, inactive only, or active only
+      responses:
+        '200':
+          description: List of reassessment triggers and available default trigger choices
+    post:
+      summary: Create reassessment trigger in ANR
+      tags:
+        - ANR - Reassessment Triggers
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - triggerType
+                - description
+              properties:
+                triggerType:
+                  type: string
+                description:
+                  type: string
+                isActive:
+                  type: boolean
+                position:
+                  type: integer
+      responses:
+        '200':
+          description: Reassessment trigger created
+
+  /api/client-anr/{anrid}/reassessment-triggers/{id}:
+    get:
+      summary: Get reassessment trigger by ID for an ANR
+      tags:
+        - ANR - Reassessment Triggers
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Reassessment trigger details
+    put:
+      summary: Update reassessment trigger in ANR
+      tags:
+        - ANR - Reassessment Triggers
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                triggerType:
+                  type: string
+                description:
+                  type: string
+                isActive:
+                  type: boolean
+                position:
+                  type: integer
+      responses:
+        '200':
+          description: Reassessment trigger updated
+    delete:
+      summary: Delete reassessment trigger from ANR
+      tags:
+        - ANR - Reassessment Triggers
+      parameters:
+        - in: path
+          name: anrid
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Reassessment trigger deleted
+
   # ANR Child Routes - Threats
   /api/client-anr/{anrid}/threats:
     get:
