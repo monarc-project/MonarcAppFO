@@ -5368,12 +5368,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "0a168635b8ee3c370074c4ba96e23d089008ad87"
+                "reference": "0fc81b9b5ee52845f2151a2894555969e9641721"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/0a168635b8ee3c370074c4ba96e23d089008ad87",
-                "reference": "0a168635b8ee3c370074c4ba96e23d089008ad87",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/0fc81b9b5ee52845f2151a2894555969e9641721",
+                "reference": "0fc81b9b5ee52845f2151a2894555969e9641721",
                 "shasum": ""
             },
             "require": {
@@ -5457,9 +5457,9 @@
             "description": "Frontoffice for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-client/issues",
-                "source": "https://github.com/monarc-project/zm-client/tree/feature/AB-16"
+                "source": "https://github.com/monarc-project/zm-client/tree/stage"
             },
-            "time": "2026-06-24T14:28:29+00:00"
+            "time": "2026-06-25T14:46:32+00:00"
         },
         {
             "name": "nikic/php-parser",
