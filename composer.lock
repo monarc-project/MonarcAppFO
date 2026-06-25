@@ -5272,12 +5272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-core.git",
-                "reference": "815653cc4830da99e4b2ab6fbb3eb8f90552f995"
+                "reference": "7f6e5eadd7f770357b0acf1fc0197c052b30c64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/815653cc4830da99e4b2ab6fbb3eb8f90552f995",
-                "reference": "815653cc4830da99e4b2ab6fbb3eb8f90552f995",
+                "url": "https://api.github.com/repos/monarc-project/zm-core/zipball/7f6e5eadd7f770357b0acf1fc0197c052b30c64d",
+                "reference": "7f6e5eadd7f770357b0acf1fc0197c052b30c64d",
                 "shasum": ""
             },
             "require": {
@@ -5360,7 +5360,7 @@
                 "issues": "https://github.com/monarc-project/zm-core/issues",
                 "source": "https://github.com/monarc-project/zm-core/tree/stage"
             },
-            "time": "2026-06-25T10:21:48+00:00"
+            "time": "2026-06-25T19:54:50+00:00"
         },
         {
             "name": "monarc/frontoffice",
@@ -8591,12 +8591,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6c54e0520e210e3889b0b3bff4d256bfa19bdc52"
+                "reference": "c5afdab923ee443a1aadcdd52543132e5d92db90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6c54e0520e210e3889b0b3bff4d256bfa19bdc52",
-                "reference": "6c54e0520e210e3889b0b3bff4d256bfa19bdc52",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c5afdab923ee443a1aadcdd52543132e5d92db90",
+                "reference": "c5afdab923ee443a1aadcdd52543132e5d92db90",
                 "shasum": ""
             },
             "conflict": {
@@ -8875,7 +8875,7 @@
                 "feehi/feehicms": "<=2.1.1",
                 "fenom/fenom": "<=2.12.1",
                 "filament/actions": ">=3.2,<3.2.123|>=4,<=4.11.3|>=5,<=5.6.3",
-                "filament/filament": ">=3,<=3.3.51|>=4,<=4.11.4|>=5,<=5.6.4",
+                "filament/filament": ">=3,<=3.3.51|>=4,<4.11.5|>=5,<5.6.5",
                 "filament/forms": ">=3,<=3.3.52",
                 "filament/infolists": ">=3,<3.2.115|>=4,<=4.11.4|>=5,<=5.6.4",
                 "filament/tables": ">=3,<=3.3.50|>=4,<=4.11.4|>=5,<=5.6.4",
@@ -9693,7 +9693,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-24T09:11:09+00:00"
+            "time": "2026-06-25T18:49:05+00:00"
         },
         {
             "name": "sebastian/cli-parser",
