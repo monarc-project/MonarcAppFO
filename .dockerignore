@@ -40,6 +40,8 @@ npm-debug.log
 # Cache
 *.cache
 .docker-initialized
+.docker-release-context/
+.docker-stage-context/
 
 # Environment files (should be configured separately)
 .env

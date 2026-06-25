@@ -32,37 +32,36 @@ do
         ;;
         f)
         frontendRef="$OPTARG"
+        ;;
     esac
 done
 
 checkout_repo_ref() {
     if [ -d "$1" ]; then
         pushd "$1"
-        if [[ -n "$2" ]]; then
-            git fetch origin "$2"
-            if git show-ref --verify --quiet "refs/heads/$2"; then
-                git checkout "$2"
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            if [[ -n "$2" ]]; then
+                git fetch origin "$2"
+                if git show-ref --verify --quiet "refs/heads/$2"; then
+                    git checkout "$2"
+                else
+                    git checkout -B "$2" --track "origin/$2"
+                fi
+                git pull origin "$2"
             else
-                git checkout -B "$2" --track "origin/$2"
+                git fetch --tags
+                tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+                if git show-ref --verify --quiet "refs/heads/$tag"; then
+                    git checkout "$tag"
+                else
+                    git checkout -b "$tag" "$tag"
+                fi
+                git pull origin "$tag"
             fi
-            git pull origin "$2"
         else
-            git fetch --tags
-            tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-            if git show-ref --verify --quiet "refs/heads/$tag"; then
-                git checkout "$tag"
-            else
-                git checkout -b "$tag" "$tag"
-            fi
-            git pull origin "$tag"
+            echo "No .git metadata in $1; skipping frontend repository update."
         fi
         popd
-    fi
-}
-
-checkout_to_latest_tag() {
-    if [ -d "$1" ]; then
-        checkout_repo_ref "$1" ""
     fi
 }
 
@@ -83,11 +82,10 @@ if [[ ! -f "config/autoload/local.php" && $bypass -eq 0 ]]; then
     exit 1
 fi
 
-git pull
-
-if [ $? != 0 ]; then
-    echo "A problem occurred while retrieving remote files from repository."
-    exit 1
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    git pull || { echo "A problem occurred while retrieving remote files from repository."; exit 1; }
+else
+    echo "No .git metadata; skipping git pull."
 fi
 
 ./scripts/check_composer.sh
@@ -119,21 +117,29 @@ if [[ $bypass -eq 0 ]]; then
     migrate_module $pathFO
 fi
 
-if [[ -d node_modules && -d node_modules/ng_anr ]]; then
-    if [[ -d node_modules/ng_anr/.git ]]; then
+if [[ -d node_modules/ng_client && -d node_modules/ng_anr ]]; then
+    if [[ -d node_modules/ng_client/.git && -d node_modules/ng_anr/.git ]]; then
         checkout_to_ref_if_set_or_latest_tag node_modules/ng_client "$frontendRef"
         checkout_to_ref_if_set_or_latest_tag node_modules/ng_anr "$frontendRef"
     else
-        npm update
+        echo "node_modules/ng_* are not git repos; skipping frontend repository update."
     fi
 fi
 
-cd node_modules/ng_client
-npm ci
-cd ../..
+if [[ -d node_modules/ng_client ]]; then
+    cd node_modules/ng_client
+    npm ci
+    cd ../..
+else
+    echo "node_modules/ng_client not found; skipping npm ci."
+fi
 
-./scripts/link_modules_resources.sh
-./scripts/compile_translations.sh
+if [[ -d node_modules/ng_client && -d node_modules/ng_anr ]]; then
+    ./scripts/link_modules_resources.sh
+    ./scripts/compile_translations.sh
+else
+    echo "Frontend repositories are missing; skipping resource linking and translation compilation."
+fi
 
 if [[ $forceClearCache -eq 1 ]]; then
     # Clear Laminas cache

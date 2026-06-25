@@ -1,25 +1,17 @@
-name: MonarcAppFO releases
+name: MonarcAppFO stage images
 
 on:
   push:
-    branches: [ 'master' ]
-    tags: [ 'v*.*', 'v*.*.*', 'v*.*.*-*' ]
-  pull_request:
-    branches: [ 'master' ]
+    branches: [ 'stage' ]
 
 permissions:
-  contents: write
+  contents: read
   packages: write
 
 jobs:
-  build:
+  publish-stage-app-image:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ "16.x" ]
-        php-version: [ "8.1" ]
-
     steps:
     - uses: actions/checkout@v2
 
@@ -30,7 +22,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
+        php-version: "8.1"
         tools: composer:v2.3
         extensions: bcmath
 
@@ -41,16 +33,16 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
     - name: Symlink Monarc modules
-      run: | 
+      run: |
         mkdir -p module/Monarc
         ln -s ../../vendor/monarc/core module/Monarc/Core
         ln -s ../../vendor/monarc/frontoffice module/Monarc/FrontOffice
 
     # javascript
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: "16.x"
 
     - uses: oprypin/find-latest-tag@v1
       with:
@@ -66,7 +58,6 @@ jobs:
         repository: monarc-project/ng-anr
         ref: ${{ steps.ng_anr_lasttag.outputs.tag }}
         path: './node_modules/ng_anr'
-
 
     - uses: oprypin/find-latest-tag@v1
       with:
@@ -88,34 +79,15 @@ jobs:
         cd node_modules/ng_client
         npm ci
 
-    # final "cleanup"
     - name: post job
       run: |
         bash -ex ./scripts/link_modules_resources.sh
         bash -ex ./scripts/compile_translations.sh
 
-    # prepare release
-    - name: Get repository name
-      id: repository
-      run: echo "::set-output name=pathref::$(echo '${{ github.repository }}' | cut -d'/' -f2)-$(echo '${{ github.ref_name }}' | sed 's/[^[:alnum:]\.-]/_/g')"
-
-    - name: create artifact archive
-      run: |
-        tar --exclude .git --exclude .github -zcf '../${{ steps.repository.outputs.pathref }}.tar.gz' .
-
-    - name: release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          ../${{ steps.repository.outputs.pathref }}.tar.gz
-        fail_on_unmatched_files: true
-      if: startsWith(github.ref, 'refs/tags/')
-
     - name: Prepare app image build context
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
-        rm -rf .docker-release-context
-        mkdir -p .docker-release-context
+        rm -rf .docker-stage-context
+        mkdir -p .docker-stage-context
         tar \
           --exclude .git \
           --exclude .github \
@@ -127,15 +99,14 @@ jobs:
           --exclude .env \
           --exclude .env.dev \
           --exclude .DS_Store \
-          --exclude .docker-release-context \
           --exclude .docker-stage-context \
-          -cf - . | tar -xf - -C .docker-release-context
-        rm -rf .docker-release-context/data
-        rm -f .docker-release-context/.dockerignore
+          --exclude .docker-release-context \
+          -cf - . | tar -xf - -C .docker-stage-context
+        rm -rf .docker-stage-context/data
+        rm -f .docker-stage-context/.dockerignore
 
     - name: Set image names
       id: image_names
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
         owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
         repo=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
@@ -143,15 +114,12 @@ jobs:
         echo "stats=ghcr.io/${owner}/${repo}-stats" >> "$GITHUB_OUTPUT"
 
     - name: Set up Docker Buildx
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/setup-buildx-action@v3
 
     - name: Set up QEMU
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/setup-qemu-action@v3
 
     - name: Log in to GHCR
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/login-action@v3
       with:
         registry: ghcr.io
@@ -159,53 +127,76 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Docker metadata (app)
-      id: meta_app
-      if: startsWith(github.ref, 'refs/tags/')
+      id: meta_app_stage
       uses: docker/metadata-action@v5
       with:
         images: ${{ steps.image_names.outputs.app }}
         tags: |
-          type=raw,value=${{ github.ref_name }}
-          type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
+          type=raw,value=stage
+          type=sha,prefix=stage-
         labels: |
           org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.revision=${{ github.sha }}
 
-    - name: Build and push app image
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Build and push app image (stage)
       uses: docker/build-push-action@v6
       with:
-        context: ./.docker-release-context
-        file: ./.docker-release-context/Dockerfile.release
+        context: ./.docker-stage-context
+        file: ./.docker-stage-context/Dockerfile.release
         push: true
         platforms: linux/amd64,linux/arm64
-        cache-from: type=gha,scope=release-app-image
-        cache-to: type=gha,mode=max,scope=release-app-image
-        tags: ${{ steps.meta_app.outputs.tags }}
-        labels: ${{ steps.meta_app.outputs.labels }}
+        cache-from: type=gha,scope=stage-app-image
+        cache-to: type=gha,mode=max,scope=stage-app-image
+        tags: ${{ steps.meta_app_stage.outputs.tags }}
+        labels: ${{ steps.meta_app_stage.outputs.labels }}
+
+  publish-stage-stats-image:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set image names
+      id: image_names
+      run: |
+        owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+        repo=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
+        echo "app=ghcr.io/${owner}/${repo}" >> "$GITHUB_OUTPUT"
+        echo "stats=ghcr.io/${owner}/${repo}-stats" >> "$GITHUB_OUTPUT"
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Log in to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Docker metadata (stats)
-      id: meta_stats
-      if: startsWith(github.ref, 'refs/tags/')
+      id: meta_stats_stage
       uses: docker/metadata-action@v5
       with:
         images: ${{ steps.image_names.outputs.stats }}
         tags: |
-          type=raw,value=${{ github.ref_name }}
-          type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
+          type=raw,value=stage
+          type=sha,prefix=stage-
         labels: |
           org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.revision=${{ github.sha }}
 
-    - name: Build and push stats image
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Build and push stats image (stage)
       uses: docker/build-push-action@v6
       with:
         context: .
         file: ./Dockerfile.stats
         push: true
         platforms: linux/amd64,linux/arm64
-        cache-from: type=gha,scope=release-stats-image
-        cache-to: type=gha,mode=max,scope=release-stats-image
-        tags: ${{ steps.meta_stats.outputs.tags }}
-        labels: ${{ steps.meta_stats.outputs.labels }}
+        cache-from: type=gha,scope=stage-stats-image
+        cache-to: type=gha,mode=max,scope=stage-stats-image
+        tags: ${{ steps.meta_stats_stage.outputs.tags }}
+        labels: ${{ steps.meta_stats_stage.outputs.labels }}
