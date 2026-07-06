@@ -5,6 +5,7 @@ services:
     container_name: monarc-fo-db
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPASSWORD_ADMIN}
+      # The official MariaDB image only auto-creates the initial DB from MYSQL_DATABASE.
       MYSQL_DATABASE: ${DBNAME_COMMON}
       MYSQL_USER: ${DBUSER_MONARC}
       MYSQL_PASSWORD: ${DBPASSWORD_MONARC}
