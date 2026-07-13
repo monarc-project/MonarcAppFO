@@ -105,11 +105,10 @@ RUN mkdir -p /var/www/html/monarc/data/cache \
     /var/www/html/monarc/data/DoctrineORMModule/Proxy \
     /var/www/html/monarc/data/import/files
 
-# Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# Copy entrypoint script with executable permissions
+COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apachectl", "-D", "FOREGROUND"]
