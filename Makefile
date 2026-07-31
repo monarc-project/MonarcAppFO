@@ -11,7 +11,7 @@ YELLOW := \033[1;33m
 RED := \033[0;31m
 NC := \033[0m
 
-.PHONY: help check-env start stop restart logs logs-app logs-stats shell shell-stats db reset status stats-key
+.PHONY: help check-env start stop restart logs logs-app logs-stats shell shell-stats db migrate reset status stats-key
 
 help:
 	@printf "%b\n" "$(GREEN)MONARC FrontOffice Docker Development Environment Manager$(NC)"
@@ -27,6 +27,7 @@ help:
 	@printf "  %-12s %s\n" "shell" "Open a shell in the MONARC container"
 	@printf "  %-12s %s\n" "shell-stats" "Open a shell in the stats service container"
 	@printf "  %-12s %s\n" "db" "Open MySQL client in the database"
+	@printf "  %-12s %s\n" "migrate" "Run Core and FrontOffice DB migrations in the app container"
 	@printf "  %-12s %s\n" "stats-key" "Show the stats API key"
 	@printf "  %-12s %s\n" "reset" "Reset everything (removes all data)"
 	@printf "  %-12s %s\n" "status" "Show status of all services"
@@ -81,6 +82,11 @@ db:
 	fi; \
 	export MYSQL_PWD="$${DBPASSWORD_MONARC:-sqlmonarcuser}"; \
 	docker exec -it monarc-fo-db mysql -u"$${DBUSER_MONARC:-sqlmonarcuser}" "$${DBNAME_COMMON:-monarc_common}"
+
+migrate: check-env
+	@printf "%b\n" "$(GREEN)Running Core and FrontOffice DB migrations...$(NC)"
+	@docker exec -i monarc-fo-app bash -lc "./scripts/upgrade-db.sh"
+	@printf "%b\n" "$(GREEN)Migrations completed.$(NC)"
 
 stats-key:
 	@printf "%b\n" "$(GREEN)Retrieving stats API key...$(NC)"

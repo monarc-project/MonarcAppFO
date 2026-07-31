@@ -97,6 +97,10 @@ return [
         'defaultWithEval' => true,
     ],
 
+    'deliverable' => [
+        'pdfConverterBinary' => '/usr/bin/soffice',
+    ],
+
     'captcha' => [
         'enabled' => true,
         'failedLoginAttempts' => 3,

@@ -111,6 +111,8 @@ INSTANCE_URL = '${STATS_INSTANCE_URL_VALUE}'
 ADMIN_EMAIL = 'info@nc3.lu'
 ADMIN_URL = 'https://www.nc3.lu'
 
+ACTIVE_BLUEPRINTS = ["stats_bp", "admin_bp", "root_bp"]
+
 REMOTE_STATS_SERVER = 'https://dashboard.monarc.lu'
 
 DB_CONFIG_DICT = {
