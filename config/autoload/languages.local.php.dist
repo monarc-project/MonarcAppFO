@@ -3,19 +3,14 @@
 return [
     'defaultLanguageIndex' => 1,
  
+    // Languages available for the analysis / DB data.
     'languages' => [
         'fr' => ['index' => 1, 'label' => 'Français'],
         'en' => ['index' => 2, 'label' => 'English'],
         'de' => ['index' => 3, 'label' => 'Deutsch'],
         'nl' => ['index' => 4, 'label' => 'Dutch'],
-        'es' => ['index' => 5, 'label' => 'Español'],
-        'ro' => ['index' => 6, 'label' => 'Română'],
-        'it' => ['index' => 7, 'label' => 'Italiano'],
-        'ja' => ['index' => 8, 'label' => 'Japanese'],
-        'pl' => ['index' => 9, 'label' => 'Polski'],
-        'pt' => ['index' => 10, 'label' => 'Português'],
-        'zh' => ['index' => 11, 'label' => '中文'],
     ],
 
-    'activeLanguages' => ['fr','en','de','nl','es','ro','it','ja','pl','pt','zh'],
+    // Languages available for the user interface.
+    'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 ];
