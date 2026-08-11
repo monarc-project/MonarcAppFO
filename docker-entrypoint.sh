@@ -24,6 +24,11 @@ is_true() {
     esac
 }
 
+CAPTCHA_ENABLED_PHP=false
+if is_true "${CAPTCHA_ENABLED:-false}"; then
+    CAPTCHA_ENABLED_PHP=true
+fi
+
 # Check if this is the first run
 if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     echo -e "${GREEN}First run detected, initializing application...${NC}"
@@ -157,12 +162,30 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
     'statsApi' => [
-        'baseUrl' => 'http://stats-service:5005',
+        'baseUrl' => '${STATS_API_BASE_URL:-http://stats-service:5005}',
         'apiKey' => '${STATS_API_KEY:-}',
+    ],
+
+    'deliverable' => [
+        'pdfConverterBinary' => '${PDF_CONVERTER_BINARY:-/usr/bin/soffice}',
+    ],
+
+    'captcha' => [
+        'enabled' => ${CAPTCHA_ENABLED_PHP},
+        'failedLoginAttempts' => 3,
+        'params' => [
+            'name' => 'MonarcCaptcha',
+            'font' => \$appdir . '/data/fonts/arial.ttf',
+            'fontSize' => 30,
+            'height' => 60,
+            'wordLen' => 6,
+            'timeout' => 300,
+            'imgDir' => \$appdir . '/public/captcha',
+            'imgUrl' => 'captcha/',
+        ],
     ],
 
     'import' => [
@@ -185,7 +208,9 @@ EOF
 
     # Set permissions
     echo -e "${YELLOW}Setting permissions...${NC}"
+    mkdir -p /var/www/html/monarc/public/captcha
     chown -R www-data:www-data /var/www/html/monarc/data
+    chown -R www-data:www-data /var/www/html/monarc/public/captcha
     chmod -R 775 /var/www/html/monarc/data
 
     # Mark initialization as complete

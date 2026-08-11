@@ -177,6 +177,8 @@ jobs:
       with:
         context: ./.docker-release-context
         file: ./.docker-release-context/Dockerfile.release
+        build-args: |
+          CAPTCHA_ENABLED=true
         push: true
         platforms: linux/amd64,linux/arm64
         cache-from: type=gha,scope=release-app-image

@@ -331,7 +331,6 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
     'statsApi' => [
@@ -397,7 +396,6 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
 ];

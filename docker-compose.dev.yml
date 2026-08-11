@@ -105,6 +105,9 @@ services:
       DBPASSWORD_ADMIN: ${DBPASSWORD_ADMIN}
       USE_BO_COMMON: ${USE_BO_COMMON:-0}
       STATS_API_KEY: ${STATS_API_KEY}
+      STATS_API_BASE_URL: ${STATS_API_BASE_URL:-http://stats-service:5005}
+      PDF_CONVERTER_BINARY: ${PDF_CONVERTER_BINARY:-/usr/bin/soffice}
+      CAPTCHA_ENABLED: ${CAPTCHA_ENABLED:-false}
       APP_ENV: development
       APP_DIR: /var/www/html/monarc
     ports:

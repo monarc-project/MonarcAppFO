@@ -8,12 +8,14 @@ ARG XDEBUG_CLIENT_PORT=9003
 ARG XDEBUG_IDEKEY=IDEKEY
 ARG XDEBUG_DISCOVER_CLIENT_HOST=0
 ARG NODE_MAJOR=16
+ARG CAPTCHA_ENABLED=false
 
 # Prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
+ENV CAPTCHA_ENABLED=${CAPTCHA_ENABLED}
 
 # Install system dependencies
 RUN apt-get update && apt-get upgrade -y && \
@@ -103,7 +105,8 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 RUN mkdir -p /var/www/html/monarc/data/cache \
     /var/www/html/monarc/data/LazyServices/Proxy \
     /var/www/html/monarc/data/DoctrineORMModule/Proxy \
-    /var/www/html/monarc/data/import/files
+    /var/www/html/monarc/data/import/files \
+    /var/www/html/monarc/public/captcha
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/

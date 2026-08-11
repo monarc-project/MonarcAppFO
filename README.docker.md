@@ -429,6 +429,10 @@ All environment variables are defined in the `.env` file:
 | `STATS_DB_USER` | Stats database user | `sqlmonarcuser` |
 | `STATS_DB_PASSWORD` | Stats database password | `sqlmonarcuser` |
 | `STATS_SECRET_KEY` | Stats service secret key | `changeme_generate_random_secret_key_for_production` |
+| `STATS_API_KEY` | API key used by MONARC to access the statistics service | empty |
+| `STATS_API_BASE_URL` | Statistics service URL used by MONARC | `http://stats-service:5005` |
+| `PDF_CONVERTER_BINARY` | LibreOffice binary used for deliverable PDF conversion | `/usr/bin/soffice` |
+| `CAPTCHA_ENABLED` | Enable CAPTCHA after repeated failed logins | `false` in dev/stage; `true` in production releases |
 | `XDEBUG_ENABLED` | Enable Xdebug in the build (`1/0`, `true/false`, `yes/no`) | `1` |
 | `XDEBUG_MODE` | Xdebug modes (`debug`, `develop`, etc.) | `debug` |
 | `XDEBUG_START_WITH_REQUEST` | Start mode (`trigger` or `yes`) | `trigger` |

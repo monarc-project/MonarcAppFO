@@ -100,6 +100,5 @@ return [
 
     'monarc' => [
         'ttl' => 60,
-        'salt' => '',
     ],
 ];

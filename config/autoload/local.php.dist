@@ -37,6 +37,8 @@ return [
         ],
     ],
 
+    'defaultLanguageIndex' => 1,
+
     // Languages available for the analysis / DB data.
     'languages' => [
         'fr' => ['index' => 1, 'label' => 'Français'],
@@ -44,8 +46,6 @@ return [
         'de' => ['index' => 3, 'label' => 'Deutsch'],
         'nl' => ['index' => 4, 'label' => 'Dutch'],
     ],
-
-    'defaultLanguageIndex' => 1,
 
     // Languages available for the user interface.
     'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
@@ -60,7 +60,7 @@ return [
         'from' => 'info@monarc.lu',
     ],
 
-    'instanceName' => 'Development', // for example a short URL or client name from ansible
+    'instanceName' => 'FrontOffice',
 
     'terms' => 'https://my.monarc.lu/terms.html',
 
