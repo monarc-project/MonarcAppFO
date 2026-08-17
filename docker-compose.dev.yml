@@ -123,10 +123,26 @@ services:
       # Mount the application code for live development
       - ./:/var/www/html/monarc
       # Mount sibling repositories so Composer path symlinks and node_modules links resolve in-container
-      - ../zm-core:/var/www/html/zm-core
-      - ../zm-client:/var/www/html/zm-client
-      - ../ng-anr:/var/www/html/ng-anr
-      - ../ng-client:/var/www/html/ng-client
+      - type: bind
+        source: ../zm-core
+        target: /var/www/html/zm-core
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../zm-client
+        target: /var/www/html/zm-client
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../ng-anr
+        target: /var/www/html/ng-anr
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../ng-client
+        target: /var/www/html/ng-client
+        bind:
+          create_host_path: false
       # Preserve vendor directory in named volume for better performance
       - vendor_data:/var/www/html/monarc/vendor
       - node_modules_data:/var/www/html/monarc/node_modules
