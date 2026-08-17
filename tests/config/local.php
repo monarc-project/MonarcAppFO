@@ -85,7 +85,6 @@ return [
     // Languages available for the user interface.
     'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 
-
     'appVersion' => '2.14.1',
 
     'checkVersion' => false,
