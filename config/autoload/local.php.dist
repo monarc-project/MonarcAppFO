@@ -1,19 +1,7 @@
 <?php
-/**
- * Local Configuration Override
- *
- * This configuration override file is for overriding environment-specific and
- * security-sensitive configuration information. Copy this file without the
- * .dist extension at the end and populate values as needed.
- *
- * @NOTE: This file is ignored from Git by default with the .gitignore included
- * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
- * credentials from accidentally being committed into version control.
- */
 
-$appdir = getenv('APP_DIR') ?: '/var/lib/monarc/fo';
-
-$package_json = json_decode(file_get_contents('./package.json'), true);
+$appdir = getenv('APP_DIR') ?: '/var/www/html/monarc';
+$packageJson = json_decode(file_get_contents($appdir . '/package.json'), true);
 
 return [
     'doctrine' => [
@@ -50,7 +38,7 @@ return [
     // Languages available for the user interface.
     'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 
-    'appVersion' => $package_json['version'],
+    'appVersion' => $packageJson['version'],
 
     'checkVersion' => true,
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
