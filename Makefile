@@ -11,7 +11,7 @@ YELLOW := \033[1;33m
 RED := \033[0;31m
 NC := \033[0m
 
-.PHONY: help check-env start stop restart logs logs-app logs-stats shell shell-stats db reset status stats-key
+.PHONY: help check-env check-sibling-repos start local-repos remote-repos repo-status stop restart logs logs-app logs-stats shell shell-stats db migrate reset status stats-key
 
 help:
 	@printf "%b\n" "$(GREEN)MONARC FrontOffice Docker Development Environment Manager$(NC)"
@@ -19,6 +19,9 @@ help:
 	@printf "%b\n" "Environment: ENV=<name> (default: dev, uses docker-compose.<name>.yml)"
 	@printf "\n%b\n" "Commands:"
 	@printf "  %-12s %s\n" "start" "Start all services (builds on first run)"
+	@printf "  %-12s %s\n" "local-repos" "Start and use the mounted sibling repositories"
+	@printf "  %-12s %s\n" "remote-repos" "Use release backend packages and cloned frontends"
+	@printf "  %-12s %s\n" "repo-status" "Show whether local or remote sources are active"
 	@printf "  %-12s %s\n" "stop" "Stop all services"
 	@printf "  %-12s %s\n" "restart" "Restart all services"
 	@printf "  %-12s %s\n" "logs" "View logs from all services"
@@ -27,6 +30,7 @@ help:
 	@printf "  %-12s %s\n" "shell" "Open a shell in the MONARC container"
 	@printf "  %-12s %s\n" "shell-stats" "Open a shell in the stats service container"
 	@printf "  %-12s %s\n" "db" "Open MySQL client in the database"
+	@printf "  %-12s %s\n" "migrate" "Run Core and FrontOffice DB migrations in the app container"
 	@printf "  %-12s %s\n" "stats-key" "Show the stats API key"
 	@printf "  %-12s %s\n" "reset" "Reset everything (removes all data)"
 	@printf "  %-12s %s\n" "status" "Show status of all services"
@@ -38,7 +42,15 @@ check-env:
 		printf "%b\n" "$(GREEN).env file created. You can edit it to customize configuration.$(NC)"; \
 	fi
 
-start: check-env
+check-sibling-repos:
+	@for repo in zm-core zm-client ng-anr ng-client; do \
+		if [ ! -d "../$$repo" ]; then \
+			printf "%b\\n" "$(RED)Missing required sibling repository: ../$$repo$(NC)"; \
+			exit 1; \
+		fi; \
+	done
+
+start: check-env check-sibling-repos
 	@printf "%b\n" "$(GREEN)Starting MONARC FrontOffice development environment...$(NC)"
 	@$(COMPOSE) up -d --build
 	@printf "%b\n" "$(GREEN)Services started!$(NC)"
@@ -46,6 +58,15 @@ start: check-env
 	@printf "%b\n" "Stats Service: http://localhost:5005"
 	@printf "%b\n" "MailCatcher: http://localhost:1080"
 	@printf "\n%b\n" "$(YELLOW)To view logs: make logs ENV=$(ENV)$(NC)"
+
+local-repos: start
+	@./scripts/switch_repo_sources.sh local
+
+remote-repos: check-env
+	@./scripts/switch_repo_sources.sh remote
+
+repo-status: check-env
+	@./scripts/switch_repo_sources.sh status
 
 stop:
 	@printf "%b\n" "$(YELLOW)Stopping all services...$(NC)"
@@ -81,6 +102,11 @@ db:
 	fi; \
 	export MYSQL_PWD="$${DBPASSWORD_MONARC:-sqlmonarcuser}"; \
 	docker exec -it monarc-fo-db mysql -u"$${DBUSER_MONARC:-sqlmonarcuser}" "$${DBNAME_COMMON:-monarc_common}"
+
+migrate: check-env
+	@printf "%b\n" "$(GREEN)Running Core and FrontOffice DB migrations...$(NC)"
+	@docker exec -i monarc-fo-app bash -lc "./scripts/upgrade-db.sh"
+	@printf "%b\n" "$(GREEN)Migrations completed.$(NC)"
 
 stats-key:
 	@printf "%b\n" "$(GREEN)Retrieving stats API key...$(NC)"

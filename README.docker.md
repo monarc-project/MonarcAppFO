@@ -8,6 +8,20 @@ This guide explains how to set up a local development environment for MONARC Fro
 - Docker Compose V2 (comes with Docker Desktop)
 - At least 8GB of RAM available for Docker
 - At least 20GB of free disk space
+- A sibling checkout of `zm-core`, `zm-client`, `ng-anr`, and `ng-client`
+
+The development Compose configuration bind-mounts those four repositories. Keep
+them beside `MonarcAppFO`; Docker is configured to fail rather than silently
+create empty directories when one is missing:
+
+```text
+parent-directory/
+├── MonarcAppFO/
+├── zm-core/
+├── zm-client/
+├── ng-anr/
+└── ng-client/
+```
 
 ## Quick Start
 
@@ -118,6 +132,9 @@ Use `ENV=<name>` to select `docker compose.<name>.yml` (default: `dev`).
 
 ```bash
 make start         # Start all services
+make local-repos   # Start and use mounted sibling repositories
+make remote-repos  # Restore release packages and cloned frontends
+make repo-status   # Show the active source mode
 make stop          # Stop all services
 make restart       # Restart all services
 make logs          # View logs from all services
@@ -142,6 +159,32 @@ The application source code is mounted as a volume, so changes you make on your 
    cd /var/www/html/monarc
    ./scripts/update-all.sh -d
    ```
+
+### Developing sibling repositories
+
+The sibling repositories are mounted into the container but are not used until
+you switch the application to local sources. This preserves the normal
+release-package startup path while making changes in all four sibling
+repositories available for development.
+
+```bash
+make local-repos
+```
+
+This verifies the checkout layout, starts the environment, makes Composer use
+symlinked `zm-core` and `zm-client` packages, and links the two AngularJS
+repositories into `node_modules`. It then rebuilds the linked frontend assets.
+
+Use these commands to inspect or revert the source mode:
+
+```bash
+make repo-status
+make remote-repos
+```
+
+`make remote-repos` restores the release Composer packages and GitHub frontend
+clones. Switching source mode updates Composer metadata and dependencies, so
+review the `MonarcAppFO` working tree before committing.
 
 ### Accessing the Container
 
@@ -394,7 +437,7 @@ For better performance on macOS and Windows:
    - Memory: 8GB or more
    - Swap: 2GB or more
 
-3. **Enable caching**: The Dockerfile uses apt cache and composer optimizations.
+3. **Enable caching**: `Dockerfile.dev` uses apt cache and composer optimizations.
 
 ## Comparison with Vagrant
 
@@ -429,6 +472,10 @@ All environment variables are defined in the `.env` file:
 | `STATS_DB_USER` | Stats database user | `sqlmonarcuser` |
 | `STATS_DB_PASSWORD` | Stats database password | `sqlmonarcuser` |
 | `STATS_SECRET_KEY` | Stats service secret key | `changeme_generate_random_secret_key_for_production` |
+| `STATS_API_KEY` | API key used by MONARC to access the statistics service | empty |
+| `STATS_API_BASE_URL` | Statistics service URL used by MONARC | `http://stats-service:5005` |
+| `PDF_CONVERTER_BINARY` | LibreOffice binary used for deliverable PDF conversion | `/usr/bin/soffice` |
+| `CAPTCHA_ENABLED` | Enable CAPTCHA after repeated failed logins | `false` in dev/stage; `true` in production releases |
 | `XDEBUG_ENABLED` | Enable Xdebug in the build (`1/0`, `true/false`, `yes/no`) | `1` |
 | `XDEBUG_MODE` | Xdebug modes (`debug`, `develop`, etc.) | `debug` |
 | `XDEBUG_START_WITH_REQUEST` | Start mode (`trigger` or `yes`) | `trigger` |

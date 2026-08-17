@@ -5,6 +5,7 @@ services:
     container_name: monarc-fo-db
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPASSWORD_ADMIN}
+      # The official MariaDB image only auto-creates the initial DB from MYSQL_DATABASE.
       MYSQL_DATABASE: ${DBNAME_COMMON}
       MYSQL_USER: ${DBUSER_MONARC}
       MYSQL_PASSWORD: ${DBPASSWORD_MONARC}
@@ -84,7 +85,7 @@ services:
   monarcfoapp:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       args:
         NODE_MAJOR: ${NODE_MAJOR:-16}
         XDEBUG_ENABLED: ${XDEBUG_ENABLED:-1}
@@ -104,6 +105,9 @@ services:
       DBPASSWORD_ADMIN: ${DBPASSWORD_ADMIN}
       USE_BO_COMMON: ${USE_BO_COMMON:-0}
       STATS_API_KEY: ${STATS_API_KEY}
+      STATS_API_BASE_URL: ${STATS_API_BASE_URL:-http://stats-service:5005}
+      PDF_CONVERTER_BINARY: ${PDF_CONVERTER_BINARY:-/usr/bin/soffice}
+      CAPTCHA_ENABLED: ${CAPTCHA_ENABLED:-false}
       APP_ENV: development
       APP_DIR: /var/www/html/monarc
     ports:
@@ -118,6 +122,27 @@ services:
     volumes:
       # Mount the application code for live development
       - ./:/var/www/html/monarc
+      # Mount sibling repositories so Composer path symlinks and node_modules links resolve in-container
+      - type: bind
+        source: ../zm-core
+        target: /var/www/html/zm-core
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../zm-client
+        target: /var/www/html/zm-client
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../ng-anr
+        target: /var/www/html/ng-anr
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../ng-client
+        target: /var/www/html/ng-client
+        bind:
+          create_host_path: false
       # Preserve vendor directory in named volume for better performance
       - vendor_data:/var/www/html/monarc/vendor
       - node_modules_data:/var/www/html/monarc/node_modules

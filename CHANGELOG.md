@@ -1,6 +1,16 @@
 MONARC Changelog
 ================
 
+## 2.14.1 (2026-08-17)
+
+### Enhancement
+
+- [Asset-based ISO 27005:2022 alignment](https://github.com/monarc-project/MonarcAppFO/issues/576).
+- [[FrontOffice, BackOffice, MOSP] CyFun referential integration](https://github.com/monarc-project/MonarcAppFO/issues/616).
+- [PDF reports generation](https://github.com/monarc-project/MonarcAppFO/issues/615).
+- [Create a real blank analysis](https://github.com/monarc-project/MonarcAppFO/issues/324).
+
+
 ## 2.13.4 (2026-02-13)
 
 ### Enhancement

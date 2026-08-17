@@ -304,7 +304,18 @@ return [
         ],
     ],
 
-    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','ru','zh'),
+    'defaultLanguageIndex' => 1,
+
+     // Languages available for the analysis / DB data.
+    'languages' => [
+        'fr' => ['index' => 1, 'label' => 'Français'],
+        'en' => ['index' => 2, 'label' => 'English'],
+        'de' => ['index' => 3, 'label' => 'Deutsch'],
+        'nl' => ['index' => 4, 'label' => 'Dutch'],
+    ],
+
+    // Languages available for the user interface.
+    'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 
     'appVersion' => \$package_json['version'],
 
@@ -320,7 +331,6 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
     'statsApi' => [
@@ -366,7 +376,18 @@ return [
         ],
     ],
 
-    'activeLanguages' => array('fr','en','de','nl'),
+    'defaultLanguageIndex' => 1,
+
+     // Languages available for the analysis / DB data.
+    'languages' => [
+        'fr' => ['index' => 1, 'label' => 'Français'],
+        'en' => ['index' => 2, 'label' => 'English'],
+        'de' => ['index' => 3, 'label' => 'Deutsch'],
+        'nl' => ['index' => 4, 'label' => 'Dutch'],
+    ],
+
+    // Languages available for the user interface.
+    'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 
     'appVersion' => \$package_json['version'],
 
@@ -375,7 +396,6 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
 ];

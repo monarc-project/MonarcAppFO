@@ -24,6 +24,11 @@ is_true() {
     esac
 }
 
+CAPTCHA_ENABLED_PHP=false
+if is_true "${CAPTCHA_ENABLED:-false}"; then
+    CAPTCHA_ENABLED_PHP=true
+fi
+
 # Check if this is the first run
 if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     echo -e "${GREEN}First run detected, initializing application...${NC}"
@@ -130,7 +135,18 @@ return [
         ],
     ],
 
-    'activeLanguages' => array('fr','en','de','nl','es','ro','it','ja','pl','pt','ru','zh'),
+    'defaultLanguageIndex' => 1,
+
+     // Languages available for the analysis / DB data.
+    'languages' => [
+        'fr' => ['index' => 1, 'label' => 'Français'],
+        'en' => ['index' => 2, 'label' => 'English'],
+        'de' => ['index' => 3, 'label' => 'Deutsch'],
+        'nl' => ['index' => 4, 'label' => 'Dutch'],
+    ],
+
+    // Languages available for the user interface.
+    'activeLanguages' => ['fr', 'en', 'de', 'nl', 'es', 'ro', 'it', 'ja', 'pl', 'pt', 'zh'],
 
     'appVersion' => \$package_json['version'],
 
@@ -146,12 +162,30 @@ return [
 
     'monarc' => [
         'ttl' => 60, // timeout
-        'salt' => '', // private salt for password encryption
     ],
 
     'statsApi' => [
-        'baseUrl' => 'http://stats-service:5005',
+        'baseUrl' => '${STATS_API_BASE_URL:-http://stats-service:5005}',
         'apiKey' => '${STATS_API_KEY:-}',
+    ],
+
+    'deliverable' => [
+        'pdfConverterBinary' => '${PDF_CONVERTER_BINARY:-/usr/bin/soffice}',
+    ],
+
+    'captcha' => [
+        'enabled' => ${CAPTCHA_ENABLED_PHP},
+        'failedLoginAttempts' => 3,
+        'params' => [
+            'name' => 'MonarcCaptcha',
+            'font' => \$appdir . '/data/fonts/arial.ttf',
+            'fontSize' => 30,
+            'height' => 60,
+            'wordLen' => 6,
+            'timeout' => 300,
+            'imgDir' => \$appdir . '/public/captcha',
+            'imgUrl' => 'captcha/',
+        ],
     ],
 
     'import' => [
@@ -167,11 +201,16 @@ EOF
 
     # Seed database with initial user
     echo -e "${YELLOW}Creating initial user and client...${NC}"
-    php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
+    if ! php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php; then
+        echo -e "${YELLOW}Initial user/client seed failed. update-all completed successfully, so initialization will continue.${NC}"
+        echo -e "${YELLOW}If needed, rerun the seed manually after startup.${NC}"
+    fi
 
     # Set permissions
     echo -e "${YELLOW}Setting permissions...${NC}"
+    mkdir -p /var/www/html/monarc/public/captcha
     chown -R www-data:www-data /var/www/html/monarc/data
+    chown -R www-data:www-data /var/www/html/monarc/public/captcha
     chmod -R 775 /var/www/html/monarc/data
 
     # Mark initialization as complete
