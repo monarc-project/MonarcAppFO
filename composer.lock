@@ -5364,16 +5364,16 @@
         },
         {
             "name": "monarc/frontoffice",
-            "version": "v2.14.1",
+            "version": "v2.14.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/monarc-project/zm-client.git",
-                "reference": "57a90745ae55969961081a8518845c2d363c03ba"
+                "reference": "0b35e97085af0ecceaea321acb30c2bf4eea1688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/57a90745ae55969961081a8518845c2d363c03ba",
-                "reference": "57a90745ae55969961081a8518845c2d363c03ba",
+                "url": "https://api.github.com/repos/monarc-project/zm-client/zipball/0b35e97085af0ecceaea321acb30c2bf4eea1688",
+                "reference": "0b35e97085af0ecceaea321acb30c2bf4eea1688",
                 "shasum": ""
             },
             "require": {
@@ -5457,9 +5457,9 @@
             "description": "Frontoffice for monarc/monarc application",
             "support": {
                 "issues": "https://github.com/monarc-project/zm-client/issues",
-                "source": "https://github.com/monarc-project/zm-client/tree/v2.14.1"
+                "source": "https://github.com/monarc-project/zm-client/tree/v2.14.1.1"
             },
-            "time": "2026-08-14T16:12:23+00:00"
+            "time": "2026-08-18T09:41:49+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7911,24 +7911,24 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.10.1",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "fd5018f6815fff903946d0564977b44ce8010e29"
+                "reference": "a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/fd5018f6815fff903946d0564977b44ce8010e29",
-                "reference": "fd5018f6815fff903946d0564977b44ce8010e29",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7",
+                "reference": "a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": ">=5.3.0"
+                "php": ">=7.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7.21 || ^6 || ^7 || ^8 || ^9 || ^10"
+                "phpunit/phpunit": "^6 || ^7 || ^8 || ^9 || ^10"
             },
             "type": "library",
             "extra": {
@@ -7972,9 +7972,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Masterminds/html5-php/issues",
-                "source": "https://github.com/Masterminds/html5-php/tree/2.10.1"
+                "source": "https://github.com/Masterminds/html5-php/tree/2.11.0"
             },
-            "time": "2026-06-23T18:43:15+00:00"
+            "time": "2026-08-18T06:18:41+00:00"
         },
         {
             "name": "myclabs/deep-copy",
