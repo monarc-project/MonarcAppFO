@@ -27,6 +27,7 @@ The Docker setup includes:
    - Apache web server
    - Composer for PHP dependencies
    - Node.js for frontend
+   - LibreOffice Writer for deliverable PDF conversion
    - All MONARC modules and dependencies
 
 2. **MariaDB 10.11**
@@ -77,6 +78,9 @@ After startup, access the application at:
 - At least 8GB RAM available for Docker
 - At least 20GB free disk space
 - Linux, macOS, or Windows with WSL2
+
+LibreOffice Writer is included in the MONARC application container; no
+LibreOffice installation is required on the Docker host.
 
 ## Configuration
 

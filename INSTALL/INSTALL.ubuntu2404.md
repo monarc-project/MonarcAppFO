@@ -6,8 +6,11 @@ Installation on Ubuntu 24.04
 Install some utilities, database, webserver
 ```bash
 sudo apt update
-sudo apt-get install -y zip unzip git gettext curl jq mariadb-client mariadb-server apache2
+sudo apt-get install -y zip unzip git gettext curl jq mariadb-client mariadb-server apache2 libreoffice-writer
 ```
+
+`libreoffice-writer` is required to generate PDF deliverables. It provides the
+`/usr/bin/soffice` converter used by MONARC.
 
 Install PHP and its dependencies (the default php version in Ubuntu 24.04 is php8.3):
 ```bash

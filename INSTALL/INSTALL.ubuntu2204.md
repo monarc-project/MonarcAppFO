@@ -6,10 +6,13 @@ Installation on Ubuntu 22.04
 ## 1.1. Install system dependencies
 
 ```bash
-sudo apt-get install zip unzip git gettext curl jq
+sudo apt-get install zip unzip git gettext curl jq libreoffice-writer
 ```
 
 Some might already be installed.
+
+`libreoffice-writer` is required to generate PDF deliverables. It provides the
+`/usr/bin/soffice` converter used by MONARC.
 
 ## 1.2. Install MariaDB
 
