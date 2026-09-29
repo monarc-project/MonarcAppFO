@@ -13,9 +13,7 @@ if (php_sapi_name() === 'cli-server') {
     unset($path);
 }
 
-if(date_default_timezone_get() != ini_get('date.timezone')){
-    date_default_timezone_set('Europe/Luxembourg');
-}
+date_default_timezone_set('UTC');
 
 require 'vendor/autoload.php';
 

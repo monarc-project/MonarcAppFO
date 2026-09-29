@@ -16,6 +16,7 @@ ENV LANGUAGE=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV CAPTCHA_ENABLED=${CAPTCHA_ENABLED}
+ENV TZ=UTC
 
 # Install system dependencies
 RUN apt-get update && apt-get upgrade -y && \
@@ -40,7 +41,9 @@ RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 200M/' /etc/php/8.1
     sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/8.1/apache2/php.ini && \
     sed -i 's/session\.gc_maxlifetime = .*/session.gc_maxlifetime = 604800/' /etc/php/8.1/apache2/php.ini && \
     sed -i 's/session\.gc_probability = .*/session.gc_probability = 1/' /etc/php/8.1/apache2/php.ini && \
-    sed -i 's/session\.gc_divisor = .*/session.gc_divisor = 1000/' /etc/php/8.1/apache2/php.ini
+    sed -i 's/session\.gc_divisor = .*/session.gc_divisor = 1000/' /etc/php/8.1/apache2/php.ini && \
+    printf '%s\n' 'date.timezone = UTC' > /etc/php/8.1/apache2/conf.d/99-monarc-timezone.ini && \
+    printf '%s\n' 'date.timezone = UTC' > /etc/php/8.1/cli/conf.d/99-monarc-timezone.ini
 
 # Configure Xdebug for development
 RUN if [ "$XDEBUG_ENABLED" = "1" ] || [ "$XDEBUG_ENABLED" = "true" ] || [ "$XDEBUG_ENABLED" = "yes" ]; then \
@@ -54,11 +57,14 @@ RUN if [ "$XDEBUG_ENABLED" = "1" ] || [ "$XDEBUG_ENABLED" = "true" ] || [ "$XDEB
     fi
 
 # Enable Apache modules
-RUN a2enmod rewrite ssl headers
+RUN a2enmod rewrite ssl headers proxy proxy_http
 
 # Set global ServerName to avoid AH00558 warning
 RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
     && a2enconf servername
+
+COPY docker/apache/scenario-ui-proxy.conf /etc/apache2/conf-available/scenario-ui-proxy.conf
+RUN a2enconf scenario-ui-proxy
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

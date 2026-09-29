@@ -59,6 +59,21 @@ return [
 
     'twoFactorAuthEnforced' => false,
 
+    // Keep legacy unless the platform owner configures ZITADEL through the
+    // secret manager. Never place client secrets in a tracked configuration.
+    'scenario' => [
+        // Keep false until a non-production client rollout is approved. The
+        // current user's client membership and ANR authorization are checked
+        // dynamically by the Scenario service.
+        'enabled' => false,
+        'identity' => ['mode' => 'legacy'],
+        // Fixed Scenario-session lifetime in minutes. Legacy MONARC tokens
+        // remain governed independently by monarc.ttl and slide on activity.
+        'sessionTtl' => 480,
+        // Set only through the approved secret-manager deployment injection.
+        'legacyBridgeServiceToken' => null,
+    ],
+
     'mospApiUrl' => 'https://objects.monarc.lu/api/',
 
     'statsApi' => [
