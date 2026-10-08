@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zitadel Authorization Flow – Monarc</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #1a1a2e; padding: 32px; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.subtitle { font-size: 12px; color: #64748b; margin-bottom: 28px; }
+
+/* ── DIAGRAM WRAPPER ── */
+.diagram { display: flex; flex-direction: column; }
+
+/* ── ACTOR HEADER ROW ── */
+.actor-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr 1fr;
+  gap: 0;
+  margin-bottom: 0;
+}
+.actor-cell { padding: 10px 14px; font-weight: 700; font-size: 13px; text-align: center; border-radius: 8px 8px 0 0; }
+.actor-cell.blank { background: transparent; }
+.actor-cell.browser  { background: #1d4ed8; color: #fff; margin: 0 4px; }
+.actor-cell.php      { background: #15803d; color: #fff; margin: 0 4px; }
+.actor-cell.zitadel  { background: #b45309; color: #fff; margin: 0 4px; }
+
+/* ── SEQUENCE ROWS ── */
+.seq-body {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr 1fr;
+  gap: 0;
+  position: relative;
+}
+
+/* lifeline columns */
+.lane {
+  border-left: 2px dashed #cbd5e1;
+  min-height: 100%;
+  position: relative;
+}
+.lane.browser-lane { border-color: #3b82f6; }
+.lane.php-lane     { border-color: #22c55e; }
+.lane.zitadel-lane { border-color: #f59e0b; }
+
+/* each sequence step */
+.step-row {
+  display: contents;
+}
+
+.step-label {
+  padding: 10px 10px 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.4;
+}
+.step-num {
+  min-width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 11px; color: #fff; flex-shrink: 0;
+}
+
+.cell {
+  padding: 6px 4px;
+  position: relative;
+  border-left: 2px dashed #cbd5e1;
+}
+.cell.browser-lane { border-color: #bfdbfe; }
+.cell.php-lane     { border-color: #bbf7d0; }
+.cell.zitadel-lane { border-color: #fde68a; }
+
+/* arrow boxes drawn inside cells */
+.msg {
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  position: relative;
+}
+.msg code {
+  font-family: 'Courier New', monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  display: block;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* arrow directions */
+.arrow-right::after { content: ' →'; }
+.arrow-left::before { content: '← '; }
+.arrow-down::after  { content: ' ↓'; }
+
+/* colour themes per step */
+.c-blue   { background: #dbeafe; color: #1e40af; border-left: 3px solid #3b82f6; }
+.c-green  { background: #dcfce7; color: #166534; border-left: 3px solid #22c55e; }
+.c-amber  { background: #fef3c7; color: #92400e; border-left: 3px solid #f59e0b; }
+.c-pink   { background: #fce7f3; color: #9d174d; border-left: 3px solid #ec4899; }
+.c-purple { background: #ede9fe; color: #5b21b6; border-left: 3px solid #8b5cf6; }
+.c-cyan   { background: #cffafe; color: #155e75; border-left: 3px solid #06b6d4; }
+.c-orange { background: #ffedd5; color: #c2410c; border-left: 3px solid #f97316; }
+.c-teal   { background: #ccfbf1; color: #134e4a; border-left: 3px solid #14b8a6; }
+.c-indigo { background: #e0e7ff; color: #3730a3; border-left: 3px solid #6366f1; }
+
+.n-blue   { background: #1d4ed8; }
+.n-green  { background: #15803d; }
+.n-amber  { background: #b45309; }
+.n-pink   { background: #ec4899; }
+.n-purple { background: #8b5cf6; }
+.n-cyan   { background: #06b6d4; }
+.n-orange { background: #f97316; }
+.n-teal   { background: #14b8a6; }
+.n-indigo { background: #6366f1; }
+
+/* security badge */
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 1px 6px; border-radius: 3px; margin-top: 3px;
+}
+.badge-red    { background: #fee2e2; color: #991b1b; }
+.badge-blue   { background: #dbeafe; color: #1e40af; }
+.badge-green  { background: #dcfce7; color: #166534; }
+.badge-purple { background: #ede9fe; color: #5b21b6; }
+
+/* separator line between steps */
+.step-row > .step-label { border-top: 1px solid #e2e8f0; }
+.step-row > .cell       { border-top: 1px solid #e2e8f0; }
+
+@media print {
+  body { background: #fff; padding: 16px; }
+  .diagram { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<h1>Zitadel SSO — Authorization Flow</h1>
+<p class="subtitle">OIDC Authorization Code + PKCE — Monarc FrontOffice</p>
+
+<div class="diagram">
+
+  <!-- ACTOR HEADERS -->
+  <div class="actor-row">
+    <div class="actor-cell blank"></div>
+    <div class="actor-cell browser">🖥 User Browser</div>
+    <div class="actor-cell php">⚙️ Monarc PHP Server</div>
+    <div class="actor-cell zitadel">🔐 Zitadel IdP</div>
+  </div>
+
+  <div class="seq-body">
+
+    <!-- STEP 1 -->
+    <div class="step-label">
+      <div class="step-num n-blue">1</div>
+      <div>User clicks<br><strong>"Login to Monarc with SSO"</strong></div>
+    </div>
+    <div class="cell browser-lane">
+      <div class="msg c-blue arrow-right">GET /api/auth/zitadel/login</div>
+    </div>
+    <div class="cell php-lane"></div>
+    <div class="cell zitadel-lane"></div>
+
+    <!-- STEP 2 -->
+    <div class="step-label">
+      <div class="step-num n-green">2</div>
+      <div>Generate PKCE<br>&amp; CSRF state</div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane">
+      <div class="msg c-green">
+        loginAction() generates:<br>
+        <code>code_verifier  → random 32-byte secret</code>
+        <code>code_challenge = SHA256(verifier)</code>
+        <code>state          → CSRF token</code>
+        <code>nonce          → replay guard</code>
+        <span class="badge badge-red">🛡 PKCE</span>
+        <span class="badge badge-blue">🛡 CSRF</span><br>
+        Stored in HttpOnly cookies (5 min TTL)
+      </div>
+    </div>
+    <div class="cell zitadel-lane"></div>
+
+    <!-- STEP 3 -->
+    <div class="step-label">
+      <div class="step-num n-amber">3</div>
+      <div>Redirect browser<br>to Zitadel</div>
+    </div>
+    <div class="cell browser-lane">
+      <div class="msg c-amber arrow-right">302 → Zitadel /oauth/v2/authorize</div>
+    </div>
+    <div class="cell php-lane">
+      <div class="msg c-amber arrow-right">
+        <code>client_id, redirect_uri</code>
+        <code>response_type=code</code>
+        <code>scope=openid profile email …</code>
+        <code>state, nonce, code_challenge</code>
+        <code>code_challenge_method=S256</code>
+      </div>
+    </div>
+    <div class="cell zitadel-lane"></div>
+
+    <!-- STEP 4 -->
+    <div class="step-label">
+      <div class="step-num n-pink">4</div>
+      <div>User authenticates<br>on Zitadel UI</div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane"></div>
+    <div class="cell zitadel-lane">
+      <div class="msg c-pink">
+        User enters credentials<br>
+        Zitadel handles MFA &amp; session<br>
+        Issues one-time <strong>authorization code</strong>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-label">
+      <div class="step-num n-purple">5</div>
+      <div>Zitadel redirects<br>back with code</div>
+    </div>
+    <div class="cell browser-lane">
+      <div class="msg c-purple arrow-left">
+        302 → /api/auth/zitadel/callback
+        <code>?code=ABC&amp;state=xyz</code>
+      </div>
+    </div>
+    <div class="cell php-lane"></div>
+    <div class="cell zitadel-lane">
+      <div class="msg c-purple arrow-left">302 redirect with code + state</div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-label">
+      <div class="step-num n-cyan">6</div>
+      <div>Validate CSRF<br>state</div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane">
+      <div class="msg c-cyan">
+        callbackAction() reads cookie:<br>
+        <code>storedState  ← from HttpOnly cookie</code>
+        <code>stateParam   ← from ?state= query param</code>
+        hash_equals(storedState, stateParam)<br>
+        Mismatch → <strong>400 rejected</strong>
+        <span class="badge badge-blue">🛡 CSRF check</span>
+      </div>
+    </div>
+    <div class="cell zitadel-lane"></div>
+
+    <!-- STEP 7 -->
+    <div class="step-label">
+      <div class="step-num n-orange">7</div>
+      <div>Exchange code<br>for tokens<br><em>(backchannel)</em></div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane">
+      <div class="msg c-orange arrow-right">
+        POST /oauth/v2/token
+        <code>grant_type=authorization_code</code>
+        <code>code=ABC</code>
+        <code>code_verifier  ← from cookie</code>
+        <code>Authorization: Basic clientId:secret</code>
+        <span class="badge badge-red">🛡 PKCE verify</span>
+        <span class="badge badge-purple">🛡 Backchannel only</span>
+      </div>
+    </div>
+    <div class="cell zitadel-lane">
+      <div class="msg c-orange arrow-left">
+        Returns:
+        <code>access_token</code>
+        <code>id_token (JWT, RS256)</code>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step-label">
+      <div class="step-num n-teal">8</div>
+      <div>Validate<br>id_token JWT</div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane">
+      <div class="msg c-teal">
+        GET /oauth/v2/keys → fetch JWKS<br>
+        Verify RS256 signature<br>
+        <code>iss  = our Zitadel domain</code>
+        <code>aud  = our client_id</code>
+        <code>nonce = what we sent in step 3</code>
+        <code>exp  checked by firebase/php-jwt</code>
+        <span class="badge badge-red">🛡 Signature verify</span>
+        <span class="badge badge-green">🛡 Replay guard</span>
+      </div>
+    </div>
+    <div class="cell zitadel-lane">
+      <div class="msg c-teal arrow-left">
+        GET /oauth/v2/keys
+        <code>← JWKS public keys</code>
+      </div>
+    </div>
+
+    <!-- STEP 9 -->
+    <div class="step-label">
+      <div class="step-num n-indigo">9</div>
+      <div>Fetch userinfo<br>&amp; find/create<br>Monarc user</div>
+    </div>
+    <div class="cell browser-lane"></div>
+    <div class="cell php-lane">
+      <div class="msg c-indigo">
+        GET /oidc/v1/userinfo (Bearer token)<br>
+        Verify sub matches id_token<br>
+        Check email_verified<br>
+        Lookup user by email in DB<br>
+        Auto-create if not found
+        <span class="badge badge-purple">🗄 DB lookup/create</span>
+      </div>
+    </div>
+    <div class="cell zitadel-lane">
+      <div class="msg c-indigo arrow-left">
+        <code>{ email, name, sub, … }</code>
+      </div>
+    </div>
+
+    <!-- STEP 10 -->
+    <div class="step-label">
+      <div class="step-num n-green">10</div>
+      <div>Issue Monarc<br>token &amp; redirect</div>
+    </div>
+    <div class="cell browser-lane">
+      <div class="msg c-green arrow-left">
+        302 → http://localhost:5001/
+        <code>#token=MON_TOKEN&amp;uid=123</code>
+        <code>&amp;language=1&amp;idToken=JWT</code>
+      </div>
+    </div>
+    <div class="cell php-lane">
+      <div class="msg c-green">
+        Generate Monarc token<br>
+        Save to user_tokens table<br>
+        302 redirect to frontend
+        <span class="badge badge-green">🗄 user_tokens saved</span>
+      </div>
+    </div>
+    <div class="cell zitadel-lane"></div>
+
+    <!-- STEP 11 -->
+    <div class="step-label">
+      <div class="step-num n-blue">11</div>
+      <div>Frontend captures<br>token &amp; logs in</div>
+    </div>
+    <div class="cell browser-lane">
+      <div class="msg c-blue">
+        layout.phtml &lt;script&gt; runs before Angular:<br>
+        <code>hash → sessionStorage → rewrite to #/</code>
+        Angular boots → ClientLoginCtrl<br>
+        <code>sessionStorage → UserService.setToken()</code>
+        GET /api/users-roles (with Monarc token)<br>
+        → navigate to <strong>#/client/project</strong>
+      </div>
+    </div>
+    <div class="cell php-lane">
+      <div class="msg c-blue arrow-left">
+        GET /api/users-roles
+        <code>← { roles }</code>
+      </div>
+    </div>
+    <div class="cell zitadel-lane"></div>
+
+  </div><!-- seq-body -->
+</div><!-- diagram -->
+
+</body>
+</html>

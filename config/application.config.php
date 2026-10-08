@@ -29,6 +29,7 @@ defined('DATA_PATH') or define('DATA_PATH', $dataPath);
 
 return [
     'modules' => [
+        'Monarc\Zitadel',
         'Laminas\I18n',
         'Laminas\Mail',
         'Laminas\Log',

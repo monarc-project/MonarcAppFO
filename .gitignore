@@ -17,7 +17,6 @@ public/flags/
 public/views/
 public/captcha/
 scripts/public
-module/
 npm-debug.log
 node_modules/
 bin/
@@ -28,3 +27,4 @@ data/*
 .docker-initialized
 docker/db_data
 .vscode
+.history/

@@ -46,6 +46,8 @@
         "ext-pdo": "*",
         "ext-bcmath": "*",
         "ext-openssl": "*",
+        "ext-curl": "*",
+        "firebase/php-jwt": "^7.1",
         "monarc/frontoffice": "^2.13.1",
         "monarc/core": "^2.13.1",
         "laminas/laminas-mvc": "^3.1",
@@ -65,6 +67,14 @@
         "phpunit/phpunit": "^9.5",
         "laminas/laminas-test": "^4.5"
     },
+    "autoload": {
+        "psr-4": {
+            "Monarc\\Zitadel\\": [
+                "module/Monarc/Zitadel/src/",
+                "module/Monarc/Zitadel/"
+            ]
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "MonarcAppFo\\Tests\\": "tests/"
@@ -74,7 +84,8 @@
         "bin-dir": "bin/",
         "allow-plugins": {
             "laminas/laminas-dependency-plugin": true
-        }
+        },
+        "platform-check": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -120,4 +120,43 @@ return [
         'port' => 1025,
     ],
     */
+
+    /*
+     * Zitadel OIDC / PKCE single-sign-on (optional).
+     * Set 'enabled' to true and fill in the values from your Zitadel application.
+     *
+     *   domain        – public issuer/browser URL of your Zitadel instance, e.g. https://auth.example.com
+     *   backchannelDomain - optional server-to-server URL used from PHP containers
+     *   backchannelHostHeader - optional Host header for reverse proxies such as Traefik
+     *   clientId      – Client ID of the PKCE application created in Zitadel
+     *   clientSecret  – Client Secret (leave empty for public PKCE apps)
+     *   callbackUrl   - Full backend URL to /api/auth/zitadel/callback on this instance
+     *   postLoginUrl  - Front-end URL to receive the Monarc token in the URL fragment
+     *   postLogoutUrl - URL Zitadel redirects to after end_session
+     */
+    'zitadel' => [
+        'domain'        => '', // e.g. 'https://auth.example.com'
+        'backchannelDomain' => '', // e.g. 'http://host.docker.internal:8080' for local Docker
+        'backchannelHostHeader' => '', // e.g. 'localhost:8080' when Traefik routes local Zitadel
+        'clientId'      => '',
+        'clientSecret'  => '', // leave empty for public PKCE apps
+        'callbackUrl'   => '', // e.g. 'https://monarc-api.example.com/api/auth/zitadel/callback'
+        'postLoginUrl'  => '', // e.g. 'https://monarc.example.com/auth/callback/nc3-sso'
+        'postLogoutUrl' => '', // e.g. 'https://monarc.example.com/auth/logout/callback'
+        'scopes' => [
+            'openid',
+            'profile',
+            'email',
+            'urn:zitadel:iam:user:metadata',
+            'urn:zitadel:iam:user:resourceowner',
+            'urn:zitadel:iam:org:projects:roles',
+        ],
+        'autoProvisionUsers'      => true,
+        'requireEmailVerified'    => true,
+        'allowedEmailDomains'     => [],
+        'allowedResourceOwnerIds' => [],
+        'defaultRole'             => 'userfo',
+        'defaultLanguage'         => 1,
+        'clockSkewSeconds'        => 60,
+    ],
 ];
