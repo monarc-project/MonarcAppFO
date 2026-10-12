@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: monarcappfo
+  name: monarcappfo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monarcappfo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: monarcappfo
+    spec:
+      hostname: monarcappfo
+
+      securityContext:
+        fsGroup: 33
+      containers:
+      - name: monarcappfo
+        image: monarcappfo:v2.14.2-1
+        imagePullPolicy: Always
+
+        resources:
+          limits:
+            cpu: 2
+            memory: 2Gi
+          requests:
+            cpu: 200m
+            memory: 2Gi
+
+        ports:
+          - containerPort: 8080
+            name: monarcappfo
+
+        env:
+          - name: DBPASSWORD_ADMIN
+            valueFrom:
+              secretKeyRef:
+                name: monarc-monarcappfo-secrets
+                key: DBPASSWORD_ADMIN
+          - name: DBPASSWORD_MONARC
+            valueFrom:
+              secretKeyRef:
+                name: monarc-monarcappfo-secrets
+                key: DBPASSWORD_MONARC
+          - name: DBHOST
+            value: fodb
+          - name: DBNAME_COMMON
+            value: monarc_common
+          - name: DBNAME_CLI
+            value: monarc_cli
+          - name: DBUSER_MONARC
+            value: sqlmonarcuser
+          - name: USE_BO_COMMON
+            value: "0"
+          - name: STATS_API_BASE_URL
+            value: "http://monarcstats:5005"
+          - name: STATS_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: monarc-monarcstats-secrets
+                key: STATS_SECRET_KEY
+          - name: MONARC_LANGUAGES
+            value: "fr:1:Français;en:2:English;de:3:Deutsch;nl:4:Nederlands;es:5:Spanish;ro:6:Romanian;it:7:Italian;ja:8:Japanese;pl:9:Polish;pt:10:Portuguese;zh:11:Chinese"
+          - name: MONARC_ACTIVE_LANGUAGES
+            value: fr,en,de,nl,es,ro,it,ja,pl,pt,zh
+          - name: MONARC_DEFAULT_LANGUAGE_INDEX
+            value: "1"
+          - name: APP_ENV
+            value: production
+
+        volumeMounts:
+          - name: monarcappfo-data
+            mountPath: /var/lib/monarc
+
+        securityContext:
+          runAsUser: 33
+
+        readinessProbe:
+          tcpSocket:
+            port: monarcappfo
+          initialDelaySeconds: 10
+
+        livenessProbe:
+          tcpSocket:
+            port: monarcappfo
+          initialDelaySeconds: 120
+
+      volumes:
+        - name: monarcappfo-data
+          persistentVolumeClaim:
+            claimName: monarc-monarcappfo-pvc

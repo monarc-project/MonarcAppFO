@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: monarcstats
+  name: monarcstats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monarcstats
+  template:
+    metadata:
+      labels:
+        app: monarcstats
+    spec:
+      containers:
+      - name: monarcstats
+        image: monarcappfo-stats:v2.14.2-1
+        imagePullPolicy: Always
+
+        ports:
+          - containerPort: 5005
+            protocol: TCP
+            name: monarcstats
+
+        env:
+          - name: STATS_HOST
+            value: "0.0.0.0"
+
+          - name: STATS_PORT
+            value: "5005"
+
+          - name: STATS_DB_HOST
+            value: "postgres"
+
+          - name: STATS_DB_NAME
+            value: statsservice
+
+          - name: STATS_DB_USER
+            value: sqlmonarcuser
+
+          - name: STATS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-app
+                key: password
+
+          - name: STATS_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: monarc-monarcstats-secrets
+                key: STATS_SECRET_KEY
+
+        readinessProbe:
+          tcpSocket:
+            port: monarcstats
+          initialDelaySeconds: 10
+
+        livenessProbe:
+          tcpSocket:
+            port: monarcstats
+          initialDelaySeconds: 120
