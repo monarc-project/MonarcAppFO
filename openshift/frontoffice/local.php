@@ -8,6 +8,10 @@ $stats_api_base_url = getenv('STATS_API_BASE_URL') ? getenv('STATS_API_BASE_URL'
 $stats_api_key = getenv('STATS_API_KEY') ? getenv('STATS_API_KEY') : "null";
 $pdf_converter_binary = getenv('PDF_CONVERTER_BINARY') ? getenv('PDF_CONVERTER_BINARY') : '/usr/bin/soffice';
 $captcha_enabled_php = getenv('CAPTCHA_ENABLED_PHP');
+$smtp_host = getenv('SMTP_HOST');
+$smtp_port = getenv('SMTP_PORT');
+$smtp_sender = getenv('SMTP_SENDER');
+$smtp_sender_email = getenv('SMTP_SENDER_EMAIL');
 
 $appdir = getenv('APP_DIR') ? getenv('APP_DIR') : '/var/www/html/monarc';
 $string = file_get_contents($appdir.'/package.json');
@@ -57,8 +61,8 @@ return [
     'appCheckingURL' => 'https://version.monarc.lu/check/MONARC',
 
     'email' => [
-        'name' => 'MONARC',
-        'from' => 'info@monarc.lu',
+        'name' => $smtp_sender,
+        'from' => $smtp_sender_email,
     ],
 
     'mospApiUrl' => 'https://objects.monarc.lu/api/',
@@ -94,5 +98,11 @@ return [
     'import' => [
         'uploadFolder' => "${appdir}/data/import/files",
         'isBackgroundProcessActive' => false,
+    ],
+
+    'smtpOptions' => [
+        'name' => "Monarc",
+        'host' => $smtp_host,
+        'port' => $smtp_port
     ],
 ];
