@@ -100,6 +100,9 @@ chown -R www-data:www-data /var/www/html/monarc/data
 chown -R www-data:www-data /var/www/html/monarc/public/captcha
 chmod -R 775 /var/www/html/monarc/data
 
+echo "Starting the statistics sentry..."
+nohup /var/www/html/monarc/bin/monarcstats_collect.sh &
+
 echo "Running application..."
 
 # Execute the main command

@@ -48,6 +48,7 @@ WORKDIR /var/www/html/monarc
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY local.php config/autoload/local.php
 COPY ports.conf /etc/apache2/ports.conf
+COPY monarcstats_collect.sh bin/monarcstats_collect.sh
 
 # Allow Apache override to all
 RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
