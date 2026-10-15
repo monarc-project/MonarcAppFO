@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fodb
+  labels:
+    app: fodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fodb
+  strategy:
+      type: Recreate
+      rollingUpdate: null
+
+  template:
+    metadata:
+      labels:
+        app: fodb
+    spec:
+      securityContext:
+        fsGroup: 999
+
+      containers:
+      - name: fodb
+        image: mariadb:10.11-1
+
+        ports:
+          - containerPort: 3306
+            name: fodb
+
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: 1
+          requests:
+            memory: "1Gi"
+            cpu: 100m
+
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: monarcappfo-mariadb-secrets
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: monarcappfo-mariadb-secrets
+                key: MYSQL_PASSWORD
+          - name: MYSQL_DATABASE
+            value: monarc_common
+          - name: MYSQL_USER
+            value: sqlmonarcuser
+
+        args:
+          - --character-set-server=utf8mb4
+          - --collation-server=utf8mb4_general_ci
+          - --bind-address=0.0.0.0
+          - --sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+
+        volumeMounts:
+          - name: monarcappfo-mariadb-data
+            mountPath: /var/lib/mysql
+
+        securityContext:
+          runAsUser: 999
+
+        readinessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - mysqladmin ping -h localhost -u root -p"${MYSQL_ROOT_PASSWORD}"
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 10
+
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - mysqladmin ping -h localhost -u root -p"${MYSQL_ROOT_PASSWORD}"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 10
+
+        startupProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - mysqladmin ping -h localhost -u root -p"$MYSQL_ROOT_PASSWORD"
+          periodSeconds: 10
+          failureThreshold: 60
+
+      volumes:
+        - name: monarcappfo-mariadb-data
+          persistentVolumeClaim:
+            claimName: monarcappfo-mariadb-pvc
