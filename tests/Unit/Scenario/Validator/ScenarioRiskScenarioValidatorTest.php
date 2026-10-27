@@ -18,13 +18,13 @@ final class ScenarioRiskScenarioValidatorTest extends TestCase
             'title' => '  Supplier service disruption  ',
             'sourceSnapshotUuid' => 'd1b5f1d9-4e2a-4ac2-8b36-17a5fbcf1e34',
             'sourceInstanceRecordUuid' => '7d7bafc6-4ba0-47c0-9f98-b0c20b8ca03e',
-            'provenance' => '  SRA-11 unit test  ',
+            'description' => '  SRA-19 unit test  ',
         ]));
         self::assertSame([
             'title' => 'Supplier service disruption',
             'sourceSnapshotUuid' => 'd1b5f1d9-4e2a-4ac2-8b36-17a5fbcf1e34',
             'sourceInstanceRecordUuid' => '7d7bafc6-4ba0-47c0-9f98-b0c20b8ca03e',
-            'provenance' => 'SRA-11 unit test',
+            'description' => 'SRA-19 unit test',
         ], $validator->getValidData());
     }
 

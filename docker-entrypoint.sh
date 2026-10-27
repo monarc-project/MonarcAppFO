@@ -29,6 +29,11 @@ if is_true "${CAPTCHA_ENABLED:-false}"; then
     CAPTCHA_ENABLED_PHP=true
 fi
 
+SCENARIO_ENABLED_PHP=false
+if is_true "${SCENARIO_ENABLED:-false}"; then
+    SCENARIO_ENABLED_PHP=true
+fi
+
 # Check if this is the first run
 if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     echo -e "${GREEN}First run detected, initializing application...${NC}"
@@ -164,6 +169,12 @@ return [
         'ttl' => 60, // timeout
     ],
 
+    'scenario' => [
+        'enabled' => ${SCENARIO_ENABLED_PHP},
+        'identity' => ['mode' => 'legacy'],
+        'sessionTtl' => 480,
+    ],
+
     'statsApi' => [
         'baseUrl' => '${STATS_API_BASE_URL:-http://stats-service:5005}',
         'apiKey' => '${STATS_API_KEY:-}',
@@ -219,6 +230,39 @@ EOF
 else
     echo -e "${GREEN}Application already initialized, starting services...${NC}"
 fi
+
+configure_scenario_review_scheduler() {
+    local enabled="${SCENARIO_REVIEW_SCHEDULER_ENABLED:-true}"
+    local schedule="${SCENARIO_REVIEW_SCHEDULER_CRON:-15 2 * * *}"
+    local job_file="/etc/cron.d/monarc-scenario-review"
+
+    if ! is_true "${enabled}"; then
+        rm -f "${job_file}"
+        echo -e "${YELLOW}Scenario review scheduler is disabled by configuration.${NC}"
+
+        return
+    fi
+
+    if ! [[ "${schedule}" =~ ^([^[:space:]]+[[:space:]]+){4}[^[:space:]]+$ ]]; then
+        echo -e "${RED}SCENARIO_REVIEW_SCHEDULER_CRON must contain exactly five cron fields.${NC}"
+        exit 1
+    fi
+
+    cat > "${job_file}" <<EOF
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+${schedule} root cd /var/www/html/monarc && /usr/bin/php bin/console monarc:scenario-open-due-reviews >> /proc/1/fd/1 2>&1
+EOF
+    chmod 0644 "${job_file}"
+
+    if ! pgrep -x cron >/dev/null 2>&1; then
+        cron
+    fi
+
+    echo -e "${GREEN}Scenario review scheduler configured (${schedule}, UTC).${NC}"
+}
+
+configure_scenario_review_scheduler
 
 # Execute the main command
 exec apachectl -D FOREGROUND

@@ -200,6 +200,26 @@ docker exec -it monarc-fo-app bash      # MONARC application
 docker exec -it monarc-fo-stats bash    # Stats service
 ```
 
+### Scenario review scheduler
+
+The FrontOffice image starts the Scenario review scheduler automatically. It
+runs at `02:15 UTC` by default and is harmless when the Scenario feature is
+disabled: the command exits without changing review data. Set the following in
+`.env` before starting the app to change its behaviour:
+
+```dotenv
+SCENARIO_ENABLED=true
+SCENARIO_REVIEW_SCHEDULER_ENABLED=true
+SCENARIO_REVIEW_SCHEDULER_CRON="15 2 * * *"
+```
+
+Use `SCENARIO_REVIEW_SCHEDULER_ENABLED=false` to omit the Docker cron job.
+See [docs/scenario-review-scheduler.md](docs/scenario-review-scheduler.md) for
+production scheduling and operational details. On an already initialized
+installation, ensure `scenario.enabled` is also enabled in
+`config/autoload/local.php`; the scheduler always uses that final MONARC
+configuration as its feature guard.
+
 ### Database Access
 
 Using Makefile:

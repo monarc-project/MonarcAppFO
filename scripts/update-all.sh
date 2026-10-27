@@ -158,4 +158,8 @@ fi
 
 ./scripts/update_config_variables.sh
 
+if [[ -f "config/autoload/local.php" ]]; then
+    php ./bin/console monarc:doctrine:generate-proxies || exit 1
+fi
+
 exit 0

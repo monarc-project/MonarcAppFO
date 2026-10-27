@@ -20,7 +20,7 @@ ENV TZ=UTC
 
 # Install system dependencies
 RUN apt-get update && apt-get upgrade -y && \
-    packages="vim zip unzip git gettext curl gsfonts mariadb-client apache2 php8.1 php8.1-cli \
+    packages="vim zip unzip git gettext curl gsfonts mariadb-client apache2 cron php8.1 php8.1-cli \
     php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml \
     php8.1-bcmath php8.1-intl php8.1-imagick locales wget ca-certificates gnupg \
     build-essential python3 pkg-config libcairo2-dev libpango1.0-dev libjpeg-dev libreoffice-writer \
