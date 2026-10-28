@@ -13,6 +13,7 @@
 
 use Doctrine\DBAL\Driver\PDO\MySQL\Driver;
 use Monarc\Core\Service\DoctrineCacheServiceFactory;
+use Monarc\Core\Service\DoctrineConfigurationFactory;
 use Monarc\Core\Service\DoctrineLoggerFactory;
 
 $dataPath = 'data';
@@ -27,6 +28,10 @@ return [
     'service_manager' => [
         'factories' => [
             'doctrine.cache.mycache' => DoctrineCacheServiceFactory::class,
+            'doctrine.cache.array' => DoctrineCacheServiceFactory::class,
+            'doctrine.cache.doctrinemodule.cache.array' => DoctrineCacheServiceFactory::class,
+            'doctrine.configuration.orm_default' => DoctrineConfigurationFactory::class,
+            'doctrine.configuration.orm_cli' => DoctrineConfigurationFactory::class,
             'doctrine.monarc_logger' => DoctrineLoggerFactory::class,
         ],
     ],

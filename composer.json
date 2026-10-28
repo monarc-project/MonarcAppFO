@@ -41,7 +41,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": ">=8.4.27 <8.5.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
@@ -51,10 +51,8 @@
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",
-        "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
-        "symfony/console": "^5.0",
-        "laminas/laminas-dependency-plugin": "^2.0",
+        "symfony/console": "^6.4",
         "laminas/laminas-mvc-middleware": "^2.2",
         "robthree/twofactorauth": "^1.8",
         "endroid/qr-code": "^4.4",
@@ -62,7 +60,7 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.5",
         "laminas/laminas-test": "^4.5"
     },
     "autoload-dev": {
@@ -72,8 +70,8 @@
     },
     "config": {
         "bin-dir": "bin/",
-        "allow-plugins": {
-            "laminas/laminas-dependency-plugin": true
+        "platform": {
+            "php": "8.4.27"
         }
     },
     "minimum-stability": "dev",

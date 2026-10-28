@@ -37,7 +37,7 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
 
     # Install composer dependencies (always, to ensure binaries like Phinx are present)
     echo -e "${YELLOW}Installing Composer dependencies...${NC}"
-    composer install --ignore-platform-req=php --no-interaction
+    composer install --no-interaction
 
     # Create module symlinks
     echo -e "${YELLOW}Creating module symlinks...${NC}"

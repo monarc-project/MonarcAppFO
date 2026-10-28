@@ -96,7 +96,7 @@ fi
 if [[ $isDevEnv -eq 0 ]]; then
     composer ins -o --no-dev --no-cache
 else
-    composer ins --ignore-platform-req=php
+    composer ins
 fi
 
 pathCore="module/Monarc/Core"

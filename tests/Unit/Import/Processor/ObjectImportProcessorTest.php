@@ -53,7 +53,6 @@ class ObjectImportProcessorTest extends AbstractUnitTestCase
     {
         $reflection = new ReflectionClass($this->objectImportProcessor);
         $property = $reflection->getProperty('importCacheHelper');
-        $property->setAccessible(true);
         $property->setValue($this->objectImportProcessor, $cacheHelper);
     }
 
@@ -61,8 +60,6 @@ class ObjectImportProcessorTest extends AbstractUnitTestCase
     {
         $reflection = new ReflectionClass($this->objectImportProcessor);
         $method = $reflection->getMethod('prepareUniqueObjectName');
-        $method->setAccessible(true);
-
         return $method->invoke($this->objectImportProcessor, $objectName, $categoryId);
     }
 }

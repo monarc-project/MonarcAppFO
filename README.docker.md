@@ -465,7 +465,6 @@ All environment variables are defined in the `.env` file:
 | `DBPASSWORD_MONARC` | Database password | `sqlmonarcuser` |
 | `USE_BO_COMMON` | Use BackOffice `monarc_common` (`1/0`, `true/false`, `yes/no`) | `0` |
 | `MONARC_NETWORK_NAME` | Shared Docker network name | `monarc-network` |
-| `NODE_MAJOR` | Node.js major version for frontend tools | `16` |
 | `STATS_HOST` | Stats service host | `0.0.0.0` |
 | `STATS_PORT` | Stats service port | `5005` |
 | `STATS_DB_NAME` | Stats database name | `statsservice` |
