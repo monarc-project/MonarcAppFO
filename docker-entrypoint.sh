@@ -197,7 +197,12 @@ EOF
 
     # Update and build frontend and run DB migrations
     echo -e "${YELLOW}Building frontend and running DB migrations...${NC}"
-    ./scripts/update-all.sh
+    # Development startup must preserve the mounted task branches and locked graph.
+    (cd node_modules/ng_client && npm ci)
+    ./scripts/link_modules_resources.sh
+    ./scripts/compile_translations.sh
+    php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
+    php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
     # Seed database with initial user
     echo -e "${YELLOW}Creating initial user and client...${NC}"

@@ -14,9 +14,12 @@ APP_PACKAGE="monarc/frontoffice"
 CORE_REPOSITORY_KEY="repositories.monarc-core"
 APP_REPOSITORY_KEY="repositories.monarc-frontoffice"
 
-CORE_PATH="/var/www/html/zm-core"
-APP_PATH="/var/www/html/zm-client"
-LOCAL_PACKAGE_VERSION=$(sed -nE 's/^[[:space:]]*"monarc\/core":[[:space:]]*"\^([0-9]+\.[0-9]+)\.[0-9]+".*/\1.999/p' "${APP_DIR}/composer.json")
+CORE_PATH="../zm-core"
+APP_PATH="../zm-client"
+# Match both released constraints (for example ^2.14.0) and the PHP 8.4
+# development constraint (^2.15@dev).  A path repository needs a concrete
+# version that satisfies the application's package constraint.
+LOCAL_PACKAGE_VERSION=$(sed -nE 's/^[[:space:]]*"monarc\/core":[[:space:]]*"\^([0-9]+\.[0-9]+)(\.[0-9]+)?(@dev)?".*/\1.999/p' "${APP_DIR}/composer.json")
 
 SHARED_NG_NAME="ng_anr"
 SHARED_NG_REMOTE_URL="https://github.com/monarc-project/ng-anr.git"
@@ -34,6 +37,7 @@ Switch FrontOffice dependencies between local sibling repos and remote packages.
 
 Usage:
   ./scripts/switch_repo_sources.sh local
+  ./scripts/switch_repo_sources.sh local-php
   ./scripts/switch_repo_sources.sh remote
   ./scripts/switch_repo_sources.sh status
 
@@ -72,15 +76,18 @@ run_in_app() {
 }
 
 switch_php_to_local() {
-    run_in_app "composer config ${CORE_REPOSITORY_KEY} '{\"type\":\"path\",\"url\":\"${CORE_PATH}\",\"options\":{\"symlink\":true,\"versions\":{\"${CORE_PACKAGE}\":\"${LOCAL_PACKAGE_VERSION}\"}}}'"
-    run_in_app "composer config ${APP_REPOSITORY_KEY} '{\"type\":\"path\",\"url\":\"${APP_PATH}\",\"options\":{\"symlink\":true,\"versions\":{\"${APP_PACKAGE}\":\"${LOCAL_PACKAGE_VERSION}\"}}}'"
-    run_in_app "composer update ${CORE_PACKAGE} ${APP_PACKAGE}"
+    run_in_app "composer config ${CORE_REPOSITORY_KEY} '{\"type\":\"path\",\"url\":\"${CORE_PATH}\",\"options\":{\"symlink\":true,\"relative\":true,\"versions\":{\"${CORE_PACKAGE}\":\"${LOCAL_PACKAGE_VERSION}\"}}}'"
+    run_in_app "composer config ${APP_REPOSITORY_KEY} '{\"type\":\"path\",\"url\":\"${APP_PATH}\",\"options\":{\"symlink\":true,\"relative\":true,\"versions\":{\"${APP_PACKAGE}\":\"${LOCAL_PACKAGE_VERSION}\"}}}'"
+    # The previous lock file still contains laminas/laminas-dependency-plugin.
+    # Disable plugins for this transition so Composer can replace that legacy
+    # graph with the PHP 8.4-compatible local packages.
+    run_in_app "composer update --no-plugins --with-all-dependencies"
 }
 
 switch_php_to_remote() {
     run_in_app "composer config --unset ${CORE_REPOSITORY_KEY} || true"
     run_in_app "composer config --unset ${APP_REPOSITORY_KEY} || true"
-    run_in_app "composer update ${CORE_PACKAGE} ${APP_PACKAGE}"
+    run_in_app "composer update --no-plugins --with-all-dependencies"
 }
 
 switch_js_to_local() {
@@ -123,6 +130,12 @@ case "${MODE}" in
         require_running_service
         switch_php_to_local
         switch_js_to_local
+        print_status
+        ;;
+    local-php)
+        require_sibling_repositories
+        require_running_service
+        switch_php_to_local
         print_status
         ;;
     remote)

@@ -1,4 +1,9 @@
 <?php declare(strict_types=1);
+/**
+ * @link      https://github.com/monarc-project for the canonical source repository
+ * @copyright Copyright (c) 2016-2026 Luxembourg House of Cybersecurity LHC.lu - Licensed under GNU Affero GPL v3
+ * @license   MONARC is licensed under GNU Affero General Public License version 3
+ */
 
 namespace MonarcAppFo\Tests\Unit\Import\Processor;
 
@@ -7,14 +12,12 @@ use Monarc\FrontOffice\Import\Helper\ImportCacheHelper;
 use MonarcAppFo\Tests\Unit\AbstractUnitTestCase;
 use ReflectionClass;
 
+/**
+ * @covers \Monarc\FrontOffice\Import\Processor\ObjectImportProcessor
+ */
 class ObjectImportProcessorTest extends AbstractUnitTestCase
 {
     private ObjectImportProcessor $objectImportProcessor;
-
-    public static function setUpBeforeClass(): void
-    {
-        require_once dirname(__DIR__, 5) . '/zm-client/src/Import/Processor/ObjectImportProcessor.php';
-    }
 
     protected function setUp(): void
     {

@@ -1,11 +1,17 @@
 <?php declare(strict_types=1);
+/**
+ * @link      https://github.com/monarc-project for the canonical source repository
+ * @copyright Copyright (c) 2016-2026 Luxembourg House of Cybersecurity LHC.lu - Licensed under GNU Affero GPL v3
+ * @license   MONARC is licensed under GNU Affero General Public License version 3
+ */
 
 namespace MonarcAppFo\Tests\Unit\Stats\Validator;
 
 use Doctrine\ORM\EntityNotFoundException;
-use Laminas\InputFilter\InputFilter;
-use Monarc\FrontOffice\Model\Entity\Anr;
-use Monarc\FrontOffice\Model\Table\AnrTable;
+use Monarc\Core\Service\ConnectedUserService;
+use Monarc\Core\Validator\InputValidator\InputValidationTranslator;
+use Monarc\FrontOffice\Entity\Anr;
+use Monarc\FrontOffice\Table\AnrTable;
 use Monarc\FrontOffice\Stats\DataObject\StatsDataObject;
 use Monarc\FrontOffice\Stats\Service\StatsAnrService;
 use Monarc\FrontOffice\Stats\Validator\GetStatsQueryParamsValidator;
@@ -13,6 +19,9 @@ use Monarc\FrontOffice\Validator\FieldValidator\AnrExistenceValidator;
 use MonarcAppFo\Tests\Unit\AbstractUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @covers \Monarc\FrontOffice\Stats\Validator\GetStatsQueryParamsValidator
+ */
 class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
 {
     /** @var AnrTable|MockObject */
@@ -27,7 +36,8 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
 
         $this->anrTable = $this->createMock(AnrTable::class);
         $this->getStatsQueryParamsValidator = new GetStatsQueryParamsValidator(
-            new InputFilter(),
+            [],
+            new InputValidationTranslator($this->createMock(ConnectedUserService::class), []),
             $this->anrTable
         );
     }
@@ -79,7 +89,9 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
                 'aggregationPeriod' => null,
-                'getLast' => false,
+                'offset' => null,
+                'limit' => null,
+                'getLast' => null,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -98,29 +110,35 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
                 'aggregationPeriod' => null,
-                'getLast' => false,
+                'offset' => null,
+                'limit' => null,
+                'getLast' => null,
             ],
-            $this->getStatsQueryParamsValidator->getValidData()
+            $this->getStatsQueryParamsValidator->getValidData(1)
         );
     }
 
     public function testItThrowAnExceptionWhenSomeAnrsAreNotPresentedInTheTable()
     {
-        $this->anrTable->expects($this->at(0))->method('findById')->willReturn(new Anr());
-        $this->anrTable->expects($this->at(1))->method('findById')->willReturn(new Anr());
-        $this->anrTable->expects($this->at(2))->method('findById')->willThrowException(new EntityNotFoundException());
+        $this->anrTable->expects($this->exactly(3))->method('findById')
+            ->willReturnCallback(static function (int $id): Anr {
+                if ($id === 3) {
+                    throw new EntityNotFoundException();
+                }
+
+                return new Anr();
+            });
 
         static::assertFalse($this->getStatsQueryParamsValidator->isValid([
             'type' => StatsDataObject::TYPE_RISK,
-            'anrs' => [1, 2, 3, 7],
+            'anrs' => [['id' => 1], ['id' => 2], ['id' => 3], ['id' => 7]],
         ]));
 
-        static::assertEquals(
-            [
-                'anrs' => [AnrExistenceValidator::ANR_DOES_NOT_EXIST => 'Anr with the ID (3) does not exist.']
-            ],
-            $this->getStatsQueryParamsValidator->getErrorMessages()
-        );
+        $errors = $this->getStatsQueryParamsValidator->getErrorMessages();
+        static::assertSame(['anrs'], array_keys($errors));
+        static::assertArrayHasKey(AnrExistenceValidator::ANR_DOES_NOT_EXIST, $errors['anrs']);
+        // The current field validator includes the supplied ANR object in its message.
+        static::assertStringContainsString("'id' => 3", $errors['anrs'][AnrExistenceValidator::ANR_DOES_NOT_EXIST]);
     }
 
     public function testItIsNotValidWhenTypeIsNotPassedOrWrong()
@@ -168,11 +186,11 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
         ]));
         static::assertTrue($this->getStatsQueryParamsValidator->isValid([
             'type' => StatsDataObject::TYPE_RISK,
-            'aggregationType' => 'week',
+            'aggregationPeriod' => 'week',
         ]));
     }
 
-    public function testGetLastIsSetToFalseWhenNotPassed()
+    public function testGetLastRemainsAbsentOrIsConvertedToBooleanWhenPassed()
     {
         static::assertTrue($this->getStatsQueryParamsValidator->isValid([
             'type' => StatsDataObject::TYPE_RISK,
@@ -180,11 +198,13 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
         static::assertEquals(
             [
                 'type' => StatsDataObject::TYPE_RISK,
-                'getLast' => false,
+                'getLast' => null,
                 'anrs' => [],
                 'dateFrom' => null,
                 'dateTo' => null,
                 'aggregationPeriod' => null,
+                'offset' => null,
+                'limit' => null,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -201,8 +221,10 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateFrom' => null,
                 'dateTo' => null,
                 'aggregationPeriod' => null,
+                'offset' => null,
+                'limit' => null,
             ],
-            $this->getStatsQueryParamsValidator->getValidData()
+            $this->getStatsQueryParamsValidator->getValidData(1)
         );
 
         static::assertTrue($this->getStatsQueryParamsValidator->isValid([
@@ -217,8 +239,10 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateFrom' => null,
                 'dateTo' => null,
                 'aggregationPeriod' => null,
+                'offset' => null,
+                'limit' => null,
             ],
-            $this->getStatsQueryParamsValidator->getValidData()
+            $this->getStatsQueryParamsValidator->getValidData(2)
         );
     }
 }
