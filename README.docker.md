@@ -464,6 +464,7 @@ All environment variables are defined in the `.env` file:
 | `DBUSER_MONARC` | Database user | `sqlmonarcuser` |
 | `DBPASSWORD_MONARC` | Database password | `sqlmonarcuser` |
 | `USE_BO_COMMON` | Use BackOffice `monarc_common` (`1/0`, `true/false`, `yes/no`) | `0` |
+| `PUBLIC_HOST` | Public base URL for absolute links (password reset); required, absolute http(s) URL | `http://localhost:5001` (dev) |
 | `MONARC_NETWORK_NAME` | Shared Docker network name | `monarc-network` |
 | `NODE_MAJOR` | Node.js major version for frontend tools | `16` |
 | `STATS_HOST` | Stats service host | `0.0.0.0` |

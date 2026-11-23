@@ -1,6 +1,22 @@
 MONARC Changelog
 ================
 
+## Unreleased
+
+### Security
+
+- Fix password-reset host-header poisoning: build the reset link from the configured
+  `publicHost` instead of the request `Host` header (CWE-640). Requires `monarc/core` with
+  the fail-closed `ConfigService::getHost()`. `publicHost` is now set by the config example,
+  the Docker entrypoint (from `PUBLIC_HOST`), and the WSL/Vagrant installers. Reported by
+  kta1kri.
+
+  Upgrade: existing instances MUST set `publicHost` (absolute http(s) URL) in
+  `config/autoload/local.php`, or set `PUBLIC_HOST` for the Docker image; otherwise password
+  reset stops working (FrontOffice returns a silent 200, BackOffice a generic 422). The Docker
+  entrypoint writes `local.php` only on first run, so existing containers are not updated
+  automatically.
+
 ## 2.14.2 (2026-09-10)
 
 ### Enhancement

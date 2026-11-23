@@ -333,6 +333,10 @@ return [
         ],
     ],
 
+    // Public base URL used to build absolute links (e.g. password reset). Must be an
+    // absolute http(s) URL; never derived from the request Host header.
+    'publicHost' => 'http://127.0.0.1:5001',
+
     'defaultLanguageIndex' => 1,
 
      // Languages available for the analysis / DB data.

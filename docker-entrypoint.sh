@@ -102,6 +102,9 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
         fi
     fi
 
+    # publicHost must be configured; the reset link is never derived from the request Host header.
+    : "${PUBLIC_HOST:?PUBLIC_HOST must be set to the public base URL, e.g. https://monarc.example.org}"
+
     # Generate local config (always override to match container DB)
     echo -e "${YELLOW}Creating local configuration...${NC}"
     cat > config/autoload/local.php <<EOF
@@ -134,6 +137,9 @@ return [
             ],
         ],
     ],
+
+    // Absolute public base URL; required to build password-reset links safely.
+    'publicHost' => '${PUBLIC_HOST}',
 
     'defaultLanguageIndex' => 1,
 
