@@ -1,0 +1,22 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16
+  enablePDB: false
+
+  bootstrap:
+    initdb:
+      database: statsservice
+      owner: sqlmonarcuser
+      secret:
+        name: postgres-secrets
+      postInitSQL:
+        - ALTER ROLE sqlmonarcuser WITH CREATEDB;
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 10Gi
