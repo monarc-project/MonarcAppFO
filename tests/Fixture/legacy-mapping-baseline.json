@@ -1,0 +1,241 @@
+{
+  "capturedOn": "2026-10-29",
+  "doctrineOrm": "2.20.13",
+  "entitySourceHeads": {
+    "zm-core": "c1c2b45f052dc22dc28a6df09cf5f71a58caa1c9",
+    "zm-client": "b21154b86246df8ae90c9de444029eb298db59d6"
+  },
+  "managers": {
+    "orm_default": {
+      "metadataCount": 79,
+      "errors": {
+        "Monarc\\Core\\Entity\\Amv": [
+          "The field Monarc\\Core\\Entity\\Amv#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRisk#amv does not contain the required 'inversedBy=\"instanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Anr": [
+          "The field Monarc\\Core\\Entity\\Anr#anrInstanceMetadataFields is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\AnrInstanceMetadataField#anr does not contain the required 'inversedBy=\"anrInstanceMetadataFields\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Anr#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#anr does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Anr#model is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Model#anr does not contain the required 'inversedBy=\"model\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Asset": [
+          "The field Monarc\\Core\\Entity\\Asset#amvs is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Amv#asset does not contain the required 'inversedBy=\"amvs\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Asset#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#asset does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Asset#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#asset does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Instance": [
+          "The field Monarc\\Core\\Entity\\Instance#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceConsequence#instance does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Instance#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRisk#instance does not contain the required 'inversedBy=\"instanceRisks\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Instance#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRiskOp#instance does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\InstanceRiskOp": [
+          "The field Monarc\\Core\\Entity\\InstanceRiskOp#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalInstanceRiskScale#operationalInstanceRisk does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Model": [
+          "The field Monarc\\Core\\Entity\\Model#vulnerabilities is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Vulnerability#models does not contain the required 'inversedBy=\"vulnerabilities\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\MonarcObject": [
+          "The field Monarc\\Core\\Entity\\MonarcObject#childrenLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ObjectObject#parent does not contain the required 'inversedBy=\"childrenLinks\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#object does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#parents is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#children does not contain the required 'inversedBy=\"parents\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#parentsLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ObjectObject#child does not contain the required 'inversedBy=\"parentsLinks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\ObjectCategory": [
+          "The field Monarc\\Core\\Entity\\ObjectCategory#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#category does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\OperationalRiskScale": [
+          "The field Monarc\\Core\\Entity\\OperationalRiskScale#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleComment#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute.",
+          "The field Monarc\\Core\\Entity\\OperationalRiskScale#operationalRiskScaleTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleTypes\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\OperationalRiskScaleType": [
+          "The field Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalInstanceRiskScale#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute.",
+          "The field Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleComment#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Question": [
+          "The field Monarc\\Core\\Entity\\Question#questionChoices is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\QuestionChoice#question does not contain the required 'inversedBy=\"questionChoices\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\RolfRisk": [
+          "The field Monarc\\Core\\Entity\\RolfRisk#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRiskOp#rolfRisk does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\RolfTag": [
+          "The field Monarc\\Core\\Entity\\RolfTag#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#rolfTag does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Scale": [
+          "The field Monarc\\Core\\Entity\\Scale#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleComment#scale does not contain the required 'inversedBy=\"scaleComments\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Scale#scaleImpactTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleImpactType#scale does not contain the required 'inversedBy=\"scaleImpactTypes\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\ScaleImpactType": [
+          "The field Monarc\\Core\\Entity\\ScaleImpactType#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceConsequence#scaleImpactType does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\Core\\Entity\\ScaleImpactType#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleComment#scaleImpactType does not contain the required 'inversedBy=\"scaleComments\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\User": [
+          "The field Monarc\\Core\\Entity\\User#passwordTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\PasswordToken#user does not contain the required 'inversedBy=\"passwordTokens\"' attribute.",
+          "The field Monarc\\Core\\Entity\\User#userTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\UserToken#user does not contain the required 'inversedBy=\"userTokens\"' attribute."
+        ]
+      }
+    },
+    "orm_cli": {
+      "metadataCount": 141,
+      "errors": {
+        "Monarc\\Core\\Entity\\Amv": [
+          "The field Monarc\\Core\\Entity\\Amv#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRisk#amv does not contain the required 'inversedBy=\"instanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Anr": [
+          "The field Monarc\\Core\\Entity\\Anr#anrInstanceMetadataFields is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\AnrInstanceMetadataField#anr does not contain the required 'inversedBy=\"anrInstanceMetadataFields\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Anr#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#anr does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Anr#model is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Model#anr does not contain the required 'inversedBy=\"model\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Asset": [
+          "The field Monarc\\Core\\Entity\\Asset#amvs is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Amv#asset does not contain the required 'inversedBy=\"amvs\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Asset#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#asset does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Asset#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#asset does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Instance": [
+          "The field Monarc\\Core\\Entity\\Instance#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceConsequence#instance does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Instance#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRisk#instance does not contain the required 'inversedBy=\"instanceRisks\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Instance#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRiskOp#instance does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\InstanceRiskOp": [
+          "The field Monarc\\Core\\Entity\\InstanceRiskOp#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalInstanceRiskScale#operationalInstanceRisk does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Model": [
+          "The field Monarc\\Core\\Entity\\Model#vulnerabilities is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Vulnerability#models does not contain the required 'inversedBy=\"vulnerabilities\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\MonarcObject": [
+          "The field Monarc\\Core\\Entity\\MonarcObject#childrenLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ObjectObject#parent does not contain the required 'inversedBy=\"childrenLinks\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\Instance#object does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#parents is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#children does not contain the required 'inversedBy=\"parents\"' attribute.",
+          "The field Monarc\\Core\\Entity\\MonarcObject#parentsLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ObjectObject#child does not contain the required 'inversedBy=\"parentsLinks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\ObjectCategory": [
+          "The field Monarc\\Core\\Entity\\ObjectCategory#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#category does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\OperationalRiskScale": [
+          "The field Monarc\\Core\\Entity\\OperationalRiskScale#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleComment#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute.",
+          "The field Monarc\\Core\\Entity\\OperationalRiskScale#operationalRiskScaleTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleTypes\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\OperationalRiskScaleType": [
+          "The field Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalInstanceRiskScale#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute.",
+          "The field Monarc\\Core\\Entity\\OperationalRiskScaleType#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\OperationalRiskScaleComment#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Question": [
+          "The field Monarc\\Core\\Entity\\Question#questionChoices is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\QuestionChoice#question does not contain the required 'inversedBy=\"questionChoices\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\RolfRisk": [
+          "The field Monarc\\Core\\Entity\\RolfRisk#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceRiskOp#rolfRisk does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\RolfTag": [
+          "The field Monarc\\Core\\Entity\\RolfTag#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\MonarcObject#rolfTag does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\Scale": [
+          "The field Monarc\\Core\\Entity\\Scale#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleComment#scale does not contain the required 'inversedBy=\"scaleComments\"' attribute.",
+          "The field Monarc\\Core\\Entity\\Scale#scaleImpactTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleImpactType#scale does not contain the required 'inversedBy=\"scaleImpactTypes\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\ScaleImpactType": [
+          "The field Monarc\\Core\\Entity\\ScaleImpactType#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\InstanceConsequence#scaleImpactType does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\Core\\Entity\\ScaleImpactType#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\ScaleComment#scaleImpactType does not contain the required 'inversedBy=\"scaleComments\"' attribute."
+        ],
+        "Monarc\\Core\\Entity\\User": [
+          "The field Monarc\\Core\\Entity\\User#passwordTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\PasswordToken#user does not contain the required 'inversedBy=\"passwordTokens\"' attribute.",
+          "The field Monarc\\Core\\Entity\\User#userTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\Core\\Entity\\UserToken#user does not contain the required 'inversedBy=\"userTokens\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Anr": [
+          "The field Monarc\\FrontOffice\\Entity\\Anr#anrInstanceMetadataFields is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\AnrInstanceMetadataField#anr does not contain the required 'inversedBy=\"anrInstanceMetadataFields\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Instance#anr does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#objectCategories is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ObjectCategory#anr does not contain the required 'inversedBy=\"objectCategories\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\MonarcObject#anr does not contain the required 'inversedBy=\"objects\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#recommendationSets is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecommendationSet#anr does not contain the required 'inversedBy=\"recommendationSets\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#referencedSnapshots is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Snapshot#anrReference does not contain the required 'inversedBy=\"referencedSnapshots\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#referentials is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Referential#anr does not contain the required 'inversedBy=\"referentials\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#snapshot is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Snapshot#anr does not contain the required 'inversedBy=\"snapshot\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Anr#usersAnrsPermissions is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\UserAnr#anr does not contain the required 'inversedBy=\"usersAnrsPermissions\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\AnrInstanceMetadataField": [
+          "The field Monarc\\FrontOffice\\Entity\\AnrInstanceMetadataField#instancesMetadata is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceMetadata#anrInstanceMetadataField does not contain the required 'inversedBy=\"instancesMetadata\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Asset": [
+          "The field Monarc\\FrontOffice\\Entity\\Asset#amvs is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Amv#asset does not contain the required 'inversedBy=\"amvs\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Asset#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Instance#asset does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Asset#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\MonarcObject#asset does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Client": [
+          "The field Monarc\\FrontOffice\\Entity\\Client#clientModels is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ClientModel#client does not contain the required 'inversedBy=\"clientModels\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Instance": [
+          "The field Monarc\\FrontOffice\\Entity\\Instance#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceConsequence#instance does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Instance#instanceMetadata is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceMetadata#instance does not contain the required 'inversedBy=\"instanceMetadata\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Instance#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceRisk#instance does not contain the required 'inversedBy=\"instanceRisks\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Instance#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceRiskOp#instance does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\InstanceRisk": [
+          "The field Monarc\\FrontOffice\\Entity\\InstanceRisk#recommendationRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecommendationRisk#instanceRisk does not contain the required 'inversedBy=\"recommendationRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\InstanceRiskOp": [
+          "The field Monarc\\FrontOffice\\Entity\\InstanceRiskOp#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\OperationalInstanceRiskScale#operationalInstanceRisk does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\InstanceRiskOp#recommendationRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecommendationRisk#instanceRiskOp does not contain the required 'inversedBy=\"recommendationRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\InstanceRiskOwner": [
+          "The field Monarc\\FrontOffice\\Entity\\InstanceRiskOwner#instanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceRisk#instanceRiskOwner does not contain the required 'inversedBy=\"instanceRisks\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\InstanceRiskOwner#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceRiskOp#instanceRiskOwner does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Measure": [
+          "The association Monarc\\FrontOffice\\Entity\\Measure#linkedMeasures refers to the inverse side field Monarc\\FrontOffice\\Entity\\Measure#measures which does not exist.",
+          "The field Monarc\\FrontOffice\\Entity\\Measure#soa is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Soa#measure does not contain the required 'inversedBy=\"soa\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\MonarcObject": [
+          "The field Monarc\\FrontOffice\\Entity\\MonarcObject#childrenLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ObjectObject#parent does not contain the required 'inversedBy=\"childrenLinks\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\MonarcObject#instances is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Instance#object does not contain the required 'inversedBy=\"instances\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\MonarcObject#parents is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\MonarcObject#children does not contain the required 'inversedBy=\"parents\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\MonarcObject#parentsLinks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ObjectObject#child does not contain the required 'inversedBy=\"parentsLinks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\ObjectCategory": [
+          "The field Monarc\\FrontOffice\\Entity\\ObjectCategory#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\MonarcObject#category does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\OperationalRiskScale": [
+          "The field Monarc\\FrontOffice\\Entity\\OperationalRiskScale#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\OperationalRiskScaleComment#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\OperationalRiskScale#operationalRiskScaleTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\OperationalRiskScaleType#operationalRiskScale does not contain the required 'inversedBy=\"operationalRiskScaleTypes\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\OperationalRiskScaleType": [
+          "The field Monarc\\FrontOffice\\Entity\\OperationalRiskScaleType#operationalInstanceRiskScales is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\OperationalInstanceRiskScale#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalInstanceRiskScales\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\OperationalRiskScaleType#operationalRiskScaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\OperationalRiskScaleComment#operationalRiskScaleType does not contain the required 'inversedBy=\"operationalRiskScaleComments\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Question": [
+          "The field Monarc\\FrontOffice\\Entity\\Question#questionChoices is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\QuestionChoice#question does not contain the required 'inversedBy=\"questionChoices\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Recommendation": [
+          "The field Monarc\\FrontOffice\\Entity\\Recommendation#recommendationRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecommendationRisk#recommendation does not contain the required 'inversedBy=\"recommendationRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\RecommendationSet": [
+          "The field Monarc\\FrontOffice\\Entity\\RecommendationSet#recommendations is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Recommendation#recommendationSet does not contain the required 'inversedBy=\"recommendations\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Record": [
+          "The field Monarc\\FrontOffice\\Entity\\Record#internationalTransfers is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecordInternationalTransfer#record does not contain the required 'inversedBy=\"internationalTransfers\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Record#personalData is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\RecordPersonalData#record does not contain the required 'inversedBy=\"personalData\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Referential": [
+          "The field Monarc\\FrontOffice\\Entity\\Referential#measures is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Measure#referential does not contain the required 'inversedBy=\"measures\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\RolfRisk": [
+          "The field Monarc\\FrontOffice\\Entity\\RolfRisk#operationalInstanceRisks is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceRiskOp#rolfRisk does not contain the required 'inversedBy=\"operationalInstanceRisks\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\RolfTag": [
+          "The field Monarc\\FrontOffice\\Entity\\RolfTag#objects is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\MonarcObject#rolfTag does not contain the required 'inversedBy=\"objects\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\Scale": [
+          "The field Monarc\\FrontOffice\\Entity\\Scale#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ScaleComment#scale does not contain the required 'inversedBy=\"scaleComments\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\Scale#scaleImpactTypes is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ScaleImpactType#scale does not contain the required 'inversedBy=\"scaleImpactTypes\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\ScaleImpactType": [
+          "The field Monarc\\FrontOffice\\Entity\\ScaleImpactType#instanceConsequences is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\InstanceConsequence#scaleImpactType does not contain the required 'inversedBy=\"instanceConsequences\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\ScaleImpactType#scaleComments is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\ScaleComment#scaleImpactType does not contain the required 'inversedBy=\"scaleComments\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\SoaScaleComment": [
+          "The field Monarc\\FrontOffice\\Entity\\SoaScaleComment#soas is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\Soa#soaScaleComment does not contain the required 'inversedBy=\"soas\"' attribute."
+        ],
+        "Monarc\\FrontOffice\\Entity\\User": [
+          "The field Monarc\\FrontOffice\\Entity\\User#passwordTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\PasswordToken#user does not contain the required 'inversedBy=\"passwordTokens\"' attribute.",
+          "The field Monarc\\FrontOffice\\Entity\\User#userTokens is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity Monarc\\FrontOffice\\Entity\\UserToken#user does not contain the required 'inversedBy=\"userTokens\"' attribute."
+        ]
+      }
+    }
+  }
+}

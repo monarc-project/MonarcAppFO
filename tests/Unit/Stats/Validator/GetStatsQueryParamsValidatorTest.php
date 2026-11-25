@@ -88,10 +88,7 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateTo' => '2020-06-01',
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
-                'aggregationPeriod' => null,
-                'offset' => null,
-                'limit' => null,
-                'getLast' => null,
+                'getLast' => false,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -109,10 +106,7 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'dateTo' => '2019-12-01',
                 'anrs' => [],
                 'type' => StatsDataObject::TYPE_RISK,
-                'aggregationPeriod' => null,
-                'offset' => null,
-                'limit' => null,
-                'getLast' => null,
+                'getLast' => false,
             ],
             $this->getStatsQueryParamsValidator->getValidData(1)
         );
@@ -190,7 +184,7 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
         ]));
     }
 
-    public function testGetLastRemainsAbsentOrIsConvertedToBooleanWhenPassed()
+    public function testGetLastUsesItsBooleanDefaultOrConvertsTheSuppliedValue()
     {
         static::assertTrue($this->getStatsQueryParamsValidator->isValid([
             'type' => StatsDataObject::TYPE_RISK,
@@ -198,13 +192,8 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
         static::assertEquals(
             [
                 'type' => StatsDataObject::TYPE_RISK,
-                'getLast' => null,
+                'getLast' => false,
                 'anrs' => [],
-                'dateFrom' => null,
-                'dateTo' => null,
-                'aggregationPeriod' => null,
-                'offset' => null,
-                'limit' => null,
             ],
             $this->getStatsQueryParamsValidator->getValidData()
         );
@@ -218,11 +207,6 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'type' => StatsDataObject::TYPE_RISK,
                 'getLast' => true,
                 'anrs' => [],
-                'dateFrom' => null,
-                'dateTo' => null,
-                'aggregationPeriod' => null,
-                'offset' => null,
-                'limit' => null,
             ],
             $this->getStatsQueryParamsValidator->getValidData(1)
         );
@@ -236,11 +220,6 @@ class GetStatsQueryParamsValidatorTest extends AbstractUnitTestCase
                 'type' => StatsDataObject::TYPE_RISK,
                 'getLast' => true,
                 'anrs' => [],
-                'dateFrom' => null,
-                'dateTo' => null,
-                'aggregationPeriod' => null,
-                'offset' => null,
-                'limit' => null,
             ],
             $this->getStatsQueryParamsValidator->getValidData(2)
         );

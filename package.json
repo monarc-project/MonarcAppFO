@@ -1,6 +1,6 @@
 {
   "name": "MONARC",
-  "version": "2.14.2",
+  "version": "2.14.3",
   "description": "Monarc front office application",
   "private": true,
   "repository": {
@@ -10,8 +10,8 @@
   "author": "CASES",
   "license": "GNU Affero General Public License version 3",
   "dependencies": {
-    "ng_anr": "git+https://github.com/monarc-project/ng-anr.git",
-    "ng_client": "git+https://github.com/monarc-project/ng-client.git"
+    "ng_anr": "git+https://github.com/monarc-project/ng-anr.git#b1d99b51792a3f5132ff840c9036e81b41cceb04",
+    "ng_client": "git+https://github.com/monarc-project/ng-client.git#c3ba83c734e099b536b1591869a2edc5dc6597a9"
   },
   "devDependencies": {
     "grunt": "~1.5.3",

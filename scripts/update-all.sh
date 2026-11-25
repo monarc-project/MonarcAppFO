@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -36,39 +37,19 @@ do
     esac
 done
 
-checkout_repo_ref() {
-    if [ -d "$1" ]; then
-        pushd "$1"
-        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-            if [[ -n "$2" ]]; then
-                git fetch origin "$2"
-                if git show-ref --verify --quiet "refs/heads/$2"; then
-                    git checkout "$2"
-                else
-                    git checkout -B "$2" --track "origin/$2"
-                fi
-                git pull origin "$2"
-            else
-                git fetch --tags
-                tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-                if git show-ref --verify --quiet "refs/heads/$tag"; then
-                    git checkout "$tag"
-                else
-                    git checkout -b "$tag" "$tag"
-                fi
-                git pull origin "$tag"
-            fi
-        else
-            echo "No .git metadata in $1; skipping frontend repository update."
-        fi
-        popd
-    fi
-}
+bash "$(dirname "${BASH_SOURCE[0]}")/check_node.sh"
 
-checkout_to_ref_if_set_or_latest_tag() {
-    if [ -d "$1" ]; then
-        checkout_repo_ref "$1" "$2"
+checkout_repo_ref() {
+    if [[ ! -d "$1/.git" || -L "$1" ]]; then
+        echo "A frontend ref override requires an independent Git checkout: $1" >&2
+        exit 1
     fi
+    if [[ -n "$(git -C "$1" status --porcelain --untracked-files=no)" ]]; then
+        echo "Preserve tracked changes in $1 before changing its revision." >&2
+        exit 1
+    fi
+    git -C "$1" fetch origin "$2"
+    git -C "$1" checkout --detach FETCH_HEAD
 }
 
 migrate_module() {
@@ -82,10 +63,12 @@ if [[ ! -f "config/autoload/local.php" && $bypass -eq 0 ]]; then
     exit 1
 fi
 
-if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "No .git metadata; skipping git pull."
+elif git rev-parse --verify --quiet '@{upstream}' >/dev/null 2>&1; then
     git pull || { echo "A problem occurred while retrieving remote files from repository."; exit 1; }
 else
-    echo "No .git metadata; skipping git pull."
+    echo "No upstream configured for the current checkout; skipping git pull."
 fi
 
 ./scripts/check_composer.sh
@@ -98,6 +81,26 @@ if [[ $isDevEnv -eq 0 ]]; then
 else
     composer ins
 fi
+
+# Prepare the frontend before changing the database. Local links belong to the
+# developer and must never be replaced with release checkouts during an update.
+if [[ -n "$frontendRef" ]]; then
+    checkout_repo_ref node_modules/ng_client "$frontendRef"
+    checkout_repo_ref node_modules/ng_anr "$frontendRef"
+    (cd node_modules/ng_client && npm ci)
+elif [[ -L node_modules/ng_anr || -L node_modules/ng_client ]]; then
+    for target in node_modules/ng_anr node_modules/ng_client; do
+        if [[ ! -L "$target" || ! -d "$target" ]]; then
+            echo "Local frontend sources require two valid links; run switch_repo_sources.sh local." >&2
+            exit 1
+        fi
+    done
+    (cd node_modules/ng_client && npm ci)
+else
+    ./scripts/install-frontend.sh
+fi
+./scripts/link_modules_resources.sh
+./scripts/compile_translations.sh
 
 pathCore="module/Monarc/Core"
 pathFO="module/Monarc/FrontOffice"
@@ -115,30 +118,6 @@ if [[ $bypass -eq 0 ]]; then
 
     migrate_module $pathCore
     migrate_module $pathFO
-fi
-
-if [[ -d node_modules/ng_client && -d node_modules/ng_anr ]]; then
-    if [[ -d node_modules/ng_client/.git && -d node_modules/ng_anr/.git ]]; then
-        checkout_to_ref_if_set_or_latest_tag node_modules/ng_client "$frontendRef"
-        checkout_to_ref_if_set_or_latest_tag node_modules/ng_anr "$frontendRef"
-    else
-        echo "node_modules/ng_* are not git repos; skipping frontend repository update."
-    fi
-fi
-
-if [[ -d node_modules/ng_client ]]; then
-    cd node_modules/ng_client
-    npm ci
-    cd ../..
-else
-    echo "node_modules/ng_client not found; skipping npm ci."
-fi
-
-if [[ -d node_modules/ng_client && -d node_modules/ng_anr ]]; then
-    ./scripts/link_modules_resources.sh
-    ./scripts/compile_translations.sh
-else
-    echo "Frontend repositories are missing; skipping resource linking and translation compilation."
 fi
 
 if [[ $forceClearCache -eq 1 ]]; then

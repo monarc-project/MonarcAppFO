@@ -21,7 +21,10 @@ Installation of VirtualBox and Vagrant
 Deployment of the front office
 ------------------------------
 
-MONARC will be automatically deployed in an Ubuntu Bionic Server.
+MONARC will be automatically deployed on Ubuntu 26.04 LTS with PHP 8.4.28 or later
+in the 8.4 release line. Provisioning uses the maintainer's ``packages.sury.org/php`` repository for
+Ubuntu 26.04 (Resolute) and checks the PHP
+version before installing application dependencies.
 
 .. code-block:: bash
 
@@ -48,3 +51,39 @@ The test can be run from Monarc root folder (/home/ubuntu/monarc) of your vagran
 sudo ./bin/phpunit [--testsuite Functional | --testsuite Integration | --testsuite Unit]
 
 In case of changing the DB configuration (tests/local.php) you can run them from your host machine.
+
+Ubuntu 26.04 provisioning
+------------------------
+
+Use Vagrant 2.4 or later and a current VirtualBox release appropriate for the
+host architecture. The ``bento/ubuntu-26.04`` box provides amd64 and arm64 images.
+MONARC retains PHP >=8.4.28 <8.5; Ubuntu's default PHP 8.5 is not used.
+
+Node.js 16.20.2 matches the existing frontend release build runtime. Its official
+binary archive is checked against the published SHA-256 checksums. Native build
+dependencies are installed for canvas. A Node major upgrade is separate from
+this guest OS change.
+
+The bootstrap is for a fresh guest. Existing VMs are not upgraded by changing the
+box name or running ``vagrant provision``. Preserve an existing VM and create a
+separate Ubuntu 26.04 instance, for example:
+
+.. code-block:: bash
+
+    $ VAGRANT_DOTFILE_PATH=.vagrant/ubuntu-26.04 vagrant up
+
+Keep the two instances from using the same host ports. The bootstrap checks the
+guest OS before changing packages, installs the pinned frontend revisions, and
+runs ``scripts/upgrade-db.sh`` to apply Core and office migrations. MariaDB root
+administration uses the guest's local Unix socket.
+
+The statistics service uses a Poetry-managed Python 3.12 environment rather than
+the guest's system Python. Poetry is installed from Ubuntu packages, and systemd
+runs ``/usr/bin/poetry`` with the current ``app.py`` entry point.
+
+Validation on 2026-11-24: both Vagrantfiles pass ``vagrant validate``, both
+bootstraps pass Bash syntax checks, and regression tests cover rejection of older
+guests and stopping after an APT index failure. PHP 8.4 installation, frontend
+``npm ci``/canvas loading and Poetry-managed Python 3.12 were checked in a
+disposable Ubuntu 26.04 arm64 container. Full VM provisioning, database migrations
+and application startup still need an end-to-end Vagrant run.

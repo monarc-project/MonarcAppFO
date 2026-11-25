@@ -1,6 +1,6 @@
 FROM node:16-bullseye-slim AS node
 
-FROM php:8.4.27-apache-bookworm
+FROM php:8.4-apache-bookworm
 
 ARG XDEBUG_ENABLED=1
 ARG XDEBUG_MODE=debug
@@ -47,7 +47,7 @@ RUN apt-get update \
     && docker-php-ext-install -j"$(nproc)" bcmath gd gettext intl mbstring pdo_mysql zip \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
-    && locale-gen en_US.UTF-8 \
+    && localedef -i en_US -f UTF-8 en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY docker/php/monarc.ini $PHP_INI_DIR/conf.d/99-monarc.ini

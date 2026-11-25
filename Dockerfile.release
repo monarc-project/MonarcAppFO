@@ -1,6 +1,6 @@
 FROM node:16-bullseye-slim AS node
 
-FROM php:8.4.27-apache-bookworm
+FROM php:8.4-apache-bookworm
 
 ARG XDEBUG_ENABLED=0
 ARG XDEBUG_MODE=debug
@@ -48,7 +48,7 @@ RUN apt-get update \
     && docker-php-ext-install -j"$(nproc)" bcmath gd gettext intl mbstring pdo_mysql zip \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
-    && locale-gen en_US.UTF-8 \
+    && localedef -i en_US -f UTF-8 en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY docker/php/monarc.ini $PHP_INI_DIR/conf.d/99-monarc.ini
@@ -100,7 +100,6 @@ RUN echo '<VirtualHost *:80>\n\
        Header always set X-Frame-Options SAMEORIGIN\n\
     </IfModule>\n\
 \n\
-    SetEnv APP_ENV development\n\
     SetEnv APP_DIR /var/www/html/monarc\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
@@ -120,6 +119,10 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Copy fully prepared application source into the image.
 # The workflow pre-build step ensures vendor/node_modules/resources are already ready.
+ENV APP_ENV=production
+ENV APP_DIR=/var/www/html/monarc
+ENV MONARC_PREPARED_RELEASE=1
+
 COPY . /var/www/html/monarc
 RUN chown -R www-data:www-data /var/www/html/monarc
 

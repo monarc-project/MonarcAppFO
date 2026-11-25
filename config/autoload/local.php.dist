@@ -25,6 +25,14 @@ return [
         ],
     ],
 
+    // Public base URL of this instance: an absolute http(s) URL with an optional port and
+    // installation path, e.g. 'https://monarc.example.org' or 'https://example.org/monarc'.
+    // Credentials, a query string or a fragment are rejected; a trailing slash is removed.
+    // It is used to build absolute links such as the password reset e-mail and is never
+    // derived from the request Host header, to prevent host-header poisoning. Left empty on
+    // purpose so a fresh install fails closed until configured.
+    'publicHost' => '',
+
     'defaultLanguageIndex' => 1,
 
     // Languages available for the analysis / DB data.

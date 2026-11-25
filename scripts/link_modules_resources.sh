@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Ensure folders are existing
 if [ ! -d public/js ]; then

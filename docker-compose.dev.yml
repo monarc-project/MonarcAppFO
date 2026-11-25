@@ -1,8 +1,9 @@
+name: monarc-fo
+
 services:
   # MariaDB database for MONARC
   fodb:
     image: mariadb:10.11
-    container_name: monarc-fo-db
     environment:
       MYSQL_ROOT_PASSWORD: ${DBPASSWORD_ADMIN}
       # The official MariaDB image only auto-creates the initial DB from MYSQL_DATABASE.
@@ -15,7 +16,7 @@ services:
       - --bind-address=0.0.0.0
       - --sql-mode=ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
     ports:
-      - "${DBPORT_HOST:-3307}:3306"
+      - "${MONARC_FO_DB_PORT:-3307}:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./docker/db-init:/docker-entrypoint-initdb.d:ro
@@ -30,13 +31,12 @@ services:
   # PostgreSQL database for stats service
   postgres:
     image: postgres:15
-    container_name: monarc-fo-postgres
     environment:
       POSTGRES_USER: ${STATS_DB_USER}
       POSTGRES_PASSWORD: ${STATS_DB_PASSWORD}
       POSTGRES_DB: ${STATS_DB_NAME}
     ports:
-      - "5432:5432"
+      - "${MONARC_FO_POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -52,7 +52,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.stats
-    container_name: monarc-fo-stats
     environment:
       STATS_HOST: ${STATS_HOST}
       STATS_PORT: ${STATS_PORT}
@@ -62,7 +61,7 @@ services:
       STATS_DB_PASSWORD: ${STATS_DB_PASSWORD}
       STATS_SECRET_KEY: ${STATS_SECRET_KEY}
     ports:
-      - "5005:5005"
+      - "${MONARC_FO_STATS_PORT:-5005}:5005"
     depends_on:
       postgres:
         condition: service_healthy
@@ -74,10 +73,9 @@ services:
   # MailCatcher for email testing
   mailcatcher:
     image: sj26/mailcatcher:latest
-    container_name: monarc-fo-mailcatcher
     ports:
-      - "1080:1080"  # Web interface
-      - "8825:1025"  #  SMTP
+      - "${MONARC_FO_MAIL_HTTP_PORT:-1080}:1080"  # Web interface
+      - "${MONARC_FO_MAIL_SMTP_PORT:-1025}:1025"  # SMTP
     networks:
       - monarc-network
 
@@ -86,8 +84,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      pull: true
       args:
-        NODE_MAJOR: ${NODE_MAJOR:-16}
         XDEBUG_ENABLED: ${XDEBUG_ENABLED:-1}
         XDEBUG_MODE: ${XDEBUG_MODE:-debug}
         XDEBUG_START_WITH_REQUEST: ${XDEBUG_START_WITH_REQUEST:-trigger}
@@ -95,7 +93,6 @@ services:
         XDEBUG_CLIENT_PORT: ${XDEBUG_CLIENT_PORT:-9003}
         XDEBUG_IDEKEY: ${XDEBUG_IDEKEY:-IDEKEY}
         XDEBUG_DISCOVER_CLIENT_HOST: ${XDEBUG_DISCOVER_CLIENT_HOST:-0}
-    container_name: monarc-fo-app
     environment:
       DBHOST: ${DBHOST:-fodb}
       DBNAME_COMMON: ${DBNAME_COMMON}
@@ -108,13 +105,18 @@ services:
       STATS_API_BASE_URL: ${STATS_API_BASE_URL:-http://stats-service:5005}
       PDF_CONVERTER_BINARY: ${PDF_CONVERTER_BINARY:-/usr/bin/soffice}
       CAPTCHA_ENABLED: ${CAPTCHA_ENABLED:-false}
+      SMTP_HOST: ${SMTP_HOST:-mailcatcher}
+      SMTP_PORT: ${SMTP_PORT:-1025}
+      PUBLIC_HOST: "${PUBLIC_HOST:-http://localhost:${MONARC_FO_APP_PORT:-5001}}"
       APP_ENV: development
       APP_DIR: /var/www/html/monarc
     ports:
-      - "5001:80"
+      - "${MONARC_FO_APP_PORT:-5001}:80"
     depends_on:
       fodb:
         condition: service_healthy
+      mailcatcher:
+        condition: service_started
       # stats-service:
       #   condition: service_started
     networks:
@@ -150,7 +152,7 @@ services:
 
 networks:
   monarc-network:
-    name: ${MONARC_NETWORK_NAME:-monarc-network}
+    name: ${MONARC_NETWORK_NAME:-monarc-dev-network}
     external: true
 
 volumes:

@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 APP_DIR=$(cd "${SCRIPT_DIR}/.." && pwd)
-COMPOSE_FILE="${APP_DIR}/docker-compose.dev.yml"
+COMPOSE_FILE="${COMPOSE_FILE:-${APP_DIR}/docker-compose.dev.yml}"
 
 MODE="${1:-}"
 SERVICE_NAME="monarcfoapp"
@@ -16,9 +16,7 @@ APP_REPOSITORY_KEY="repositories.monarc-frontoffice"
 
 CORE_PATH="../zm-core"
 APP_PATH="../zm-client"
-# Match both released constraints (for example ^2.14.0) and the PHP 8.4
-# development constraint (^2.15@dev).  A path repository needs a concrete
-# version that satisfies the application's package constraint.
+# Explicit development overrides need a compatible version for the path packages.
 LOCAL_PACKAGE_VERSION=$(sed -nE 's/^[[:space:]]*"monarc\/core":[[:space:]]*"\^([0-9]+\.[0-9]+)(\.[0-9]+)?(@dev)?".*/\1.999/p' "${APP_DIR}/composer.json")
 
 SHARED_NG_NAME="ng_anr"
@@ -44,7 +42,7 @@ Usage:
 Notes:
   - Requires the Docker dev app container to be running.
   - "local" uses Composer path repositories and node_modules symlinks to sibling repos.
-  - "remote" removes those overrides and restores node_modules/ng_* as GitHub clones.
+  - "remote" removes those overrides and restores the frontend revisions pinned in package.json.
 EOF
 }
 
@@ -81,13 +79,13 @@ switch_php_to_local() {
     # The previous lock file still contains laminas/laminas-dependency-plugin.
     # Disable plugins for this transition so Composer can replace that legacy
     # graph with the PHP 8.4-compatible local packages.
-    run_in_app "composer update --no-plugins --with-all-dependencies"
+    run_in_app "composer update ${CORE_PACKAGE} ${APP_PACKAGE} --no-plugins --with-all-dependencies --minimal-changes"
 }
 
 switch_php_to_remote() {
     run_in_app "composer config --unset ${CORE_REPOSITORY_KEY} || true"
     run_in_app "composer config --unset ${APP_REPOSITORY_KEY} || true"
-    run_in_app "composer update --no-plugins --with-all-dependencies"
+    run_in_app "composer update ${CORE_PACKAGE} ${APP_PACKAGE} --no-plugins --with-all-dependencies --minimal-changes"
 }
 
 switch_js_to_local() {
@@ -100,10 +98,9 @@ switch_js_to_local() {
 }
 
 switch_js_to_remote() {
-    run_in_app "rm -rf 'node_modules/${SHARED_NG_NAME}' 'node_modules/${APP_NG_NAME}' && mkdir -p node_modules && git clone --config core.fileMode=false '${SHARED_NG_REMOTE_URL}' 'node_modules/${SHARED_NG_NAME}'"
-    run_in_app "git clone --config core.fileMode=false '${APP_NG_REMOTE_URL}' 'node_modules/${APP_NG_NAME}'"
-    run_in_app "cd 'node_modules/${SHARED_NG_NAME}' && npm install"
-    run_in_app "cd 'node_modules/${APP_NG_NAME}' && npm ci"
+    # Remove only the dependency links/directories, never their sibling targets.
+    run_in_app "rm -rf 'node_modules/${SHARED_NG_NAME}' 'node_modules/${APP_NG_NAME}'"
+    run_in_app "./scripts/install-frontend.sh"
     run_in_app "./scripts/link_modules_resources.sh"
     run_in_app "./scripts/compile_translations.sh"
 }

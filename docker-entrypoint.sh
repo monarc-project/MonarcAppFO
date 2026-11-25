@@ -9,6 +9,22 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}Starting MONARC FrontOffice setup...${NC}"
 
+# Validate first-run public URL configuration before any database or dependency changes.
+if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
+    : "${PUBLIC_HOST:?PUBLIC_HOST must be set to the public base URL, e.g. https://monarc.example.org}"
+    PUBLIC_HOST_PHP=$(php -r '
+        $url = getenv("PUBLIC_HOST");
+        if (filter_var($url, FILTER_VALIDATE_URL) === false
+            || !preg_match("#^https?://#i", $url)
+            || strpbrk($url, "@?#") !== false
+        ) {
+            fwrite(STDERR, "PUBLIC_HOST must be an absolute http(s) URL without credentials, a query string or a fragment.\n");
+            exit(1);
+        }
+        echo var_export($url, true);
+    ')
+fi
+
 # Wait for database to be ready
 echo -e "${YELLOW}Waiting for MariaDB to be ready...${NC}"
 while ! mysqladmin ping -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" --silent 2>/dev/null; do
@@ -35,9 +51,13 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
 
     cd /var/www/html/monarc
 
-    # Install composer dependencies (always, to ensure binaries like Phinx are present)
-    echo -e "${YELLOW}Installing Composer dependencies...${NC}"
-    composer install --no-interaction
+    if [ "${MONARC_PREPARED_RELEASE:-0}" = "1" ]; then
+        test -f vendor/autoload.php
+        php tests/released-sources.php
+    else
+        composer install --no-interaction --prefer-dist
+        ./scripts/install-frontend.sh
+    fi
 
     # Create module symlinks
     echo -e "${YELLOW}Creating module symlinks...${NC}"
@@ -45,21 +65,6 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     cd module/Monarc
     ln -sfn ./../../vendor/monarc/core Core
     ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
-    cd /var/www/html/monarc
-
-    # Clone frontend repositories
-    echo -e "${YELLOW}Setting up frontend repositories...${NC}"
-    mkdir -p node_modules
-    cd node_modules
-
-    if [ ! -d "ng_client" ]; then
-        git clone --config core.fileMode=false https://github.com/monarc-project/ng-client.git ng_client
-    fi
-
-    if [ ! -d "ng_anr" ]; then
-        git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr
-    fi
-
     cd /var/www/html/monarc
 
     # Check if CLI database exists and create databases if needed
@@ -135,6 +140,9 @@ return [
         ],
     ],
 
+    // Absolute public base URL; required to build password-reset links safely.
+    'publicHost' => ${PUBLIC_HOST_PHP},
+
     'defaultLanguageIndex' => 1,
 
      // Languages available for the analysis / DB data.
@@ -197,10 +205,10 @@ EOF
 
     # Update and build frontend and run DB migrations
     echo -e "${YELLOW}Building frontend and running DB migrations...${NC}"
-    # Development startup must preserve the mounted task branches and locked graph.
-    (cd node_modules/ng_client && npm ci)
-    ./scripts/link_modules_resources.sh
-    ./scripts/compile_translations.sh
+    if [ "${MONARC_PREPARED_RELEASE:-0}" != "1" ]; then
+        ./scripts/link_modules_resources.sh
+        ./scripts/compile_translations.sh
+    fi
     php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
     php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
@@ -225,5 +233,10 @@ else
     echo -e "${GREEN}Application already initialized, starting services...${NC}"
 fi
 
+# Apply development SMTP settings on every startup, including initialized installs.
+if [ "${APP_ENV:-}" = "development" ] && [ -n "${SMTP_HOST:-}" ]; then
+    cp /var/www/html/monarc/docker/smtp.local.php /var/www/html/monarc/config/autoload/smtp.local.php
+fi
+
 # Execute the main command
-exec apachectl -D FOREGROUND
+exec "$@"

@@ -101,10 +101,10 @@ parent-directory/
    docker compose -f docker-compose.dev.yml logs stats-service | grep "Token:"
    
    # Or create a new client and get the key
-   docker exec -it monarc-fo-stats poetry run flask client_create --name monarc
+   docker compose -f docker-compose.dev.yml exec stats-service poetry run flask client_create --name monarc
    
-   # Update the .env file with the API key and restart the monarc service
-   docker compose -f docker-compose.dev.yml restart monarc
+   # Update STATS_API_KEY in .env and recreate the application service
+   docker compose -f docker-compose.dev.yml up -d --no-deps monarcfoapp
    ```
 
 7. **Login credentials**:
@@ -115,13 +115,19 @@ parent-directory/
 
 The development environment includes the following services:
 
-| Service | Description | Port | Container Name |
-|---------|-------------|------|----------------|
-| monarc | Main FrontOffice application (PHP/Apache) | 5001 | monarc-fo-app |
-| db | MariaDB database | 3307 | monarc-fo-db |
-| postgres | PostgreSQL database (for stats) | 5432 | monarc-fo-postgres |
-| stats-service | MONARC Statistics Service | 5005 | monarc-fo-stats |
-| mailcatcher | Email testing tool | 1080 (web), 1025 (SMTP) | monarc-fo-mailcatcher |
+| Service | Description | Host port | Container port | Override |
+|---------|-------------|-----------|----------------|----------|
+| monarcfoapp | Main FrontOffice application (PHP/Apache) | 5001 | 80 | `MONARC_FO_APP_PORT` |
+| fodb | MariaDB database | 3307 | 3306 | `MONARC_FO_DB_PORT` |
+| postgres | PostgreSQL database (for stats) | 5432 | 5432 | `MONARC_FO_POSTGRES_PORT` |
+| stats-service | MONARC Statistics Service | 5005 | 5005 | `MONARC_FO_STATS_PORT` |
+| mailcatcher | Email testing web interface | 1080 | 1080 | `MONARC_FO_MAIL_HTTP_PORT` |
+| mailcatcher | Email testing SMTP server | 1025 | 1025 | `MONARC_FO_MAIL_SMTP_PORT` |
+
+These defaults are for one FrontOffice stack. Change the host port overrides in
+`.env` when running another stack. Services communicate through their Docker
+service names and container ports. An existing `.env` keeps its configured values
+when `.env.dev` changes.
 
 ## Development Workflow
 
@@ -150,12 +156,25 @@ make reset         # Reset everything (removes all data)
 
 ### Live Code Editing
 
+Run frontend installation and updates inside the container, which provides
+Node.js 16.x for the locked frontend dependencies:
+
+```bash
+make shell
+# Inside the container:
+./scripts/update-all.sh -d
+```
+
+Host builds also require Node.js 16.x. On Apple Silicon, use an ARM64 Node
+runtime with ARM64 developer tools. Dependencies containing native binaries
+must be installed again when switching between the host and container.
+
 The application source code is mounted as a volume, so changes you make on your host machine will be immediately reflected in the container. After making changes:
 
 1. **PHP/Backend changes**: Apache automatically reloads modified files
 2. **Frontend changes**: You may need to rebuild the frontend:
    ```bash
-   docker exec -it monarc-fo-app bash
+   docker compose -f docker-compose.dev.yml exec monarcfoapp bash
    cd /var/www/html/monarc
    ./scripts/update-all.sh -d
    ```
@@ -196,8 +215,8 @@ make shell-stats  # Stats service
 
 Or directly with docker:
 ```bash
-docker exec -it monarc-fo-app bash      # MONARC application
-docker exec -it monarc-fo-stats bash    # Stats service
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash      # MONARC application
+docker compose -f docker-compose.dev.yml exec stats-service bash    # Stats service
 ```
 
 ### Database Access
@@ -210,10 +229,10 @@ make db  # Connect to MariaDB
 Or directly with docker:
 ```bash
 # Connect to MariaDB
-docker exec -it monarc-fo-db mysql -usqlmonarcuser -psqlmonarcuser monarc_common
+docker compose -f docker-compose.dev.yml exec fodb sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" exec mysql -u"$MYSQL_USER" "$MYSQL_DATABASE"'
 
 # Connect to PostgreSQL
-docker exec -it monarc-fo-postgres psql -U sqlmonarcuser -d statsservice
+docker compose -f docker-compose.dev.yml exec postgres sh -c 'exec psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
 ```
 
 ### Viewing Logs
@@ -231,7 +250,7 @@ Or directly with docker compose:
 docker compose -f docker-compose.dev.yml logs -f
 
 # View logs for a specific service
-docker compose -f docker-compose.dev.yml logs -f monarc
+docker compose -f docker-compose.dev.yml logs -f monarcfoapp
 docker compose -f docker-compose.dev.yml logs -f stats-service
 ```
 
@@ -248,7 +267,7 @@ Or directly with docker compose:
 docker compose -f docker-compose.dev.yml restart
 
 # Restart a specific service
-docker compose -f docker-compose.dev.yml restart monarc
+docker compose -f docker-compose.dev.yml restart monarcfoapp
 ```
 
 ### Stopping the Environment
@@ -278,7 +297,7 @@ docker compose -f docker-compose.dev.yml down -v
 To reuse the BackOffice `monarc_common` database:
 
 1. Set `USE_BO_COMMON=1` in `.env`.
-2. Point `DBHOST` to the BackOffice MariaDB host (for example, `monarc-bo-db` on a shared Docker network).
+2. Point `DBHOST` to the BackOffice MariaDB host (for example, `bodb` on a shared Docker network).
 3. Ensure the BackOffice database already has `monarc_common` and grants for `DBUSER_MONARC`.
 
 ### Shared Docker Network
@@ -300,14 +319,14 @@ docker compose -f docker-compose.dev.yml up --build
 ### Installing New PHP Dependencies
 
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 composer require package/name
 ```
 
 ### Installing New Node Dependencies
 
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 cd node_modules/ng_client  # or ng_anr
 npm install package-name
 ```
@@ -315,21 +334,21 @@ npm install package-name
 ### Running Database Migrations
 
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
 ```
 
 ### Creating Database Seeds
 
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 php ./vendor/robmorgan/phinx/bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 ```
 
 ### Rebuilding Frontend
 
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 cd /var/www/html/monarc
 ./scripts/update-all.sh -d
 ```
@@ -363,7 +382,7 @@ For PhpStorm:
 docker compose -f docker-compose.dev.yml ps
 
 # Check specific service health
-docker compose -f docker-compose.dev.yml ps monarc
+docker compose -f docker-compose.dev.yml ps monarcfoapp
 ```
 
 ## Troubleshooting
@@ -377,13 +396,13 @@ ports:
 ```
 
 To change the MariaDB host port without editing the compose file, set
-`DBPORT_HOST` in `.env` (default: `3307`).
+`MONARC_FO_DB_PORT` in `.env` (default: `3307`).
 
 ### Permission Issues
 
 If you encounter permission issues with mounted volumes:
 ```bash
-docker exec -it monarc-fo-app bash
+docker compose -f docker-compose.dev.yml exec monarcfoapp bash
 chown -R www-data:www-data /var/www/html/monarc/data
 chmod -R 775 /var/www/html/monarc/data
 ```
@@ -392,12 +411,12 @@ chmod -R 775 /var/www/html/monarc/data
 
 Check if the database is healthy:
 ```bash
-docker compose -f docker-compose.dev.yml ps db
+docker compose -f docker-compose.dev.yml ps fodb
 ```
 
 If needed, restart the database:
 ```bash
-docker compose -f docker-compose.dev.yml restart db
+docker compose -f docker-compose.dev.yml restart fodb
 ```
 
 ### Stats Service Issues
@@ -450,20 +469,61 @@ For better performance on macOS and Windows:
 | Live code reload | Yes | Yes |
 | Learning curve | Moderate | Low |
 
+### Public URL for password-reset links
+
+`PUBLIC_HOST` is the externally reachable absolute http(s) URL for this instance,
+including any public port and installation path. Development defaults to
+`http://localhost:5001` and follows `MONARC_FO_APP_PORT` in `.env.dev`.
+Override it for a reverse proxy or server, for example
+`PUBLIC_HOST=https://monarc.example.org`. Credentials, query strings and URL
+fragments are rejected. The value is never taken from the request `Host` header.
+
+Fresh Docker initialization requires a valid `PUBLIC_HOST` before installing
+packages or changing databases. Release images have no implicit public URL;
+provide it explicitly. Existing initialized containers keep their existing
+`config/autoload/local.php`: add/update its top-level `publicHost` manually,
+clear that application's generated configuration cache and restart it. Changing
+`.env` alone does not rewrite an initialized application's local configuration.
+
 ## Environment Variables Reference
+
+The development Docker entrypoint copies `docker/smtp.local.php` into the
+application's autoload configuration on startup, so fresh and initialized installations send mail to
+`mailcatcher:1025`. View captured mail at `http://localhost:1080` by default
+(`MONARC_FO_MAIL_HTTP_PORT`). The SMTP destination uses the container port, not
+the published `MONARC_FO_MAIL_SMTP_PORT`.
+
+To reuse a MailCatcher running in another Docker stack at `http://localhost:1080`
+with SMTP published on port `8825`, set these overrides in `.env`:
+
+```dotenv
+SMTP_HOST=host.docker.internal
+SMTP_PORT=8825
+```
+
+Recreate the application container after changing these settings. In development,
+the generated configuration overrides `smtpOptions` from `config/autoload/local.php`.
 
 All environment variables are defined in the `.env` file:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `DBHOST` | MariaDB host for MONARC | `db` |
-| `DBPORT_HOST` | MariaDB host port (published) | `3307` |
+| `DBHOST` | MariaDB host for MONARC | `fodb` |
+| `MONARC_FO_APP_PORT` | FrontOffice host port | `5001` |
+| `MONARC_FO_DB_PORT` | MariaDB host port | `3307` |
+| `MONARC_FO_POSTGRES_PORT` | PostgreSQL host port | `5432` |
+| `MONARC_FO_STATS_PORT` | Statistics service host port | `5005` |
+| `MONARC_FO_MAIL_HTTP_PORT` | MailCatcher web host port | `1080` |
+| `MONARC_FO_MAIL_SMTP_PORT` | MailCatcher SMTP host port | `1025` |
 | `DBPASSWORD_ADMIN` | MariaDB root password | `root` |
 | `DBNAME_COMMON` | Common database name | `monarc_common` |
 | `DBNAME_CLI` | CLI database name | `monarc_cli` |
 | `DBUSER_MONARC` | Database user | `sqlmonarcuser` |
 | `DBPASSWORD_MONARC` | Database password | `sqlmonarcuser` |
+| `PUBLIC_HOST` | Public base URL for password-reset links; required on first initialization | `http://localhost:5001` (dev) |
 | `USE_BO_COMMON` | Use BackOffice `monarc_common` (`1/0`, `true/false`, `yes/no`) | `0` |
+| `SMTP_HOST` | Development SMTP server | `mailcatcher` |
+| `SMTP_PORT` | Development SMTP server port | `1025` |
 | `MONARC_NETWORK_NAME` | Shared Docker network name | `monarc-network` |
 | `STATS_HOST` | Stats service host | `0.0.0.0` |
 | `STATS_PORT` | Stats service port | `5005` |

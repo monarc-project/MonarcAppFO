@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 /**
+ * @group local-sources
  * @coversNothing
  */
 class LocalModuleTest extends TestCase
