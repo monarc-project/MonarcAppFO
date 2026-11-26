@@ -262,13 +262,18 @@ The schema-specific privileges include the DDL operations needed by migrations.
 In the same MariaDB session:
 
 ```sql
-CREATE DATABASE monarc_common CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE DATABASE monarc_cli CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE monarc_common CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE monarc_cli CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 QUIT;
 ```
 
 `monarc_common` contains reference definitions and models. `monarc_cli` contains
 the FrontOffice users, client information and analyses.
+
+Use `utf8mb4_general_ci` for these new databases. The legacy FrontOffice migration
+`20230901112005` converts metadata tables to this collation before joining their
+translation keys to `translations`. Creating `monarc_cli` with
+`utf8mb4_unicode_ci` causes error 1267 during that migration.
 
 ## 4.3 Initialize the common database
 

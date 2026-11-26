@@ -271,9 +271,9 @@ sudo mariadb
 ```
 
 ```sql
-CREATE DATABASE manual_common CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE DATABASE manual_master CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE DATABASE manual_cli CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE manual_common CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE manual_master CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE manual_cli CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE USER 'manual_bo'@'localhost' IDENTIFIED BY 'REPLACE_BO_PASSWORD';
 GRANT ALL PRIVILEGES ON manual_common.* TO 'manual_bo'@'localhost';
@@ -284,6 +284,11 @@ GRANT ALL PRIVILEGES ON manual_common.* TO 'manual_fo'@'localhost';
 GRANT ALL PRIVILEGES ON manual_cli.* TO 'manual_fo'@'localhost';
 QUIT;
 ```
+
+Use `utf8mb4_general_ci` consistently for the new pair. The legacy FrontOffice
+migration `20230901112005` converts metadata tables to this collation before
+joining their translation keys to `translations`; a different database default
+can cause error 1267 during that migration.
 
 Application accounts receive privileges only on their own pair's schemas.
 The migration scripts need DDL privileges. Neither application uses MariaDB root.
