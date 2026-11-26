@@ -51,11 +51,11 @@ export LC_ALL=C.UTF-8
 echo -e "\n--- Installing now… ---\n"
 
 echo -e "\n--- Updating packages list… ---\n"
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 echo -e "\n--- Install base packages… ---\n"
-sudo apt-get -y install vim zip unzip xz-utils git gettext curl ca-certificates gsfonts locales \
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install vim zip unzip xz-utils git gettext curl ca-certificates gsfonts locales \
     build-essential python3 pkg-config libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev > /dev/null
 sudo localedef -i en_US -f UTF-8 en_US.UTF-8
 sudo update-locale LANG=en_US.UTF-8
@@ -64,7 +64,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 echo -e "\n--- Install MariaDB specific packages and settings… ---\n"
-sudo apt -y install mariadb-server mariadb-client
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server mariadb-client
 
 # Ubuntu's MariaDB root account uses local Unix-socket authentication.
 sudo systemctl restart mariadb.service > /dev/null
@@ -89,7 +89,7 @@ sudo mariadb -u root -e "FLUSH PRIVILEGES;"
 sudo systemctl restart mariadb.service > /dev/null
 
 echo -e "\n--- Installing Apache… ---\n"
-sudo apt install apache2 -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install apache2 -y
 
 echo -e "\n--- Installing PHP-specific packages… ---\n"
 # Ubuntu 26.04 ships PHP 8.5; use the maintainer's repository for PHP 8.4.
@@ -99,8 +99,8 @@ sudo dpkg -i "$php_keyring" > /dev/null
 rm -f "$php_keyring"
 printf '%s\n' 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ resolute main' \
     | sudo tee /etc/apt/sources.list.d/php.list > /dev/null
-sudo apt-get update > /dev/null
-sudo apt-get install -y libapache2-mod-php8.4 php8.4 php8.4-cli php8.4-common php8.4-mysql \
+sudo DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libapache2-mod-php8.4 php8.4 php8.4-cli php8.4-common php8.4-mysql \
     php8.4-zip php8.4-gd php8.4-mbstring php8.4-curl php8.4-xml php8.4-bcmath php8.4-intl \
     php8.4-imagick php8.4-xdebug > /dev/null || exit 1
 if ! php8.4 -r 'exit(PHP_VERSION_ID >= 80428 && PHP_VERSION_ID < 80500 ? 0 : 1);'; then
@@ -191,6 +191,17 @@ sudo npm install -g grunt-cli
 # npm 8 bundles node-gyp 9, which relies on Python distutils removed in Ubuntu 26.04.
 sudo npm explore npm/node_modules/@npmcli/run-script -g -- npm_config_global=false npm install node-gyp@10 --no-audit --no-fund
 
+# Ubuntu 26.04 Apache makes /home read-only. Allow writes to Vagrant runtime directories.
+sudo install -d -m 0775 -o "$USER" -g www-data \
+    "$PATH_TO_MONARC/data" "$PATH_TO_MONARC/public/captcha"
+sudo mkdir -p /etc/systemd/system/apache2.service.d
+sudo tee /etc/systemd/system/apache2.service.d/monarc-vagrant.conf > /dev/null <<EOF
+[Service]
+ReadWritePaths=$PATH_TO_MONARC/data
+ReadWritePaths=$PATH_TO_MONARC/public/captcha
+EOF
+sudo systemctl daemon-reload
+
 echo -e "\n--- Add a VirtualHost for MONARC ---\n"
 sudo bash -c "cat << EOF > /etc/apache2/sites-enabled/000-default.conf
 <VirtualHost *:80>
@@ -220,7 +231,7 @@ sudo systemctl restart apache2.service > /dev/null
 
 
 echo -e "\n--- Installing the stats service… ---\n"
-sudo apt-get -y install postgresql python3 python3-venv python3-poetry
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql python3 python3-venv python3-poetry
 sudo -u postgres psql -c "CREATE USER $STATS_DB_USER WITH PASSWORD '$STATS_DB_PASSWORD';"
 sudo -u postgres psql -c "ALTER USER $STATS_DB_USER WITH SUPERUSER;"
 
@@ -418,8 +429,8 @@ echo -e "\n--- Create initial user and client ---\n"
 php ./bin/phinx seed:run -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
 echo -e "\n--- Install and run mailcatcher ---\n"
-sudo apt-get install -y build-essential software-properties-common
-sudo apt-get install -y libsqlite3-dev ruby-dev
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential software-properties-common
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libsqlite3-dev ruby-dev
 sudo gem install mailcatcher
 sudo mailcatcher --http-ip 0.0.0.0
 

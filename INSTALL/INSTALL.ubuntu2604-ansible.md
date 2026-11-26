@@ -1,5 +1,10 @@
 # Ansible deployment on Ubuntu 26.04
 
+To deploy the prepared FO/BO GHCR images, use the separate
+[GHCR playbook and instructions](https://github.com/monarc-project/ansible-ubuntu/blob/master/ghcr/README.md).
+It manages a Docker pair alongside the manual sites. The adaptations below apply
+to the older archive-based host installation roles, which remain separate.
+
 Use this guide to prepare `ansible-ubuntu` for a linked FO/BO pair and, optionally,
 compare it with a manually installed pair on the same server. Manual installation
 commands are in the [linked FO/BO guide](INSTALL.ubuntu2604-fo-bo.md); the

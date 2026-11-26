@@ -21,7 +21,7 @@ jobs:
         php-version: [ "8.4" ]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: install deps
       run: sudo apt-get update && sudo apt install -y gettext
@@ -38,7 +38,7 @@ jobs:
 
     # javascript
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -48,41 +48,22 @@ jobs:
     # prepare release
     - name: Get repository name
       id: repository
-      run: echo "::set-output name=pathref::$(echo '${{ github.repository }}' | cut -d'/' -f2)-$(echo '${{ github.ref_name }}' | sed 's/[^[:alnum:]\.-]/_/g')"
+      run: |
+        repo_name="${GITHUB_REPOSITORY#*/}"
+        safe_ref=$(printf '%s' "$GITHUB_REF_NAME" | sed 's/[^[:alnum:].-]/_/g')
+        echo "pathref=${repo_name}-${safe_ref}" >> "$GITHUB_OUTPUT"
 
     - name: create artifact archive
       run: |
         tar --exclude .git --exclude .github -zcf '../${{ steps.repository.outputs.pathref }}.tar.gz' .
 
     - name: release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           ../${{ steps.repository.outputs.pathref }}.tar.gz
         fail_on_unmatched_files: true
       if: startsWith(github.ref, 'refs/tags/')
-
-    - name: Prepare app image build context
-      if: startsWith(github.ref, 'refs/tags/')
-      run: |
-        rm -rf .docker-release-context
-        mkdir -p .docker-release-context
-        tar \
-          --exclude .git \
-          --exclude .github \
-          --exclude .idea \
-          --exclude .vscode \
-          --exclude vagrant \
-          --exclude wsl \
-          --exclude INSTALL \
-          --exclude .env \
-          --exclude .env.dev \
-          --exclude .DS_Store \
-          --exclude .docker-release-context \
-          --exclude .docker-stage-context \
-          -cf - . | tar -xf - -C .docker-release-context
-        find .docker-release-context/data -mindepth 1 -maxdepth 1 ! -name fonts -exec rm -rf {} +
-        rm -f .docker-release-context/.dockerignore
 
     - name: Set image names
       id: image_names
@@ -126,8 +107,8 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v6
       with:
-        context: ./.docker-release-context
-        file: ./.docker-release-context/Dockerfile.release
+        context: .
+        file: ./Dockerfile.ghcr
         pull: true
         build-args: |
           CAPTCHA_ENABLED=true

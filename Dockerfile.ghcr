@@ -1,0 +1,105 @@
+# syntax=docker/dockerfile:1
+FROM php:8.4-apache-bookworm AS php-base
+
+# Compile extensions once per target architecture; build dependencies stay here.
+FROM php-base AS extensions
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        $PHPIZE_DEPS libfreetype6-dev libicu-dev libjpeg62-turbo-dev \
+        libmagickwand-dev libonig-dev libpng-dev libzip-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j"$(nproc)" bcmath gd gettext intl mbstring pdo_mysql zip \
+    && pecl install imagick-3.8.1 \
+    && docker-php-ext-enable imagick
+
+# Collect only the runtime artifacts from the official PHP image.
+FROM extensions AS runtime-config
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends locales \
+    && localedef -i en_US -f UTF-8 en_US.UTF-8 \
+    && { ldd /usr/local/bin/php /usr/lib/apache2/modules/libphp.so; \
+         find /usr/local/lib/php/extensions -name '*.so' -exec ldd '{}' ';'; } \
+        | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) next; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
+        | sort -u \
+        | xargs -r dpkg-query --search \
+        | awk 'sub(":$", "", $1) { print $1 }' \
+        | sort -u > /tmp/php-runtime-packages \
+    && test -s /tmp/php-runtime-packages \
+    && a2enmod rewrite ssl headers \
+    && echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
+    && a2enconf servername
+
+# Configure Apache for the prepared application.
+COPY <<'APACHE' /etc/apache2/sites-available/000-default.conf
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /var/www/html/monarc/public
+    <Directory /var/www/html/monarc/public>
+        DirectoryIndex index.php
+        AllowOverride All
+        Require all granted
+    </Directory>
+    <IfModule mod_headers.c>
+        Header always set X-Content-Type-Options nosniff
+        Header always set X-XSS-Protection "1; mode=block"
+        Header always set X-Robots-Tag none
+        Header always set X-Frame-Options SAMEORIGIN
+    </IfModule>
+    SetEnv APP_DIR /var/www/html/monarc
+</VirtualHost>
+APACHE
+
+# Start fresh: compiler layers from php-base never enter the GHCR image.
+FROM debian:bookworm-slim AS runtime
+COPY --from=runtime-config /tmp/php-runtime-packages /tmp/php-runtime-packages
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        apache2 ca-certificates curl gsfonts mariadb-client libreoffice-writer \
+        $(cat /tmp/php-runtime-packages) \
+    && rm -rf /var/lib/apt/lists/* /tmp/php-runtime-packages
+
+COPY --from=runtime-config /usr/local/bin/php /usr/local/bin/php
+COPY --from=runtime-config /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --from=runtime-config /usr/local/etc/php/ /usr/local/etc/php/
+COPY --from=runtime-config /usr/lib/apache2/modules/libphp.so /usr/lib/apache2/modules/libphp.so
+COPY --from=runtime-config /etc/apache2/ /etc/apache2/
+COPY --from=runtime-config /usr/lib/locale/ /usr/lib/locale/
+
+ENV PHP_INI_DIR=/usr/local/etc/php \
+    APACHE_CONFDIR=/etc/apache2 \
+    APACHE_ENVVARS=/etc/apache2/envvars \
+    LANGUAGE=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    APP_ENV=production \
+    APP_DIR=/var/www/html/monarc \
+    MONARC_PREPARED_RELEASE=1
+COPY docker/php/monarc.ini $PHP_INI_DIR/conf.d/99-monarc.ini
+# Debian enables mpm_event; PHP's Apache module requires mpm_prefork.
+RUN a2dismod mpm_event mpm_worker \
+    && a2enmod mpm_prefork \
+    && mkdir -p /var/run/apache2 /var/lock/apache2 /var/log/apache2 \
+    && ln -sfT /dev/stderr /var/log/apache2/error.log \
+    && ln -sfT /dev/stdout /var/log/apache2/access.log \
+    && ln -sfT /dev/stdout /var/log/apache2/other_vhosts_access.log
+
+WORKDIR /var/www/html/monarc
+
+ARG CAPTCHA_ENABLED=false
+ENV CAPTCHA_ENABLED=${CAPTCHA_ENABLED}
+
+COPY --chmod=0755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+# Dockerfile.ghcr.dockerignore permits only packaged code and runtime assets.
+COPY --chown=www-data:www-data . /var/www/html/monarc
+RUN mkdir -p data/cache data/LazyServices/Proxy data/DoctrineORMModule/Proxy \
+        data/import/files public/captcha \
+    && chown -R www-data:www-data data public/captcha \
+    && php tests/released-sources.php \
+    && php tests/locked-doctrine.php \
+    && php tests/release-image.php \
+    && apache2ctl configtest
+
+STOPSIGNAL SIGWINCH
+EXPOSE 80
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["apachectl", "-D", "FOREGROUND"]

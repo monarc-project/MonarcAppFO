@@ -485,6 +485,43 @@ provide it explicitly. Existing initialized containers keep their existing
 clear that application's generated configuration cache and restart it. Changing
 `.env` alone does not rewrite an initialized application's local configuration.
 
+## Building a release image
+
+Release images use a clean checkout with the locked PHP packages, compiled
+frontend bundles and translations already assembled. On a build machine with
+PHP 8.4, Node 16 and the documented build dependencies, run in that clean checkout:
+
+```bash
+bash scripts/prepare-release.sh
+docker build --file Dockerfile.release --build-arg CAPTCHA_ENABLED=true --tag monarc-fo:local-release .
+```
+
+`Dockerfile.release.dockerignore` supplies the release inclusion rules and takes
+precedence over the development `.dockerignore`. It excludes local databases,
+configuration, caches and macOS metadata while retaining required assets and
+translations. No separate copied build context is needed.
+
+The resulting image contains the PHP runtime, database clients and LibreOffice.
+Node/npm, Composer, Grunt and compilers remain on the build machine. Deploy a new
+image for code updates; do not run `update-all.sh` inside a release container.
+
+## GHCR application images
+
+The release and stage publishers use `Dockerfile.ghcr` with the same prepared
+application sources. This separate build copies PHP and its runtime libraries
+into Debian slim, leaving the PHP base image's compiler layers out of GHCR.
+FrontOffice includes LibreOffice for document conversion.
+Database clients remain available for initialization and backups. The archive
+release, `Dockerfile.release` and development builds use their existing paths.
+
+To build the GHCR variant locally after `scripts/prepare-release.sh`:
+
+```bash
+docker build --file Dockerfile.ghcr --build-arg CAPTCHA_ENABLED=true --tag monarc-fo:local-ghcr .
+```
+
+`Dockerfile.ghcr.dockerignore` applies the same inclusion rules as the release build.
+
 ## Environment Variables Reference
 
 The development Docker entrypoint copies `docker/smtp.local.php` into the

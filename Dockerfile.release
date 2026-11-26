@@ -1,85 +1,45 @@
-FROM node:16-bullseye-slim AS node
+# syntax=docker/dockerfile:1
+FROM php:8.4-apache-bookworm AS php-base
 
-FROM php:8.4-apache-bookworm
-
-ARG XDEBUG_ENABLED=0
-ARG XDEBUG_MODE=debug
-ARG XDEBUG_START_WITH_REQUEST=trigger
-ARG XDEBUG_CLIENT_HOST=host.docker.internal
-ARG XDEBUG_CLIENT_PORT=9003
-ARG XDEBUG_IDEKEY=IDEKEY
-ARG XDEBUG_DISCOVER_CLIENT_HOST=0
-ARG CAPTCHA_ENABLED=false
-
-ENV LANGUAGE=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-ENV CAPTCHA_ENABLED=${CAPTCHA_ENABLED}
-
+# Compile extensions once per target architecture; build dependencies stay here.
+FROM php-base AS extensions
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        $PHPIZE_DEPS \
-        ca-certificates \
-        curl \
-        gettext \
-        git \
-        gsfonts \
-        libfreetype6-dev \
-        libgettextpo-dev \
-        libgif-dev \
-        libicu-dev \
-        libjpeg62-turbo-dev \
-        libmagickwand-dev \
-        libonig-dev \
-        libpango1.0-dev \
-        libpixman-1-dev \
-        libpng-dev \
-        librsvg2-dev \
-        libzip-dev \
-        libreoffice-writer \
-        locales \
-        mariadb-client \
-        pkg-config \
-        python3 \
-        unzip \
-        vim \
-        zip \
+        $PHPIZE_DEPS libfreetype6-dev libicu-dev libjpeg62-turbo-dev \
+        libmagickwand-dev libonig-dev libpng-dev libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j"$(nproc)" bcmath gd gettext intl mbstring pdo_mysql zip \
-    && pecl install imagick \
-    && docker-php-ext-enable imagick \
+    && pecl install imagick-3.8.1 \
+    && docker-php-ext-enable imagick
+
+FROM php-base AS runtime
+ENV LANGUAGE=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    APP_ENV=production \
+    APP_DIR=/var/www/html/monarc \
+    MONARC_PREPARED_RELEASE=1
+
+ARG CAPTCHA_ENABLED=false
+ENV CAPTCHA_ENABLED=${CAPTCHA_ENABLED}
+
+# Keep document conversion and database tools, without compilers or JS build tools.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates curl gsfonts libfreetype6 libicu72 libjpeg62-turbo \
+        libmagickwand-6.q16-6 libonig5 libpng16-16 libzip4 \
+        libreoffice-writer locales mariadb-client \
+    && apt-get purge -y --auto-remove $PHPIZE_DEPS \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /tmp/pear
 
+COPY --from=extensions /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --from=extensions /usr/local/etc/php/conf.d/docker-php-ext-*.ini /usr/local/etc/php/conf.d/
 COPY docker/php/monarc.ini $PHP_INI_DIR/conf.d/99-monarc.ini
-
-RUN if [ "$XDEBUG_ENABLED" = "1" ] || [ "$XDEBUG_ENABLED" = "true" ] || [ "$XDEBUG_ENABLED" = "yes" ]; then \
-        pecl install xdebug && docker-php-ext-enable xdebug && \
-        { \
-            echo "xdebug.mode=${XDEBUG_MODE}"; \
-            echo "xdebug.start_with_request=${XDEBUG_START_WITH_REQUEST}"; \
-            echo "xdebug.client_host=${XDEBUG_CLIENT_HOST}"; \
-            echo "xdebug.client_port=${XDEBUG_CLIENT_PORT}"; \
-            echo "xdebug.discover_client_host=${XDEBUG_DISCOVER_CLIENT_HOST}"; \
-            echo "xdebug.idekey=${XDEBUG_IDEKEY}"; \
-        } > $PHP_INI_DIR/conf.d/99-xdebug.ini; \
-    fi
-
-# Enable Apache modules
-RUN a2enmod rewrite ssl headers
-
-# Set global ServerName to avoid AH00558 warning
-RUN echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
+RUN a2enmod rewrite ssl headers \
+    && echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf \
     && a2enconf servername
 
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
-COPY --from=node /usr/local/bin/node /usr/local/bin/node
-COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
-RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
-    && ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
-    && npm install -g grunt-cli
-
-# Set working directory
 WORKDIR /var/www/html/monarc
 
 # Configure Apache
@@ -103,30 +63,18 @@ RUN echo '<VirtualHost *:80>\n\
     SetEnv APP_DIR /var/www/html/monarc\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Allow Apache override to all
-RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
-# Create necessary directories
-RUN mkdir -p /var/www/html/monarc/data/cache \
-    /var/www/html/monarc/data/LazyServices/Proxy \
-    /var/www/html/monarc/data/DoctrineORMModule/Proxy \
-    /var/www/html/monarc/data/import/files \
-    /var/www/html/monarc/public/captcha
-
-# Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-# Copy fully prepared application source into the image.
-# The workflow pre-build step ensures vendor/node_modules/resources are already ready.
-ENV APP_ENV=production
-ENV APP_DIR=/var/www/html/monarc
-ENV MONARC_PREPARED_RELEASE=1
-
-COPY . /var/www/html/monarc
-RUN chown -R www-data:www-data /var/www/html/monarc
+COPY --chmod=0755 docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+# Dockerfile.release.dockerignore permits only packaged code and runtime assets.
+COPY --chown=www-data:www-data . /var/www/html/monarc
+RUN mkdir -p data/cache data/LazyServices/Proxy data/DoctrineORMModule/Proxy \
+        data/import/files public/captcha \
+    && chown -R www-data:www-data data public/captcha \
+    && php tests/released-sources.php \
+    && php tests/locked-doctrine.php \
+    && php tests/release-image.php \
+    && apache2ctl configtest
 
 EXPOSE 80
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apachectl", "-D", "FOREGROUND"]

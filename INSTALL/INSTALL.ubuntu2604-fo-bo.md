@@ -50,18 +50,23 @@ archive does not test the pending release changes merely because newer backend
 packages have been published.
 
 The target server will receive assembled archives containing `vendor`, frontend
-modules, resource links, translations and fonts. It will not need Node.js,
-Grunt or native frontend build dependencies. The legacy build currently uses
+modules, resource links, translations and FO's CAPTCHA font. It will not need
+Node.js, Grunt or native frontend build dependencies. The legacy build currently uses
 Node 16.20.2; keep that environment on the build machine.
 
-For each application, start from its reviewed release checkout. The example
-below is for FO; for BO use its checkout and `Dockerfile` instead of
-`Dockerfile.dev`:
+For each application, start from its reviewed release checkout. Run this once
+from FO with `office=fo`, then from BO with `office=bo`:
 
 ```bash
-# On the build machine, from MonarcAppFO:
+# On the build machine, from the selected application's checkout:
 set -euo pipefail
-docker build -f Dockerfile.dev -t monarc-fo-builder .
+office=fo # Change to bo when building MonarcAppBO.
+case "$office" in
+    fo) dockerfile=Dockerfile.dev ;;
+    bo) dockerfile=Dockerfile ;;
+    *) echo 'office must be fo or bo' >&2; exit 1 ;;
+esac
+docker build -f "$dockerfile" -t "monarc-$office-builder" .
 build_dir=$(mktemp -d)
 tar --exclude=.git --exclude=vendor --exclude=node_modules \
     --exclude='.env*' --exclude='*.local.php' --exclude='config/autoload/local.php' \
@@ -71,22 +76,24 @@ tar --exclude=.git --exclude=vendor --exclude=node_modules \
     --exclude='./public/flags' --exclude='./public/views' --exclude='./public/captcha' \
     -cf - . | tar -xf - -C "$build_dir"
 mkdir -p "$build_dir/data"
-cp -a data/fonts "$build_dir/data/fonts"
-test -f "$build_dir/data/fonts/arial.ttf"
+if [[ "$office" == fo ]]; then
+    cp -a data/fonts "$build_dir/data/fonts"
+    test -f "$build_dir/data/fonts/arial.ttf"
+fi
 docker run --rm --entrypoint bash \
     --user "$(id -u):$(id -g)" \
     -e COMPOSER_HOME=/tmp/composer -e npm_config_cache=/tmp/npm \
     --mount "type=bind,src=$build_dir,dst=/var/www/html/monarc" \
-    monarc-fo-builder -lc 'bash scripts/prepare-release.sh && composer audit --locked --no-dev --abandoned=report'
+    "monarc-$office-builder" -lc 'bash scripts/prepare-release.sh && composer audit --locked --no-dev --abandoned=report'
 # Write the archive outside the directory being archived:
-tar --exclude=.git --exclude=.github -czf /tmp/monarc-fo-candidate.tar.gz -C "$build_dir" .
+tar --exclude=.git --exclude=.github -czf "/tmp/monarc-$office-candidate.tar.gz" -C "$build_dir" .
 ```
 
-Build BO equivalently, naming its image `monarc-bo-builder` and archive
-`/tmp/monarc-bo-candidate.tar.gz`. Use clean source without local uploads,
-configuration, backups or other private files; inspect the archive contents
+BO has no packaged `data/fonts` directory and does not need FO's CAPTCHA font.
+Use clean source without local uploads, configuration, backups or other private
+files; inspect the archive contents
 before transferring it. The copy excludes runtime data and generated module links;
-only the packaged fonts are retained from `data`. Record the reviewed source
+only FO's packaged fonts are retained from `data`. Record the reviewed source
 commits with the artifacts.
 
 ```bash
@@ -256,9 +263,30 @@ for office in bo fo; do
 done
 ```
 
-Keep the packaged `data/fonts` files. Do not make application source or `vendor`
+Keep FO's packaged `data/fonts` files. Do not make application source or `vendor`
 writable by Apache. Code can be shared as immutable artifacts, but each deployed
 application needs its own writable data, caches, proxies, CAPTCHA and uploads.
+
+On this fresh BO installation, initialize the writable copies used by its four
+default report templates. The archive contains these DOCX files under
+`deliveries/cases`, while BO's migration records paths under
+`data/monarc/models`. Create the copies before testing template downloads:
+
+```bash
+bo_app=/var/lib/monarc/manual-bo
+for language in FR EN DE NE; do
+    sudo install -d -m 0750 -o www-data -g www-data "$bo_app/data/monarc/models/$language"
+    for category in 1 2 3 4; do
+        sudo install -m 0640 -o www-data -g www-data \
+            "$bo_app/deliveries/cases/$language/$category.docx" \
+            "$bo_app/data/monarc/models/$language/$category.docx"
+    done
+done
+```
+
+Run this initialization only for the fresh installation. On upgrades, preserve
+existing template files and their database paths; copying defaults over them can
+discard BO customizations.
 
 ## 7. Create the manual pair's databases
 
@@ -304,6 +332,12 @@ These SQL files contain destructive initialization statements. Do not rerun them
 on an initialized database. Do not import the FO common bootstrap into this
 shared database afterwards. The BO master and FO client schemas are created by
 their office migrations.
+
+The two releases' `monarc_data.sql` files differ: the current dumps contain
+different `anrs_objects_categories` seed rows. They are not interchangeable
+bootstrap sources for a linked pair. Use BO's dump for `manual_common` and record
+its checksum with the deployment; FO consumes that same migrated common database.
+Report-template records are created separately by each office's migrations.
 
 ## 8. Configure each application
 
@@ -376,10 +410,33 @@ client lifecycle automation, also exercise BO client creation and its real
 inventory/bootstrap workflow; do not treat a separately seeded FO as proof that
 automatic provisioning has passed.
 
-Document templates also have filesystem content: packaged defaults are present
-in each artifact, while BO-uploaded templates may need synchronization to the
-matching FO. Test this explicitly when validating deliveries. Synchronize files
-only to the matching FO; database sharing does not copy template files.
+### 9.1 Transfer BO report templates to the matching FO
+
+The shared common database does not synchronize report templates. BO stores its
+`deliveries_models` records in `manual_master`; FO stores its records in
+`manual_cli`. Both releases ship defaults under `deliveries/cases`. BO uses the
+writable copies initialized above; FO's default records use its packaged files.
+
+To publish a customized BO template to this FO:
+
+1. In BO's **Deliverable templates** screen, download each required language's
+   DOCX file from the approved template.
+2. In the matching FO's **Deliverable templates** screen, create or edit a custom
+   template in the same report category and upload those DOCX files into the
+   corresponding language fields. Retain FO's packaged default templates.
+3. Download the uploaded template from FO, then generate a DOCX and a PDF report
+   from an FO analysis using that template. Repeat after later BO template changes.
+
+Each application's upload action stores its own file and updates its own
+database path. Merely copying BO's `data/monarc/models` directory into FO does
+not create or update FO template records. Do not replace FO's template table with
+a BO SQL dump: their identifiers, defaults and client customizations differ.
+
+The legacy Ansible `update_deliveries.sh` helper overlays only files with the
+same relative names as packaged defaults, such as `FR/1.docx`. It does not
+transfer arbitrary uploads with generated filenames or their database records.
+The download/upload procedure above covers those custom templates for this
+manual pair.
 
 Do **not** use `scripts/update-all.sh` on this artifact-based server. That helper
 pulls source and reinstalls frontend dependencies. Deploy the approved prepared

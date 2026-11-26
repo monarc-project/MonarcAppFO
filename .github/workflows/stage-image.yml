@@ -13,7 +13,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: install deps
       run: sudo apt-get update && sudo apt install -y gettext
@@ -30,33 +30,12 @@ jobs:
 
     # javascript
     - name: Use Node.js 16.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: "16.x"
 
     - name: Assemble locked backend and frontend releases
       run: bash scripts/prepare-release.sh
-
-    - name: Prepare app image build context
-      run: |
-        rm -rf .docker-stage-context
-        mkdir -p .docker-stage-context
-        tar \
-          --exclude .git \
-          --exclude .github \
-          --exclude .idea \
-          --exclude .vscode \
-          --exclude vagrant \
-          --exclude wsl \
-          --exclude INSTALL \
-          --exclude .env \
-          --exclude .env.dev \
-          --exclude .DS_Store \
-          --exclude .docker-stage-context \
-          --exclude .docker-release-context \
-          -cf - . | tar -xf - -C .docker-stage-context
-        find .docker-stage-context/data -mindepth 1 -maxdepth 1 ! -name fonts -exec rm -rf {} +
-        rm -f .docker-stage-context/.dockerignore
 
     - name: Set image names
       id: image_names
@@ -94,8 +73,8 @@ jobs:
     - name: Build and push app image (stage)
       uses: docker/build-push-action@v6
       with:
-        context: ./.docker-stage-context
-        file: ./.docker-stage-context/Dockerfile.release
+        context: .
+        file: ./Dockerfile.ghcr
         pull: true
         push: true
         platforms: linux/amd64,linux/arm64
@@ -108,7 +87,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set image names
       id: image_names
