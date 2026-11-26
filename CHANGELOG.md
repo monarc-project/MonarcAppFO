@@ -1,25 +1,8 @@
 MONARC Changelog
 ================
 
-## Unreleased
 
-### Security
-
-- Configure `publicHost` so password-reset links use the trusted public URL rather
-  than a request `Host` header (CWE-640). The published `monarc/core` dependency
-  already includes the fail-closed `ConfigService::getHost()` behavior.
-  Configuration examples, Docker, WSL and Vagrant now supply this setting.
-  Reported by kta1kri; integrated from [PR #636](https://github.com/monarc-project/MonarcAppFO/pull/636).
-
-  Upgrade: add an absolute http(s) `publicHost` to an existing installation's
-  `config/autoload/local.php`. Fresh Docker initialization requires `PUBLIC_HOST`
-  and validates it before database/dependency changes. Setting the environment
-  variable alone does not update an initialized container's existing local file;
-  edit that file, clear its generated configuration cache and restart the app.
-  Without the setting, password reset fails closed (FO returns a silent 200;
-  BO returns a generic 422).
-
-## 2.14.3 (2026-11-25)
+## 2.14.3 (2026-11-27)
 
 ### Enhancement
 
