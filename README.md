@@ -157,6 +157,9 @@ In a clean checkout with PHP >=8.4.28 <8.5, Node.js 16.x and gettext installed, 
 bash scripts/prepare-release.sh
 ```
 
+The frontend npm locks supply Grunt. Resource linking invokes the module's local
+`node_modules/.bin/grunt` binary, so a global `grunt-cli` installation is optional.
+
 This installs production PHP packages from the lock, verifies vendor sources and
 PHP syntax, checks out the exact frontend commits, installs each frontend's npm
 lock, creates module/resource links and compiles translations. It creates the
