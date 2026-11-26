@@ -63,6 +63,21 @@ fix/docker-permissions
 
 Make the required changes and test them locally whenever possible.
 
+### Developer test prerequisites
+
+The `zm-core` and `zm-client` PHPUnit suites use in-memory SQLite databases
+through Doctrine's `pdo_sqlite` driver. Enable this extension in the PHP CLI
+environment where you run the tests. On Ubuntu with PHP 8.4, install it with:
+
+```bash
+sudo apt-get install php8.4-sqlite3
+php8.4 -r 'if (!extension_loaded("pdo_sqlite")) { fwrite(STDERR, "Missing pdo_sqlite extension\n"); exit(1); } new PDO("sqlite::memory:"); echo "SQLite test driver ready\n";'
+```
+
+For container-based tests, run the check inside the test container. Without
+`pdo_sqlite`, database-backed tests fail with `could not find driver`.
+SQLite is a test dependency; the application uses MariaDB/MySQL at runtime.
+
 Please try to:
 
 - keep changes focused on a single purpose;

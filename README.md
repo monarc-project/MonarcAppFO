@@ -69,6 +69,10 @@ Authentication is token-based. See the API documentation for details on obtainin
 Development Environment
 -----------------------
 
+For backend testing requirements, see the
+[developer test prerequisites](CONTRIBUTING.md#developer-test-prerequisites),
+including the PHP SQLite driver required by the `zm-core` and `zm-client` suites.
+
 For local development, you can use either:
 
 - **Docker** (recommended): See [README.docker.md](README.docker.md) for instructions
