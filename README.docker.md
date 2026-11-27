@@ -514,6 +514,23 @@ FrontOffice includes LibreOffice for document conversion.
 Database clients remain available for initialization and backups. The archive
 release, `Dockerfile.release` and development builds use their existing paths.
 
+Production publishing starts only when you publish a GitHub release. The workflow
+builds that release's commit, attaches the prepared archive to the existing
+release and publishes images using its tag. Pushing a tag, saving a draft or
+editing release notes does not start publishing. Prereleases receive their
+version tag without updating `latest`.
+
+Stage publishing is manual: open **Actions → MonarcAppFO stage images → Run workflow**,
+select the source branch (normally `stage`) and choose `app`, `stats` or `all`.
+It publishes `stage` and `stage-<commit>` tags. Normal pushes still run CI, but
+publish no images. The manual workflow must first exist on the default branch.
+
+You can also start it with GitHub CLI:
+
+```bash
+gh workflow run stage-image.yml --repo monarc-project/MonarcAppFO --ref stage -f images=all
+```
+
 To build the GHCR variant locally after `scripts/prepare-release.sh`:
 
 ```bash

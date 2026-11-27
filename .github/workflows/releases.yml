@@ -1,11 +1,13 @@
 name: MonarcAppFO releases
 
+# Publish images only after a GitHub release is published.
 on:
-  push:
-    branches: [ 'master' ]
-    tags: [ 'v*.*', 'v*.*.*', 'v*.*.*-*' ]
-  pull_request:
-    branches: [ 'master' ]
+  release:
+    types: [published]
+
+concurrency:
+  group: ghcr-release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -22,6 +24,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.sha }}
 
     - name: install deps
       run: sudo apt-get update && sudo apt install -y gettext
@@ -57,17 +61,15 @@ jobs:
       run: |
         tar --exclude .git --exclude .github -zcf '../${{ steps.repository.outputs.pathref }}.tar.gz' .
 
-    - name: release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: |
-          ../${{ steps.repository.outputs.pathref }}.tar.gz
-        fail_on_unmatched_files: true
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Upload archive to the published release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_TAG: ${{ github.event.release.tag_name }}
+      run: |
+        gh release upload "$RELEASE_TAG" '../${{ steps.repository.outputs.pathref }}.tar.gz' --clobber --repo "$GITHUB_REPOSITORY"
 
     - name: Set image names
       id: image_names
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
         owner=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
         repo=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
@@ -75,15 +77,12 @@ jobs:
         echo "stats=ghcr.io/${owner}/${repo}-stats" >> "$GITHUB_OUTPUT"
 
     - name: Set up Docker Buildx
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/setup-buildx-action@v3
 
     - name: Set up QEMU
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/setup-qemu-action@v3
 
     - name: Log in to GHCR
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/login-action@v3
       with:
         registry: ghcr.io
@@ -92,19 +91,17 @@ jobs:
 
     - name: Docker metadata (app)
       id: meta_app
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/metadata-action@v5
       with:
         images: ${{ steps.image_names.outputs.app }}
         tags: |
-          type=raw,value=${{ github.ref_name }}
-          type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
+          type=raw,value=${{ github.event.release.tag_name }}
+          type=raw,value=latest,enable=${{ !github.event.release.prerelease && !contains(github.event.release.tag_name, '-') }}
         labels: |
           org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.revision=${{ github.sha }}
 
     - name: Build and push app image
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v6
       with:
         context: .
@@ -121,19 +118,17 @@ jobs:
 
     - name: Docker metadata (stats)
       id: meta_stats
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/metadata-action@v5
       with:
         images: ${{ steps.image_names.outputs.stats }}
         tags: |
-          type=raw,value=${{ github.ref_name }}
-          type=raw,value=latest,enable=${{ !contains(github.ref_name, '-') }}
+          type=raw,value=${{ github.event.release.tag_name }}
+          type=raw,value=latest,enable=${{ !github.event.release.prerelease && !contains(github.event.release.tag_name, '-') }}
         labels: |
           org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
           org.opencontainers.image.revision=${{ github.sha }}
 
     - name: Build and push stats image
-      if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v6
       with:
         context: .

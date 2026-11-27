@@ -1,8 +1,21 @@
 name: MonarcAppFO stage images
 
+# Start from Actions > Run workflow and select the source branch.
 on:
-  push:
-    branches: [ 'stage' ]
+  workflow_dispatch:
+    inputs:
+      images:
+        description: Images to publish
+        type: choice
+        default: all
+        options:
+          - all
+          - app
+          - stats
+
+concurrency:
+  group: ghcr-stage
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -10,7 +23,7 @@ permissions:
 
 jobs:
   publish-stage-app-image:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    if: inputs.images == 'all' || inputs.images == 'app'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -84,7 +97,7 @@ jobs:
         labels: ${{ steps.meta_app_stage.outputs.labels }}
 
   publish-stage-stats-image:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    if: inputs.images == 'all' || inputs.images == 'stats'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
