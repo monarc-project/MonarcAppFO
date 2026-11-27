@@ -304,6 +304,10 @@ return [
         ],
     ],
 
+    // Public base URL used to build absolute links (e.g. password reset). Must be an
+    // absolute http(s) URL; never derived from the request Host header.
+    'publicHost' => 'http://localhost',
+
     'defaultLanguageIndex' => 1,
 
      // Languages available for the analysis / DB data.
@@ -375,6 +379,10 @@ return [
             ],
         ],
     ],
+
+    // Public base URL used to build absolute links (e.g. password reset). Must be an
+    // absolute http(s) URL; never derived from the request Host header.
+    'publicHost' => 'http://localhost:8080',
 
     'defaultLanguageIndex' => 1,
 

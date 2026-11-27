@@ -30,8 +30,6 @@ defined('DATA_PATH') or define('DATA_PATH', $dataPath);
 return [
     'modules' => [
         'Laminas\I18n',
-        'Laminas\Mail',
-        'Laminas\Log',
         'Monarc\Core',
         'Monarc\FrontOffice',
         'Laminas\Cache',

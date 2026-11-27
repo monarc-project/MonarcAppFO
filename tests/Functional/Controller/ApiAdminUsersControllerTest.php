@@ -1,17 +1,25 @@
 <?php declare(strict_types=1);
+/**
+ * @link      https://github.com/monarc-project for the canonical source repository
+ * @copyright Copyright (c) 2016-2026 Luxembourg House of Cybersecurity LHC.lu - Licensed under GNU Affero GPL v3
+ * @license   MONARC is licensed under GNU Affero General Public License version 3
+ */
 
 namespace MonarcAppFo\Tests\Functional\Controller;
 
 use Laminas\Http\Header\HeaderInterface;
 use Laminas\ServiceManager\ServiceManager;
-use Monarc\Core\Model\Table\UserTable;
+use Monarc\Core\Table\UserTable;
 use Monarc\Core\Service\AuthenticationService;
 use Monarc\Core\Service\ConnectedUserService;
 use Monarc\FrontOffice\Controller\ApiAdminUsersController;
-use Monarc\FrontOffice\Model\Entity\User;
-use Monarc\FrontOffice\Model\Entity\UserRole;
+use Monarc\FrontOffice\Entity\User;
+use Monarc\FrontOffice\Entity\UserRole;
 use MonarcAppFo\Tests\Functional\AbstractFunctionalTestCase;
 
+/**
+ * @covers \Monarc\FrontOffice\Controller\ApiAdminUsersController
+ */
 class ApiAdminUsersControllerTest extends AbstractFunctionalTestCase
 {
     //protected $traceError = false;

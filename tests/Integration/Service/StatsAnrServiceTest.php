@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link      https://github.com/monarc-project for the canonical source repository
+ * @copyright Copyright (c) 2016-2026 Luxembourg House of Cybersecurity LHC.lu - Licensed under GNU Affero GPL v3
+ * @license   MONARC is licensed under GNU Affero General Public License version 3
+ */
 
 namespace MonarcAppFo\Tests\Integration\Service;
 
@@ -10,21 +15,21 @@ use GuzzleHttp\Psr7\Response;
 use Laminas\ServiceManager\ServiceManager;
 use LogicException;
 use Monarc\Core\Service\ConnectedUserService;
-use Monarc\FrontOffice\Model\Entity\Anr;
-use Monarc\FrontOffice\Model\Entity\UserAnr;
-use Monarc\FrontOffice\Model\Entity\UserRole;
+use Monarc\FrontOffice\Entity\Anr;
+use Monarc\FrontOffice\Entity\UserAnr;
+use Monarc\FrontOffice\Entity\UserRole;
 use Monarc\FrontOffice\Exception\AccessForbiddenException;
 use Monarc\FrontOffice\Exception\UserNotAuthorizedException;
-use Monarc\FrontOffice\Model\Entity\User;
-use Monarc\FrontOffice\Model\Table\AnrTable;
-use Monarc\FrontOffice\Model\Table\InstanceRiskOpTable;
-use Monarc\FrontOffice\Model\Table\InstanceRiskTable;
-use Monarc\FrontOffice\Model\Table\ReferentialTable;
-use Monarc\FrontOffice\Model\Table\ScaleTable;
-use Monarc\FrontOffice\Model\Table\SettingTable;
-use Monarc\FrontOffice\Model\Table\SnapshotTable;
-use Monarc\FrontOffice\Model\Table\SoaTable;
-use Monarc\FrontOffice\Model\Table\UserTable;
+use Monarc\FrontOffice\Entity\User;
+use Monarc\FrontOffice\Table\AnrTable;
+use Monarc\FrontOffice\Table\InstanceRiskOpTable;
+use Monarc\FrontOffice\Table\InstanceRiskTable;
+use Monarc\FrontOffice\Table\ReferentialTable;
+use Monarc\FrontOffice\Table\ScaleTable;
+use Monarc\FrontOffice\Table\SettingTable;
+use Monarc\FrontOffice\Table\SnapshotTable;
+use Monarc\FrontOffice\Table\SoaTable;
+use Monarc\FrontOffice\Table\UserTable;
 use Monarc\FrontOffice\Stats\DataObject\StatsDataObject;
 use Monarc\FrontOffice\Stats\Exception\StatsAlreadyCollectedException;
 use Monarc\FrontOffice\Stats\Provider\StatsApiProvider;
@@ -32,6 +37,9 @@ use Monarc\FrontOffice\Stats\Service\StatsAnrService;
 use MonarcAppFo\Tests\Integration\AbstractIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
+/**
+ * @covers \Monarc\FrontOffice\Stats\Service\StatsAnrService
+ */
 class StatsAnrServiceTest extends AbstractIntegrationTestCase
 {
     /** @var MockHandler */
@@ -436,7 +444,10 @@ class StatsAnrServiceTest extends AbstractIntegrationTestCase
         ], $queryParams);
 
         $dateTo = (new DateTimeImmutable())->modify('-6 months');
-        $this->statsAnrService->getStats(['type' => StatsDataObject::TYPE_THREAT, 'dateTo' => $dateTo->format('Y-m-d')]);
+        $this->statsAnrService->getStats([
+            'type' => StatsDataObject::TYPE_THREAT,
+            'dateTo' => $dateTo->format('Y-m-d'),
+        ]);
 
         parse_str($this->statsApiMockHandler->getLastRequest()->getUri()->getQuery(), $queryParams);
         $this->assertEquals([

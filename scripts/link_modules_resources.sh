@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Ensure folders are existing
 if [ ! -d public/js ]; then
@@ -63,5 +64,5 @@ cd ..
 cd ../..
 
 pushd node_modules/ng_client
-grunt concat
+./node_modules/.bin/grunt concat
 popd

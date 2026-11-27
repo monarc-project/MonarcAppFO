@@ -1,8 +1,21 @@
 name: MonarcAppFO stage images
 
+# Start from Actions > Run workflow and select the source branch.
 on:
-  push:
-    branches: [ 'stage' ]
+  workflow_dispatch:
+    inputs:
+      images:
+        description: Images to publish
+        type: choice
+        default: all
+        options:
+          - all
+          - app
+          - stats
+
+concurrency:
+  group: ghcr-stage
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -10,10 +23,10 @@ permissions:
 
 jobs:
   publish-stage-app-image:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    if: inputs.images == 'all' || inputs.images == 'app'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
 
     - name: install deps
       run: sudo apt-get update && sudo apt install -y gettext
@@ -21,89 +34,22 @@ jobs:
     # PHP
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
+      env:
+        update: "true"
       with:
-        php-version: "8.1"
-        tools: composer:v2.3
+        php-version: "8.4"
+        tools: composer:v2
         extensions: bcmath
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Install PHP dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --no-dev
-
-    - name: Symlink Monarc modules
-      run: |
-        mkdir -p module/Monarc
-        ln -s ../../vendor/monarc/core module/Monarc/Core
-        ln -s ../../vendor/monarc/frontoffice module/Monarc/FrontOffice
 
     # javascript
     - name: Use Node.js 16.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v7
       with:
         node-version: "16.x"
+        package-manager-cache: false
 
-    - uses: oprypin/find-latest-tag@v1
-      with:
-        repository: monarc-project/ng-anr
-        releases-only: true
-      id: ng_anr_lasttag
-
-    - run: echo "ng-anr is at version ${{ steps.ng_anr_lasttag.outputs.tag }}"
-
-    - name: Install ng-anr
-      uses: actions/checkout@v3
-      with:
-        repository: monarc-project/ng-anr
-        ref: ${{ steps.ng_anr_lasttag.outputs.tag }}
-        path: './node_modules/ng_anr'
-
-    - uses: oprypin/find-latest-tag@v1
-      with:
-        repository: monarc-project/ng-client
-        releases-only: true
-      id: ng_client_lasttag
-
-    - run: echo "ng-client is at version ${{ steps.ng_client_lasttag.outputs.tag }}"
-
-    - name: Install ng-client
-      uses: actions/checkout@v3
-      with:
-        repository: monarc-project/ng-client
-        ref: ${{ steps.ng_client_lasttag.outputs.tag }}
-        path: './node_modules/ng_client'
-
-    - name: Install ng-client dependencies
-      run: |
-        cd node_modules/ng_client
-        npm ci
-
-    - name: post job
-      run: |
-        bash -ex ./scripts/link_modules_resources.sh
-        bash -ex ./scripts/compile_translations.sh
-
-    - name: Prepare app image build context
-      run: |
-        rm -rf .docker-stage-context
-        mkdir -p .docker-stage-context
-        tar \
-          --exclude .git \
-          --exclude .github \
-          --exclude .idea \
-          --exclude .vscode \
-          --exclude vagrant \
-          --exclude wsl \
-          --exclude INSTALL \
-          --exclude .env \
-          --exclude .env.dev \
-          --exclude .DS_Store \
-          --exclude .docker-stage-context \
-          --exclude .docker-release-context \
-          -cf - . | tar -xf - -C .docker-stage-context
-        rm -rf .docker-stage-context/data
-        rm -f .docker-stage-context/.dockerignore
+    - name: Assemble locked backend and frontend releases
+      run: bash scripts/prepare-release.sh
 
     - name: Set image names
       id: image_names
@@ -114,13 +60,13 @@ jobs:
         echo "stats=ghcr.io/${owner}/${repo}-stats" >> "$GITHUB_OUTPUT"
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@v4
 
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
+      uses: docker/setup-qemu-action@v4
 
     - name: Log in to GHCR
-      uses: docker/login-action@v3
+      uses: docker/login-action@v4
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -128,7 +74,7 @@ jobs:
 
     - name: Docker metadata (app)
       id: meta_app_stage
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@v6
       with:
         images: ${{ steps.image_names.outputs.app }}
         tags: |
@@ -139,10 +85,11 @@ jobs:
           org.opencontainers.image.revision=${{ github.sha }}
 
     - name: Build and push app image (stage)
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v7
       with:
-        context: ./.docker-stage-context
-        file: ./.docker-stage-context/Dockerfile.release
+        context: .
+        file: ./Dockerfile.ghcr
+        pull: true
         push: true
         platforms: linux/amd64,linux/arm64
         cache-from: type=gha,scope=stage-app-image
@@ -151,10 +98,10 @@ jobs:
         labels: ${{ steps.meta_app_stage.outputs.labels }}
 
   publish-stage-stats-image:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/stage'
+    if: inputs.images == 'all' || inputs.images == 'stats'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v7
 
     - name: Set image names
       id: image_names
@@ -165,13 +112,13 @@ jobs:
         echo "stats=ghcr.io/${owner}/${repo}-stats" >> "$GITHUB_OUTPUT"
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: docker/setup-buildx-action@v4
 
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
+      uses: docker/setup-qemu-action@v4
 
     - name: Log in to GHCR
-      uses: docker/login-action@v3
+      uses: docker/login-action@v4
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -179,7 +126,7 @@ jobs:
 
     - name: Docker metadata (stats)
       id: meta_stats_stage
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@v6
       with:
         images: ${{ steps.image_names.outputs.stats }}
         tags: |
@@ -190,7 +137,7 @@ jobs:
           org.opencontainers.image.revision=${{ github.sha }}
 
     - name: Build and push stats image (stage)
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./Dockerfile.stats

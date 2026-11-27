@@ -1,6 +1,14 @@
 MONARC Changelog
 ================
 
+
+## 2.14.3 (2026-11-27)
+
+### Enhancement
+
+- [Support of PHP 8.4](https://github.com/monarc-project/MonarcAppFO/issues/599)
+
+
 ## 2.14.2 (2026-09-10)
 
 ### Enhancement

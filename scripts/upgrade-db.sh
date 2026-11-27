@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
 

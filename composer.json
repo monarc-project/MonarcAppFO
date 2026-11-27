@@ -25,44 +25,41 @@
         },
         {
             "name": "Jérôme Lombardi",
-            "email": "jerome.lombardi@cases.lu"
+            "email": "jerome.lombardi@nc3.lu"
         },
         {
             "name": "Juan Rocha",
-            "email": "juan.rocha@cases.lu"
+            "email": "juan.rocha@nc3.lu"
         },
         {
             "name": "Cédric Bonhomme",
-            "email": "cedric.bonhomme@cases.lu"
+            "email": "cedric.bonhomme@nc3.lu"
         },
         {
             "name": "Ruslan Baidan",
-            "email": "ruslan.baidan@cases.lu"
+            "email": "ruslan.baidan@nc3.lu"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": ">=8.4.28 <8.5.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-bcmath": "*",
         "ext-openssl": "*",
-        "monarc/frontoffice": "^2.14.1",
-        "monarc/core": "^2.14.1",
+        "monarc/frontoffice": "^2.14.3.1",
+        "monarc/core": "^2.14.2",
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-di": "^3.1",
         "laminas/laminas-permissions-rbac": "^3.0",
-        "laminas/laminas-log": "^2.11",
         "laminas/laminas-i18n": "^2.9",
-        "symfony/console": "^5.0",
-        "laminas/laminas-dependency-plugin": "^2.0",
+        "symfony/console": "^6.4",
         "laminas/laminas-mvc-middleware": "^2.2",
-        "robthree/twofactorauth": "^1.8",
-        "endroid/qr-code": "^4.4",
+        "endroid/qr-code": "^6.1.3",
         "laminas/laminas-captcha": "^2.18"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.5",
         "laminas/laminas-test": "^4.5"
     },
     "autoload-dev": {
@@ -71,11 +68,8 @@
         }
     },
     "config": {
-        "bin-dir": "bin/",
-        "allow-plugins": {
-            "laminas/laminas-dependency-plugin": true
-        }
+        "bin-dir": "bin/"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

@@ -9,6 +9,22 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}Starting MONARC FrontOffice setup...${NC}"
 
+# Validate first-run public URL configuration before any database or dependency changes.
+if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
+    : "${PUBLIC_HOST:?PUBLIC_HOST must be set to the public base URL, e.g. https://monarc.example.org}"
+    PUBLIC_HOST_PHP=$(php -r '
+        $url = getenv("PUBLIC_HOST");
+        if (filter_var($url, FILTER_VALIDATE_URL) === false
+            || !preg_match("#^https?://#i", $url)
+            || strpbrk($url, "@?#") !== false
+        ) {
+            fwrite(STDERR, "PUBLIC_HOST must be an absolute http(s) URL without credentials, a query string or a fragment.\n");
+            exit(1);
+        }
+        echo var_export($url, true);
+    ')
+fi
+
 # Wait for database to be ready
 echo -e "${YELLOW}Waiting for MariaDB to be ready...${NC}"
 while ! mysqladmin ping -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" --silent 2>/dev/null; do
@@ -35,9 +51,13 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
 
     cd /var/www/html/monarc
 
-    # Install composer dependencies (always, to ensure binaries like Phinx are present)
-    echo -e "${YELLOW}Installing Composer dependencies...${NC}"
-    composer install --ignore-platform-req=php --no-interaction
+    if [ "${MONARC_PREPARED_RELEASE:-0}" = "1" ]; then
+        test -f vendor/autoload.php
+        php tests/released-sources.php
+    else
+        composer install --no-interaction --prefer-dist
+        ./scripts/install-frontend.sh
+    fi
 
     # Create module symlinks
     echo -e "${YELLOW}Creating module symlinks...${NC}"
@@ -47,43 +67,19 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
     ln -sfn ./../../vendor/monarc/frontoffice FrontOffice
     cd /var/www/html/monarc
 
-    # Clone frontend repositories
-    echo -e "${YELLOW}Setting up frontend repositories...${NC}"
-    mkdir -p node_modules
-    cd node_modules
-
-    if [ ! -d "ng_client" ]; then
-        git clone --config core.fileMode=false https://github.com/monarc-project/ng-client.git ng_client
-    fi
-
-    if [ ! -d "ng_anr" ]; then
-        git clone --config core.fileMode=false https://github.com/monarc-project/ng-anr.git ng_anr
-    fi
-
-    cd /var/www/html/monarc
-
-    # Check if CLI database exists and create databases if needed
+    # Create office databases independently; a previous attempt may have created only CLI.
     echo -e "${YELLOW}Setting up databases...${NC}"
-    DB_EXISTS=$(mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "SHOW DATABASES LIKE '${DBNAME_CLI}';" | grep -c "${DBNAME_CLI}" || true)
     USE_BO_COMMON_ENABLED=0
     if is_true "${USE_BO_COMMON}"; then
         USE_BO_COMMON_ENABLED=1
     fi
 
-    if [ "$DB_EXISTS" -eq 0 ]; then
-        echo -e "${YELLOW}Creating databases...${NC}"
-        mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "CREATE DATABASE IF NOT EXISTS ${DBNAME_CLI} DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
+    mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "CREATE DATABASE IF NOT EXISTS ${DBNAME_CLI} DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;"
 
-        if [ "$USE_BO_COMMON_ENABLED" -eq 0 ]; then
-            mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "CREATE DATABASE IF NOT EXISTS ${DBNAME_COMMON} DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
-
-            echo -e "${YELLOW}Populating common database...${NC}"
-            export MYSQL_PWD="${DBPASSWORD_MONARC}"
-            mysql -h"${DBHOST}" -u"${DBUSER_MONARC}" ${DBNAME_COMMON} < db-bootstrap/monarc_structure.sql
-            mysql -h"${DBHOST}" -u"${DBUSER_MONARC}" ${DBNAME_COMMON} < db-bootstrap/monarc_data.sql
-        else
-            echo -e "${YELLOW}USE_BO_COMMON is enabled; skipping monarc_common creation and bootstrap.${NC}"
-        fi
+    if [ "$USE_BO_COMMON_ENABLED" -eq 0 ]; then
+        mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "CREATE DATABASE IF NOT EXISTS ${DBNAME_COMMON} DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;"
+    else
+        echo -e "${YELLOW}USE_BO_COMMON is enabled; skipping monarc_common creation and bootstrap.${NC}"
     fi
 
     echo -e "${YELLOW}Ensuring privileges for ${DBUSER_MONARC}...${NC}"
@@ -92,6 +88,17 @@ if [ ! -f "/var/www/html/monarc/.docker-initialized" ]; then
         mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "GRANT ALL PRIVILEGES ON ${DBNAME_COMMON}.* TO '${DBUSER_MONARC}'@'%';"
     fi
     mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "FLUSH PRIVILEGES;"
+
+    if [ "$USE_BO_COMMON_ENABLED" -eq 0 ]; then
+        COMMON_TABLE_COUNT=$(mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -N -s \
+            -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '${DBNAME_COMMON}';")
+        if [ "$COMMON_TABLE_COUNT" -eq 0 ]; then
+            echo -e "${YELLOW}Populating empty common database...${NC}"
+            export MYSQL_PWD="${DBPASSWORD_MONARC}"
+            mysql -h"${DBHOST}" -u"${DBUSER_MONARC}" ${DBNAME_COMMON} < db-bootstrap/monarc_structure.sql
+            mysql -h"${DBHOST}" -u"${DBUSER_MONARC}" ${DBNAME_COMMON} < db-bootstrap/monarc_data.sql
+        fi
+    fi
 
     if [ "$USE_BO_COMMON_ENABLED" -eq 1 ]; then
         COMMON_EXISTS=$(mysql -h"${DBHOST}" -u"root" -p"${DBPASSWORD_ADMIN}" -e "SHOW DATABASES LIKE '${DBNAME_COMMON}';" | grep -c "${DBNAME_COMMON}" || true)
@@ -134,6 +141,9 @@ return [
             ],
         ],
     ],
+
+    // Absolute public base URL; required to build password-reset links safely.
+    'publicHost' => ${PUBLIC_HOST_PHP},
 
     'defaultLanguageIndex' => 1,
 
@@ -197,7 +207,12 @@ EOF
 
     # Update and build frontend and run DB migrations
     echo -e "${YELLOW}Building frontend and running DB migrations...${NC}"
-    ./scripts/update-all.sh
+    if [ "${MONARC_PREPARED_RELEASE:-0}" != "1" ]; then
+        ./scripts/link_modules_resources.sh
+        ./scripts/compile_translations.sh
+    fi
+    php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/Core/migrations/phinx.php
+    php ./vendor/robmorgan/phinx/bin/phinx migrate -c ./module/Monarc/FrontOffice/migrations/phinx.php
 
     # Seed database with initial user
     echo -e "${YELLOW}Creating initial user and client...${NC}"
@@ -220,5 +235,10 @@ else
     echo -e "${GREEN}Application already initialized, starting services...${NC}"
 fi
 
+# Apply development SMTP settings on every startup, including initialized installs.
+if [ "${APP_ENV:-}" = "development" ] && [ -n "${SMTP_HOST:-}" ]; then
+    cp /var/www/html/monarc/docker/smtp.local.php /var/www/html/monarc/config/autoload/smtp.local.php
+fi
+
 # Execute the main command
-exec apachectl -D FOREGROUND
+exec "$@"
